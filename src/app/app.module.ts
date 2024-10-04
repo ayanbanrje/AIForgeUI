@@ -7,6 +7,8 @@ import { InputComponent } from './commonComponent/input/input.component';
 import { ButtonComponent } from './commonComponent/button/button.component';
 import { ModuleExtensionComponent } from './pages/module-extension/module-extension.component';
 import { LoginComponent } from './pages/login/login.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
@@ -16,6 +18,8 @@ import { LoginComponent } from './pages/login/login.component';
     ButtonComponent,
     ModuleExtensionComponent,
     LoginComponent,
+    HeaderComponent,
+    FooterComponent,
     //ProjectsComponent
   ],
   imports: [
