@@ -97,3 +97,47 @@ dl {
 //   padding: 0;
 //   font-size: 1vw;
 // }
+
+.fz-30px {
+  font-size: 30px;
+}
+
+.fz-42px {
+  font-size: 30px;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+.c-white {
+  color: white;
+}
+
+.w-200px {
+  width: 200px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.border-dashed {
+  border: 2px dashed #ddd;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.card-text {
+  color: #888;
+}
