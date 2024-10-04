@@ -8,10 +8,20 @@ import { Router, NavigationStart, Event as NavigationEvent, NavigationEnd, Navig
 })
 export class AppComponent {
   title = 'AIForge';
+  showHeaderFooter = true; 
 
   constructor(
     private router: Router,
   ){
     
+  }
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Define the specific route where header and footer should be hidden
+        this.showHeaderFooter = ['/createproject'].includes(event.url);
+      }
+    });
   }
 }

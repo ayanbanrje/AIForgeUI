@@ -12,8 +12,8 @@
 </head>
 
 <body>
-  <app-header></app-header>
+  <app-header [ngClass]="{'hidden': showHeaderFooter}"></app-header>
   <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <app-footer [ngClass]="{'hidden': showHeaderFooter}"></app-footer>
 </body>
  

@@ -85,6 +85,13 @@
   background: #fff;
 }
 
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: unset !important;
+}
+
 // html, body {
 //   margin: 0;
 //   padding: 0;

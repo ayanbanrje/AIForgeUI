@@ -6,6 +6,7 @@ import { ModuleExtensionComponent } from "./pages/module-extension/module-extens
 import { NodeconfigurationComponent } from "./pages/nodeconfiguration/nodeconfiguration.component";
 import { DatasetsComponent } from "./pages/datasets/datasets.component";
 import { MarketplaceComponent } from "./pages/marketplace/marketplace.component";
+import { CreateprojectComponent } from "./pages/createproject/createproject.component"
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path : 'moduleextention', component: ModuleExtensionComponent },
   { path : 'nodeconfiguration', component: NodeconfigurationComponent },
   { path : 'datasets', component: DatasetsComponent },
-  { path : 'marketplace', component: MarketplaceComponent }
+  { path : 'marketplace', component: MarketplaceComponent },
+  { path : 'createproject', component : CreateprojectComponent },
   //{ path: '', redirectTo: '/project', pathMatch: 'full' },  // Optional default route
 ];
 

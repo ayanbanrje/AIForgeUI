@@ -14,6 +14,7 @@ import { MenuComponent } from './menu/menu.component';
 import { NodeconfigurationComponent } from './pages/nodeconfiguration/nodeconfiguration.component';
 import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
+import { CreateprojectComponent } from './pages/createproject/createproject.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { MarketplaceComponent } from './pages/marketplace/marketplace.component'
     NodeconfigurationComponent,
     DatasetsComponent,
     MarketplaceComponent,
+    CreateprojectComponent,
     //ProjectsComponent
   ],
   imports: [
