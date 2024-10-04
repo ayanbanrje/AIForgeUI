@@ -1,0 +1,104 @@
+// @import './variables';
+
+// $rb-checkbox-checked-color: $font-skyblue-color;
+// $rb-checkbox-border-color: $font-dark-grey;
+// $rb-checkbox-border-color-disabled: rgba(0, 0, 0, 0.26);
+// $rb-checkbox-checked-color-disabled: rgba(0, 0, 0, 0.26);
+
+// $rb-checkbox-margin: 0.2em 0;
+// $rb-checkbox-size: 1em;
+// $rb-checkbox-padding: .125em;
+// $rb-checkbox-border-width: 1px;
+// $rb-checkbox-border-radius: 0.025em;
+// $rb-checkmark-width: 0.125em;
+// $rb-checkmark-color: #fff;
+// $rb-checkbox-label-padding: .75em;
+
+// .rb-checkbox {
+//   position: relative;
+//   margin: $rb-checkbox-margin;
+//   text-align: left;
+
+//   &.rb-checkbox-inline {
+//     display: inline-block;
+//   }
+
+//   label {
+//     cursor: pointer;
+//     display: inline;
+//     line-height: $rb-checkbox-size;
+//     vertical-align: top;
+//     clear: both;
+//     padding-left: 1px;
+
+//     &:not(:empty) {
+//       padding-left: $rb-checkbox-label-padding;
+//     }
+
+//     &:before,
+//     &:after {
+//       content: "";
+//       position: absolute;
+//       left: 0;
+//       top: 0;
+//     }
+
+//     &:before {
+//       // box
+//       width: $rb-checkbox-size;
+//       height: $rb-checkbox-size;
+//       background: $background-gray-color;
+//       border-bottom: $rb-checkbox-border-width solid $rb-checkbox-border-color;
+//       border-radius: $rb-checkbox-border-radius;
+//       cursor: pointer;
+//       //   transition: background .3s;
+//     }
+
+//     // &:after {
+//     //   // checkmark
+//     // }    
+//   }
+
+//   input[type="checkbox"] {
+//     outline: 0;
+//     visibility: hidden;
+//     width: $rb-checkbox-size;
+//     margin: 0;
+//     display: block;
+//     float: left;
+//     font-size: inherit;
+
+//     &:checked {
+//       +label:before {
+//         background: $rb-checkbox-checked-color;
+//         border: none;
+//       }
+
+//       +label:after {
+
+//         $rb-checkmark-size: $rb-checkbox-size - 2 * $rb-checkbox-padding;
+
+//         transform: translate($rb-checkbox-padding, calc($rb-checkmark-size / 2) - calc($rb-checkmark-size / 2.6)) rotate(-45deg);
+//         width: $rb-checkmark-size;
+//         height: calc($rb-checkmark-size / 2);
+
+//         border: $rb-checkmark-width solid $rb-checkmark-color;
+//         border-top-style: none;
+//         border-right-style: none;
+//       }
+//     }
+
+//     &:disabled {
+//       +label:before {
+//         border-color: $rb-checkbox-border-color-disabled;
+//       }
+
+//       &:checked {
+//         +label:before {
+//           background: $rb-checkbox-checked-color-disabled;
+//         }
+//       }
+//     }
+//   }
+
+// }

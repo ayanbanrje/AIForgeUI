@@ -1,0 +1,146 @@
+[
+    {
+        "id": "STORE_NAME",
+        "label": "Name",
+        "class": "col-md-4",
+        "type": "text",
+        "max": 25,
+        "required": true
+    },
+    {
+        "type": "blank",
+        "class": "col-md-9"
+    },
+    {
+        "id": "ADDRESS",
+        "label": "Location/Address",
+        "class": "col-md-9",
+        "type": "text",
+        "max": 300,
+        "required": true,
+        "disabled": true
+    },
+    {
+        "id": "PINLOCATION",
+        "label": "Pin Location",
+        "class": "col-md-3",
+        "type": "button",
+        "icon": "bosch-ic-locator",
+        "buttonClass": "secondary",
+        "iposition": "left"
+    },
+    {
+        "id": "ZIPCODE",
+        "label": "Zipcode",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 6,
+        "required": false,
+        "disabled": true
+    },
+    {
+        "id": "NO_OF_FLOORS",
+        "label": "No Of Floors",
+        "class": "col-md-3",
+        "type": "select",
+        "options": [],
+        "required": true
+    },
+    {
+        "id": "AREA_IN",
+        "class": "col-md-3",
+        "type": "toggle",
+        "options": [
+            {
+                "label": "Sq Mt",
+                "selected": true
+            },
+            {
+                "label": "Sq Ft"
+            }
+        ],
+        "key": "label",
+        "view": "label",
+        "label": "Area In",
+        "required": true
+    },
+    {
+        "id": "SPACE",
+        "class": "col-md-3",
+        "type": "toggle",
+        "options": [
+            {
+                "label": "Shared",
+                "selected": true
+            },
+            {
+                "label": "Owned"
+            }
+        ],
+        "key": "label",
+        "view": "label",
+        "label": "Space",
+        "required": true
+    },
+    {
+        "id": "TOTAL_FLOOR_AREA",
+        "label": "Total Floor Area",
+        "class": "col-md-4",
+        "type": "text",
+        "disabled": true
+    },
+    {
+        "type": "blank",
+        "class": "col-md-9"
+    },
+    {
+        "id": "FLOORPLAN",
+        "label": "Floor Plan",
+        "class": "col-md-4",
+        "type": "file",
+        "accept":"application/pdf, image/jpg, image/jpeg",
+        "required": true
+    },
+    {
+        "id": "FLOORPLANBTN",
+        "label": "Add Attachments",
+        "class": "col-md-4",
+        "type": "button",
+        "icon": "bosch-ic-paperclip",
+        "buttonClass": "secondary",
+        "selector": "FLOORPLAN",
+        "iposition": "left"
+    },
+    {
+        "id": "STORE_INCHARGE",
+        "label": "Store in charge",
+        "class": "col-md-4",
+        "type": "email",
+        "max": 75,        
+        "required":true
+    },
+    {
+        "id": "ELECTRICITY_SCHEMANTIC_URL",
+        "label": "Electricity Schematic",
+        "class": "col-md-4",
+        "type": "file",
+        "accept":"application/pdf, image/jpg, image/jpeg",
+        "required": true
+    },
+    {
+        "id": "ELECTRICALSCHEMABTN",
+        "label": "Add Attachments",
+        "class": "col-md-4",
+        "type": "button",
+        "icon": "bosch-ic-paperclip",
+        "buttonClass": "secondary",
+        "selector": "ELECTRICITY_SCHEMANTIC_URL",
+        "iposition": "left"
+    },
+    {
+        "id": "ELECTRICITY_CONTRACTOR_INCHARGE",
+        "label": "Electricity Contractor incharge",
+        "class": "col-md-4",
+        "type": "text"
+    }
+]

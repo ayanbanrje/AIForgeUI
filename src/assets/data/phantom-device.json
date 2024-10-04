@@ -1,0 +1,84 @@
+[
+    {
+        "id":"checkbox",
+        "label":"",
+        "type":"checkbox"
+    },
+    {
+        "id":"FLOOR",
+        "label":"Floor",
+        "type":"select",
+        "options":[
+            {
+                "label":1
+            },
+            {
+                "label":2
+            },
+            {
+                "label":3
+            },
+            {
+                "label":4
+            }
+        ],
+        "required":true
+    },
+    {
+        "id":"FLOORAREA",
+        "label":"Floor Area",
+        "type":"text",
+        "max":50,
+        "required":true
+    },
+    {
+        "id":"POINTOFINSTALLATION",
+        "label":"Point of Installation",
+        "type":"select",
+        "options":[
+            {
+                "label":"kitchen"
+            },
+            {
+                "label":"room"
+            },
+            {
+                "label":"store"
+            },
+            {
+                "label":"hall"
+            }
+        ],
+        "required":true
+    },
+    {
+        "id":"NAMEOFPOI",
+        "label":"Name Of POI",
+        "type":"text",
+        "max":50,
+        "required":true
+    },
+    {
+        "id":"HARDWAREID",
+        "label":"Hardware ID",
+        "type":"text",
+        "max":50,
+        "required":true
+    },
+    {
+        "id":"DEVICESERIALNUMBER",
+        "label":"Device Serial Number",
+        "type":"number",
+        "max":50,
+        "required":true
+    },
+    {
+        "id":"SAVE",
+        "label":"Save",
+        "icon":"boschicon-bosch-ic-search",
+        "class":"col-md-4",
+        "type":"button",
+        "buttonClass":"secondary",
+        "margin": "0 0 0 0"
+    }
+]

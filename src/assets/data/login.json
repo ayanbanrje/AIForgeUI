@@ -1,0 +1,75 @@
+[
+  {
+    "id": "EMAIL",
+    "label": "Email",
+    "class": "col-12 mt-4 p-0 loginLabelInputContainer",
+    "type": "email",
+    "max": 75,
+    "required": true,
+    "hasIcon":true,
+    "placeholder":"username@email.com",
+    "emailIcon":"boschicon-bosch-ic-user"
+  },
+  {
+    "id": "PASSWORD",
+    "label": "Password",
+    "class": "col-11 mt-4 p-0 loginLabelInputContainer",
+    "type": "password",
+    "max": 25,
+    "required": true,
+    "hasIcon":true,
+    "placeholder":"***********",
+    "emailIcon":"boschicon-bosch-ic-lock-closed"
+  },
+  {
+    "id": "PASSWORDTEMP",
+    "label": "Password",
+    "class": "col-11 mt-4 p-0 loginLabelInputContainer",
+    "type": "text",
+    "max": 25,
+    "required": true,
+    "hasIcon":true,
+    "placeholder":"***********",
+    "emailIcon":"boschicon-bosch-ic-lock-closed"
+  },
+  {
+    "id": "SEE-PASSWORD",
+    "class": "col-1 mt-4 p-0 loginLabelInputContainer seePaswordLogin",
+    "type": "icon",
+    "icon":"boschicon-bosch-ic-watch-off-disabled-light"
+  },
+  {
+    "id": "Remember_Me",
+    "label": "Remember me",
+    "class": "col-md-6 col-sm-6 col-6 my-4 p-0 d-flex justify-content-start align-items-center loginLabelInputContainer",
+    "type": "checkbox",
+    "buttonClass": "secondary no-border",
+    "iposition": "left",
+    "checkBoxClass":true
+  },
+  {
+    "id": "FORGOTPASSWORD",
+    "label": "Forgot Password?",
+    "class": "col-md-6 col-sm-6 col-6 my-4 p-0 text-end loginLabelInputContainer",
+    "type": "link",
+    "buttonClass": "secondary no-border p-0 text-end",
+    "iposition": "right",
+    "questionMark": "?"
+  },
+  {
+    "type": "label",
+    "class": "col-3 mt-5 p-0"
+  },
+  {
+    "id": "LOGIN",
+    "label": "Login",
+    "class": "col-md-6 col-sm-6 col-6 col-lg-6 col-xl-6 col-xxl-6 my-5 p-0 loginLabelInputContainer",
+    "type": "button",
+    "buttonClass": "primary justify-content-center",
+    "responsiveButton":true
+  },
+  {
+    "type": "label",
+    "class": "col-3 mt-5 p-0"
+  }
+]

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="10.933" height="10.934" viewBox="0 0 10.933 10.934">
+  <g id="dashboard_inprogress_icon" transform="translate(-164.638 -94.638)">
+    <path id="Path_7082" data-name="Path 7082" d="M235.255,96.7a4.2,4.2,0,0,1,1.852-.77V94.64a5.477,5.477,0,0,0-2.769,1.147Z" transform="translate(-67.644 -0.002)"/>
+    <path id="Path_7083" data-name="Path 7083" d="M165.933,167.11a4.2,4.2,0,0,1,.77-1.852l-.917-.917a5.477,5.477,0,0,0-1.147,2.769Z" transform="translate(0 -67.647)"/>
+    <path id="Path_7084" data-name="Path 7084" d="M466.279,164.34l-.917.917a4.2,4.2,0,0,1,.77,1.852h1.295A5.476,5.476,0,0,0,466.279,164.34Z" transform="translate(-291.855 -67.646)"/>
+    <path id="Path_7085" data-name="Path 7085" d="M371.78,95.933a4.2,4.2,0,0,1,1.852.77l.917-.917a5.478,5.478,0,0,0-2.769-1.147Z" transform="translate(-201.033 0)"/>
+    <path id="Path_7086" data-name="Path 7086" d="M466.132,301.78a4.2,4.2,0,0,1-.77,1.852l.917.917a5.477,5.477,0,0,0,1.147-2.769Z" transform="translate(-291.855 -201.033)"/>
+    <path id="Path_7087" data-name="Path 7087" d="M373.633,395.36a4.2,4.2,0,0,1-1.852.77v1.295a5.478,5.478,0,0,0,2.769-1.147Z" transform="translate(-201.034 -291.853)"/>
+    <path id="Path_7088" data-name="Path 7088" d="M166.7,303.633a4.2,4.2,0,0,1-.77-1.852H164.64a5.478,5.478,0,0,0,1.147,2.769Z" transform="translate(-0.002 -201.034)"/>
+    <path id="Path_7089" data-name="Path 7089" d="M237.1,396.132a4.2,4.2,0,0,1-1.852-.77l-.917.917a5.477,5.477,0,0,0,2.769,1.147v-1.295Z" transform="translate(-67.64 -291.855)"/>
+  </g>
+</svg>

@@ -1,0 +1,5 @@
+<div class="number" [ngClass]="{'usageHrs':usageHrs}">
+    <input type="number" disabled [(ngModel)]="value" [ngStyle]="{'padding':inputPadding,'border-bottom':inputBorderBottom}">
+    <i class="boschicon-bosch-ic-up upIcon" (click)="increment()"></i>
+    <i class="boschicon-bosch-ic-down downIcon" (click)="decrement()"></i>
+</div>

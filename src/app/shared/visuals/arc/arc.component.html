@@ -1,0 +1,34 @@
+<div [id]="id" class="arc" #arc [ngStyle]="{'height': !data.target ? '100%' : 'auto'}">
+    <svg height="1px" width="1px">
+        <defs>
+            <filter id="inset-shadow" x="-0%" y="-0%" width="100%" height="100%">
+                <feComponentTransfer in=SourceAlpha>
+                    <feFuncA type="table" tableValues="1 0" />
+                </feComponentTransfer>
+                <feGaussianBlur stdDeviation="10" />
+                <feOffset dx="0" dy="0" result="offsetblur" />
+                <feFlood flood-color="rgb(20, 0, 0)" result="color" />
+                <feComposite in2="offsetblur" operator="in" />
+                <feComposite in2="SourceAlpha" operator="in" />
+                <feMerge>
+                    <feMergeNode in="SourceGraphic" />
+                    <feMergeNode />
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+    <div class="actual-container" [ngStyle]="{'height': definitions.size+'px'}">
+        <div *ngIf="data && data.value" class="actual">
+            <div>{{data.value | number: '1.0-0' | noComma}} <span>kWh</span></div>
+            <div>Actual</div>
+        </div>
+    </div>
+    <div class="svg-s" *ngIf="data && data.target && data.value">
+        <div class="arrows" *ngIf="formatted && formatted.count && formatted.count.length">
+            <div *ngIf="5 > formatted.count.length">
+                <i *ngFor="let item of formatted.count" class="boschicon-bosch-ic-forward-right"></i>
+            </div>
+            <div *ngIf="formatted.count.length >= 5"><span>{{formatted.count.length}}</span> <i class="boschicon-bosch-ic-forward-right"></i></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+@import "../../../../assets/css/variables";
+
+.navigation {
+  background: $white;
+  border-top: 1px solid $border;
+  position: fixed;
+  z-index: 999;
+    margin-top: -42px;
+  margin: 0px;
+  overflow: scroll;
+
+  ul {
+    display: block;
+    width: 1280px;
+    margin: 0 auto;
+    border-bottom: 1px solid $border-grey-color;
+
+    li {
+      display: inline-block;
+      padding: 10px 0;
+      margin: 0 25px;
+      font-weight: 600;
+      color: $black;
+      border-bottom: 1px solid $white;
+      cursor: pointer;
+
+      // &:first-child {
+      //     margin-left: 0;
+      // }
+      &.active {
+        cursor: auto;
+        color: $active;
+        border-bottom: 2px solid $active;
+      }
+
+      &.mobile {
+        display: none;
+      }
+
+      &.beta {
+        color: $black;
+
+        sup {
+          padding: 0 4px;
+          font-size: 10px;
+          color: $white;
+          background: $active;
+          border-radius: 3px;
+          margin-left: 2px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 300px) and (max-width: 800px) {
+  .navigation {
+    width: 100%;
+    height: calc(100% - 80px);
+    background: $white;
+    margin: -5px 0 0;
+
+    ul {
+      li {
+        display: block;
+        margin: 0;
+        padding: 15px;
+        border-bottom: 1px solid $grey;
+
+        &.mobile {
+          display: block;
+        }
+
+        &.active {
+          color: $white;
+          background: $active;
+          border-bottom: 2px solid $active;
+        }
+      }
+    }
+  }
+}

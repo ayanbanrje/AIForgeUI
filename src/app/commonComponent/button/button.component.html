@@ -1,0 +1,6 @@
+<button [class]="class" [ngClass]="{'isFromAppliance':isFromAppliance , 'responsiveButton': responsiveButton }" (window:resize)="onResize()" (click)="submit($event)" [disabled]="disabled"
+[ngStyle]="{'align-items': alignItems ,'background': background, 'opacity': opacity, 'color': color, 'float': float, 'padding': padding, 'margin': margin, 'width': width, 'height': height, 'text-align': (textAlign ? textAlign : 'center'), 'border-radius': borderRadius, 'font-size': fontSize, 'position': position, 'top': top, 'left': left, 'bottom': bottom, 'right': right , 'isFromLocation': isFromLocation}" [title]="title" data-bs-toggle="toggle" data-bs-placement="bottom">
+  <i *ngIf="icon && iposition === 'left'" class="left-icon" [ngStyle]="{'color': color , 'margin-right': leftIconMR}" [ngClass]="'boschicon-'+icon"></i>
+  <span class="buttonContent"><ng-content></ng-content></span> 
+  <i *ngIf="icon && iposition === 'right'" class="right-icon" [ngStyle]="{'color': color}" [ngClass]="'boschicon-'+icon"></i>
+</button>

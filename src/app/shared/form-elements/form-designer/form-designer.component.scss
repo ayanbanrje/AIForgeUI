@@ -1,0 +1,764 @@
+@import "../../../../assets/css/variables";
+
+form {
+  fieldset {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .no-bg {
+      background: none;
+    }
+
+    .form-error {
+      float: left;
+      color: #FF0000;
+      font-size: 0.75rem;
+    }
+
+    .disabled {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .change-label-color {
+      color: #FF0000 !important;
+    }
+
+    .lable-lineHeight {
+      line-height: 0.95vw !important;
+    }
+
+    .defaultLabelInputContainer {
+      .labelDiv {
+        label {
+          width: 100%;
+          font-size: 0.95vw;
+          font-family: "bosch-Regular" !important;
+          margin-bottom: 0rem !important;
+          color: black;
+          font-weight: 500 !important;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+
+      .input-group {
+        input {
+          background: transparent !important;
+          border: 0rem !important;
+          border-bottom: 1px solid #D0D4D8 !important;
+          border-radius: 0rem !important;
+          padding-left: 0rem !important;
+          box-shadow: none !important;
+          width: 100%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font: normal normal normal 0.95vw/0.9rem 'bosch-Regular';
+        }
+      }
+    }
+
+    .defaultIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5vw;
+      color: $active !important;
+      margin-top: 1rem;
+
+      i {
+        font-weight: 600 !important;
+        cursor: pointer;
+      }
+    }
+
+    .defaultCheckBox {
+      align-items: center;
+      .cbContainer {
+        background: none;
+      }
+
+      span {
+        font: normal normal normal 1vw/0.9rem 'bosch-Regular';
+        color: black;
+      }
+    }
+
+    .linkClass {
+      span {
+        font: normal normal normal 1vw/0.9rem 'bosch-Regular';
+        color: $active;
+        cursor: pointer;
+      }
+    }
+
+    .verificationHighLighter {
+      font: normal normal normal 0.9vw/0.9rem 'bosch-Regular';
+      color: $active;
+      font-weight: bold !important;
+      cursor: pointer;
+      position: absolute;
+      display: flex;
+      justify-content: end;
+      top: 1.5rem;
+      right: 0;
+    }
+
+    .defaultLabel {
+      font-size: 1vw;
+      font-family: 'bosch-Regular';
+      color: black;
+      font-weight: 500;
+    }
+
+    .defaultInput {
+      input {
+        text-align: left;
+        font: 1vw/1.25rem 'bosch-Regular';
+        border-radius: 0rem;
+        box-shadow: none !important;
+        color: black;
+        background: #E0E2E5;
+        padding: 1rem;
+      }
+    }
+
+    .defaultTextArea {
+      width: 100%;
+      height: 100%;
+
+      textarea {
+        width: 100%;
+        height: 100%;
+        font: 1vw/1.25rem 'bosch-Regular';
+        color: black;
+        background: #E0E2E5;
+        padding: 1rem;
+      }
+    }
+
+    .defaultHeader {
+      label {
+        font-family: 'bosch-Bold' !important;
+        font-size: 1.2vw !important;
+      }
+    }
+
+    .defaultToggle {
+      .toggleLable {
+        top: -1rem;
+
+        label {
+          font: normal normal normal 0.75vw/0.9rem 'bosch-Regular' !important;
+          margin-bottom: 0rem !important;
+          color: black;
+          font-weight: 500 !important;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+
+    .defaultToggleDisable {
+      pointer-events: none !important;
+    }
+
+    .defaultNumber {
+      label {
+        font: normal normal normal 0.85vw/0.9rem 'bosch-Regular' !important;
+        width: 100%;
+        height: 100%;
+        margin-bottom: 0rem !important;
+        color: black;
+        font-weight: 500 !important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      input {
+        text-align: left;
+        font: 0.95vw/1.25rem 'bosch-Regular';
+        border-radius: 0rem;
+        box-shadow: none !important;
+        color: black;
+        background: #E0E2E5;
+      }
+    }
+
+    .dateList {
+      label {
+        width: 100%;
+        font: normal normal normal 0.9vw/0.9rem "bosch-Regular" !important;
+        margin-bottom: 0rem !important;
+        color: black;
+        font-weight: 500 !important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+    .defaultNumSelect {
+      label {
+        width: 100%;
+        font: normal normal normal 0.9vw/0.9rem "bosch-Regular" !important;
+        margin-bottom: 0rem !important;
+        color: black;
+        font-weight: 500 !important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+    .defaultRadioGroup {
+      label {
+        width: 100%;
+        font: normal normal normal 0.9vw/0.9rem "bosch-Regular" !important;
+        margin-bottom: 0rem !important;
+        color: black;
+        font-weight: 500 !important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+    .defaultRadioGroupDisable {
+      pointer-events: none !important;
+    }
+
+    .loginLabelInputContainer {
+      .labelDiv {
+        span {
+          width: 14%;
+        }
+
+        label {
+          font: normal normal normal 0.95vw/1vw 'bosch-Regular';
+          margin-bottom: 0rem !important;
+          color: black;
+          font-weight: 500 !important;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          text-align: left !important;
+        }
+      }
+
+      .input-group {
+        width: 100%;
+
+        .input-group-text {
+          background: transparent !important;
+          border: 0rem !important;
+          border-bottom: 1px solid #D0D4D8 !important;
+          border-radius: 0rem !important;
+          box-shadow: none !important;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          i {
+            color: black !important;
+            font-size: 1.5vw;
+          }
+        }
+
+        input {
+          background: transparent !important;
+          border: 0rem !important;
+          border-bottom: 1px solid #D0D4D8 !important;
+          border-radius: 0rem !important;
+          padding-left: 0rem !important;
+          box-shadow: none !important;
+          width: 88%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font: normal normal normal 1.2vw/0.9rem 'bosch-Regular';
+        }
+
+        .InfoconContainer {
+          position: absolute !important;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          right: 0 !important;
+          border-bottom: 0 !important;
+          margin-right: 1rem;
+          top: -0.45vw !important;
+
+          .infoIcon {
+            color: $active !important;
+            font-weight: bold !important;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 1px solid #005691;
+            font-size: 0.9vw;
+          }
+        }
+      }
+    }
+
+    .locationInputText {
+      .input-group {
+        input {
+          border: 0rem !important;
+          border-bottom: 1px solid #D0D4D8 !important;
+          border-radius: 0rem !important;
+          padding: 0.5rem !important;
+          box-shadow: none !important;
+          width: 100%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font: normal normal normal 0.95vw/0.9rem 'bosch-Regular' !important;
+          background: #E0E2E5 !important;
+          height: 2.3vw;
+        }
+      }
+    }
+
+    .locationInputTextDisabled {
+      height: 2.3vw !important;
+      background: #E0E2E5 !important;
+      position: relative;
+      padding-left: 0.5vw !important;
+
+      .labelDiv {
+        padding-left: 0 !important;
+
+        label {
+          font: normal normal normal 0.75vw/0.9rem 'bosch-Regular' !important;
+          padding-top: 0.1rem;
+        }
+      }
+
+      .input-group {
+        position: absolute;
+        top: 1vw;
+
+        .disabled {
+          font-size: 0.85vw !important;
+        }
+      }
+    }
+
+    .locationNumber {
+      position: relative;
+      height: 2.3vw !important;
+      background: #E0E2E5 !important;
+      margin-right: 0.5vw !important;
+      padding-left: 0.5vw !important;
+
+      label {
+        position: absolute;
+        font: normal normal normal 0.75vw/0.9rem 'bosch-Regular' !important;
+        top: 0.2vw;
+      }
+
+      input {
+        position: absolute;
+        font-size: 0.85vw !important;
+        padding: 0;
+        background: none;
+        border: 0;
+        line-height: 0;
+        top: 1vw;
+      }
+    }
+
+    .addOperatingTimeInput {
+
+      .defaultLabelInputContainer,
+      .defaultDatePicker {
+        background: #E0E2E5;
+        position: relative;
+        height: 2.8vw;
+
+        .labelDiv {
+          padding-left: 0.5vw !important;
+          padding-top: 0.3vw;
+          position: absolute;
+          z-index: 1;
+
+          label {
+            width: 100%;
+            font-size: 0.9vw !important;
+            line-height: 0.9rem !important;
+            font-family: "bosch-Regular" !important;
+            margin-bottom: 0rem !important;
+            color: black;
+            font-weight: 500 !important;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+
+        .input-group {
+          padding-top: 0.7vw;
+
+          input {
+            background: transparent !important;
+            border: 0rem !important;
+            border-bottom: 0 solid #D0D4D8 !important;
+            border-radius: 0rem !important;
+            padding-left: 0rem !important;
+            box-shadow: none !important;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font: normal normal normal 0.95vw/0.9rem 'bosch-Regular' !important;
+            padding-left: 0.6vw !important;
+          }
+
+          input:focus {
+            background: transparent !important;
+          }
+
+          .diconContainer {
+            padding-right: 0.5vw !important;
+          }
+        }
+      }
+
+      .dateList {
+        height: 2.8vw;
+      }
+    }
+
+    .mappingAppliances {
+      .defaultLabelInputContainer {
+        height: 2.5vw;
+        position: relative;
+
+        .labelDiv {
+          label {
+            position: absolute;
+            font-size: 0.8vw !important;
+            font-weight: normal;
+            display: block;
+            line-height: 0rem;
+            font-family: "bosch-Regular" !important;
+            text-align: left;
+            letter-spacing: 0rem;
+            opacity: 1;
+            top: 0;
+            left: 0;
+            line-height: 0;
+            padding-left: 0.6vw;
+          }
+        }
+
+        .input-group {
+          input {
+            background: transparent !important;
+            border: 0rem !important;
+            border-bottom: 1px solid #D0D4D8 !important;
+            border-radius: 0rem !important;
+            padding-left: 0.6vw !important;
+            box-shadow: none !important;
+            width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 0.85vw !important;
+            font-family: 'bosch-Regular' !important;
+            display: inline-block;
+            text-align: left;
+            letter-spacing: 0rem;
+            opacity: 1;
+            padding-top: 1.2vw;
+            padding-bottom: 0;
+          }
+
+          .disabled {
+            background: transparent !important;
+            border: 0rem !important;
+            border-radius: 0rem !important;
+            padding-left: 0.5rem !important;
+            box-shadow: none !important;
+            width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font: normal normal normal 0.85vw/0.9rem 'bosch-Regular' !important;
+          }
+        }
+      }
+
+      .defaultNumber {
+        position: relative;
+        width: 100%;
+
+        label {
+          position: absolute;
+          font-size: 0.8vw !important;
+          font-weight: normal;
+          display: block;
+          line-height: 0rem;
+          font-family: "bosch-Regular" !important;
+          text-align: left;
+          letter-spacing: 0rem;
+          opacity: 1;
+          top: 0;
+          left: 0;
+          line-height: 0;
+          padding-left: 0.6vw;
+        }
+
+        input {
+          text-align: left;
+          font: 0.85vw/0rem 'bosch-Regular';
+          border-radius: 0rem;
+          box-shadow: none !important;
+          color: black;
+          border-radius: 0rem !important;
+          background: none !important;
+          border: 0 !important;
+          border-bottom: 1px solid #D0D4D8 !important;
+          padding-top: 0.9vw !important;
+        }
+
+        .disabled {
+          display: block;
+          background: transparent !important;
+          border: 0rem !important;
+          border-radius: 0rem !important;
+          padding-left: 0.5rem !important;
+          box-shadow: none !important;
+          width: 100% !important;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font: normal normal normal 0.95vw/0.9rem 'bosch-Regular' !important;
+          border-bottom: 1px solid #D0D4D8 !important;
+          padding-top: 1.2vw !important;
+        }
+      }
+
+      .defaultNumSelect {
+        height: 2.5vw;
+        position: relative;
+        padding-top: 0.4vw;
+
+        label {
+          width: 100%;
+          font: normal normal normal 0.8vw/0.9rem "bosch-Regular" !important;
+          margin-bottom: 0rem !important;
+          color: black;
+          font-weight: 500 !important;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          position: absolute;
+          top: 0;
+          padding-left: 0.6vw;
+        }
+      }
+    }
+
+    .changeOldPassword {
+      .input-group {
+        .input-group-text {
+          width: 8%;
+        }
+
+        input {
+          width: 92%;
+        }
+      }
+    }
+  }
+
+  .colorApplainces {
+    height: 2.5vw;
+
+    .defaultLabelInputContainer {
+      background: #18837e;
+
+      .labelDiv {
+        label {
+          position: absolute;
+          font-size: 0.8vw !important;
+          font-weight: normal;
+          display: block;
+          line-height: 0rem;
+          font-family: "bosch-Regular" !important;
+          text-align: left;
+          letter-spacing: 0rem;
+          opacity: 1;
+          top: 0;
+          left: 0;
+          line-height: 0;
+          padding-left: 0.6vw;
+          color: white !important;
+        }
+      }
+
+      .input-group {
+        .disabled {
+          background: transparent !important;
+          border: 0rem !important;
+          border-radius: 0rem !important;
+          padding-left: 0.5rem !important;
+          padding-top: 1.3vw !important;
+          box-shadow: none !important;
+          width: 100%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font: normal normal normal 0.85vw/0.9rem 'bosch-Regular' !important;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .seePaswordLogin {
+    .defaultIcon {
+      margin-top: 1.4rem !important;
+    }
+  }
+}
+
+
+@media only screen and (max-width:767px) {
+  .loginLabelInputContainer {
+    margin-bottom: 0.6rem;
+    .defaultLabelInputContainer {
+
+      .labelDiv {
+        padding-left: 4rem !important;
+
+        label {
+          font-size: 3vw !important;
+          line-height: 3vw !important;
+        }
+      }
+
+
+      .input-group {
+        .input-group-text {
+          i {
+            font-size: 3vw !important;
+          }
+        }
+
+        input {
+          font: normal normal normal 3vw/3vw 'bosch-Regular' !important;
+          width: 93% !important;
+        }
+
+        .InfoconContainer {
+          .infoIcon {
+            font-size: 2vw !important;
+          }
+        }
+      }
+    }
+
+    .defaultIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5vw;
+      color: $active !important;
+      margin-top: 1rem;
+      position: relative;
+
+      i {
+        top: 1.7vw;
+        position: absolute;
+        font-size: 3vw;
+        font-weight: 600 !important;
+        cursor: pointer;
+      }
+    }
+
+    .linkClass {
+      span {
+        font: normal normal normal 3vw/3vw 'bosch-Regular' !important;
+      }
+    }
+
+    .defaultCheckBox {
+      span {
+        font: normal normal normal 3vw/3vw 'bosch-Regular' !important;
+      }
+    }
+
+    .verificationHighLighter {
+      font: normal normal normal 2.5vw/3vw 'bosch-Regular' !important;
+      top: 2rem !important;
+    }
+  }
+
+  .customerSupport {
+    margin-bottom: 0.6rem;
+    .defaultLabel {
+      label {
+        font-size: 3vw !important;
+      }
+    }
+
+    .defaultInput {
+      input {
+        font: 3vw/3vw 'bosch-Regular' !important;
+      }
+    }
+
+    .defaultTextArea {
+      textarea {
+        font: 3vw/3vw 'bosch-Regular' !important;
+      }
+    }
+  }
+
+  .changeOldPassword {
+    .defaultLabelInputContainer {
+      .input-group {
+        .input-group-text {
+          width: 4.5% !important;
+        }
+
+        input {
+          width: 95.5% !important;
+        }
+      }
+    }
+  }
+
+  .seePassword {
+    margin-bottom: 0.6rem;
+    .defaultIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5vw;
+      color: $active !important;
+      margin-top: 0.7rem;
+      position: relative;
+
+      i {
+        top: 1.85vw;
+        position: absolute;
+        font-size: 3vw;
+        font-weight: 600 !important;
+        cursor: pointer;
+      }
+    }
+  }
+}

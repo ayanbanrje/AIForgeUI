@@ -1,0 +1,92 @@
+[
+    {
+        "id": "COMPANYNAME",
+        "label": "Company Name",
+        "class": "col-md-12",
+        "type": "select",
+        "key": "TENENT_ID",
+        "view": "COMPANY_NAME",
+        
+        "options": [],
+        "required": true
+    },
+    {
+        "id":"CUSTOMER",
+        "class":"col-md-12",
+        "type":"radio",
+        "required":true,
+        "options":[
+            {
+                "label":"Customer",
+                "selected": true
+            },
+            {
+                "label":"Bosch Customer Service"
+            }
+        ]
+    },
+    {
+        "id":"NAME",
+        "label":"User Name",
+        "class":"col-md-12",
+        "type":"text",
+        "icon":"bosch-ic-edit",
+        "required":true
+    },
+    {
+        "id":"EMAIL",
+        "label":"Email",
+        "class":"col-md-12",
+        "type":"email",
+        "icon":"bosch-ic-edit",
+        "required":true
+    },
+    {
+        "id":"PHONENUMBER",
+        "label":"Phone Number",
+        "class":"col-md-12",
+        "type":"text",
+        "icon":"bosch-ic-edit",
+        "required":true
+    },
+    {
+        "id":"PASSWORD",
+        "label":"Password",
+        "class":"col-md-12",
+        "type":"password",
+        "required":true,
+        "info": "must contains one digit from 0-9\nmust contains one lowercase characters\nmust contains one uppercase characters\nmust contains one special symbols in the list '@#$%'\nmatch anything with previous condition checking\nlength at least 6 characters and maximum of 20\n"
+    },
+    {
+        "id":"REENTERPASSWORD",
+        "label":"Re-enter Password",
+        "class":"col-md-12",
+        "type":"password",
+        "required":true
+    },
+    
+    
+    {
+        "id":"REGISTER",
+        "label":"Register",
+        "class":"col-md-4",
+        "type":"button",
+        "buttonClass":"primary"
+    },
+    {
+        "id":"CLEAR",
+        "label":"Clear",
+        "class":"col-md-4",
+        "type":"button",
+        "buttonClass":"secondary"
+    },
+    {
+        "id":"LOGIN",
+        "label":"Login",
+        "class":"col-md-4",
+        "type":"button",
+        "buttonClass":"secondary no-border",
+        
+        "background": "#F6F6F6"
+    }
+]

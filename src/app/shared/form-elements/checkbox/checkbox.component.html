@@ -1,0 +1,12 @@
+<div class="d-flex align-items-center justify-content-center" [ngClass]="{ 'customClass': customClass, 'alert-form':alertForm }">
+  <span *ngIf="isFromAnalysis === false" class="checkbox" [ngClass]="{ active: value, 'analysis': analysis , 'multiTree': multiTree}" [ngStyle]="{'cursor':cursor}"
+    (click)="toggle()">
+    <i class="boschicon-bosch-ic-checkmark"></i>
+  </span>
+</div>
+
+<div *ngIf="isFromAnalysis === true" class="d-flex flex-column justify-content-center align-items-center">
+  <div class="checkboxLabel">{{ label }}</div>
+  <div class="checkbox" [ngClass]="{ active: value, 'analysis': analysis }" (click)="toggle()">
+    <i class="boschicon-bosch-ic-checkmark"></i></div>
+</div>

@@ -1,0 +1,19 @@
+<div id="id" class="w-100 h-100 position-relative d-block p-1">
+    <div class="d-flex justify-content-end" *ngIf="isVisible">
+        <ul class="d-flex buttonContainer">
+            <li *ngIf="screenType === 'RAA'" class="m-2"><i class="boschicon-bosch-ic-zoom-in" id="disable_feature"
+                    value="pan" title="Enable Zoom" (click)="disableFeature()"></i></li>
+            <li *ngIf="resetZoom" class="m-2"><i class="boschicon-bosch-ic-reset" title="Reset Zoom" (click)="resetZoomedChart()"></i>
+            </li>
+            <li *ngIf="screenType === 'RAA'" class="m-2"><i class="boschicon-bosch-ic-import" title="Download PNG"
+                    (click)="downloadImage('png')"></i></li>
+            <li *ngIf="screenType === 'RAA'" class="m-2"><i class="boschicon-bosch-ic-download-frame"
+                    title="Download JPG" (click)="downloadImage('jpeg')"></i></li>
+            <li *ngIf="screenType === 'RAA'" class="m-2"><i class="boschicon-bosch-ic-print" title="Download PDF"
+                    (click)="downloadPdf()"></i></li>
+        </ul>
+    </div>
+    <div class="w-100 h-100">
+        <canvas [id]="id"></canvas>
+    </div>
+</div>

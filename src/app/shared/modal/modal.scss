@@ -1,0 +1,63 @@
+/* MODAL STYLES
+-------------------------------*/
+
+::ng-deep {
+  /* modals are hidden by default */
+  display: none;
+  .modal {
+    /* modal container fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    left: 10%;
+    z-index: 1000;
+    background: #fff;
+    /* enables scrolling for tall modals */
+    overflow: auto;
+    margin: 2rem;
+    .modal-body {
+      padding: 2rem;
+      background: #fff;
+      /* margin exposes part of the modal background */
+    
+    
+    }
+  }
+  .modal-background {
+    /* modal background fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* semi-transparent black  */
+    background-color: #000;
+    opacity: 0.75;
+    /* z-index must be below .modal and above everything else  */
+    z-index: 900;
+  }
+  .close-popup {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .close-popup :hover {
+    color: black;
+    cursor: pointer;
+  }
+}
+
+body.modal-open {
+  /* body overflow is hidden to hide main scrollbar when modal window is open */
+  overflow: hidden;
+}
+

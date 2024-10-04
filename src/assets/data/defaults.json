@@ -1,0 +1,312 @@
+[
+    {
+      "id": "CRITERIA",
+      "label": "Criteria",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "id",
+      "view": "label",
+      "options": [
+        {
+          "label": "New Signature ID",
+          "id": 6
+        },
+        {
+          "label": "Appliance Cat - Others",
+          "id": 7
+        }
+      ],
+      "required": false
+    },
+    {
+      "type": "label",
+      "class": "col-md-9"
+    },
+    {
+      "id": "HEADING",
+      "type": "label",
+      "class": "col-md-12",
+      "label": "New Siganture ID Detection Notification",
+      "style": {
+        "font-size": "18px",
+        "font- weight": 600,
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": "Select the Device",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "COUNTRY",
+      "label": "Country",
+      "class": "col-md-2",
+      "type": "select",
+      "key": "COUNTRY",
+      "view": "COUNTRY",
+      "options": [],
+      "required": false
+    },
+    {
+      "id": "CITY",
+      "label": "City",
+      "class": "col-md-2",
+      "type": "select",
+      "key": "CITY",
+      "view": "CITY",
+      "options": [],
+      "required": false
+    },
+    {
+      "id": "STORE_ID",
+      "label": "Store",
+      "class": "col-md-2",
+      "type": "select",
+      "key": "STORE_ID",
+      "view": "STORE_NAME",
+      "options": [],
+      "required": false
+    },
+    {
+      "id": "DEVICE_ID",
+      "label": "POI",
+      "class": "col-md-2",
+      "type": "select",
+      "key": "DEVICE_ID",
+      "view": "AREA",
+      "options": [],
+      "required": false
+    },
+    {
+      "id":"SET_LIMIT_PERIOD",
+      "type": "label",
+      "class": "col-md-3",
+      "label": "Set Limit and Period",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "LOWER_LIMIT",
+      "label": "Lower limit",
+      "type": "text",
+      "class": "col-md-3",
+      "required": true
+    },
+    {
+      "id": "UPPER_LIMIT",
+      "label": "Upper limit",
+      "type": "text",
+      "class": "col-md-3",
+      "required": true
+    },
+    {
+      "id": "LIMIT_GAP1",
+      "type": "label",
+      "class": "col-md-3"
+    },
+    {
+      "id": "LIMIT_GAP2",
+      "type": "label",
+      "class": "col-md-3"
+    },
+    {
+      "id": "TIME_PERIOD_FROM",
+      "label":"Start Date",
+      "class": "col-md-3",
+      "type": "date",
+      "key": "START",
+      "view": "START",
+      "pickerType": "calendar",
+      "required": false
+    },
+    {
+      "id": "TIME_PERIOD_TO",
+      "label":"End Date",
+      "class": "col-md-3",
+      "type": "date",
+      "key": "END",
+      "view": "END",
+      "pickerType": "calendar"
+    },
+    {
+      "id": "SET_FOREVER",
+      "label": "Set Forever",
+      "type": "checkbox",
+      "class": "col-md-2",
+      "style": {
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": "Set Communication Medium",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "EMAIL",
+      "label": "E-mail",
+      "type": "checkbox",
+      "class": "col-md-2",
+      "style": {
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "type": "label",
+      "class": "col-md-6"
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": "Define Escalation Level",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "DAYS_LEVEL1",
+      "label": "No. of Days",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "label",
+      "view": "label",
+      "options": [
+        {
+          "label": "1"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "10"
+        },
+        {
+          "label": "11"
+        },
+        {
+          "label": "12"
+        },
+        {
+          "label": "13"
+        },
+        {
+          "label": "14"
+        },
+        {
+          "label": "15"
+        },
+        {
+          "label": "16"
+        },
+        {
+          "label": "17"
+        },
+        {
+          "label": "18"
+        },
+        {
+          "label": "19"
+        },
+        {
+          "label": "20"
+        },
+        {
+          "label": "21"
+        },
+        {
+          "label": "22"
+        },
+        {
+          "label": "23"
+        },
+        {
+          "label": "24"
+        },
+        {
+          "label": "25"
+        },
+        {
+          "label": "26"
+        },
+        {
+          "label": "27"
+        },
+        {
+          "label": "28"
+        },
+        {
+          "label": "29"
+        },
+        {
+          "label": "30"
+        }
+      ],
+      "disabled": false
+    },
+    {
+      "id": "LEVEL1",
+      "label": "Level 1",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "email",
+      "view": "label",
+      "options": [],
+      "required": false,
+      "disabled": false
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": ""
+    },
+    {
+      "type": "label",
+      "class": "col-md-6",
+      "label": ""
+    },
+    {
+      "id": "LEVEL2",
+      "label": "Level 2",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "email",
+      "view": "label",
+      "options": [],
+      "disabled": false
+    }
+  ]
+  

@@ -1,0 +1,8 @@
+<div class="radio" *ngIf="list && list.length">
+    <ul>
+        <li [ngClass]="display" *ngFor="let item of list" (click)="toggle(item)"><input type="checkbox"
+                [checked]="item.selected">
+            <label for="">{{item.label}}</label>
+        </li>
+    </ul>
+</div>

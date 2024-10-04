@@ -1,0 +1,26 @@
+[
+
+    {
+        "id":"CODE",
+        "label":"Code",
+        "class":"col-md-12",
+        "type":"text",
+        "max":25,
+        "required":true
+    },
+    {
+        "id":"CONFIRM",
+        "label":"Confirm",
+        "class":"col-md-4",
+        "type":"button",
+        "buttonClass":"primary"
+    },
+    
+    {
+        "id":"CANCEL",
+        "label":"Cancel",
+        "class":"col-md-4",
+        "type":"button",
+        "buttonClass":"secondary"
+    }
+]

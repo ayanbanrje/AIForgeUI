@@ -1,0 +1,147 @@
+@import "../../../../assets/css/variables";
+
+button {
+  padding: 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font: normal normal normal 0.5vw/1.5vw "bosch-Regular" !important;
+  letter-spacing: 0rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 1vw !important;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  .buttonContent {
+    font-family: "bosch-Regular";
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 1vw;
+  }
+
+  i {
+    font-size: 1.3vw;
+    vertical-align: middle;
+
+    &.left-icon {
+      margin-right: 5px;
+    }
+
+    &.right-icon {
+      margin-left: 5px;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.isFromAppliance {
+    .buttonContent {
+      font-size: 0.75vw !important;
+    }
+  }
+}
+
+.space {
+  margin: 0;
+}
+
+.primary {
+  border: 1.5px solid $primary-blue;
+  background: $primary-blue;
+  color: $white;
+  cursor: pointer;
+}
+.border-none{
+  border: 0 !important;
+}
+
+.secondary {
+  border: 1.5px solid $primary-blue;
+  background: none;
+  color: $primary-blue;
+  cursor: pointer;
+}
+
+.isFromLocation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0rem;
+  font-size: 0.95vw;
+}
+
+.secondary-lt {
+  border: 1.5px solid $border-grey-color;
+  background: $white;
+  color: $black;
+  cursor: default;
+}
+
+.no-border {
+  border: 0 solid transparent;
+}
+
+.target {
+  border: 1.5px solid $white;
+  background: $white;
+  cursor: pointer;
+}
+
+@media only screen and (max-width:767px) {
+  .responsiveButton {
+    height: 4vw !important;
+    font: normal normal normal 3vw/3vw "bosch-Regular" !important;
+    .buttonContent {
+      font-size: 2.5vw !important;
+      line-height: 3vw !important;
+    }
+  }
+
+  .customerSupport {
+    font-size: 3vw;
+    padding: 1rem;
+
+    .buttonContent {
+      font-size: 2.5vw !important;
+      line-height: 3vw !important;
+    }
+  }
+
+  .customYes {
+    width: 12vw;
+    height: 3.5vw;
+    padding: 1rem;
+
+    .buttonContent {
+      font-size: 2.5vw !important;
+      line-height: 3vw !important;
+    }
+  }
+
+  .aboutButton {
+    padding: 1rem;
+    .buttonContent {
+      font-size: 2.5vw !important;
+      line-height: 3vw !important;
+    }
+  }
+
+  .changePassword {
+    padding: 1rem;
+    .buttonContent {
+      font-size: 2.5vw !important;
+      line-height: 3vw !important;
+    }
+  }
+
+  .buttonContent{
+    font-size: 3em !important;
+    line-height: 3vw !important;
+  }
+}

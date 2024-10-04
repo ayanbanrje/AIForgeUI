@@ -1,0 +1,91 @@
+* {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* You can add global styles to this file, and also import other style files */
+//@import './bootstrap';
+//@import  "../node_modules/ng-pick-datetime/assets/style/picker.min.css";
+// @import "./assets/css/grid.scss";
+// @import "./assets/css/button.scss";
+// @import "./assets/css/form.scss";
+// @import "./assets/css/flex.scss";
+// @import "./assets/css/margin.scss";
+// @import "./assets/css/padding.scss";
+// @import "./assets/css/checkbox.scss";
+// @import "./assets/css/input.scss";
+// @import "./assets/css/tooltip";
+// @import "./assets/css/tab";
+// @import "../node_modules/simplebar/dist/simplebar.min.css";
+// @import "./assets/css/mobile.scss";ts/bosch-txt/BoschSan
+// @import "./assets/css/embla";
+
+// @import "~bootstrap/dist/css/bootstrap.min.css";
+// @import "~ng-pick-datetime/assets/style/picker.min.css";
+@import "./assets/css/font.scss";
+@import "./assets/css/icons.scss";
+@import "./assets/css/tables.scss";
+@import "./assets/css/reset";
+@import "./assets/css/variables";
+@import "../node_modules/ng-pick-datetime/assets/style/picker.min.css";
+
+.drawflow .drawflow-node {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  background: #efefef !important;
+  width: 16.64vw !important;
+  min-height: 40px;
+  border-radius: 15px !important;
+  border: 2px solid #d2e3e3 !important;
+  color: #504c4c;
+  z-index: auto !important;
+  padding: 20px !important;
+  box-shadow: 10px 8px 6px -3px #bcbcbc !important;
+  height: 19.71vh !important;
+  cursor: default !important;
+}
+
+.drawflow .drawflow-node .output {
+  right: -15px !important;
+  top: 2px;
+}
+
+.drawflow .drawflow-node .input,
+.drawflow .drawflow-node .output {
+  position: relative;
+  width: 11px !important;
+  height: 10px !important;
+  background: #fff;
+  border-radius: 50%;
+  border: 2px solid #a3afaf !important;
+  cursor: crosshair;
+  z-index: 1;
+  margin-bottom: 5px;
+}
+
+// .drawflow .drawflow-node .input {
+//   left: -30px !important;
+//   top: 2px;
+//   background: #fff;
+// }
+
+.offcanvas-body {
+  padding: 1.5em !important;
+  overflow-y: hidden !important;
+}
+
+.drawflow .drawflow-node .input {
+  left: -30px !important;
+  top: 2px;
+  /* background: #ff0; */
+  background: #fff;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-size: 1vw;
+}

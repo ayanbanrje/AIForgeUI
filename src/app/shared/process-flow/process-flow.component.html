@@ -1,0 +1,12 @@
+<div>
+     <div class="process" [ngClass]="activeClass">
+          <ul>
+               <li *ngFor="let p of process"
+                    [ngClass]="{'tab-active': (activeClass === p.class && active), 'active': (status && status[p.id])}">
+                    <i [ngClass]="(status && status[p.id]) ? 'boschicon-bosch-ic-checkmark' : 'boschicon-'+p.icon"></i>
+                    <label>{{p.label}}</label>
+               </li>
+          </ul>
+          <div class="ico"></div>
+     </div>
+</div>

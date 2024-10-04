@@ -1,0 +1,153 @@
+<div class="w-100 h-100 table-container">
+    <div class="w-100 overflow-auto tableContainer" style="height: 90%;">
+        <table class="w-100" cellpadding="0" cellspacing="0" [ngStyle]="{'padding': padding}">
+            <thead [ngClass]="{'active': reports}">
+                <tr>
+                    <th *ngFor="let header of headers" class="position-relative">
+                        <div
+                            [ngClass]="{'active': !reports, 'd-flex align-items-center justify-content-center' : header.hasOption}">
+                            <span class="p-0 m-0" [attr.title]="header.label">{{header.label}}</span>
+                            <div *ngIf="header.hasOption === true && ((header.optionDataData && header.optionDataData.length > 0) || (header.isCustomised))"
+                                class="pb-2 pe-1" style="transform: rotate(90deg);">
+                                <i *ngIf="view && view.length && forceHide === false" class="boschicon-bosch-ic-options"
+                                    (click)="filterTable(header); visibleTrue = true; cutsomInputData = ''"
+                                    style="cursor: pointer;"></i>
+                            </div>
+                            <div *ngIf="header.label === selectedHeader && header.hasOption === true"
+                                class="position-absolute headerOption">
+                                <ng-container *ngIf="header.isCustomised === undefined">
+                                    <ul class="d-flex flex-column align-items-center justify-content-start showOption">
+                                        <li class="p-2 w-100 d-flex align-items-center justify-content-start"
+                                            *ngFor="let str of header.optionDataData"
+                                            (click)="filterTable(header,str);selectedHeader = ''" [attr.title]="str">
+                                            {{ str }}
+                                        </li>
+                                    </ul>
+                                </ng-container>
+                                <ng-container *ngIf="header.isCustomised !== undefined">
+                                    <div class="p-1 d-flex align-items-center justify-content-between inputData">
+                                        <i class="boschicon-bosch-ic-close iconClose pe-2" [attr.title]="'Close'"
+                                            (click)="visibleTrue = false; selectedHeader = ''; cutsomInputData = ''"></i>
+                                        <app-input [value]="cutsomInputData" [width]="'100%'" [height]="'2.5vw'"
+                                            (valueChange)="cutsomInputData = $event" [alertsNotification]="true"
+                                            [disabled]="false" [placeHolder]="header.label"></app-input>
+                                        <i class="boschicon-bosch-ic-arrow-right iconSearch ps-2"
+                                            [attr.title]="'Search'"
+                                            (click)="searchData(header); visibleTrue = false; selectedHeader = ''; cutsomInputData = ''"></i>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngIf="view && view.length">
+                <tr *ngFor="let row of data.data; let i = index" [ngClass]="{'active': row.selected}">
+                    <td *ngFor="let header of headers" [attr.align]="header.align">
+                        <div *ngIf="header.type === 'checkbox' && multiSelect === false && requiredCheckBox === true">
+                            <app-checkbox [(value)]="row.selected" (click)="checked(row.selected, row)">
+                            </app-checkbox>
+                        </div>
+                        <div *ngIf="header.type === 'checkbox' && multiSelect === true && requiredCheckBox === true">
+                            <app-checkbox [(value)]="row.selected" (click)="multiChecked(row.selected, row)">
+                            </app-checkbox>
+                        </div>
+                        <div [ngClass]="{'active': !reports}" *ngIf="header.type === 'action'">
+                            <app-button *ngIf="!row[header.key] && row[header.allow]"
+                                [class]="'secondary justify-content-center'"
+                                (klick)="header.click ? header.click(row, i, this) : ''" [title]="'Take action'"
+                                [height]="'2.5vw'">Take
+                                action</app-button>
+                        </div>
+                        <div [ngClass]="{'active': !reports , 'evaluationScope':header.key == 'EVALUATION_SCOPE'}"
+                            [attr.title]="header.key!='EVALUATION_SCOPE'?row[header.key]:''"
+                            *ngIf="header.type != 'checkbox' && header.type != 'Comments' && header.type != 'Details' && header.type != 'EVENT_DEFINITION_BUTTON' && header.type !== 'textStatus'"
+                            (click)="rowItemClick(header.key,row)" class="row-details">
+                            <ng-container
+                                *ngIf="row[header.key] !== null && row[header.key] !== undefined && header.key === 'APPLIANCE_ID'">
+                                <span class="linkItem" *ngIf="applianceIdLink === true">{{row[header.key]}} </span>
+                                <span *ngIf="applianceIdLink === false">{{row[header.key]}} </span>
+                            </ng-container>
+                            <ng-container
+                                *ngIf="(row[header.key] === null || row[header.key] === undefined || row[header.key] === '') && header.key === 'APPLIANCE_ID'">
+                                <app-button [class]="'primary justify-content-center'"
+                                    (klick)="checkStatus = false ; check(row,header.key)" [width]="'7vw'"
+                                    [height]="'2.5vw'" [fontSize]="'0.85vw'" [title]="'Map Appliance'"
+                                    [isFromAppliance]="true"> Map Appliance </app-button>
+                            </ng-container>
+                            <ng-container *ngIf="header.key !== 'APPLIANCE_ID' && header.type !== 'iconWithHover'">
+                                {{row[header.key]}}
+                                <div class="target-text" *ngIf="header.key === 'EVALUATION_SCOPE'"
+                                    data-toggle="tooltip">
+                                    <div style="display: flex !important; flex-direction: column !important;"
+                                        *ngFor="let item of row['TARGET_DETAILS']| keyvalue">
+                                        <div style="display: flex !important;">{{item.key}}:{{item.value}}</div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="icons" [ngClass]="{'active': !reports}"
+                            *ngIf="header.icon && row[header.allow] && header.type !== 'action'"
+                            [ngClass]="{'has-txt': row[header.key]}">
+                            <i [ngClass]="'boschicon-bosch-ic-'+header.icon" (click)="iconClick(row)"></i>
+                        </div>
+                        <!-- icon with hover -->
+
+                        <div class="tooltip-container" *ngIf="header.type == 'iconWithHover'">
+                            <i [ngClass]="'boschicon-bosch-ic-' + header.iconName" data-bs-toggle="tooltip"
+                                data-bs-placement="top" [title]="row['TARGET']?getTooltipContent(row['TARGET']):[]"
+                                [ngStyle]="{ 'color': '#0088D4', 'font-size':'1rem' }"></i>
+                        </div>
+                        <!-- button with click -->
+                        <div class="iconContainer"
+                            *ngIf="header.type === 'button' || header.type === 'EVENT_DEFINITION_BUTTON'"
+                            (click)="iconClick(row,header)"
+                            [title]="header.label === 'Action' ? 'Click here to unmap the signature':''">
+                            <ng-container *ngIf="header.label === 'Action'">
+                                <i [class]="header.icon"
+                                    [ngClass]=" row['APPLIANCE_ID'] !== undefined && row['APPLIANCE_ID'] !== '' ? 'deleteBlue' : 'deleteLightBlue' "
+                                    style="font-size: 17px;"></i>
+                            </ng-container>
+                            <ng-container *ngIf="header.label !== 'Action'">
+                                <ng-container
+                                    *ngIf="header.label=='Download' && row['STATUS']!='Completed';else other_content">
+
+                                </ng-container>
+
+                                <ng-template #other_content>
+                                    <i [class]="header.icon" [ngClass]="'enabled'" style="font-size: 17px;">
+                                    </i></ng-template>
+                            </ng-container>
+                        </div>
+                        <div *ngIf="header.type === 'textStatus'">
+                            <span class="red-dot" [ngClass]="row[header.key] === 'ON' ? 'green-dot': 'red-dot'"
+                                [attr.title]="row[header.key] === 'ON' ? 'ON' : 'OFF'"></span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="view && !view.length">
+                <td class="no-table-data" [attr.colspan]="headers.length" align="center">{{noData}}</td>
+            </tbody>
+        </table>
+    </div>
+    <div class="w-100 paginator-table" *ngIf="showPagination && view && view.length && view.length > 10"
+        style="height: 10%;">
+        <div class="items">
+            <app-dropdown *ngIf="itemsPerPage === false" [tableDropDown]="true"
+                (selectedChange)="updatePagination($event)" [defaultLabel]="defaults" [(selected)]="noOfRows"
+                label="Items per page" [list]="pageList" key="page" view="page" [width]="'8vw'" [height]="'2.5vw'"
+                [marginTop]="marginTop">
+            </app-dropdown>
+        </div>
+        <div class="page-no">
+            <ul>
+                <li (click)="updateClickPageNo('decrease')"><i class="boschicon-bosch-ic-back-left"></i></li>
+                <li class="numbers" (click)="!p.active ? updatePageNo(p) : ''"
+                    [ngClass]="{'active': p.active, 'hidden': !p.visible}" *ngFor="let p of pages">
+                    {{p.pageNo}}</li>
+                <li (click)="updateClickPageNo('increase')"><i class="boschicon-bosch-ic-forward-right"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>

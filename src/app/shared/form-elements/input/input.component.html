@@ -1,0 +1,23 @@
+<div class="input-container"
+    [ngClass]="{'verticalInput': verticalInput, 'suffix':suffix }"
+    [ngStyle]="{'height': totalHeight}">
+    <label [ngClass]="{require:require}" *ngIf="label.length > 0 && (inputBoxType === 'SEARCH' || inputBoxType === 'INPUT')" for=""> {{ label }}
+    </label>
+    <ng-container *ngIf="isCalendar === false">
+        <input
+            [ngStyle]="{'width': width, 'height': height,'padding':padding,'text-align': (textAlign ? textAlign : 'left'),'color': color,'font-size': fontSize , 'font-weight':(fontWeight ? fontWeight : 'normal') , 'font-family':fontFamily, 'background-color':backgroundColor}"
+            [placeholder]="placeHolder" [type]="type" [disabled]="disabled" [(ngModel)]="value"
+            (ngModelChange)="updateInputValue()">
+        <span class="suffix" *ngIf="suffix">{{ suffixValue }}</span>
+        <i *ngIf="inputBoxType === 'SEARCH'" class="boschicon-bosch-ic-search" (click)="increment()"></i>
+    </ng-container>
+    <ng-container *ngIf="isCalendar === true">
+        <input class="form-control date-range-selector-input" [owlDateTime]="opening1" [max]="max"
+            (keydown)="$event.preventDefault();" [rangeSeparator]="'-'" selectMode="single" [(ngModel)]="selectedTime"
+            (ngModelChange)="updatedFromTIME.emit(selectedTime)" [owlDateTimeTrigger]="opening1"
+            [ngStyle]="{'width': width, 'height': height,'padding':padding,'text-align': (textAlign ? textAlign : 'left'),'color': color,'font-size': fontSize , 'font-weight':(fontWeight ? fontWeight : 'normal') , 'font-family':fontFamily, 'background-color':backgroundColor}" [title]="title ? title : getTime(selectedTime)" [disabled]="disabled">
+        <owl-date-time class="w-100" #opening1 hour12Timer="false" [stepMinute]="minuteInterval"
+            [pickerType]="pickerType" (afterPickerOpen)="datePickerOpened()"
+            (monthSelected)="datePickerOpened()"></owl-date-time>
+    </ng-container>
+</div>

@@ -1,0 +1,82 @@
+[
+    {
+      "id": "PARAMETER",
+      "label": "Parameter",
+      "class": "col-md-6",
+      "type": "text",
+      "max": 25,
+      "disabled": true
+    },
+    {
+      "id": "ALERT_ID",
+      "label": "Alert Id",
+      "class": "col-md-6",
+      "type": "text",
+      "max": 25,
+      "disabled": true
+    },
+    {
+      "id": "CRITERIA",
+      "label": "Criteria",
+      "class": "col-md-6",
+      "type": "text",
+      "max": 25,
+      "disabled": true
+    },
+    {
+      "id": "COUNTRY",
+      "label": "Country",
+      "class": "col-md-6",
+      "type": "text",
+      "max": 25,
+      "disabled": true
+    },
+    {
+      "id": "STORE_NAME",
+      "label": "Store",
+      "class": "col-md-6",
+      "type": "text",
+      "max": 25,
+      "disabled": true
+    },
+    {
+      "id": "POI",
+      "label": "POI",
+      "class": "col-md-6",
+      "type": "text",
+      "max": 25,
+      "disabled": true
+    },
+    {
+      "id": "DEVICE_TIME",
+      "label": "Threshold Breach Timestamp",
+      "class": "col-md-6",
+      "type": "text",
+      "max": 25,
+      "disabled": true
+    },
+    {
+      "id": "RESPONSIBLE",
+      "label": "Responsibility",
+      "class": "col-md-6",
+      "type": "text",
+      "max": 25,
+      "disabled": true
+    },
+    {
+      "id": "DETAIL",
+      "label": "Details",
+      "class": "col-md-6",
+      "type": "text",
+      "max": 25,
+      "disabled": true
+    },
+    {
+      "id": "DESCRIPTION",
+      "label": "Description",
+      "class": "col-md-6",
+      "type": "text",
+      "max": 25,
+      "disabled": true
+    }
+  ]

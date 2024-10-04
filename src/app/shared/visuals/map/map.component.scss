@@ -1,0 +1,53 @@
+@import "../../../../assets/css/variables";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  width: 100%;
+  height: 30vw; //500px
+}
+
+.controls {
+  display: inline-block;
+  padding: 10px;
+  width: calc(100% - 65%);
+  background-color: $white;
+  text-overflow: ellipsis;
+  border: 1px solid $active;
+  border-radius: 3px;
+  font-family: "bosch-Regular";
+  font-size: 1.1vw;
+}
+
+// .lat-controls {
+//   display: inline-block;
+//   padding: 10px;
+//   width: calc(100% - 85%);
+//   background-color: $white;
+//   margin-bottom: 12px;
+//   margin-left: 50px;
+//   text-overflow: ellipsis;
+//   border: 1px solid $active;
+//   border-radius: 3px;
+//   position: absolute;
+// }
+
+// .lon-controls {
+//   display: inline-block;
+//   padding: 10px;
+//   width: calc(100% - 85%);
+//   background-color: $white;
+//   margin-bottom: 12px;
+//   margin-left: 50px;
+//   text-overflow: ellipsis;
+//   border: 1px solid $active;
+//   border-radius: 3px;
+//   position: absolute;
+// }

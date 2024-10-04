@@ -1,0 +1,269 @@
+<h2 *ngIf="header">{{header}}</h2>
+<form [formGroup]="form" *ngIf="form && json && json.length">
+  <fieldset>
+    <div class="row g-3">
+      <div *ngFor="let item of json" [ngClass]="[
+        item.class ? item.class : '',
+        item.type ? item.type : '',
+        (f && f[item.id] && f[item.id].errors && isSaved) ? 'error': '',
+        item.suffix ? 'suffix': '']">
+        <!-- blank FIXED-->
+        <div class="no-bg" *ngIf="item.type === 'blank'"></div>
+        <!-- text FIXED-->
+        <div *ngIf="item.type === 'text'" class="no-bg w-100 defaultLabelInputContainer"
+          [ngStyle]="{'width': item.width, 'height': item.height}">
+          <div class="d-flex w-100 ps-5 labelDiv" *ngIf="item.label">
+            <label [for]="item.id" class=""
+              [ngClass]="{'change-label-color': ((isvalidPassword === false) || 
+              (isPasswordSame === false) ||
+              (isCredValid === false) ||
+              (isValidChangePwd === false)) ,'form-label' : isvalidPassword , 'lable-lineHeight' : !isDesktopView }">{{item.label}}</label>
+          </div>
+          <div class="input-group">
+            <span class="input-group-text" id="login-password-text-logo" *ngIf="item.hasIcon === true">
+              <i [class]="item.emailIcon"></i>
+            </span>
+            <input *ngIf="!item.disabled" class="form-control" [id]="item.id" [formControlName]="item.id"
+              [type]="item.type" (keyup)="item.change ? item.change(form) : ''" (ngModelChange)="changeValue(item.id)"
+              [placeholder]="item.placeholder" [title]="form.value[item.id]">
+
+            <span class="InfoconContainer" *ngIf="item.info">
+              <i [title]="item.info" class="boschicon-bosch-ic-info infoIcon">
+              </i>
+            </span>
+
+            <span *ngIf="item.disabled" [title]="form.value[item.id]" class="disabled">
+              {{form.value[item.id]}}
+            </span>
+          </div>
+          <div class="form-error" *ngIf="!isvalidPassword && item.id==='newPassword'" style="padding-left: 0.6rem;">
+            Password must match the required specifications
+          </div>
+          <div class="form-error" *ngIf="!isPasswordSame && item.id==='reEnterNewPassword'"
+            style="padding-left: 0.6rem;">
+            Password mismatch
+          </div>
+          <div class="form-error" *ngIf="!isCredValid" style="padding-left: 0.6rem;">
+            Invalid login credentials
+          </div>
+          <div class="form-error" *ngIf="!isValidChangePwd && item.id==='oldPassword'" style="padding-left: 0.6rem;">
+            Invalid login credentials
+          </div>
+        </div>
+        <!-- file -->
+        <div *ngIf="item.type === 'file'">
+          <label [for]="item.id">{{item.label}}</label>
+          <div>
+            <span *ngIf="disabled" class="disabled"><a *ngIf="form.value[item.id]" target="_blank" download
+                [attr.href]="fileDownloadBucket+item.id+'/'+form.value[item.id]"><i
+                  class="boschicon-bosch-ic-download-frame"></i></a>{{form.value[item.id]}}</span>
+            <input *ngIf="!disabled" class="form-control" [attr.accept]="item.accept" [id]="item.id" [type]="item.type"
+              (change)="item.change($event, form, item.id)">
+            <div *ngIf="!disabled" class="input-file">{{form.value[item.id]}}</div>
+          </div>
+        </div>
+        <!-- buttons FIXED -->
+        <div class="no-bg w-100" *ngIf="item.type === 'button' && !item.hidden" class="defaultButton">
+          <app-button [width]="item.width ? item.width :'100%'" [height]="item.height"
+            (klick)="item.click(item.selector)" [background]="item.background" [margin]="item.margin"
+            [iposition]="item.iposition" [float]="item.float" [icon]="item.icon" [class]="item.buttonClass"
+            [title]="item.label?item.label:item.title" [responsiveButton]="item.responsiveButton">
+            {{item.label}}</app-button>
+          <div class="form-error" *ngIf="isRegister && !isValid">Fields marked (*) are mandatory and valid</div>
+        </div>
+        <!-- num-select -->
+        <div *ngIf="item.type === 'num-select'" class="defaultNumSelect">
+          <label [for]="item.id">{{item.label}}</label>
+          <div>
+            <app-number [min]="item.min" [max]="item.max" [steps]="item.steps" [(value)]="form.value[item.id]"
+              (valueChange)="updateNumSelect(item, $event)"></app-number>
+          </div>
+        </div>
+        <!-- PhoneNumber -->
+        <div *ngIf="item.type === 'number'" class="no-bg w-100 defaultNumber">
+          <label *ngIf="item.label" [for]="item.id" [ngClass]="item.labelClass">{{item.label}}</label>
+          <div class="w-100">
+            <span *ngIf="item.disabled" class="w-100 h-100 disabled"
+              [attr.title]="form.value[item.id]">{{form.value[item.id]}}</span>
+            <input *ngIf="!item.disabled" class="form-control" [id]="item.id" [formControlName]="item.id" type="text"
+              maxlength="13" [attr.maxlength]="item.max" appNumberOnly (keyup)="item.change ? item.change(form) : ''"
+              [title]="form.value[item.id]">
+          </div>
+          <div class="form-error" *ngIf="!isValidCode && item.id==='verificationCode'" style="padding-left: 0.6rem;">
+            Incorrect verification code</div>
+        </div>
+        <!-- email FIXED-->
+        <div *ngIf="item.type === 'email'" class="w-100 no-bg defaultLabelInputContainer">
+          <div class="d-flex w-100 ps-5 labelDiv" *ngIf="item.label">
+            <label [for]="item.id" class=""
+              [ngClass]="isValidEmail === false ? 'change-label-color' : 'form-label'">{{item.label}}</label>
+          </div>
+          <div class="input-group">
+            <span class="input-group-text" id="login-email-logo" *ngIf="item.hasIcon === true">
+              <i [class]="item.emailIcon"></i>
+            </span>
+            <input [id]="item.id" [email]=true [formControlName]="item.id" [type]="item.type"
+              [attr.maxlength]="item.max" class="form-control" [placeholder]="item.placeholder"
+              aria-describedby="login-email-logo" [required]="item.required">
+          </div>
+          <div class="form-error" *ngIf="!isValidEmail" style="padding-left: 0.6rem;">Email ID is not registered</div>
+        </div>
+        <!--input FIXED-->
+        <div *ngIf="item.type === 'input'" class="defaultInput">
+          <input class="form-control" [id]="item.id" [formControlName]="item.id" type="email"
+            [attr.maxlength]="item.max" [placeholder]="item.placeholder" />
+        </div>
+        <!-- textArea -->
+        <div *ngIf="item.type === 'textArea'" class="defaultTextArea">
+          <textarea [id]="item.id" [formControlName]="item.id" rows="5" type="textArea" [attr.maxlength]="item.max"
+            [placeholder]="item.placeholder"></textarea>
+        </div>
+        <!-- image -->
+        <div *ngIf="item.type === 'image'">
+          <div [ngClass]="item.class">
+            <img [ngStyle]="item.style" [src]="item.src" alt="">
+          </div>
+          <br />
+        </div>
+        <!-- password FIXED-->
+        <div *ngIf="item.type === 'password'" class="w-100 no-bg defaultLabelInputContainer">
+          <div class="d-flex w-100 ps-5 labelDiv" *ngIf="item.label">
+            <label [for]="item.id" class="" [ngClass]="
+                (isvalidPassword === false) || 
+                (isPasswordSame === false) ||
+                (isCredValid === false) ||
+                (isValidChangePwd === false)
+                ? 'change-label-color' : 'form-label'">{{item.label}}</label>
+          </div>
+          <div class="input-group position-relative">
+            <span class="input-group-text" id="login-password-logo" *ngIf="item.hasIcon === true">
+              <i [class]="item.emailIcon" [ngClass]="'inputIcon-email glyphicon-email'"></i>
+            </span>
+            <input [id]="item.id" [formControlName]="item.id" [type]="item.type"
+              (keydown.enter)="item.enter ? item.enter() : ''" [attr.maxlength]="item.max"
+              [placeholder]="item.placeholder" aria-describedby="login-password-logo" [required]="item.required"
+              (ngModelChange)="changeValue(item.id)">
+
+            <span class="InfoconContainer" *ngIf="item.info">
+              <i [title]="item.info" class="boschicon-bosch-ic-info infoIcon" *ngIf="item.info">
+              </i>
+            </span>
+          </div>
+          <div class="form-error" *ngIf="!isvalidPassword && item.id==='newPassword'" style="padding-left: 0.6rem;">
+            Password must match the required specifications
+          </div>
+          <div class="form-error" *ngIf="!isPasswordSame && item.id==='reEnterNewPassword'"
+            style="padding-left: 0.6rem;">
+            Password mismatch
+          </div>
+          <div class="form-error" *ngIf="!isCredValid" style="padding-left: 0.6rem;">
+            Invalid login credentials
+          </div>
+          <div class="form-error" *ngIf="!isValidChangePwd && item.id==='oldPassword'" style="padding-left: 0.6rem;">
+            Invalid login credentials
+          </div>
+        </div>
+        <!-- radio buttion -->
+        <div class="no-bg" *ngIf="item.type === 'radio'" class="defaultRadioGroup" [ngClass]="item.custome_class != undefined && item.custome_class === true ? 'defaultRadioGroupDisable' : ''">
+          <label *ngIf="item.label" [for]="item.id">{{item.label}}</label>
+          <app-radio [(value)]="form.value[item.id]" (valueChange)="updateRadio(item, $event)" [display]="'inline'"
+            [list]="item.options"></app-radio>
+        </div>
+        <!-- dropdown -->
+        <div *ngIf="item.type === 'select'">
+          <app-dropdown [class]="item.required ? 'must' : ''" (selectedChange)="updateDropdown(item, $event)"
+            [(selected)]="form.value[item.id]" [disabled]="disabled || item.disabled" [form]="true" [label]="item.label"
+            [checkbox]="true" [showFilter]="true" [tooltip]="item.tooltip" [info]="item.info" [list]="item.options"
+            [key]="item.key" [view]="item.view" [(deselect)]="item.deselect" [isFromAppliance]="item.isFromAppliance"
+            [isLoaction]="item.isLoaction" [height]="item.height" [marginTop]="item.height" [width]="item.width">
+          </app-dropdown>
+        </div>
+        <!-- date -->
+        <div *ngIf="item.type === 'date'" class="defaultDatePicker">
+          <div class="d-flex w-100 labelDiv" *ngIf="item.label">
+            <label [for]="item.id" *ngIf="item && item.label" class="form-label">{{item.label}}</label>
+          </div>
+          <div class="input-group">
+            <input [formControlName]="item.id" class="form-control" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1"
+              (dateTimeChange)="item.change(item, form.controls[item.id])" [min]="item.min" [max]="item.max" />
+            <span class="diconContainer">
+              <i class="boschicon-bosch-ic-calendar dicon" [ngClass]="{ 'no-label': !item.label }"
+                [owlDateTimeTrigger]="dt1"></i>
+              <owl-date-time #dt1 [pickerType]="item.pickerType"></owl-date-time>
+            </span>
+          </div>
+        </div>
+        <!-- operatingTime -->
+        <div *ngIf="item.type === 'operatingTime'">
+          <app-add-operating-time [(timing)]="form.value[item.id]"
+            (timingChange)="updateOT($event, item.id); item.change ? item.change($event) : ''" [header]="item.label">
+          </app-add-operating-time>
+        </div>
+        <!-- label FIXED-->
+        <div *ngIf="item.type === 'label'" class="no-bg defaultLabel">
+          <label *ngIf="item.label" [ngStyle]="item.style">{{item.label}}</label>
+        </div>
+        <!-- twoLabel  -->
+        <div *ngIf="item.type === 'twoLabel'">
+          <div [ngClass]="item.class">
+            <label *ngIf="item.label1" [ngStyle]="item.style1">{{
+              item.label1
+              }}</label>
+            <label *ngIf="item.label2" [ngStyle]="item.style2">{{
+              item.label2
+              }}</label>
+          </div>
+        </div>
+        <!-- header -->
+        <div *ngIf="item.type === 'header'" class="defaultHeader">
+          <label class="label-header" *ngIf="item.label">
+            {{ item.label }}
+          </label>
+        </div>
+        <!-- toggle -->
+        <div *ngIf="item.type === 'toggle'" class="no-bg w-100 position-relative defaultToggle" [ngStyle]="item.style" [ngClass]="item.custome_class != undefined && item.custome_class === true ? 'defaultToggleDisable' : ''">
+          <div class="w-100 d-flex position-absolute align-items-center justify-content-center toggleLable">
+            <label [for]="item.id" *ngIf="item.label">{{item.label}}</label>
+          </div>
+          <div *ngIf="!disabled">
+            <app-button (klick)="toggle(option, item)" [width]="option.width" [padding]="option.padding"
+              [height]="option.height"
+              [class]="form.value[item.id].toLowerCase() === (option.key ? option.key.toLowerCase(): option.label.toLowerCase()) ? 'primary justify-content-center' : 'secondary justify-content-center'"
+              *ngFor="let option of item.options" [float]="'left'" [title]="option.label">{{option.label}}</app-button>
+          </div>
+          <input *ngIf="disabled" class="form-control" [id]="item.id" [formControlName]="item.id" [type]="text">
+        </div>
+        <!-- checkbox FIXED-->
+        <div class="no-bg d-flex justify-content-start defaultCheckBox" *ngIf="item.type === 'checkbox'"
+          [ngStyle]="item.style">
+          <div class="cbContainer">
+            <app-checkbox [disabled]="disabled || item.disabled" [(value)]="form.value[item.id]"
+              (valueChange)="updateRadio(item, $event)" [customClass]="item.checkBoxClass">
+            </app-checkbox>
+          </div>
+          <span>{{item.label}}</span>
+        </div>
+        <!-- dateList -->
+        <div *ngIf="item.type === 'dateList'" class="dateList" [ngStyle]="item.style">
+          <label [for]="item.id" *ngIf="item.label">{{item.label}}</label>
+          <app-date-list [min]="item.min" [max]="item.max" [(list)]="form.value[item.id]"
+            (listChange)="updateDL($event, item.id)" [pickerType]="item.pickerType"></app-date-list>
+        </div>
+        <!-- link FIXED-->
+        <div class="no-bg  linkClass" *ngIf="item.type === 'link' && !item.hidden">
+          <span (click)="item.click(item.selector)">{{item.label}}</span>
+        </div>
+        <!-- icon FIXED-->
+        <div *ngIf="item.type === 'icon'" class="w-100 defaultIcon">
+          <i [class]="item.icon" (click)="item.click(item.selector)"></i>
+        </div>
+        <!-- suffix -->
+        <span class="suffix" *ngIf="item.suffix">{{item.suffix}}</span>
+        <!-- verification text FIXED-->
+        <span *ngIf="item.sendVerification" class="verificationHighLighter" (click)="item.click()">
+          {{item.sendVerification}}
+        </span>
+      </div>
+    </div>
+  </fieldset>
+</form>

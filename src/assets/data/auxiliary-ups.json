@@ -1,0 +1,100 @@
+[
+    {
+        "id":"MAKE",
+        "label":"Make",
+        "type":"select",
+        "options":[
+            {
+                "label":"Exide"
+            },
+            {
+                "label":"Ceat"
+            },
+            {
+                "label":"Phantom"
+            }
+        ]
+    },
+    {
+        "id":"MODELNO",
+        "label":"Model No",
+        "type":"select",
+        "options":[
+            {
+                "label":"764394375"
+            },
+            {
+                "label":"65499090"
+            },
+            {
+                "label":"96520988"
+            }
+        ]
+    },
+    {
+        "id":"ASSETNO",
+        "label":"Asset No.",
+        "type":"text",
+        "max":20
+    },
+    {
+        "id":"UPSCAPACITY",
+        "label":"UPS Capacity",
+        "type":"select",
+        "options":[
+            {
+                "label":"6462"
+            },
+            {
+                "label":"5427"
+            },
+            {
+                "label":"1235"
+            }
+        ]
+    },
+    {
+        "id":"BETTERYCAPACITY",
+        "label":"Bettery Capacity",
+        "type":"select",
+        "options":[
+            {
+                "label":"4362"
+            },
+            {
+                "label":"2234"
+            },
+            {
+                "label":"3242"
+            }
+        ]
+    },
+    {
+        "id":"AGINGOFBATTERY",
+        "label":"Aging of Battery",
+        "type":"select",
+        "options":[
+            {
+                "label":"1432"
+            },
+            {
+                "label":"1432"
+            },
+            {
+                "label":"1342"
+            }
+        ]
+    },
+    {
+        "id":"UPSDCINPUTS",
+        "label":"UPS DC Inputs",
+        "type":"text",
+        "max":20
+    },
+    {
+        "id":"BATTERYCHARGINGCURRENTLY",
+        "label":"Battery Charging Currently",
+        "type":"text",
+        "max":20
+    }
+]

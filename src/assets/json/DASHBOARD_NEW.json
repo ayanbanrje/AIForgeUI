@@ -1,0 +1,399 @@
+{
+    "datetime": "2020-01-09T11:00:01+05:30",
+    "timestamp": 1578547801392,
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "COUNTRIES": [
+            {
+                "COUNTRY": "INDIA",
+                "CITIES": [
+                    {
+                        "CITY": "BANGALORE",
+                        "STORE": [
+                            {
+                                "STORE_NAME": "BOSCH",
+                                "LATTITUDE": 12.9316666,
+                                "LONGITUDE": 77.6226849,
+                                "DEVICE_DETAILS": [
+                                    {
+                                        "POI": "POI1",
+                                        "APPLIANCES": [
+                                            {
+                                                "APPLIANCE_ID": "0235ffc80001"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0235ffc80002"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0602ffd00701"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0615ff600901"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0605ffd00702"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0235ffb80b01"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0235ffb80b02"
+                                            }
+                                        ],
+                                        "APPLIANCES_CNT": 7
+                                    },
+                                    {
+                                        "POI": "POI2",
+                                        "APPLIANCES": [
+                                            {
+                                                "APPLIANCE_ID": "0217a24c1d01"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0217a24c1d02"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0235ffb80b02"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0235ffb80b01"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "020582900101"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "020582f40101"
+                                            }
+                                        ],
+                                        "APPLIANCES_CNT": 7
+                                    },
+                                    {
+                                        "POI": "POI3",
+                                        "APPLIANCES": [
+                                            {
+                                                "APPLIANCE_ID": "060fff0a0001"
+                                            }
+                                        ],
+                                        "APPLIANCES_CNT": 1
+                                    },
+                                    {
+                                        "POI": "POI6",
+                                        "APPLIANCES": [
+                                            {
+                                                "APPLIANCE_ID": "1001ff701701"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ff701702"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ffac0d01"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ff080701"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ff080702"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ff200301"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ff200302"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ffe80303"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ff200303"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ff200303"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ffe80301"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ffe80302"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ffd00701"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ff200304"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "1001ff0a0001"
+                                            }
+                                        ],
+                                        "APPLIANCES_CNT": 15
+                                    },
+                                    {
+                                        "POI": "POI3",
+                                        "APPLIANCES": [
+                                            {
+                                                "APPLIANCE_ID": "0503ff0a0001"
+                                            }
+                                        ],
+                                        "APPLIANCES_CNT": 1
+                                    },
+                                    {
+                                        "POI": "POI4",
+                                        "APPLIANCES": [
+                                            {
+                                                "APPLIANCE_ID": "0616ffe02e01"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0616ffe02e02"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0616ff701701"
+                                            }
+                                        ],
+                                        "APPLIANCES_CNT": 3
+                                    },
+                                    {
+                                        "POI": "POI5",
+                                        "APPLIANCES": [
+                                            {
+                                                "APPLIANCE_ID": "0307ff0a0001"
+                                            }
+                                        ],
+                                        "APPLIANCES_CNT": 1
+                                    }
+                                ],
+                                "DEVICE_CNT": 7,
+                                "APPLIANCES_CNT": 35
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 14.9316666,
+                                "LONGITUDE": 79.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 15.9316666,
+                                "LONGITUDE": 80.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 16.9316666,
+                                "LONGITUDE": 76.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 14.6516666,
+                                "LONGITUDE": 77.9926849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }
+                            , 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 21.9316666,
+                                "LONGITUDE": 81.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 14.9316666,
+                                "LONGITUDE": 81.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 17.9316666,
+                                "LONGITUDE": 79.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 16.9316666,
+                                "LONGITUDE": 84.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 24.9316666,
+                                "LONGITUDE": 77.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }
+                            , 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 14.9316666,
+                                "LONGITUDE": 73.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 17.9316666,
+                                "LONGITUDE": 71.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 15.9316666,
+                                "LONGITUDE": 79.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 19.9316666,
+                                "LONGITUDE": 83.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 14.9316666,
+                                "LONGITUDE": 70.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }
+                            , 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 20.9316666,
+                                "LONGITUDE": 85.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 10.9316666,
+                                "LONGITUDE": 82.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 19.9316666,
+                                "LONGITUDE": 81.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 15.9316666,
+                                "LONGITUDE": 82.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }, 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 19.9316666,
+                                "LONGITUDE": 85.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }
+                            , 
+                            {
+                            "STORE_NAME": "ABC",
+                                "LATTITUDE": 18.9316666,
+                                "LONGITUDE": 90.6226849,
+                                "DEVICE_DETAILS": [],
+                                "DEVICE_CNT": 0,
+                                "APPLIANCES_CNT": 0
+                            }
+                        ],
+                        "STORE_CNT": 20,
+                        "DEVICE_CNT": 7,
+                        "APPLIANCES_CNT": 35
+                    },
+                    {
+                        "CITY": "DELHI",
+                        "STORE": [],
+                        "STORE_CNT": 0
+                    }
+                ],
+                "CITY_CNT": 2,
+                "STORE_CNT": 20,
+                "DEVICE_CNT": 7,
+                "APPLIANCES_CNT": 35
+            },
+            {
+                "COUNTRY": "UNITED KINGDOM",
+                "CITIES": [
+                    {
+                        "CITY": "BIRMINGHAM",
+                        "STORE": [
+                            {
+                                "STORE_NAME": "M&S",
+                                "LATTITUDE": 52.486243,
+                                "LONGITUDE": -1.890401,
+                                "DEVICE_DETAILS": [
+                                    {
+                                        "POI": "POI1",
+                                        "APPLIANCES": [
+                                            {
+                                                "APPLIANCE_ID": "100202640001"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0106ffe0150"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0106ffe01501"
+                                            },
+                                            {
+                                                "APPLIANCE_ID": "0106ffe01503"
+                                            }
+                                        ],
+                                        "APPLIANCES_CNT": 4
+                                    }
+                                ],
+                                "DEVICE_CNT": 1,
+                                "APPLIANCES_CNT": 4
+                            }
+                        ],
+                        "STORE_CNT": 1,
+                        "DEVICE_CNT": 1,
+                        "APPLIANCES_CNT": 4
+                    }
+                ],
+                "CITY_CNT": 1,
+                "STORE_CNT": 1,
+                "DEVICE_CNT": 1,
+                "APPLIANCES_CNT": 4
+            }
+        ],
+        "COUNTRY_CNT": 2,
+        "CITY_CNT": 3,
+        "STORE_CNT": 22,
+        "DEVICE_CNT": 8,
+        "APPLIANCES_CNT": 39
+    }
+}

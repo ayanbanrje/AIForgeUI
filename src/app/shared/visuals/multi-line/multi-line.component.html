@@ -1,0 +1,20 @@
+<div id="id" class="item ml" #graph (window:resize)="definition()" [ngStyle]="{'width': graphWidth}">
+        <!-- <div class="ml-highlight-x"></div> -->
+        <ul *ngIf="graphFeatureFlag==true" class="d-flex justify-content-end second">
+                <li class="active m-2" *ngIf="isZoomPan == 1"><i class="boschicon-bosch-ic-zoom-in" [id]="zoomID"
+                                value="pan" title="Enable Zoom" (click)="disableFeature()">
+                        </i></li>
+                <li class="active m-2" *ngIf="isResetZoom == 1"><i *ngIf="positionRelative == 1"
+                                class="boschicon-bosch-ic-reset pr-icon" title="Reset Zoom"
+                                (click)="resetZoomedChart()"></i><i *ngIf="positionRelative != 1"
+                                class="boschicon-bosch-ic-reset" title="Reset Zoom" (click)="resetZoomedChart()"></i>
+                </li>
+                <li class="active m-2" *ngIf="isDownloadPng == 1"><i class="boschicon-bosch-ic-import"
+                                title="Download PNG" (click)="downloadImage('png')"></i></li>
+                <li class="active m-2" *ngIf="isDownloadJpg == 1"><i class="boschicon-bosch-ic-download-frame"
+                                title="Download JPG" (click)="downloadImage('jpeg')"></i></li>
+                <li class="active m-2" *ngIf="isDownloadPdf == 1"><i class="boschicon-bosch-ic-print"
+                                title="Download PDF" (click)="downloadPdf()"></i></li>
+        </ul>
+        <canvas [id]="id"></canvas>
+</div>

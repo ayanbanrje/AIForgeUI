@@ -1,0 +1,70 @@
+<div class="space-overview">
+    <h5 *ngIf="header" (click)="backToLocations()"><i *ngIf="nav" class="boschicon-bosch-ic-back-left"></i>{{header}}
+    </h5>
+    <div class="overview-selectors">
+        <div class="m-0 p-0"
+            [ngClass]="{'d-flex flex-column': ranDropdown, 'row gx-0 pe-2': !isAnalysis && !oldAnalysis, 'm-0 p-0 pe-0 d-flex': oldAnalysis}">
+            <ng-container *ngIf="isAnalysis">
+                <label>Groups</label>
+            </ng-container>
+            <ng-container *ngIf="isAnalysis && showCategory == true">
+                <app-dropdown [count]="categoryCount" [defaultLabel]="categoryDefaults"
+                    (selectedChange)="categoryChanged.emit($event)" [(selected)]="categorySelected"
+                    [label]="categoryLabel" [checkbox]="true" [showFilter]="true" sort="true" [list]="categoryList"
+                    [key]="categoryKey" [view]="categoryView" [deselect]="true" [targetOption]="true"
+                    [width]="dropDownWidth" [height]="dropDownHeight" [disabled]="categoryDisabled">
+                </app-dropdown>
+            </ng-container>
+            <div class="col-3" [ngClass]="ranDropdown === false ? '' : 'mt-2'">
+                <app-dropdown [count]="clusterCount" [defaultLabel]="defaults"
+                    [disabled]="!(app.user.role === 'admin' || app.user.role === 'global-executive')"
+                    [width]="dropDownWidth" (selectedChange)="clusterSelected($event); dataChanged.emit(true)"
+                    [(selected)]="CLUSTER" [demo]="true" [label]="labels.cluster" [checkbox]="true" [showFilter]="true"
+                    sort="true" [list]="uniqueClusterList" [key]="'CLUSTER'" [view]="'CLUSTER'" [deselect]="true"
+                    [demo]="demo" [rtm]="rtm" [ra]="ra" [disabled]="!rNaFilerSelected" [height]="dropDownHeight"
+                    [disabled]="disabled">
+                </app-dropdown>
+            </div>
+            <div class="my-2" *ngIf="isAnalysis">
+                <div class="subGroupDiv">
+                    <label>Sub Groups</label>
+                </div>
+            </div>
+            <div class="col-3"
+                [ngClass]="{'ps-2': ranDropdown === false && oldAnalysis === false, 'ps-0 pe-2': oldAnalysis}">
+                <app-dropdown [count]="countryCount" [defaultLabel]="defaults"
+                    [disabled]="!(app.user.role === 'admin' || app.user.role === 'global-executive')"
+                    [width]="dropDownWidth" (selectedChange)="countrySelected($event); dataChanged.emit(true)"
+                    [(selected)]="COUNTRY" [demo]="true" [label]="labels.country" [multiselect]="true" [checkbox]="true"
+                    [showFilter]="true" sort="true" [list]="data.COUNTRIES" [key]="'COUNTRY'" [view]="'COUNTRY'"
+                    [deselect]="true" [demo]="demo" [rtm]="rtm" [ra]="ra" [disabled]="!rNaFilerSelected"
+                    [height]="dropDownHeight" [disabled]="disabled" [selectedAll]="'true'" [selctAllType]="'_country'">
+                </app-dropdown>
+            </div>
+            <div class="col-3"
+                [ngClass]="{'ps-2 pe-2': ((!ranDropdown && !oldAnalysis) || dashboardRTM), 'mt-2': ranDropdown, 'ps-0 pe-2': oldAnalysis}">
+                <app-dropdown [count]="cityCount" [defaultLabel]="defaults"
+                    [disabled]="(app.user.role === 'city-executive' || app.user.role === 'store-incharge' || app.user.role === 'operator')"
+                    [width]="dropDownWidth" (selectedChange)="citySelected($event); dataChanged.emit(true)"
+                    [(selected)]="CITY" [label]="labels.city" [multiselect]="true" sort=true [checkbox]="true"
+                    [showFilter]="true" [list]="entireCityList" [key]="'CITY'" [view]="'CITY'" [deselect]="true"
+                    [demo]="demo" [rtm]="rtm" [ra]="ra" [disabled]="!rNaFilerSelected" [height]="dropDownHeight"
+                    [disabled]="disabled" [selectedAll]="'true'" [selctAllType]="'_location'">
+                </app-dropdown>
+            </div>
+            <div class="col-3" [ngClass]="{'mt-2': ranDropdown === true, 'pe-2':oldAnalysis, 'ps-2': dashboardRTM}">
+                <ng-container *ngIf="showStore">
+                    <app-dropdown [count]="storeCount" [defaultLabel]="defaults"
+                        [disabled]="(app.user.role === 'store-incharge' || app.user.role === 'operator')"
+                        [width]="dropDownWidth" (selectedChange)="storeSelected($event); dataChanged.emit(true)"
+                        [(selected)]="STORE" [label]="labels.stores" [multiselect]="true" sort=true [checkbox]="true"
+                        [showFilter]="true" [list]="entireStoreList" [key]="'STORE_NAME'" [view]="'STORE_NAME'"
+                        [deselect]="true" [demo]="demo" [rtm]="rtm" [ra]="ra" [disabled]="!rNaFilerSelected"
+                        [maxWidth]="maxWidth" [height]="dropDownHeight" [disabled]="disabled" [selectedAll]="'true'"
+                        [selctAllType]="'_store'">
+                    </app-dropdown>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

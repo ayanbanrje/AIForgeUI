@@ -1,0 +1,261 @@
+[
+    {
+        "id": "ADMISSION",
+        "label": "Admission for",
+        "class": "col-md-12",
+        "type": "radio",
+        "options": [
+            {
+                "label": "Nursery"
+            },
+            {
+                "label": "LKG"
+            },
+            {
+                "label": "UKG"
+            },
+            {
+                "label": "Grade [I - V]"
+            }
+        ],
+        "required": true
+    },
+    {
+        "id": "FIRSTNAME",
+        "label": "First Name",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25,
+        "required": true
+    },
+    {
+        "id": "MIDDLENAME",
+        "label": "Middle Name",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25,
+        "required": true
+    },
+    {
+        "id": "LASTNAME",
+        "label": "Last Name",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25,
+        "required": true
+    },
+    {
+        "id": "DATEOFBIRTH",
+        "label": "Date of Birth",
+        "class": "col-md-3",
+        "type": "date",
+        "required": true
+    },
+    {
+        "id": "pob",
+        "label": "Place of Birth",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25
+    },
+    {
+        "id": "nationality",
+        "label": "Nationality",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25
+    },
+    {
+        "class": "col-md-6",
+        "type": "blank"
+    },
+    {
+        "id": "gender",
+        "label": "Gender",
+        "class": "col-md-3",
+        "type": "radio",
+        "options": [
+            {
+                "label": "Male"
+            },
+            {
+                "label": "Female"
+            }
+        ],
+        "required": true
+    },
+    {
+        "id": "caste",
+        "label": "Caste",
+        "class": "col-md-3",
+        "type": "radio",
+        "options": [
+            {
+                "label": "SC"
+            },
+            {
+                "label": "ST"
+            },
+            {
+                "label": "OBC"
+            },
+            {
+                "label": "General"
+            }
+        ],
+        "required": true
+    },
+    {
+        "id": "religion",
+        "label": "Religion",
+        "class": "col-md-3",
+        "type": "select",
+        "options": [
+            {
+                "label": "SC"
+            },
+            {
+                "label": "ST"
+            },
+            {
+                "label": "OBC"
+            },
+            {
+                "label": "General"
+            }
+        ],
+        "required": true
+    },
+    {
+        "class": "col-md-3",
+        "type": "blank"
+    },
+    {
+        "id": "fathername",
+        "label": "Father's Name",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25,
+        "required": true
+    },
+    {
+        "id": "fatheroccupation",
+        "label": "Occupation",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25,
+        "required": true
+    },
+    {
+        "id": "phone",
+        "label": "Phone",
+        "class": "col-md-3",
+        "type": "number",
+        "max": 10,
+        "min": 10,
+        "required": true
+    },
+    {
+        "class": "col-md-3",
+        "type": "blank"
+    },
+    {
+        "id": "mothername",
+        "label": "Mother's Name",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25,
+        "required": true
+    },
+    {
+        "id": "motheroccupation",
+        "label": "Occupation",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25,
+        "required": true
+    },
+    {
+        "id": "phone",
+        "label": "Phone",
+        "class": "col-md-3",
+        "type": "number",
+        "max": 10,
+        "min": 10,
+        "required": true
+    },
+    {
+        "id": "address",
+        "label": "Address",
+        "class": "col-md-3",
+        "type": "textarea",
+        "max": 255
+    },
+    {
+        "id": "city",
+        "label": "City",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25
+    },
+    {
+        "id": "state",
+        "label": "State",
+        "class": "col-md-3",
+        "type": "text",
+        "max": 25
+    },
+    {
+        "id": "pin",
+        "label": "Pincode",
+        "class": "col-md-3",
+        "type": "number",
+        "max": 6
+    },
+    {
+        "id": "primaryphone",
+        "label": "Primary Contact",
+        "class": "col-md-3",
+        "type": "number",
+        "max": 10,
+        "min": 10,
+        "required": true
+    },
+    {
+        "id": "email",
+        "label": "Email Id",
+        "class": "col-md-3",
+        "type": "email",
+        "required": true
+    },
+    {
+        "id": "previousschool",
+        "label": "Previous Schooling",
+        "class": "col-md-3",
+        "type": "textarea",
+        "max": 255
+    },
+    {
+        "id": "about",
+        "label": "How did you come to know about MPF?",
+        "class": "col-md-3",
+        "type": "checkbox",
+        "options": [
+            {
+                "label": "Newspaper Advertisement"
+            },
+            {
+                "label": "Magazines"
+            },
+            {
+                "label": "Friends"
+            },
+            {
+                "label": "Pre-School"
+            },
+            {
+                "label": "Tv"
+            }
+        ]
+    }
+]

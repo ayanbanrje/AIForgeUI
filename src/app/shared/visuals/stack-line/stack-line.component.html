@@ -1,0 +1,17 @@
+<div id="id" class="stack position-relative" #stack (window:resize)="definitions($event)">
+        <ul class="d-flex justify-content-end second" *ngIf="isVisible">
+                <li class="active m-2" *ngIf="isZoomPan == 1"><i class="boschicon-bosch-ic-zoom-in" id="disable_feature"
+                                value="pan" title="Enable Zoom" (click)="disableFeature()"></i></li>
+                <li class="active m-2" *ngIf="isResetZoom == 1"><i class="boschicon-bosch-ic-reset" title="Reset Zoom"
+                                (click)="resetZoomedChart()"></i></li>
+                <li class="active m-2" *ngIf="isDownloadPng == 1"><i class="boschicon-bosch-ic-import"
+                                title="Download PNG" (click)="downloadImage('png')"></i></li>
+                <li class="active m-2" *ngIf="isDownloadJpg == 1"><i class="boschicon-bosch-ic-download-frame"
+                                title="Download JPG" (click)="downloadImage('jpeg')"></i></li>
+                <li class="active m-2" *ngIf="isDownloadPdf == 1"><i class="boschicon-bosch-ic-print"
+                                title="Download PDF" (click)="downloadPdf()"></i></li>
+        </ul>
+        <div class="h-100 w-100">
+                <canvas [id]="id"></canvas>
+        </div>
+</div>

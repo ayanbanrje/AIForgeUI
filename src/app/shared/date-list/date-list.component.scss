@@ -1,0 +1,52 @@
+@import '../../../assets/css/variables';
+.date-list {    
+    width: 100%;
+    position: relative;
+    input {
+        opacity: 0;
+        width: calc(100% - 30px);
+        height: 0;
+        position: absolute;
+    }
+    i {
+        cursor: pointer;
+        &.boschicon-bosch-ic-calendar {
+            font-size: 1.5vw;
+            float: right;
+        }
+        &.toggle {
+            position: absolute;
+            right: 30px;
+            top: 0;
+            font-size: 1.5vw;
+            z-index: 2;
+        }
+    }
+    ul {
+        width: calc(100% - 50px);
+        border-bottom: 1px solid #ccc;
+        padding: 0; //6px 15px 6px 8px
+        font-size: 1vw;
+        font-weight: 600;
+        height: 1.1rem;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        background: $white;
+        padding-bottom: 1.2vw;
+        li {
+            display: block;
+            padding: 0 5px 5px 0;
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+    }
+    &.expanded {
+        ul {
+            height: auto;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+    }
+}

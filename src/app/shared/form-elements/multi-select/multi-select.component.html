@@ -1,0 +1,9 @@
+<div class="btn-group multi-select" role="group" aria-label="Days of the Week">
+    <button type="button"
+            class="btn btn-outline-primary buttonFontSize"
+            *ngFor="let option of options"
+            [class.active]="selected.indexOf(option.value) !== -1"
+            (click)="toggleSelection(option.value)">
+      {{option.name }}
+    </button>
+  </div>

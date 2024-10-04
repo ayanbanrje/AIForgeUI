@@ -1,0 +1,54 @@
+[   
+    {
+        "id":"customerSupportHeader",
+        "label":"Please state your concerns and feedback here. ",
+        "class":"col-12 m-0 mt-1 p-0 customerSupport",
+        "type":"label",
+        "required":false,
+        "style": {
+            "font-size":"1rem",
+            "font-family":"bosch-Regular"
+        }
+    }, 
+    {
+        "id":"customerSupportHeader",
+        "label":" We will get back to you shortly for assitance!",
+        "class":"col-12 m-0 mt-1 p-0 customerSupport",
+        "type":"label",
+        "required":false,
+        "style": {
+            "font-size":"1rem",
+            "font-family":"bosch-Regular"
+        }
+    }, 
+    {
+        "id":"subject",
+        "label":"Subject",
+        "placeholder":"Subject",
+        "class":"col-12 mt-3 p-0 customerSupport",
+        "type":"input",
+        "required":true
+    },
+    {
+        "id":"Message",
+        "label":"Message",
+        "class":"col-12 mt-3 p-0 customerSupport",
+        "placeholder":"Enter your message here",
+        "type":"textArea",
+        "required":true
+    },
+    {
+        "id":"CANCEL",
+        "label":"Cancel",
+        "class":"col-6 mt-1 p-2",
+        "type":"button",
+        "buttonClass":"secondary justify-content-center customerSupport"
+    },
+    {
+        "id":"send",
+        "label":"Send",
+        "class":"col-6 mt-1 p-2",
+        "type":"button",
+        "buttonClass":"primary justify-content-center customerSupport"
+    }
+]

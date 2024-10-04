@@ -1,0 +1,527 @@
+[
+    {
+      "id": "CRITERIA",
+      "label": "Criteria",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "id",
+      "view": "label",
+      "options": [
+        {
+          "label": "Target Breach",
+          "id": 5
+        }
+      ],
+      "required": true
+    },
+    {
+      "type": "label",
+      "class": "col-md-9"
+    },
+    {
+      "type": "label",
+      "class": "col-md-12",
+      "label": "Target Breach Alert",
+      "style": {
+        "font-size": "18px",
+        "font- weight": 600,
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": "Select the following",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "COUNTRY",
+      "label": "Country",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "COUNTRY",
+      "view": "COUNTRY",
+      "options": [],
+      "required": true
+    },
+    {
+      "id": "CITY",
+      "label": "City",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "CITY",
+      "view": "CITY",
+      "options": [],
+      "required": true
+    },
+    {
+      "id": "STORE_ID",
+      "label": "Store",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "STORE_ID",
+      "view": "STORE_NAME",
+      "options": [],
+      "required": true
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": ""
+    },
+    {
+      "id": "DEVICE_ID",
+      "label": "Device",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "DEVICE_ID",
+      "view": "AREA",
+      "options": []
+    },
+    {
+      "id": "CATEGORY",
+      "label": "Category",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "APPLIANCE_CATEGORY_ID",
+      "view": "APPLIANCE_CATEGORY_NAME",
+      "options": []
+    },
+    {
+      "id": "APPLIANCE",
+      "label": "Appliance",
+      "class": "col-md-3",
+      "type": "select",
+      "key": "APPLIANCE_ID",
+      "view": "APPLIANCE_NAME",
+      "options": []
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": "Set Limit and Period",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "ENERGY_LIMIT",
+      "label": "Energy Target",
+      "class": "col-md-4",
+      "type": "select",
+      "key": "key",
+      "view": "label",
+      "options": [
+        {
+          "label": "Energy Target Limit",
+          "key": 0
+        }
+      ],
+      "required": true
+    },
+    {
+      "id": "TIME_DURATION",
+      "label": "For",
+      "class": "col-md-4",
+      "type": "select",
+      "key": "key",
+      "view": "label",
+      "options": [
+        {
+          "label": "Hourly",
+          "key": 0
+        },
+        {
+          "label": "Daily",
+          "key": 1
+        },
+        {
+          "label": "Weekly",
+          "key": 2
+        },
+        {
+          "label": "Monthly",
+          "key": 3
+        },
+        {
+          "label": "Quaterly",
+          "key": 4
+        },
+        {
+          "label": "Half Yearly",
+          "key": 5
+        }
+      ],
+      "required": true
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "label": "Target",
+      "id": "TARGET",
+      "required": true,
+      "type": "number",
+      "class": "col-md-2",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "CURRENCY",
+      "label": "Currency",
+      "type": "blank",
+      "class": "col-md-2",
+      "key": "label",
+      "view": "label",
+      "options": []
+    },
+    {
+      "id": "FOR_INFO",
+      "type": "label",
+      "label": "",
+      "class": "col-md-5",
+      "style": {
+        "background": "#f3f3f3",
+        "color": "#005691",
+        "font-size": "small",
+        "font-style": "italic",
+        "padding-top": "0px"
+      }
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "type": "label",
+      "class": "col-md-1",
+      "label": "start",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "TIME_PERIOD_FROM",
+      "class": "col-md-2",
+      "type": "date",
+      "key": "START",
+      "view": "START",
+      "pickerType": "calendar",
+      "required": true
+    },
+    {
+      "type": "label",
+      "class": "col-md-1",
+      "label": "End",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "TIME_PERIOD_TO",
+      "class": "col-md-2",
+      "type": "date",
+      "key": "END",
+      "view": "END",
+      "pickerType": "calendar"
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": ""
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": "Set Communication Medium",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "EMAIL",
+      "label": "E-mail",
+      "type": "checkbox",
+      "class": "col-md-2",
+      "style": {
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "type": "label",
+      "class": "col-md-6"
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": "Define Escalation Level",
+      "style": {
+        "padding": "10px 0",
+        "background": "#f3f3f3"
+      }
+    },
+    {
+      "id": "LEVEL1",
+      "label": "Level 1",
+      "class": "col-md-4",
+      "type": "select",
+      "key": "email",
+      "view": "label",
+      "options": [],
+      "required": true
+    },
+    {
+      "id": "DAYS_LEVEL1",
+      "label": "No. of Days",
+      "class": "col-md-4",
+      "type": "select",
+      "key": "label",
+      "view": "label",
+      "options": [
+        {
+          "label": "1"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "10"
+        },
+        {
+          "label": "11"
+        },
+        {
+          "label": "12"
+        },
+        {
+          "label": "13"
+        },
+        {
+          "label": "14"
+        },
+        {
+          "label": "15"
+        },
+        {
+          "label": "16"
+        },
+        {
+          "label": "17"
+        },
+        {
+          "label": "18"
+        },
+        {
+          "label": "19"
+        },
+        {
+          "label": "20"
+        },
+        {
+          "label": "21"
+        },
+        {
+          "label": "22"
+        },
+        {
+          "label": "23"
+        },
+        {
+          "label": "24"
+        },
+        {
+          "label": "25"
+        },
+        {
+          "label": "26"
+        },
+        {
+          "label": "27"
+        },
+        {
+          "label": "28"
+        },
+        {
+          "label": "29"
+        },
+        {
+          "label": "30"
+        }
+      ],
+      "disabled": true
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": ""
+    },
+    {
+      "id": "LEVEL2",
+      "label": "Level 2",
+      "class": "col-md-4",
+      "type": "select",
+      "key": "email",
+      "view": "label",
+      "options": []
+    },
+    {
+      "id": "DAYS_LEVEL2",
+      "label": "No. of Days",
+      "class": "col-md-4",
+      "type": "select",
+      "key": "label",
+      "view": "label",
+      "options": [
+        {
+          "label": "1"
+        },
+        {
+          "label": "2"
+        },
+        {
+          "label": "3"
+        },
+        {
+          "label": "4"
+        },
+        {
+          "label": "5"
+        },
+        {
+          "label": "6"
+        },
+        {
+          "label": "7"
+        },
+        {
+          "label": "8"
+        },
+        {
+          "label": "9"
+        },
+        {
+          "label": "10"
+        },
+        {
+          "label": "11"
+        },
+        {
+          "label": "12"
+        },
+        {
+          "label": "13"
+        },
+        {
+          "label": "14"
+        },
+        {
+          "label": "15"
+        },
+        {
+          "label": "16"
+        },
+        {
+          "label": "17"
+        },
+        {
+          "label": "18"
+        },
+        {
+          "label": "19"
+        },
+        {
+          "label": "20"
+        },
+        {
+          "label": "21"
+        },
+        {
+          "label": "22"
+        },
+        {
+          "label": "23"
+        },
+        {
+          "label": "24"
+        },
+        {
+          "label": "25"
+        },
+        {
+          "label": "26"
+        },
+        {
+          "label": "27"
+        },
+        {
+          "label": "28"
+        },
+        {
+          "label": "29"
+        },
+        {
+          "label": "30"
+        }
+      ],
+      "disabled": true
+    },
+    {
+      "type": "label",
+      "class": "col-md-3",
+      "label": ""
+    },
+    {
+      "id": "LEVEL3",
+      "label": "Level 3",
+      "class": "col-md-4",
+      "type": "select",
+      "key": "email",
+      "view": "label",
+      "options": [],
+      "disabled": "true"
+    },
+    {
+      "type": "label",
+      "class": "col-md-4"
+    }
+  ]

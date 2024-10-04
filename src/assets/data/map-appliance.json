@@ -1,0 +1,290 @@
+[
+    {
+        "id": "APPLIANCE_NAME",
+        "label": "Appliance Name",
+        "type": "text",
+        "class": "col-4 mt-0 mb-2 h-100 mappingAppliances mappingAppliances",
+        "required": false,
+        "disabled": false,
+        "placeholder":""
+    },
+    {
+        "id": "DEVICE_ID",
+        "label": "Phantom Device",
+        "type": "select",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "required": false,
+        "disabled": false,
+        "height":"2.5vw"
+    },
+    {
+        "id": "APPLIANCE_ID",
+        "label": "Appliance ID",
+        "type": "text",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances colorApplainces",
+        "required": false,
+        "readonly" : false,
+        "disabled": true,
+        "placeholder":""
+    },
+    {
+        "id": "ACTUAL_WATTAGE",
+        "label": "Actual Wattage(Watts)",
+        "type": "text",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances colorApplainces",
+        "required": false,
+        "readonly" : false,
+        "disabled": true,
+        "placeholder":""
+    },
+    {
+        "type": "blank",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "id": "APPLIANCE_CATEGORY",
+        "label": "Appliance Category",
+        "type": "select",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "view": "APPLIANCE_CATEGORY_NAME",
+        "key": "APPLIANCE_CATEGORY_ID",
+        "required": false,
+        "tooltip": false,
+        "disabled": false,
+        "height":"2.5vw"
+    },
+    {
+        "id": "APPLIANCE_TYPE",
+        "label": "Appliance Type",
+        "type": "select",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "view": "APPLIANCE_TYPE_NAME",
+        "key": "APPLIANCE_TYPE_ID",
+        "required": false,
+        "tooltip": false,
+        "disabled": false,
+        "height":"2.5vw"
+    },
+    {
+        "type": "blank",
+        "class": "col-8 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "id": "APPLIANCE_SUB_CATEGORY",
+        "label": "Appliance Sub Category",
+        "type": "select",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "view": "APPLIANCE_SUB_CATEGORY_NAME",
+        "key": "APPLIANCE_SUB_CATEGORY_ID",
+        "required": false,
+        "tooltip": false,
+        "disabled": false,
+        "height":"2.5vw"
+    },
+    {
+        "id": "RELATED_WATTAGE",
+        "label": "Rated Wattage(watts)",
+        "type": "number",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "required": false,
+        "max": 4,
+        "disabled": false
+    },
+    {
+        "type": "blank",
+        "class": "col-8 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "header",
+        "class": "col-4 mt-0 mb-2 h-100 mappingAppliances",
+        "label": "Phase Connection"
+    },
+    {
+        "type": "blank",
+        "class": "col-8 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "radio",
+        "id": "PHASE_TYPE",
+        "class": "col-4 mt-0 mb-2 h-100 mappingAppliances",
+        "icon": "bosch-ic-add",
+        "options": [
+            {
+                "label": "Single Phase",
+                "selected": false,
+                "id": "single"
+            },
+            {
+                "label": "Three Phase",
+                "selected": false,
+                "id": "three",
+                "HEXACODE" : "4"
+            }
+        ],
+        "disabled": false
+    },
+    {
+        "type": "blank",
+        "class": "col-8 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "id": "PHASE_CONNECTION",
+        "class": "col-4 mt-0 mb-2 h-100 mappingAppliances",
+        "type": "toggle",
+        "style": {
+            "background": "#f3f3f3"
+        },
+        "options": [
+            {
+                "label": "Line 1",
+                "type": "button",
+                "HEXACODE" : "1",
+                "height":"2.5vw",
+                "width":"4.5vw"
+            },
+            {
+                "label": "Line 2",
+                "type": "button",
+                "HEXACODE" : "2",
+                "height":"2.5vw",
+                "width":"4.5vw"
+            },
+            {
+                "label": "Line 3",
+                "type": "button",
+                "HEXACODE" : "3",
+                "height":"2.5vw",
+                "width":"4.5vw"
+            },
+            {
+                "label": "Not Identifiable",
+                "type": "button",
+                "HEXACODE" : "5",
+                "height":"2.5vw",
+                "width":"9.5vw"
+            }
+        ],
+        "required": false,
+        "disabled": false
+    },
+    {
+        "id": "SPACE1",
+        "type": "blank",
+        "class": "col-8 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "id": "MAKE",
+        "label": "Appliance Make",
+        "type": "text",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "required": false,
+        "disabled": false,
+        "placeholder":""
+    },
+    {
+        "id": "MODEL_NO",
+        "label": "Appliance Model Number",
+        "type": "text",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "required": false,
+        "disabled": false,
+        "placeholder":""
+    },
+    {
+        "type": "blank",
+        "class": "col-8 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "id": "USAGE_HRS",
+        "label": "Typical Usage Hours",
+        "type": "num-select",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "min": 0,
+        "max": 24,
+        "steps": 0.5,
+        "disabled": false
+    },
+    {
+        "id": "ASSSET_NO",
+        "label": "Asset Number",
+        "type": "text",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "required": false,
+        "disabled": false,
+        "placeholder":""
+    },
+    {
+        "type": "blank",
+        "class": "col-8 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "type": "blank",
+        "class": "col-12 mt-0 mb-2 h-100 mappingAppliances"
+    },
+    {
+        "id": "NO_OF_SIMILAR_APPLIANCES",
+        "label": "No. of Similar Appliances",
+        "type": "num-select",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "min": 0,
+        "max": 255,
+        "steps": 1,
+        "disabled": false
+    },
+    {
+        "id": "MODE_OF_OPERATION",
+        "label": "Mode of operation",
+        "type": "number",
+        "class": "col-2 mt-0 mb-2 h-100 mappingAppliances",
+        "max": 2,
+        "disabled": false
+    },
+    {
+        "type": "blank",
+        "class": "col-8 mt-0 mb-2 h-100 mappingAppliances"
+    }
+]

@@ -1,0 +1,62 @@
+@import '../../../../assets/css/variables';
+
+.buttonContainer {
+    list-style: none;
+}
+
+.legendContainer {
+    height: 0;
+    position: relative;
+    top: -5px;
+}
+
+.legendUl {
+    list-style: none;
+    font-size: small;
+    margin-top: 4px;
+    align-items: center;
+    position: absolute;
+    top: -4px;
+}
+
+.onContainer {
+    background: #3BC900;
+}
+
+.OffContainer {
+    background: #D9CB00;
+}
+
+.fontStyle {
+    width: 38px;
+    height: 11px;
+    font-family: "bosch-light";
+}
+
+.samerow {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #fff;
+    background-color: #efeff0;
+    z-index: 9;
+    margin-left: -25px;
+    height: 100%;
+    width: 100%;
+}
+
+.rowcontent {
+    display: contents;
+}
+
+.circle {
+    height: 15px;
+    width: 15px;
+    margin-top: 5px;
+    margin-left: 10px;
+    border-radius: 2px;
+
+}
+
+.circle1 {
+    margin-left: 7px;
+}

@@ -1,0 +1,168 @@
+[
+  {
+    "id": "STORE_NAME",
+    "class": "col-6 mt-0 h-100 ps-0 locationInputText",
+    "type": "text",
+    "max": 25,
+    "required": false,
+    "placeholder":""
+  },
+  {
+    "type": "blank",
+    "class": "col-6 h-100 mt-0"
+  },
+  {
+    "id": "ADDRESS",
+    "class": "col-6 mt-2 h-100 ps-0 locationInputText",
+    "type": "text",
+    "max": 25,
+    "required": false,
+    "placeholder":""
+  },
+  {
+    "id": "ZIPCODE",
+    "class": "col-3 ps-0 mt-2 h-100 locationInputText",
+    "type": "text",
+    "max": 25,
+    "required": false,
+    "placeholder":""
+  },
+  {
+    "id": "STORE_LOCATOR",
+    "label": "Locate on Map",
+    "class": "col-3 ps-0 mt-2 h-100 d-flex align-items-center justify-content-start locationInputText",
+    "type": "button",
+    "icon": "bosch-ic-locator",
+    "buttonClass": "secondary p-2 isFromLocation",
+    "iposition": "left",
+    "height":"2.3vw",
+    "isFromLocation": true
+  },
+  {
+    "id": "COUNTRY",
+    "class": "col-3 mt-2 h-100 ps-0 locationInputText",
+    "type": "text",
+    "max": 25,
+    "required": false,
+    "placeholder":""
+  },
+  {
+    "id": "CITY",
+    "class": "col-3 ps-0 mt-2 h-100 locationInputText",
+    "type": "text",
+    "max": 25,
+    "required": false,
+    "placeholder":""
+  },
+  {
+    "type": "blank",
+    "class": "col-6 h-100 mt-2"
+  },
+  {
+    "id": "BUILDING_DETAILS",
+    "class": "col-6 mt-2 ps-0 h-100",
+    "type": "header",
+    "max": 25,
+    "label": "Building Details",
+    "required": false
+  },
+  {
+    "type": "blank",
+    "class": "col-6 h-100 mt-2"
+  },
+  {
+    "id": "SPACE_TYPE",
+    "label": "Type",
+    "type": "select",
+    "class": "col-2 mt-2 h-100 p-1 pt-0 ps-0 m-0 storeDropDown",
+    "view": "label",
+    "options": [],
+    "required": false,
+    "isLoaction":true,
+    "height":"2.3vw",
+    "width":"100%"
+  },
+  {
+    "id": "CLUSTER_NAME",
+    "label": "Cluster",
+    "type": "select",
+    "class": "col-2 mt-2 h-100 p-1 pt-0 px-1 m-0 storeDropDown",
+    "view": "label",
+    "options": [],
+    "required": false,
+    "isLoaction":true,
+    "height":"2.3vw",
+    "width":"100%"
+  },
+  {
+    "id": "NO_OF_FLOORS",
+    "label": "No Of Floors",
+    "class": "col-2 mt-2 h-100 p-1 pe-2 pt-0 pe-1 m-0 storeDropDown",
+    "type": "select",
+    "options": [],
+    "required": false,
+    "isLoaction":true,
+    "height":"2.3vw",
+    "width":"100%"
+  },
+  {
+    "id": "TOTAL_FLOOR_AREA",
+    "label": "Total Area",
+    "class": "col-2 mt-2 p-1 pt-0 h-100 locationInputTextDisabled",
+    "type": "text",
+    "disabled": true,
+    "labelClass":"TOTAL_FLOOR_AREA_Label"
+  },
+  {
+    "id": "AREA_IN",
+    "class": "col-2 h-100 mt-2",
+    "type": "toggle",
+    "options": [
+      {
+        "label": "Sq Ft",
+        "selected": true,
+        "height":"2.3vw",
+        "class": "isFromLocation",
+        "padding":"0rem",
+        "width":"50%"
+      },
+      {
+        "label": "Sq Mt",
+        "height":"2.3vw",
+        "class": "isFromLocation",
+        "padding":"0rem",
+        "width":"50%"
+      }
+    ],
+    "key": "label",
+    "view": "label",
+    "label": "Area Unit",
+    "required": false
+  },
+  {
+    "id": "SPACE",
+    "class": "col-2 ps-0 mt-2 h-100",
+    "type": "toggle",
+    "options": [
+      {
+        "label": "Owned",
+        "selected": true,
+        "height":"2.3vw",
+        "class": "isFromLocation ",
+        "padding":"0rem",
+        "width":"50%"
+      },
+      {
+        "label": "Shared",
+        "height":"2.3vw",
+        "class": "isFromLocation",
+        "padding":"0rem",
+        "width":"50%"
+      }
+    ],
+    "key": "label",
+    "view": "label",
+    "label": "Building type",
+    "required": false
+  }
+]

@@ -1,0 +1,80 @@
+<div class="space-overview">
+    <h5 *ngIf="header" (click)="backToLocations()"><i *ngIf="nav" class="boschicon-bosch-ic-back-left"></i>{{header}}
+    </h5>
+    <div class="overview-selectors">
+        <!-- <ul>
+            <li class="pe-2">
+                <app-dropdown [count]="countryCount" [defaultLabel]="defaults"
+                    [disabled]="!(app.user.role === 'admin' || app.user.role === 'global-executive')"
+                    [width]="dropDownWidth"
+                    (selectedChange)="countrySelected($event)" [(selected)]="COUNTRY" [demo]="true"
+                    [label]="labels.country" [checkbox]="true" [showFilter]="true" sort="true" [list]="data.COUNTRIES"
+                    [key]="'COUNTRY'" [view]="'COUNTRY'" [deselect]="true" [demo]="demo" [rtm]="rtm" [ra]="ra"
+                    [disabled]="!rNaFilerSelected" [height]="dropDownHeight">
+                </app-dropdown>
+            </li>
+            <li *ngIf="!showStore" class="pe-2">
+                <app-dropdown [count]="count?.space" [defaultLabel]="defaults" [disabled]="disabled"
+                    [width]="dropDownWidth"
+                    (selectedChange)="spaceSelected($event)" [(selected)]="SPACE_TYPE" [label]="labels.space"
+                    [checkbox]="true" [list]="data.SPACES" [key]="'NAME'" [view]="'NAME'" [deselect]="true"
+                    [demo]="demo" [rtm]="rtm" [height]="dropDownHeight">
+                </app-dropdown>
+            </li>
+            <li class="pe-2">
+                <app-dropdown [count]="cityCount" [defaultLabel]="defaults"
+                    [disabled]="(app.user.role === 'city-executive' || app.user.role === 'store-incharge' || app.user.role === 'operator')"
+                    [width]="dropDownWidth"
+                    (selectedChange)="citySelected($event)" [(selected)]="CITY" [label]="labels.city" sort=true
+                    [checkbox]="true" [showFilter]="true" [list]="entireCityList" [key]="'CITY'" [view]="'CITY'"
+                    [deselect]="true" [demo]="demo" [rtm]="rtm" [ra]="ra" [disabled]="!rNaFilerSelected" [height]="dropDownHeight">
+                </app-dropdown>
+            </li>
+            <li *ngIf="showStore" class="pe-2">
+                <app-dropdown [count]="storeCount" [defaultLabel]="defaults"
+                    [disabled]="(app.user.role === 'store-incharge' || app.user.role === 'operator')"
+                    [width]="dropDownWidth"
+                    (selectedChange)="storeSelected($event)" [(selected)]="STORE" [label]="labels.stores" sort=true
+                    [checkbox]="true" [showFilter]="true" [list]="entireStoreList" [key]="'STORE_NAME'"
+                    [view]="'STORE_NAME'" [deselect]="true" [demo]="demo" [rtm]="rtm" [ra]="ra"
+                    [disabled]="!rNaFilerSelected" [maxWidth]="maxWidth" [height]="dropDownHeight">
+                </app-dropdown>
+            </li>
+        </ul> -->
+
+        <div class="row gx-0 m-0 p-0" [ngClass]="ranDropdown === false ? 'pe-2' : ''">
+            <div class="col-4" [ngClass]="ranDropdown === false ? '' : 'pe-2'">
+                <app-dropdown [count]="countryCount" [defaultLabel]="defaults"
+                    [disabled]="!(app.user.role === 'admin' || app.user.role === 'global-executive')"
+                    [width]="dropDownWidth" (selectedChange)="countrySelected($event)" [(selected)]="COUNTRY"
+                    [demo]="true" [label]="labels.country" [checkbox]="true" [showFilter]="true" sort="true"
+                    [list]="data.COUNTRIES" [key]="'COUNTRY'" [view]="'COUNTRY'" [deselect]="true" [demo]="demo"
+                    [rtm]="rtm" [ra]="ra" [disabled]="!rNaFilerSelected" [height]="dropDownHeight"
+                    [disabled]="disabled">
+                </app-dropdown>
+            </div>
+            <div class="col-4" [ngClass]="ranDropdown === false ? 'ps-2 pe-2' : 'pe-2'">
+                <app-dropdown [count]="cityCount" [defaultLabel]="defaults"
+                    [disabled]="(app.user.role === 'city-executive' || app.user.role === 'store-incharge' || app.user.role === 'operator')"
+                    [width]="dropDownWidth" (selectedChange)="citySelected($event)" [(selected)]="CITY"
+                    [label]="labels.city" sort=true [checkbox]="true" [showFilter]="true" [list]="entireCityList"
+                    [key]="'CITY'" [view]="'CITY'" [deselect]="true" [demo]="demo" [rtm]="rtm" [ra]="ra"
+                    [disabled]="!rNaFilerSelected" [height]="dropDownHeight"
+                    [disabled]="disabled">
+                </app-dropdown>
+            </div>
+            <div class="col-4" [ngClass]="ranDropdown === false ? '' : ''">
+                <ng-container *ngIf="showStore">
+                    <app-dropdown [count]="storeCount" [defaultLabel]="defaults"
+                        [disabled]="(app.user.role === 'store-incharge' || app.user.role === 'operator')"
+                        [width]="dropDownWidth" (selectedChange)="storeSelected($event)" [(selected)]="STORE"
+                        [label]="labels.stores" sort=true [checkbox]="true" [showFilter]="true" [list]="entireStoreList"
+                        [key]="'STORE_NAME'" [view]="'STORE_NAME'" [deselect]="true" [demo]="demo" [rtm]="rtm" [ra]="ra"
+                        [disabled]="!rNaFilerSelected" [maxWidth]="maxWidth" [height]="dropDownHeight"
+                        [disabled]="disabled">
+                    </app-dropdown>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

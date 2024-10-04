@@ -1,0 +1,12 @@
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+}
+
+.embla__slide {
+  position: relative; /* Needed if loop: true */
+  flex: 0 0 330px; /* Choose any slide width */
+}

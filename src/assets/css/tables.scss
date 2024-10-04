@@ -1,0 +1,72 @@
+// @import "variables";
+
+// .table {
+//   header {
+//     font-size: 18px;
+//     font-weight: 600;
+//     margin: 30px 0 10px;
+//   }
+//   table {
+//     width: 100%;
+//     font-size: 12px;
+//     margin-bottom: 20px;
+//     font-size: 12px;
+//     .info {
+//       padding: 5px;
+//       border: 1px solid $active;
+//       border-radius: 25px;
+//       cursor: pointer;
+//       color: $active;
+//     }
+//     thead {
+//       background: $white;
+//       tr {
+//         th {
+//           border-bottom: 2px solid #6f6f6f;
+//           font-weight: 600;
+//           padding: 5px 15px;
+//         }
+//       }
+//     }
+//     tbody {
+//       background: $white;
+//       tr {
+//         td {
+//           padding: 15px;
+//           background: $white;
+//           &:nth-child(odd) {
+//             background: $table-alter;
+//           }
+//           input {
+//             background: transparent;
+//             padding: 5px;
+//             border: none;
+//             width: calc(100% - 10px);
+//             &[type="text"] {
+//               border-bottom: $list-border;
+//             }
+//             &[type="number"] {
+//               border-bottom: $list-border-dashed;
+//             }
+//             &[type="email"] {
+//               border-bottom: $list-border;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .icons {
+//   ul {
+//     float: right;
+//     li {
+//       display: inline-block;
+//       padding: 0 0 0 15px;
+//       i {
+//         font-size: 28px;
+//       }
+//     }
+//   }
+// }

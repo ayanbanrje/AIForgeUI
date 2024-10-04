@@ -1,0 +1,13 @@
+[  
+    {
+        "class":"col-9",
+        "type":"label"
+    },
+    {
+        "id":"CANCEL",
+        "label":"Close",
+        "class":"col-3",
+        "type":"button",
+        "buttonClass":"primary justify-content-center aboutButton"
+    }
+]

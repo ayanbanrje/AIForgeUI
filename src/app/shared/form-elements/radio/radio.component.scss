@@ -1,0 +1,39 @@
+@import '../../../../assets/css/variables';
+
+input[type=checkbox] { display:none; }
+input[type=checkbox] + label:before {
+    content: "";
+    border-radius: 50%;
+    // margin: 0 5px -3px 0;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 5px;
+}
+input[type=checkbox] + label:before { 
+    height: 1.5vw;
+    width: 1.5vw;
+    background: $radio;
+} /* unchecked icon */
+input[type=checkbox]:checked + label:before { 
+    height: 1.5vw;
+    width: 1.5vw;
+    border: 5px solid $active;
+} /* checked icon */
+label {
+    display: inline-block;
+    font-size: 1vw;
+}
+
+.radio {
+    ul {
+        li {
+            margin-right: 20px;
+            &.inline {
+                display: inline-block;
+            }
+            &.block {
+                display: block;
+            }
+        }
+    }
+}

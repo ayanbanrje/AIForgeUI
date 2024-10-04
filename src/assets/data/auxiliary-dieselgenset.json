@@ -1,0 +1,93 @@
+[
+    {
+        "id":"SELECT",
+        "label":"Select",
+        "type":"checkbox"        
+    },
+    {
+        "id":"MAKE",
+        "label":"Make",
+        "type":"select",
+        "options":[
+            {
+                "label":"Exide"
+            },
+            {
+                "label":"Ceat"
+            },
+            {
+                "label":"Phantom"
+            }
+        ]
+    },
+    {
+        "id":"MODELNO",
+        "label":"Model No",
+        "type":"select",
+        "options":[
+            {
+                "label":"764394375"
+            },
+            {
+                "label":"65499090"
+            },
+            {
+                "label":"96520988"
+            }
+        ]
+    },
+    {
+        "id":"DGRATING",
+        "label":"DG Rating (kVA)",
+        "type":"select",
+        "options":[
+            {
+                "label":"1432"
+            },
+            {
+                "label":"1432"
+            },
+            {
+                "label":"1342"
+            }
+        ]
+    },
+    {
+        "id":"DIESELRUNHOURS",
+        "label":"Diesel Run Hours",
+        "type":"select",
+        "options":[
+            {
+                "label":"1111"
+            },
+            {
+                "label":"2222"
+            },
+            {
+                "label":"3333"
+            }
+        ]
+    },
+    {
+        "id":"APPROXDIESELCONSUPTION",
+        "label":"Approx. Diesel Consumption",
+        "type":"text",
+        "max":10
+    },
+    {
+        "id":"DGCHANGEOVERPATTERN",
+        "label":"DG Change Over Pattern",
+        "type":"select",
+        "max":10,
+        "key": "label",
+        "view": "label",
+        "options":[
+            {
+                "label":"MANUAL"
+            },
+            {
+                "label":"AUTOMATIC"
+            }
+        ]
+    }
+]

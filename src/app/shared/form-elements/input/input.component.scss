@@ -1,0 +1,156 @@
+@import "../../../../assets/css/variables";
+
+.input-container {
+  position: relative;
+
+  label {
+    padding: 2px 0 0 8px;
+    display: block;
+    height: auto;
+    font-size: 0.68vw;
+    letter-spacing: 0px;
+    position: absolute;
+    font-family: "bosch-Regular";
+  }
+
+  input {
+    border: 0rem !important;
+    border-bottom: 1px solid #D0D4D8 !important;
+    border-radius: 0rem !important;
+    padding: 0.75rem 0.5rem 0rem 0.5rem;
+    box-shadow: none !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font: normal normal normal 0.95vw/0.9rem "bosch-Regular" !important;
+  }
+
+  & .verticalInput {
+    input {
+      vertical-align: bottom !important;
+    }
+  }
+  & .require {
+    &::after {
+      content: "*";
+      color: $error;
+    }
+  }
+
+  &.deviceMapping {
+    position: relative !important;
+
+    label {
+      height: auto !important;
+      position: absolute !important;
+      padding: 0 !important;
+      padding-left: 0.5rem !important;
+      top: 0.1rem;
+      line-height: 1vw;
+    }
+
+    input {
+      padding: 0 !important;
+      padding-left: 0.6rem !important;
+      padding-top: 1rem !important;
+    }
+  }
+
+  &.fromAppliances {
+    position: relative !important;
+
+    label {
+      height: auto !important;
+      position: absolute !important;
+      padding: 0 !important;
+      padding-left: 0.5rem !important;
+      top: 0.1rem;
+      line-height: 1vw;
+    }
+
+    input {
+      padding: 0 !important;
+      padding-left: 0.6rem !important;
+      padding-top: 1rem !important;
+    }
+  }
+
+  &.fromSignatures {
+    position: relative !important;
+
+    label {
+      height: auto !important;
+      position: absolute !important;
+      padding: 0 !important;
+      padding-left: 0.5rem !important;
+      top: 0.1rem;
+      line-height: 1vw;
+    }
+
+    input {
+      padding: 0 !important;
+      padding-left: 0.6rem !important;
+      padding-top: 1rem !important;
+    }
+  }
+
+  &.installationDevices {
+    position: relative !important;
+
+    label {
+      height: auto !important;
+      position: absolute !important;
+      padding: 0 !important;
+      padding-left: 0.5rem !important;
+      top: 0.1rem;
+      line-height: 1vw;
+    }
+
+    input {
+      padding: 0 !important;
+      padding-left: 0.6rem !important;
+      padding-top: 1rem !important;
+    }
+  }
+
+  &.alertsNotification {
+    position: relative !important;
+
+    label {
+      height: auto !important;
+      position: absolute !important;
+      padding: 0 !important;
+      padding-left: 0.5rem !important;
+      top: 0.1rem;
+      line-height: 1vw;
+    }
+
+    input {
+      padding: 0 !important;
+      padding-left: 0.6rem !important;
+      padding-top: 1rem !important;
+    }
+
+    span {
+      position: relative !important;
+      height: 100% !important;
+      padding-left: 0.5rem;
+      top: 0 !important;
+      right: 0 !important;
+    }
+  }
+}
+
+.suffix {
+  input {
+    width: calc(100% - 43px) !important;
+    padding-right: 35px !important;
+  }
+}
+
+span.suffix {
+  position: absolute;
+  top: 30px;
+  right: 15px;
+  font-size: 0.75rem;
+}

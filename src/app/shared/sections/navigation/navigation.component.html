@@ -1,0 +1,7 @@
+<div class="navigation m-20">
+    <ul>
+        <li [ngClass]="{'active': nav.route === activeRoute, 'mobile': nav.class, 'beta': nav.isBeta}" (click)="navigate(nav)" *ngFor="let nav of navigations">{{nav.name}}
+            <!-- <sup *ngIf="nav.isBeta">beta</sup> -->
+        </li>
+    </ul>
+</div>

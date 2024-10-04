@@ -1,0 +1,212 @@
+// .rb-button {
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     appearance: none;
+//     box-sizing: border-box;
+//     display: inline-flex;
+//     align-items: center;
+//     justify-content: center;
+//     transition: opacity cubic-bezier(0.38, 0.04, 0.35, 0.96) 600ms;
+//     border: 2px solid #005691;
+//     border-radius: 0;
+//     cursor: pointer;
+//     padding-top: 0;
+//     padding-bottom: 0;
+//     text-decoration: none;
+//     font-weight: 300;
+//     -webkit-user-select: none;
+//        -moz-user-select: none;
+//         -ms-user-select: none;
+//             user-select: none;
+//     padding-right: 16px;
+//     padding-left: 16px;
+//     height: 40px;
+//     font-size: 14px; 
+// }
+
+// .style-btn
+// {
+//   padding-left: 3rem;
+//   padding-right: 3rem;
+// }
+// .rb-button:active {
+//       outline: none; 
+// }
+// //disabled
+// .rb-button:disabled {
+//       cursor: not-allowed;
+//  }
+// //button with icon
+// .rb-button > .rb-icon {
+//       margin-right: 0.3em;
+//       font-size: 1.35em; }
+// //button - type primary
+//   .rb-button--primary {
+//     border-color: #005691;
+//     background-color: #005691;
+//     color: #fff; }
+
+//     .rb-button--primary:hover {
+//       border-color: #7fc6e7;
+//       background-color: #7fc6e7; }
+//     .rb-button--primary:active {
+//       outline: 0;
+//       border-color: #008ecf;
+//       background-color: #008ecf; }
+//     .rb-button--primary:disabled {
+//       border-color: #bfc0c2;
+//       background-color: #bfc0c2; }
+//     @media (hover: none) {
+//       .rb-button--primary:hover {
+//         border-color: #005691;
+//         background-color: #005691; } }
+
+//   //inverted button - primary type
+//   .rb-button--primary-inverted {
+//     border-color: #fff;
+//     background-color: #fff;
+//     color: #005691; }
+//     .rb-button--primary-inverted:hover {
+//       border-color: #7fc6e7;
+//       background-color: #7fc6e7;
+//       color: #fff; }
+//     .rb-button--primary-inverted:active {
+//       outline: 0;
+//       border-color: #008ecf;
+//       background-color: #008ecf;
+//       color: #fff; }
+//     .rb-button--primary-inverted:disabled {
+//       border-color: #bfc0c2;
+//       background-color: #bfc0c2;
+//       color: #fff; }
+//     @media (hover: none) {
+//       .rb-button--primary-inverted:hover {
+//         border-color: #fff;
+//         background-color: #fff; } }
+  
+// //   .rb-button--primary-tile {
+// //     mix-blend-mode: screen;
+// //     border-color: #fff;
+// //     background-color: #fff;
+// //     color: #000; }
+// //     .rb-button--primary-tile:hover {
+// //       opacity: 0.75; }
+// //     .rb-button--primary-tile:active {
+// //       opacity: 0.5; }
+// //     .rb-button--primary-tile:disabled {
+// //       opacity: 0.25;
+// //       mix-blend-mode: multiply;
+// //       border-color: #000;
+// //       background-color: #000;
+// //       color: #fff; }
+// //     @media (hover: none) {
+// //       .rb-button--primary-tile:hover {
+// //         opacity: 1; } }
+  
+//   .rb-button--secondary {
+//     border-color: #005691;
+//     background-color: transparent;
+//     color: #005691; }
+//     .rb-button--secondary:hover {
+//       border-color: #7fc6e7;
+//       color: #7fc6e7; }
+//     .rb-button--secondary:active {
+//       border-color: #008ecf;
+//       color: #008ecf; }
+//     .rb-button--secondary:disabled {
+//       border-color: #bfc0c2;
+//       color: #bfc0c2; }
+//     @media (hover: none) {
+//       .rb-button--secondary:hover {
+//         border-color: #005691;
+//         color: #005691; } }
+  
+//   .rb-button--secondary-tile {
+//     mix-blend-mode: screen;
+//     border-color: #fff;
+//     background-color: transparent;
+//     color: #fff; }
+//     .rb-button--secondary-tile:hover {
+//       opacity: 0.75; }
+//     .rb-button--secondary-tile:active {
+//       opacity: 0.5; }
+//     .rb-button--secondary-tile:disabled {
+//       opacity: 0.25;
+//       mix-blend-mode: multiply;
+//       border-color: #000;
+//       color: #000; }
+//     @media (hover: none) {
+//       .rb-button--secondary-tile:hover {
+//         opacity: 1; } }
+  
+// //   .rb-button--tertiary {
+// //     border-color: transparent;
+// //     background-color: transparent;
+// //     color: #005691; }
+// //     .rb-button--tertiary:hover {
+// //       color: #7fc6e7; }
+// //     .rb-button--tertiary:active {
+// //       outline: 0;
+// //       color: #008ecf; }
+// //     .rb-button--tertiary:disabled {
+// //       color: #bfc0c2; }
+// //     @media (hover: none) {
+// //       .rb-button--tertiary:hover {
+// //         color: #005691; } }
+  
+// //   .rb-button--tertiary-tile {
+// //     mix-blend-mode: screen;
+// //     border-color: transparent;
+// //     background-color: transparent;
+// //     color: #fff; }
+// //     .rb-button--tertiary-tile:hover {
+// //       opacity: 0.75; }
+// //     .rb-button--tertiary-tile:active {
+// //       opacity: 0.5; }
+// //     .rb-button--tertiary-tile:disabled {
+// //       opacity: 0.25;
+// //       mix-blend-mode: multiply;
+// //       color: #000; }
+// //     @media (hover: none) {
+// //       .rb-button--tertiary-tile:hover {
+// //         opacity: 1; } }
+  
+//   .rb-button--large {
+//     padding-right: 24px;
+//     padding-left: 24px;
+//     height: 60px;
+//     font-size: 20px; }
+  
+//   .rb-button--small {
+//     padding-right: 12px;
+//     padding-left: 12px;
+//     height: 40px;
+//     font-size: 14px; }
+  
+//   .rb-button--tiny {
+//     padding-right: 12px;
+//     padding-left: 12px;
+//     height: 32px;
+//     font-size: 12px; }
+  
+//   .rb-button--icon-only {
+//     width: 48px; }
+//     .rb-button--icon-only > .rb-icon {
+//       margin-right: 0; }
+  
+//   .rb-button--large.rb-button--icon-only {
+//     width: 60px; }
+  
+//   .rb-button--small.rb-button--icon-only {
+//     width: 40px; }
+  
+//   .rb-button--tiny.rb-button--icon-only {
+//     width: 32px; }
+  
+//   .rb-button--full-width {
+//     width: 100%; }
+  
+//   .rb-button--centered {
+//     display: flex;
+//     margin-right: auto;
+//     margin-left: auto; }

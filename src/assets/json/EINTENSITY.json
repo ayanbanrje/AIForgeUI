@@ -1,0 +1,38 @@
+{
+  "datetime": "2020-01-09T11:00:01+05:30",
+  "timestamp": 1578547801392,
+  "status": "success",
+  "code": 200,
+  "message": "OK",
+  "TOTAL_COST": 2000,
+  "TARGET_ENERGY": 1850,
+  "ACTUAL_ENERGY": 1560,
+  "ENERGY_DATA" : [{
+      "NAME": "India",
+      "ENERGY": 75
+    },
+    {
+      "NAME": "China",
+      "ENERGY": 40
+    },
+    {
+      "NAME": "UK",
+      "ENERGY": 35
+    },
+    {
+      "NAME": "Japan",
+      "ENERGY": 25
+    },
+    {
+      "NAME": "Russia",
+      "ENERGY": 95
+    },
+    {
+      "NAME": "Germany",
+      "ENERGY": 55
+    },
+    {
+      "NAME": "France",
+      "ENERGY": 60
+    }]
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <g id="filter_icon" transform="translate(-1608 -376)">
+    <rect id="Rectangle_851" data-name="Rectangle 851" width="48" height="48" transform="translate(1608 376)" fill="#fff" opacity="0"/>
+    <path id="filter-delete" d="M58.118,42.4h-6.4V40.8h6.4Zm3.2-.8a6.4,6.4,0,1,0-6.4,6.4A6.407,6.407,0,0,0,61.318,41.6Zm-1.6,0a4.8,4.8,0,1,1-4.8-4.8A4.805,4.805,0,0,1,59.718,41.6Zm-16,3.305V30.164L35.588,17.6H55.047L46.918,30.164v9.654a8.074,8.074,0,0,1,1.6-3.3v-5.88L57.988,16H32.647l9.471,14.636V47.895l5.129-3.419a8.025,8.025,0,0,1-.434-1.634Z" transform="translate(1585.354 368)" fill="#007bc0"/>
+  </g>
+</svg>

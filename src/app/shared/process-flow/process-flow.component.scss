@@ -1,0 +1,156 @@
+@import '../../../assets/css/mixins';
+@import '../../../assets/css/variables';
+
+.process {
+    height: 210px;
+    width: 100%;
+    position: relative;
+
+    .ico {
+        float: right;
+        height: 185px;
+        width: 155px;
+        margin-right: 130px;
+        margin-top: 25px;
+    }
+
+    &:before {
+        content: '';
+        background: url('../../../assets/images/banner-left.png') top left no-repeat;
+        position: absolute;
+        left: 0;
+        height: 210px;
+        width: 420px;
+    }
+
+    &:after {
+        content: '';
+        background: url('../../../assets/images/banner-right.png') bottom right no-repeat;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 210px;
+        width: 325px;
+    }
+
+    ul {
+        display: inline-block;
+        margin: 45px 0 0 75px;
+
+        li {
+            display: inline-block;
+            text-align: center;
+            line-height: 15px;
+            position: relative;
+            width: 63px;
+
+            i {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                border: 1.5px solid $white;
+                display: block;
+                font-size: 28px;
+                text-align: center;
+                color: $white;
+                margin: 0 auto;
+
+                &::before {
+                    line-height: 60px;
+                    text-align: center;
+                }
+            }
+
+            label {
+                font-size: 12px;
+                width: 85px;
+                color: $white;
+                display: block;
+                margin-left: -7.5px;
+                padding-top: 20px;
+            }
+
+            &:not(:first-child) {
+                margin-left: 75px;
+
+                &::before {
+                    content: "";
+                    width: 75px;
+                    display: inline-block;
+                    position: absolute;
+                    left: -75px;
+                    top: 31px;
+                    border-bottom: 1.5px solid #fff;
+                }
+            }
+
+            &.active,
+            &.tab-active {
+                i {
+                    background: $active;
+                    border: 1.5px solid $active;
+                }
+            }
+        }
+    }
+}
+
+.location-details {
+    @include linear-gradient(#F4808B, #DC80BA, #7C5A9F);
+
+    .ico {
+        background: url('../../../assets/images/location-right.png') top center no-repeat;
+    }
+}
+
+.operating-time {
+    @include linear-gradient(#50237F, #005691, #40AADB);
+
+    .ico {
+        background: url('../../../assets/images/operating-time.png') top center no-repeat;
+        width: 230px;
+        margin-right: 115px;
+    }
+}
+
+.phantom-device {
+    @include linear-gradient(#005691, #008ECF, #00A8B0);
+
+    .ico {
+        background: url('../../../assets/images/phantom-device-1.png') top center no-repeat;
+        width: 175px;
+        margin-right: 105px;
+    }
+}
+
+.device-mapping {
+    @include linear-gradient(#005691, #008ECF, #00A8B0);
+
+    .ico {
+        background: url('../../../assets/images/phantom-device-1.png') top center no-repeat;
+        width: 175px;
+        margin-right: 105px;
+    }
+}
+
+.map-appliances {
+    @include linear-gradient(#008ECF, #00A8B0, #78BE20);
+
+    .ico {
+        background: url('../../../assets/images/appliances.png') top center no-repeat;
+        width: 295px;
+        margin-right: 50px;
+    }
+}
+
+.user-groups {
+    @include linear-gradient(#00A8B0, #78BE20, #006249);
+
+    .ico {
+        background: url('../../../assets/images/user-group.png') top center no-repeat;
+        width: 165px;
+        margin-right: 90px;
+        height: 145px;
+        margin-top: 65px;
+    }
+}

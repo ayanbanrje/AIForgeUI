@@ -1,0 +1,22 @@
+<div id="id" class="w-100 h-100">
+    <div class="d-flex justify-content-end" *ngIf="screenType === 'RAA'">
+        <ul class="d-flex buttonContainer">
+            <li class="m-2"><i class="boschicon-bosch-ic-import" title="Download PNG"
+                    (click)="downloadImage('png')"></i></li>
+            <li class="m-2"><i class="boschicon-bosch-ic-download-frame" title="Download JPG"
+                    (click)="downloadImage('jpeg')"></i></li>
+            <li class="m-2"><i class="boschicon-bosch-ic-print" title="Download PDF" (click)="downloadPdf()"></i></li>
+        </ul>
+    </div>
+    <div class="w-100 h-100 pieContainer">
+        <canvas [id]="id"></canvas>
+    </div>
+    <div *ngIf="chartType === 'RTM3'" class="d-flex justify-content-center legendContainer">
+        <ul class="legendUl d-flex">
+            <li class="mr-2 onContainer fontStyle"></li>
+            <li class="mr-2">ON</li>
+            <li class="mr-2 OffContainer fontStyle"></li>
+            <li class="mr-2">OFF</li>
+        </ul>
+    </div>
+</div>

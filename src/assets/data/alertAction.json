@@ -1,0 +1,57 @@
+[
+    {
+        "type": "blank",
+        "class": "col-md-1"
+    },
+    {
+        "type": "label",
+        "class": "col-md-3",
+        "label": "Action Taken",
+        "style": {
+            "padding": "10px 0",
+            "background": "#f3f3f3",
+            "font-weight": "600",
+            "font-size": "20px"
+        }
+    },
+    {
+        "id": "PHASE",
+        "class": "col-md-4",
+        "type": "toggle",
+        "style": {
+            "background": "#f3f3f3"
+        },
+        "options": [
+            {
+                "label": "close",
+                "key": "CLOSE",
+                "type": "button"
+            },
+            {
+                "label": "In-progress",
+                "key": "IN PROGRESS",
+                "type": "button"
+            }
+        ],
+        "required": true
+    },
+    {
+        "type": "blank",
+        "class": "col-md-4"
+    },
+    {
+        "type": "blank",
+        "class": "col-md-1"
+    },
+    {
+        "id": "ADDCOMMENTS",
+        "label": "Add Coments",
+        "type": "text",
+        "style": {
+            "background": "#f3f3f3",
+            "font-weight": "600",
+            "font-size": "12px"
+        },
+        "class": "col-md-11"
+    }
+]

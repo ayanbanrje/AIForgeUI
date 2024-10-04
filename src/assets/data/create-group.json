@@ -1,0 +1,18 @@
+[
+    {
+        "id":"GROUPNAME",
+        "label":"Group Name",
+        "class":"col-md-6",
+        "type":"text",
+        "max":50,
+        "required":true
+    },
+    {
+        "id":"GROUPADMIN",
+        "label":"Group Admin",
+        "class":"col-md-6",
+        "type":"text",
+        "max":50,
+        "required":true
+    }
+]

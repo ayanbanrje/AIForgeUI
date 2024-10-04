@@ -1,0 +1,13 @@
+<div class="date-list" #myList [ngClass]="{'expanded': isExpanded}">
+    <i class="boschicon-bosch-ic-calendar" [owlDateTimeTrigger]="dl"></i>
+    <owl-date-time #dl [pickerType]="pickerType"></owl-date-time>
+    <i (click)="toggleClass()" *ngIf="list && list.length > 1" class="toggle boschicon-bosch-ic-down"
+        [ngClass]="{'boschicon-bosch-ic-up': isExpanded}"></i>
+    <ul>
+        <!-- data-simplebar data-simplebar-auto-hide="false" -->
+        <li *ngFor="let l of list">{{l | date : 'MM/dd/yyyy'}} <i (click)="remove(l)"
+                class="boschicon-bosch-ic-close"></i></li>
+    </ul>
+    <input [(ngModel)]="date" [min]="min" [placeholder]="placeholder" [max]="max" class="form-control"
+        (ngModelChange)="addDate($event)" [owlDateTime]="dl" [owlDateTimeTrigger]="dl">
+</div>

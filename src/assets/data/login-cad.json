@@ -1,0 +1,35 @@
+[
+  {
+    "id": "EMAIL",
+    "label": "Email ID",
+    "class": "col-md-12 ",
+    "type": "email",
+    "max": 75,
+    "required": true,
+    "labelClass": "custom-label"
+  },
+  {
+    "id": "PASSWORD",
+    "label": "Password",
+    "class": "col-md-12 ",
+    "type": "password",
+    "max": 25,
+    "required": true,
+    "labelClass": "custom-label"
+  },
+  {
+    "type": "label",
+    "class": "col-md-3"
+  },
+  {
+    "id": "LOGINCAD",
+    "label": "Login",
+    "class": "col-md-6 loginStyle ",
+    "type": "button",
+    "buttonClass": "primary "
+  },
+  {
+    "type": "label",
+    "class": "col-md-3"
+  }
+]

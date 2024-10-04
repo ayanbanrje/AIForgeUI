@@ -1,0 +1,97 @@
+[
+    {
+        "id": "NAME",
+        "label": "Name",
+        "class": "col-6 mb-2 mt-0 addOperatingTimeInput",
+        "type": "text",
+        "max": 25,
+        "required": true,
+        "placeholder":""
+    },
+    {
+        "id": "TIME_PERIOD_FROM",
+        "label": "Period From",
+        "class": "col-3 mb-2 mt-0 addOperatingTimeInput",
+        "type": "date",
+        "pickerType": "calendar",
+        "required": true
+    },
+    {
+        "id": "TIME_PERIOD_TO",
+        "label": "Period To",
+        "class": "col-3 mb-2 mt-0 addOperatingTimeInput",
+        "type": "date",
+        "pickerType": "calendar",
+        "required": true
+    },
+    {
+        "id": "TIMING",
+        "label": "Operating Time",
+        "class": "col-12 mb-2 mt-0",
+        "type": "operatingTime"
+    },
+    {
+        "id": "CUSTOM_HOLIDAY",
+        "label": "Custom Holiday Off",
+        "class": "col-4 mb-2 mt-0 addOperatingTimeInput",
+        "type": "dateList",
+        "key": "label",
+        "view": "label",
+        "pickerType": "calendar",
+        "height":"2rem"
+    },
+    {
+        "id": "WEEKLY_OFF",
+        "label": "Weekly",
+        "class": "col-4 mb-2 mt-0",
+        "type": "select",
+        "key": "label",
+        "view": "label",
+        "options": [
+            {
+                "label": "SUNDAY"
+            },
+            {
+                "label": "MONDAY"
+            },
+            {
+                "label": "TUESDAY"
+            },
+            {
+                "label": "WEDNESDAY"
+            },
+            {
+                "label": "THURSDAY"
+            },
+            {
+                "label": "FRIDAY"
+            },
+            {
+                "label": "SATURDAY"
+            }
+        ],
+        "width":"12vw",
+        "height":"2.8vw"
+    },
+    {
+        "id": "ADDITIONALTIMING",
+        "type": "button",
+        "class": "col-4 mb-2 mt-0",
+        "icon": "bosch-ic-add",
+        "label": "Additional Timings",
+        "buttonClass": "secondary justify-content-center",
+        "width": "13vw",
+        "float": "right"
+    },
+    {
+        "type": "select",
+        "id": "APPLY_ACROSS",
+        "class": "col-4 mb-2 mt-0",
+        "label": "Apply Across",
+        "key": "STORE_ID",
+        "view": "STORE_NAME",
+        "options": [],
+        "width":"12vw",
+        "height":"2.8vw"
+    }
+]

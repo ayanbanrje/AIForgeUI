@@ -1,0 +1,201 @@
+{
+    "datetime": "2020-01-09T11:00:01+05:30",
+    "timestamp": 1578547801392,
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": [
+        {
+            "COUNTRY": "INDIA",
+            "CITIES": [
+                {
+                    "CITY": "BANGALORE",
+                    "STORE": [
+                        {
+                            "STORE_NAME": "BOSCH",
+                            "LATTITUDE": 12.9316666,
+                            "LONGITUDE": 77.6226849,
+                            "DEVICE_DETAILS": [
+                                {
+                                    "POI": "POI1",
+                                    "APPLIANCES": [
+                                        {
+                                            "APPLIANCE_ID": "0235ffc80001"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0235ffc80002"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0602ffd00701"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0615ff600901"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0605ffd00702"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0235ffb80b01"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0235ffb80b02"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "POI": "POI2",
+                                    "APPLIANCES": [
+                                        {
+                                            "APPLIANCE_ID": "0217a24c1d01"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0217a24c1d02"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0235ffb80b02"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0235ffb80b01"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "020582900101"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "020582f40101"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "POI": "POI3",
+                                    "APPLIANCES": [
+                                        {
+                                            "APPLIANCE_ID": "060fff0a0001"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "POI": "POI6",
+                                    "APPLIANCES": [
+                                        {
+                                            "APPLIANCE_ID": "1001ff701701"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ff701702"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ffac0d01"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ff080701"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ff080702"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ff200301"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ff200302"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ffe80303"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ff200303"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ff200303"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ffe80301"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ffe80302"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ffd00701"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ff200304"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "1001ff0a0001"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "POI": "POI3",
+                                    "APPLIANCES": [
+                                        {
+                                            "APPLIANCE_ID": "0503ff0a0001"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "POI": "POI4",
+                                    "APPLIANCES": [
+                                        {
+                                            "APPLIANCE_ID": "0616ffe02e01"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0616ffe02e02"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0616ff701701"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "POI": "POI5",
+                                    "APPLIANCES": [
+                                        {
+                                            "APPLIANCE_ID": "0307ff0a0001"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }, 
+                {
+                    "CITY": "DELHI",
+                    "STORE": []
+                }
+            ]
+        },
+        {
+            "COUNTRY": "UNITED KINGDOM",
+            "CITIES": [
+                {
+                    "CITY": "BIRMINGHAM",
+                    "STORE": [
+                        {
+                            "STORE_NAME": "M&S",
+                            "LATTITUDE": 52.486243,
+                            "LONGITUDE": -1.890401,
+                            "DEVICE_DETAILS": [
+                                {
+                                    "POI": "POI1",
+                                    "APPLIANCES": [
+                                        {
+                                            "APPLIANCE_ID": "100202640001"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0106ffe0150"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0106ffe01501"
+                                        },
+                                        {
+                                            "APPLIANCE_ID": "0106ffe01503"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

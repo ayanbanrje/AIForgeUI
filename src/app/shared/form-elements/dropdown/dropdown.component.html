@@ -1,0 +1,102 @@
+<div class="dropdown" *ngIf="visible"
+  [ngClass]="{'disabled': disabled, 'in-form': form, 'multiple': multiselect , 'demo': demo , 'test': test , 'rtm':rtm, 'phatomDevice': phatomDevice , 'appliances':appliances , 'targetOption':targetOption, 'addQuery':addQuery, 'isEneryConsuption':isEneryConsuption, 'intervalOption':intervalOption, 'isLanguage': isLanguage , 'isFromPaginator':isFromPaginator, 'isFromAppliance':isFromAppliance , 'tableDropDown': tableDropDown, 'phantomItem':phantomItem, 'ra':ra, 'targetEnergy':targetEnergy , 'isLoaction': isLoaction}"
+  #myDropdown [ngStyle]="{'width': width, 'height':height , 'background-color':backgroundColor}">
+  <label class="lableClass" [ngClass]="class"><span *ngIf="label" class="labelName">{{label}}</span></label>
+  <ul [ngClass]="{'showList':toggle}">
+    <li class="d-flex w-100 default" (click)="toggleClass()">
+      <label *ngIf="value">
+        <div [attr.title]="defaultLabel" *ngIf="(multiselect && value && !value.length)">{{defaultLabel}}
+          <span *ngIf="count">({{count}} {{label}})</span>
+        </div>
+        <span class="multiselectSpan" *ngIf="multiselect">
+          <span *ngFor="let v of value; let i=index;" [attr.title]="v.view">
+            <i class="list" *ngIf="1 >= value.length">
+              {{v.view}}
+              <i (click)="removeValue(v)" *ngIf="inlineRemove" class="fa fa-times-circle"></i>
+            </i>
+            <i class="list" [attr.title]="multiselectLabel" *ngIf="value.length > 1 && !i">{{multiselectLabel}}</i>
+          </span>
+        </span>
+        <span [attr.title]="value.view" class="single" *ngIf="!multiselect && !multiTree">
+          {{value.view}}
+          <i (click)="removeSingleValue(value)" *ngIf="inlineRemove" class="fa fa-times-circle"></i>
+        </span>
+        <span [attr.title]="value.view" *ngIf="multiTree" class="single">
+          {{value.view}}
+          <i (click)="removeSingleValue(value)" *ngIf="inlineRemove" class="fa fa-times-circle"></i>
+        </span>
+      </label>
+      <label *ngIf="!value">
+        <div [attr.title]="defaultLabel" class="defaultLabel">{{defaultLabel}} <span *ngIf="count">({{count}}
+            {{label}})</span></div>
+      </label>
+      <div class="d-flex align-items-center justify-content-end toggle-icon">
+        <i *ngIf="!disabled" [ngClass]="{'boschicon-bosch-ic-down':!toggle, 'boschicon-bosch-ic-up': toggle}"></i>
+      </div>
+    </li>
+  </ul>
+  <div class="options" *ngIf="!multiTree && !isMultiTreeWithOnlyHeader" #options
+    [ngStyle]="{'max-height': maxOverflow, 'margin-top': marginTop}">
+    <div *ngIf="showFilter" class="search">
+      <input type="text" [(ngModel)]="searchText" (keyup.enter)="makeSearch(searchText)"
+        (keyup)="makeSearch(searchText)">
+      <span class="seachIcon"> <i class="boschicon-bosch-ic-search" (click)="makeSearch(searchText)"></i> </span>
+    </div>
+    <div class="list" *ngIf="getfilterText() && (getfilterText().length || !getfilterText().length)">
+      <li class="le" [ngClass]="{'active': value === text || text.checked}" *ngFor="let text of getfilterText()"
+        (click)="updateModel(text)">
+        <input *ngIf="checkbox" type="checkbox" [checked]="text.checked">
+        <label [ngClass]="{'multiSelect': multiselect, 'multiSelectSome': selectedType === 'some' && text.view === ' Select All'}">
+          <span [attr.title]="text.view" class="dropDownOptions">{{text.view}}</span>
+          <i *ngIf="tooltip && text[info]" [attr.title]="text[info]" class="boschicon-bosch-ic-info"></i>
+        </label>
+      </li>
+      <li *ngIf="getfilterText() && !getfilterText().length">No Records</li>
+    </div>
+  </div>
+
+  <div class="options" *ngIf="multiTree && !isMultiTreeWithOnlyHeader" #options
+    [ngStyle]="{'max-height': maxOverflow, 'margin-top': marginTop}">
+    <div class="list" *ngIf="filterText && (filterText.length || !filterText.length)">
+      <li class="position-relative le"
+        [ngClass]="{'active': (value === text || text.checked) && (text.subMenu === undefined || text.subMenu === false)}"
+        *ngFor="let text of filterText">
+        <input *ngIf="checkbox" type="checkbox" [checked]="text.checked" (click)="updateModel(text,text.subMenu)">
+        <label (click)="updateModel(text,text.subMenu)">
+          <span [attr.title]="text.view" class="dropDownOptions">
+            {{text.view}}
+          </span>
+          <i *ngIf="tooltip && text[info]" [attr.title]="text[info]" class="boschicon-bosch-ic-info"></i>
+        </label>
+        <div *ngIf="multiTree && text.subMenu === true" class="w-100 h-100 ps-3">
+      <li class="d-flex align-items-center" *ngFor="let subText of text.subMenuList">
+        <app-checkbox [(value)]="subText.checked"
+          (valueChange)="updateRadio($event , subText)" [multiTree]="true">
+        </app-checkbox>
+        <!-- [disabled]="!text.checked" -->
+        <label class="w-100">
+          <span [attr.title]="subText.view" class="dropDownOptions">{{subText.view}}</span>
+        </label>
+      </li>
+    </div>
+    </li>
+    <li *ngIf="filterText && !filterText.length">No Records</li>
+  </div>
+</div>
+
+<div class="options" *ngIf="isMultiTreeWithOnlyHeader && !multiTree" #options
+  [ngStyle]="{'max-height': maxOverflow, 'margin-top': marginTop, 'width' : width }">
+  <div class="list" *ngIf="filterText && (filterText.length || !filterText.length)">
+    <div class="" *ngFor="let text of filterText">
+      <li class="customHeader">{{ text.view }}</li>
+      <li class="le" [ngClass]="{'active': value === subMenu || subMenu.checked}" *ngFor="let subMenu of text.subMenu"
+        (click)="updateModelMultiTree(subMenu)">
+        <input type="checkbox" [checked]="subMenu.checked">
+        <label><span [attr.title]="subMenu.view">{{subMenu.view}} </span>
+          <i *ngIf="tooltip && text[info]" [attr.title]="text[info]" class="boschicon-bosch-ic-info"></i></label>
+      </li>
+      <li *ngIf="filterText && !filterText.length">No Records</li>
+    </div>
+  </div>
+</div>
+</div>

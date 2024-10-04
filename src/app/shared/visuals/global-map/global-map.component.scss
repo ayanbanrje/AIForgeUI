@@ -1,0 +1,11 @@
+// 
+.map{
+    width: 100%;
+    height: 100%;
+}
+
+.blurBG {
+    background: #b7dcf0;
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}

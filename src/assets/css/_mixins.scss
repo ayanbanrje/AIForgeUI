@@ -1,0 +1,4 @@
+@mixin linear-gradient($start, $middle, $end) {
+    background: $start;
+    background: linear-gradient(145deg, $start 0%, $middle 70%, $end 100%);
+}   

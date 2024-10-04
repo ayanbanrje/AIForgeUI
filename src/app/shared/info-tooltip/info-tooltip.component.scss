@@ -1,0 +1,56 @@
+div.infotip {
+    font-size: 1vw;
+    text-decoration: none;
+    width: 20px;
+    i {
+        font-size: 1.5vw;
+    }
+    &.rtmC {
+        i{
+        font-size: 1.5vw;
+        color: #0088D4;
+        }
+      }
+}
+
+div.infotip:hover {
+    cursor: help;
+    position: relative;
+}
+
+div.infotip span {
+    display: none;
+}
+
+div.infotip:hover span {
+    // border: black solid 1px;
+    color: black;
+    padding: 5px 5px 5px 5px;
+    font-size: small;
+    font-weight: normal;
+    display: block;
+    z-index: 100;
+    background: #f3f3f3;
+    left: 0px;
+    margin: 15px;
+    width: max-content;
+    max-width: 250px;
+    position: absolute;
+    top: 15px;
+    text-decoration: none;
+    text-align: justify;
+}
+
+
+@media only screen and (max-width: 768px) {
+    div.infotip {
+        font-size: 3vw;
+        i{
+          font-size: 1.5em !important;  
+        }
+
+        .descriptionText {
+            font-size: 0.85em !important;
+        }
+    }
+}

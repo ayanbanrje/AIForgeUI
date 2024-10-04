@@ -1,0 +1,66 @@
+[
+    {
+        "id":"checkbox",
+        "label":"",
+        "type":"checkbox"
+    },
+    {
+        "id":"GROUP",
+        "label":"Group",
+        "type":"select",
+        "options":[
+            {
+                "label":"Group A"
+            },
+            {
+                "label":"Group B"
+            },
+            {
+                "label":"Group C"
+            }
+        ],
+        "required":true
+    },
+    {
+        "id":"LASTNAME",
+        "label":"Last name",
+        "type":"text",
+        "required":true,
+        "max":30
+    },
+    {
+        "id":"FIRSTNAME",
+        "label":"First Name",
+        "type":"text",
+        "required":true,
+        "max":30
+    },
+    {
+        "id":"USERTYPE",
+        "label":"User type",
+        "type":"select",
+        "options":[
+            {
+                "label":"Admin"
+            },
+            {
+                "label":"Supervisor"
+            }
+        ],
+        "required":true
+    },
+    {
+        "id":"EMAILID",
+        "label":"Email ID",
+        "type":"email",
+        "required":true,
+        "max":100
+    },
+    {
+        "id":"CELLPHONE",
+        "label":"Cell Phone",
+        "type":"phone",
+        "required":true,
+        "max":100
+    }
+]

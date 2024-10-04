@@ -1,0 +1,31 @@
+<!-- Screen is about for pagination module implementation-->
+
+<!-- below code for pagination implementation  -->
+<div class="pagination-container">
+    <div class="text-right">
+        <!-- <h1>Pagination</h1>  -->
+        <!-- items being paged -->
+        <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div>  -->
+        <!-- pager -->
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <!-- <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="setPage(1)">First</a>
+            </li>-->
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <!-- <a >Previous</a> -->
+                <span (click)="setPage(pager.currentPage - 1)" class="img-left boschicon-bosch-ic-back-left">
+                </span>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <span (click)="setPage(pager.currentPage + 1)" class="img-right boschicon-bosch-ic-forward-right">
+                </span>
+            </li>
+            <!-- <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a (click)="setPage(pager.totalPages)">Last</a>
+            </li>  -->
+        </ul>
+    </div>
+</div>

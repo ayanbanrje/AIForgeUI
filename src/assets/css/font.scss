@@ -1,0 +1,43 @@
+/**
+ * @author [SBA5COB] Sivaprakasharavi Baskaran
+ * @email [Sivaprakasharavi.Baskaran@in.bosch.com]
+ * @create date 2019-09-16 19:58:13
+ * @modify date 2019-09-16 19:58:13
+ * @desc [Bosch Font Face Definitions]
+ */
+
+
+@font-face {
+    font-family: 'bosch-Light';
+    src: url('/assets/fonts/bosch-txt/BoschSans-Light.woff') format('woff'),
+        url('/assets/fonts/bosch-txt/BoschSans-Light.woff2')  format('woff2');
+}
+
+@font-face {
+    font-family: 'bosch-Medium';
+    src: url('/assets/fonts/bosch-txt/BoschSans-Medium.woff') format('woff'),
+        url('/assets/fonts/bosch-txt/BoschSans-Medium.woff2')  format('woff2');
+}
+
+@font-face {
+    font-family: 'bosch-Regular';
+    src: url('/assets/fonts/bosch-txt/BoschSans-Regular.woff') format('woff'),
+        url('/assets/fonts/bosch-txt/BoschSans-Regular.woff2')  format('woff2');
+}
+
+@font-face {
+    font-family: 'bosch-Bold';
+    src: url('/assets/fonts/bosch-txt/BoschSans-Bold.woff') format('woff'),
+        url('/assets/fonts/bosch-txt/BoschSans-Bold.woff2')  format('woff2');
+}
+
+@font-face {
+    font-family: 'Bosch-Icon';
+    src:  url('/assets/fonts/bosch-icons/Bosch-Icon.eot');
+    src:  url('/assets/fonts/bosch-icons/Bosch-Icon.eot') format('embedded-opentype'),
+      url('/assets/fonts/bosch-icons/Bosch-Icon.ttf') format('truetype'),
+      url('/assets/fonts/bosch-icons/Bosch-Icon.woff') format('woff'),
+      url('/assets/fonts/bosch-icons/Bosch-Icon.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
