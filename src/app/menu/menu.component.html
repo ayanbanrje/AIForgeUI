@@ -1,0 +1,11 @@
+<div class="main-menu">
+    <div class="container-fluid">
+        <ul>
+            <li *ngFor="let item of menuItems" [ngClass]="{'active': isActive(item.route)}">
+                <a [routerLink]="item.route">
+                  {{ item.label }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

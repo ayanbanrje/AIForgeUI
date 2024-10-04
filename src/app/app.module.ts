@@ -9,6 +9,11 @@ import { ModuleExtensionComponent } from './pages/module-extension/module-extens
 import { LoginComponent } from './pages/login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { MenuComponent } from './menu/menu.component';
+import { NodeconfigurationComponent } from './pages/nodeconfiguration/nodeconfiguration.component';
+import { DatasetsComponent } from './pages/datasets/datasets.component';
+import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
@@ -20,6 +25,11 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     HeaderComponent,
     FooterComponent,
+    ProjectsComponent,
+    MenuComponent,
+    NodeconfigurationComponent,
+    DatasetsComponent,
+    MarketplaceComponent,
     //ProjectsComponent
   ],
   imports: [
