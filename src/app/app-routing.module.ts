@@ -7,9 +7,11 @@ import { NodeconfigurationComponent } from "./pages/nodeconfiguration/nodeconfig
 import { DatasetsComponent } from "./pages/datasets/datasets.component";
 import { MarketplaceComponent } from "./pages/marketplace/marketplace.component";
 import { CreateprojectComponent } from "./pages/createproject/createproject.component"
+import { HomepageComponent } from './pages/homepage/homepage.component';
 
 
 const routes: Routes = [
+  { path: '', component: HomepageComponent },
   { path: 'login', component: LoginComponent },  
   { path: 'projects', component: ProjectsComponent },
   { path : 'moduleextention', component: ModuleExtensionComponent },

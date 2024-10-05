@@ -1,0 +1,15 @@
+<div class="homepage-card c-white m-4">
+    <div class="image mb-3">
+       <!-- <img src={{imageUrl}} alt=""> -->
+       <i [ngClass]="icon" class="fz-45px" ></i>
+    </div>
+    <div class="title fz-24px mb-3">
+        {{title}}
+    </div>
+    <div class="description fz-16px mb-3">
+        {{description}}
+    </div>
+    <div class="icon">
+        <i class="boschicon-bosch-ic-arrow-right" [ngClass]="{'visible': showArrow}"></i>
+    </div>
+</div>

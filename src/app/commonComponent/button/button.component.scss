@@ -4,7 +4,7 @@ button {
   padding: 0.6rem;
   font-size: 1rem;
   cursor: pointer;
-  font: normal normal normal 0.5vw/1.5vw "bosch-Regular" !important;
+  // font: normal normal normal 0.5vw/1.5vw "bosch-Regular" !important;
   letter-spacing: 0rem;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -15,7 +15,7 @@ button {
   justify-content: start;
 
   .buttonContent {
-    font-family: "bosch-Regular";
+    // font-family: "bosch-Regular";
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -93,55 +93,55 @@ button {
   cursor: pointer;
 }
 
-@media only screen and (max-width:767px) {
-  .responsiveButton {
-    height: 4vw !important;
-    font: normal normal normal 3vw/3vw "bosch-Regular" !important;
-    .buttonContent {
-      font-size: 2.5vw !important;
-      line-height: 3vw !important;
-    }
-  }
+// @media only screen and (max-width:767px) {
+//   .responsiveButton {
+//     height: 4vw !important;
+//     // font: normal normal normal 3vw/3vw "bosch-Regular" !important;
+//     .buttonContent {
+//       font-size: 2.5vw !important;
+//       line-height: 3vw !important;
+//     }
+//   }
 
-  .customerSupport {
-    font-size: 3vw;
-    padding: 1rem;
+//   .customerSupport {
+//     font-size: 3vw;
+//     padding: 1rem;
 
-    .buttonContent {
-      font-size: 2.5vw !important;
-      line-height: 3vw !important;
-    }
-  }
+//     .buttonContent {
+//       font-size: 2.5vw !important;
+//       line-height: 3vw !important;
+//     }
+//   }
 
-  .customYes {
-    width: 12vw;
-    height: 3.5vw;
-    padding: 1rem;
+//   .customYes {
+//     width: 12vw;
+//     height: 3.5vw;
+//     padding: 1rem;
 
-    .buttonContent {
-      font-size: 2.5vw !important;
-      line-height: 3vw !important;
-    }
-  }
+//     .buttonContent {
+//       font-size: 2.5vw !important;
+//       line-height: 3vw !important;
+//     }
+//   }
 
-  .aboutButton {
-    padding: 1rem;
-    .buttonContent {
-      font-size: 2.5vw !important;
-      line-height: 3vw !important;
-    }
-  }
+//   .aboutButton {
+//     padding: 1rem;
+//     .buttonContent {
+//       font-size: 2.5vw !important;
+//       line-height: 3vw !important;
+//     }
+//   }
 
-  .changePassword {
-    padding: 1rem;
-    .buttonContent {
-      font-size: 2.5vw !important;
-      line-height: 3vw !important;
-    }
-  }
+//   .changePassword {
+//     padding: 1rem;
+//     .buttonContent {
+//       font-size: 2.5vw !important;
+//       line-height: 3vw !important;
+//     }
+//   }
 
-  .buttonContent{
-    font-size: 3em !important;
-    line-height: 3vw !important;
-  }
-}
+//   .buttonContent{
+//     font-size: 3em !important;
+//     line-height: 3vw !important;
+//   }
+// }

@@ -20,7 +20,9 @@ export class AppComponent {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // Define the specific route where header and footer should be hidden
-        this.showHeaderFooter = ['/createproject'].includes(event.url);
+        
+        this.showHeaderFooter = ['/', '/login', '/createproject'].includes(event.url);
+
       }
     });
   }

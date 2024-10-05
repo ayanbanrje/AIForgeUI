@@ -141,3 +141,67 @@ dl {
 .card-text {
   color: #888;
 }
+
+
+/* font size */
+.fz-16px{
+  font-size: 16px;
+}
+.fz-24px{
+  font-size: 24px;
+}
+.fz-30px{
+  font-size: 30px;
+}
+.fz-42px{
+  font-size: 42px;
+}
+.fz-45px{
+  font-size: 45px;
+}
+.fz-1rem{
+  font-size: 1rem;
+}
+.fz-1-5rem{
+  font-size: 1.5rem;
+}
+
+/* font style */
+
+.fw-bold{
+  font-weight: bold;
+}
+
+/* color  */
+
+.c-white{
+  color: white;
+}
+
+/* width  */
+
+.w-200px{
+  width: 200px;
+}
+
+.w-50vw{
+  width: 50vw
+}
+
+.w-100vw{
+  width: 100vw;
+}
+
+
+/* height  */
+
+.h-100vh{
+  height: 100vh;
+}
+
+
+// cursor
+
+.cursor-pointer{
+  cursor: pointer;
+}

@@ -1,0 +1,59 @@
+<div class="mainContainer h-100 w-100">
+    <div class="backGroundImage h-100 w-100">
+        <div class="row  gx-0 m-0 h-50 pt-5 px-5">
+            <div class="col-12 c-white ">
+                <div class="row gx-0 m-0 mb-3">
+                    <div class="col fz-30px">
+                        Hello Sanjeev,
+                    </div>
+                    <div class="col text-end fz-16px">
+                        Last Login : 2024/10/02 10:52pm
+                    </div>
+                </div>
+                <div class="row gx-0 m-0 mb-3 fz-42px">
+                    <div>Welcome to <span class="fw-bold">Genesisnxt AI Forge</span></div>
+                </div>
+                <div class="row  gx-0 m-0 mb-3 fz-16px">
+                    Improve IT executive professional standing with resources, community, personalized learning, and
+                    data-driven insights.
+                    Our machine learning company specializes in developing cutting-edge AI models that drive innovation
+                    and efficiency across various industries. We harness the power of data to deliver tailored solutions
+                    that enhance decision-making and optimize processes.
+                </div>
+                <div class="row gx-0 m-0 mb-3">
+                    <div class="col-auto">
+                        <!-- <button class="btn btn-primary w-200px">Know More</button> -->
+                        <app-button [class]="'primary justify-content-center mt-2'" [width]="'200px'" [fontSize]="'16px'">
+                            Know More </app-button>
+
+                    </div>
+                    <div class="col-auto ms-5">
+                        <!-- <button class="btn btn-primary w-200px">View Recents Projects</button> -->
+                        <app-button [class]="'primary justify-content-center mt-2'" [width]="'200px'" [fontSize]="'16px'">
+                            View Recents Projects </app-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row  gx-0 m-0 h-50 ">
+            <div class="col-12">
+                <div class="cardContainer d-flex px-5 row gx-0 m-0">
+                    <ng-container *ngFor="let card of cardItems; let i = index">
+                        <div class="col cardContainer-item cursor-pointer d-flex"
+                            [ngClass]="{ 'pe-3': i !== cardItems.length - 1 }" (mouseenter)="hoverCard(true, i)"
+                            (mouseleave)="hoverCard(false, i)">
+
+                            <app-home-page-card [title]="card.title" [description]="card.description"
+                                [imageUrl]="card.imageUrl" [showArrow]="card.showArrow" [icon]="card.icon" (click)="menuClick(card.id)">
+                            </app-home-page-card>
+
+                            <!-- Add a vertical divider except after the last card -->
+                            <div *ngIf="i !== cardItems.length - 1" class="vertical-divider"></div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

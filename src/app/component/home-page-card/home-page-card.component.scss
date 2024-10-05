@@ -1,0 +1,10 @@
+.homepage-card .icon i {
+    opacity: 0; /* Default is hidden */
+    transition: opacity 0.3s ease; /* Smooth transition when visibility changes */
+    font-size: 1.5rem; /* Give it a size to ensure it takes space */
+    height: 1.5rem; /* Fixed height */
+  }
+  
+  .homepage-card .icon i.visible {
+    opacity: 1; /* Show the arrow when the card is hovered */
+  }
