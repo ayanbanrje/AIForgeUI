@@ -4,41 +4,38 @@
             <div class="col-md-12">
                 <h6 class="fw-bold">Module Extension</h6>
                 <p>
-                    Expand your machine learning project by creating custom modules designed to fit your workflow. Easily set up custom sources, sinks, algorithms, and accumulators to enhance data processing and analysisThis flexible extension allows you to integrate unique functionalities, ensuring your project is equipped to handle specific requirements and maximize performance.
+                    Expand your machine learning project by creating custom modules designed to fit your workflow.
+                    Easily set up custom sources, sinks, algorithms, and accumulators to enhance data processing and
+                    analysisThis flexible extension allows you to integrate unique functionalities, ensuring your
+                    project is equipped to handle specific requirements and maximize performance.
                 </p>
             </div>
             <div class="col-md-3">
                 <div class="side-menu">
                     <ul>
-                        <li class="active">
-                            <a href="#">
-                                <img width="20" src="../../../assets/images/menu-icon1.svg" alt="">
-                                Create your Custom Source
-                            </a>
+                        <li class="sideBarMenu p-3 " [ngClass]="activeTab == 'custom-source'?'activeClass':''" [class.active]="activeTab === 'custom-source'" (click)="setActiveTab('custom-source')">
+                            Create your Custom Source
                         </li>
-                        <li>
-                            <a href="#">
-                                <img width="20" src="../../../assets//menu-icon1.svg" alt="">
-                                Create your Custom Algorithm
-                            </a>
+                        <li class="sideBarMenu p-3" [ngClass]="activeTab == 'custom-algorithm'?'activeClass':''"  [class.active]="activeTab === 'custom-algorithm'"
+                            (click)="setActiveTab('custom-algorithm')">
+                            Create your Custom Algorithm
+
                         </li>
-                        <li>
-                            <a href="#">
-                                <img width="20" src="../../../assets//menu-icon1.svg" alt="">
-                                Create your Custom Sink
-                            </a>
+                        <li class="sideBarMenu p-3" [ngClass]="activeTab == 'custom-sink'?'activeClass':''"  [class.active]="activeTab === 'custom-sink'" (click)="setActiveTab('custom-sink')">
+                            Create your Custom Sink
+
                         </li>
-                        <li>
-                            <a href="#">
-                                <img width="20" src="../../../assets//menu-icon1.svg" alt="">
-                                Create your Custom Accumulator
-                            </a>
+                        <li class="sideBarMenu p-3" [ngClass]="activeTab == 'custom-accumulator'?'activeClass':''"  [class.active]="activeTab === 'custom-accumulator'"
+                            (click)="setActiveTab('custom-accumulator')">
+                            Create your Custom Accumulator
                         </li>
                     </ul>
+
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="right-content">
+                <app-child-module-extension [content]="contentData"></app-child-module-extension>
+                <!-- <div class="right-content">
                     <div class="top-right-search">
                         <div class="page-heading">
                             Available Custom Sources
@@ -65,14 +62,14 @@
                                         <div class="s-card-action">
                                             <ul>
                                                 <li>
-                                                    <a href="#">
+                                                    
                                                         <img width="16" src="../../../assets//edit-icon.svg">
-                                                    </a>
+                                                    
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    
                                                         <img width="16" src="../../../assets//delete-icon.svg">
-                                                    </a>
+                                                    
                                                 </li>
                                             </ul>
                                         </div>
@@ -109,14 +106,14 @@
                                         <div class="s-card-action">
                                             <ul>
                                                 <li>
-                                                    <a href="#">
+                                                    
                                                         <img width="16" src="../../../assets//edit-icon.svg">
-                                                    </a>
+                                                    
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    
                                                         <img width="16" src="../../../assets//delete-icon.svg">
-                                                    </a>
+                                                    
                                                 </li>
                                             </ul>
                                         </div>
@@ -153,14 +150,14 @@
                                         <div class="s-card-action">
                                             <ul>
                                                 <li>
-                                                    <a href="#">
+                                                    
                                                         <img width="16" src="../../../assets//edit-icon.svg">
-                                                    </a>
+                                                    
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    
                                                         <img width="16" src="../../../assets//delete-icon.svg">
-                                                    </a>
+                                                    
                                                 </li>
                                             </ul>
                                         </div>
@@ -197,14 +194,14 @@
                                         <div class="s-card-action">
                                             <ul>
                                                 <li>
-                                                    <a href="#">
+                                                    
                                                         <img width="16" src="../../../assets//edit-icon.svg">
-                                                    </a>
+                                                    
                                                 </li>
                                                 <li>
-                                                    <a href="#">
+                                                    
                                                         <img width="16" src="../../../assets//delete-icon.svg">
-                                                    </a>
+                                                    
                                                 </li>
                                             </ul>
                                         </div>
@@ -234,7 +231,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

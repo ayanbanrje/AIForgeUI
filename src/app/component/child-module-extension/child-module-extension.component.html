@@ -1,0 +1,56 @@
+<div class="right-content">
+    <div class="top-right-search">
+      <div class="page-heading">
+        {{ content.heading }}
+      </div>
+      <div class="search-bar">
+        <input type="text" class="search-input">
+        <button class="btn-search">
+            <i class="boschicon-bosch-ic-core-data"></i>
+
+          <!-- <img width="20" src="../../../assets/search-icon.svg" alt=""> -->
+        </button>
+      </div>
+      <button class="btn-main" data-bs-toggle="modal" data-bs-target="#createModal">
+        <i class="boschicon-bosch-ic-core-data"></i>
+
+        <!-- <img width="20" src="../../../assets/plus-icon.svg" alt=""> -->
+        Create Custom {{content.title}}
+      </button>
+    </div>
+    <div class="custom-source-box">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let item of content.data">
+          <div class="source-card">
+            <div class="s-card-header">
+              <div class="s-card-title">
+                <h6 class="m-0">{{ item.title }}</h6>
+              </div>
+              <div class="s-card-action">
+                <ul>
+                  <li>
+                    <i class="boschicon-bosch-ic-core-data"></i>
+                      <!-- <img width="16" src="../../../assets/edit-icon.svg"> -->
+                  </li>
+                  <li>
+                    <i class="boschicon-bosch-ic-core-data"></i>
+
+                      <!-- <img width="16" src="../../../assets/delete-icon.svg"> -->
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="s-card-body">
+              <p>{{ item.description }}</p>
+              <div class="s-card-labels">
+                <ul>
+                  <li *ngFor="let label of item.labels">{{ label }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

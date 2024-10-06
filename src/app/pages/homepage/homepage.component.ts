@@ -45,7 +45,7 @@ export class HomepageComponent {
       title: 'Market Place',
       description: 'Explore resources in our marketplace for premium datasets and advanced training modules.',
       imageUrl: '../../assets/images/Group 303977.png',
-      icon:'boschicon-bosch-ic-Group 303977',
+      icon:'boschicon-bosch-ic-store',
       showArrow:false
     }
   ];
