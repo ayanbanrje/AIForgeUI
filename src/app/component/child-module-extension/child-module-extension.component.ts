@@ -7,4 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class ChildModuleExtensionComponent {
   @Input() content: { heading: string, title:string,data: any[] } = { heading: '', title:'', data: [] };
+  parentValue: string = ''; // Value that will be updated
+
+  // Update the value when the child component emits the change
+  updateValue(newValue: string) {
+    this.parentValue = newValue;
+    console.log("this.parentvalue",this.parentValue)
+  }
 }

@@ -8,32 +8,29 @@
         <button class="btn-search">
             <i class="boschicon-bosch-ic-core-data"></i>
 
-          <!-- <img width="20" src="../../../assets/search-icon.svg" alt=""> -->
         </button>
       </div>
-      <button class="btn-main" data-bs-toggle="modal" data-bs-target="#createModal">
+      <button class="btn-main" data-bs-toggle="modal" data-bs-target="#createModal" >
         <i class="boschicon-bosch-ic-core-data"></i>
-
-        <!-- <img width="20" src="../../../assets/plus-icon.svg" alt=""> -->
         Create Custom {{content.title}}
       </button>
     </div>
-    <div class="custom-source-box">
-      <div class="row">
-        <div class="col-md-4" *ngFor="let item of content.data">
-          <div class="source-card">
-            <div class="s-card-header">
+    <div class="custom-source-box pt-3">
+      <div class="row gx-0 m-0">
+        <div class="col-md-4 pb-3 pe-3" *ngFor="let item of content.data">
+          <div class="source-card border-1px-solid-black p-3">
+            <div class="s-card-header mb-3">
               <div class="s-card-title">
-                <h6 class="m-0">{{ item.title }}</h6>
+                <h6 class="m-0 fz-16px fw-bold text-nowrap">{{ item.title }}</h6>
               </div>
               <div class="s-card-action">
                 <ul>
                   <li>
-                    <i class="boschicon-bosch-ic-core-data"></i>
+                    <i class="boschicon-bosch-ic-edit"></i>
                       <!-- <img width="16" src="../../../assets/edit-icon.svg"> -->
                   </li>
                   <li>
-                    <i class="boschicon-bosch-ic-core-data"></i>
+                    <i class="boschicon-bosch-ic-delete"></i>
 
                       <!-- <img width="16" src="../../../assets/delete-icon.svg"> -->
                   </li>
@@ -43,8 +40,8 @@
             <div class="s-card-body">
               <p>{{ item.description }}</p>
               <div class="s-card-labels">
-                <ul>
-                  <li *ngFor="let label of item.labels">{{ label }}</li>
+                <ul class="overflow-hidden">
+                  <li class="text-nowrap" *ngFor="let label of item.labels">{{ label }}</li>
                 </ul>
               </div>
             </div>
@@ -53,4 +50,49 @@
       </div>
     </div>
   </div>
+
+  <!-- Custom Source Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createModalLabel">Create New Custom Source</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row gx-0 m-0">
+            <div class="col mb-3 pe-3">
+              <app-input (inputValueChange)="updateValue($event)"></app-input>
+            </div>
+            <div class=" col mb-3">
+              <app-input (inputValueChange)="updateValue($event)"></app-input>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="description" class="form-label">Enter Description</label>
+            <textarea class="form-control" id="description" placeholder="Enter Description"></textarea>
+          </div>
+          <hr>
+          <div class="mb-3">
+            <label for="uploadFile" class="form-label">Upload Edited Custom Source in Python File</label>
+            <div class="upload-box p-3 border border-dashed">
+              <input type="file" class="form-control-file" id="uploadFile" hidden>
+              <p class="text-center">
+                Drag and drop files/folder here or <a href="#">browse</a> to upload.
+              </p>
+            </div>
+            <a href="#">Download .py Template File</a>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Open Template in Jupyter Editor</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   

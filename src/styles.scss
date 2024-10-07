@@ -97,7 +97,12 @@ dl {
 //   padding: 0;
 //   font-size: 1vw;
 // }
-
+.fz-10px{
+  font-size: 10px;
+}
+.fz-12px{
+  font-size: 12px;
+}
 .fz-30px {
   font-size: 30px;
 }
@@ -204,4 +209,19 @@ dl {
 
 .cursor-pointer{
   cursor: pointer;
+}
+
+.border-1px-solid-black{
+  border: 1px solid black;
+}
+
+.text-nowrap{
+  text-wrap: nowrap;
+}
+
+.overflow-hidden{
+  overflow: hidden;
+}
+.opacity-50per{
+  opacity: 50%;
 }
