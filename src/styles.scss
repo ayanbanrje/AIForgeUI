@@ -29,43 +29,43 @@
 @import "./assets/css/tables.scss";
 @import "./assets/css/reset";
 @import "./assets/css/variables";
-@import "../node_modules/ng-pick-datetime/assets/style/picker.min.css";
-@import "./assets/css/main.scss";
+// @import "../node_modules/ng-pick-datetime/assets/style/picker.min.css";
+// @import "./assets/css/main.scss";
 
-.drawflow .drawflow-node {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  background: #efefef !important;
-  width: 16.64vw !important;
-  min-height: 40px;
-  border-radius: 15px !important;
-  border: 2px solid #d2e3e3 !important;
-  color: #504c4c;
-  z-index: auto !important;
-  padding: 20px !important;
-  box-shadow: 10px 8px 6px -3px #bcbcbc !important;
-  height: 19.71vh !important;
-  cursor: default !important;
-}
+// .drawflow .drawflow-node {
+//   display: flex;
+//   align-items: center;
+//   position: absolute;
+//   background: #efefef !important;
+//   width: 16.64vw !important;
+//   min-height: 40px;
+//   border-radius: 15px !important;
+//   border: 2px solid #d2e3e3 !important;
+//   color: #504c4c;
+//   z-index: auto !important;
+//   padding: 20px !important;
+//   box-shadow: 10px 8px 6px -3px #bcbcbc !important;
+//   height: 19.71vh !important;
+//   cursor: default !important;
+// }
 
-.drawflow .drawflow-node .output {
-  right: -15px !important;
-  top: 2px;
-}
+// .drawflow .drawflow-node .output {
+//   right: -15px !important;
+//   top: 2px;
+// }
 
-.drawflow .drawflow-node .input,
-.drawflow .drawflow-node .output {
-  position: relative;
-  width: 11px !important;
-  height: 10px !important;
-  background: #fff;
-  border-radius: 50%;
-  border: 2px solid #a3afaf !important;
-  cursor: crosshair;
-  z-index: 1;
-  margin-bottom: 5px;
-}
+// .drawflow .drawflow-node .input,
+// .drawflow .drawflow-node .output {
+//   position: relative;
+//   width: 11px !important;
+//   height: 10px !important;
+//   background: #fff;
+//   border-radius: 50%;
+//   border: 2px solid #a3afaf !important;
+//   cursor: crosshair;
+//   z-index: 1;
+//   margin-bottom: 5px;
+// }
 
 // .drawflow .drawflow-node .input {
 //   left: -30px !important;
@@ -73,17 +73,17 @@
 //   background: #fff;
 // }
 
-.offcanvas-body {
-  padding: 1.5em !important;
-  overflow-y: hidden !important;
-}
+// .offcanvas-body {
+//   padding: 1.5em !important;
+//   overflow-y: hidden !important;
+// }
 
-.drawflow .drawflow-node .input {
-  left: -30px !important;
-  top: 2px;
-  /* background: #ff0; */
-  background: #fff;
-}
+// .drawflow .drawflow-node .input {
+//   left: -30px !important;
+//   top: 2px;
+//   /* background: #ff0; */
+//   background: #fff;
+// }
 
 ol,
 ul,

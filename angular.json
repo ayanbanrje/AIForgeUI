@@ -44,11 +44,13 @@
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.scss",
-              "src/font.scss"
+              "src/font.scss",
+              "node_modules/drawflow/dist/drawflow.min.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/drawflow/dist/drawflow.min.js"
             ]
           },
           "configurations": {
