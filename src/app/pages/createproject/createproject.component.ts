@@ -217,7 +217,7 @@ export class CreateprojectComponent {
     }
 
     const rectNodeHTML = `<div class="">${data.name}</div>`;
-    const endNode = this.editor.addNode('end', 1, 0, pos_x, pos_y, nodeClass, { id : data.id }, rectNodeHTML);
+    const endNode = this.editor.addNode('end', 1, 1, pos_x, pos_y, nodeClass, { id : data.id }, rectNodeHTML);
     return;
   }
 }
