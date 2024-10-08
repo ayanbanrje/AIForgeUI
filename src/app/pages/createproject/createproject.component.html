@@ -12,7 +12,7 @@
                             <div class="collapse" id="{{componentType}}-collapse" style="margin-left: 50px;">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                                     <li *ngFor="let elem of components[componentType]">
-                                        <a href="javascript:void(0)" class="link-dark rounded" class="drag-drawflow" draggable="true" (dragstart)="drag($event)" [attr.data-node]="elem.name">{{ elem.name }}</a>
+                                        <a href="javascript:void(0)" class="link-dark rounded" class="drag-drawflow" draggable="true" (dragstart)="drag($event)" [attr.data-name]="elem.name" [attr.data-id]="elem.id" [attr.data-type]="componentType">{{ elem.name }}</a>
                                     </li>
                                 </ul>
                             </div>
