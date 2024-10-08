@@ -18,6 +18,8 @@ import { MarketplaceComponent } from './pages/marketplace/marketplace.component'
 import { CreateprojectComponent } from './pages/createproject/createproject.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { HomePageCardComponent } from './component/home-page-card/home-page-card.component';
+import { ChildModuleExtensionComponent } from './component/child-module-extension/child-module-extension.component';
+import { DropdownComponent } from './commonComponent/dropdown/dropdown.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
@@ -37,7 +39,8 @@ import { HomePageCardComponent } from './component/home-page-card/home-page-card
     CreateprojectComponent,
     HomepageComponent,
     HomePageCardComponent,
-
+    ChildModuleExtensionComponent,
+    DropdownComponent,
     //ProjectsComponent
   ],
   imports: [
