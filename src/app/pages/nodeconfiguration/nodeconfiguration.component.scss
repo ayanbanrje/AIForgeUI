@@ -1,6 +1,110 @@
-.page-heading{
-    width: 15%;
+// .page-heading {
+//     width: 15%;
+// }
+
+// .search-bar {
+//     width: 60%;
+// }
+
+.container {
+    max-width: 97%;
 }
-.search-bar{
-    width: 60%;
+
+.custom-bg {
+    background-color: #EFEFEB;
+}
+
+// .card {
+//     border-radius: 8px;
+// }
+
+.card-title {
+    font-size: 1.1rem;
+    /* Adjust font size as needed */
+}
+
+.card-body {
+    padding: 15px;
+    justify-content: normal !important;
+}
+
+.custom-border {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.small {
+    font-size: 0.875rem;
+}
+
+.input-group {
+    justify-content: flex-end;
+}
+
+.input-group .form-control {
+    max-width: 70%;
+}
+
+.input-group .btn {
+    width: auto;
+}
+
+i {
+    font-size: 1.2rem;
+    /* Adjust icon size */
+    cursor: pointer;
+    /* Show pointer cursor on hover */
+}
+
+i:hover {
+    color: #007bff;
+    /* Optional hover effect */
+}
+
+/* Increase the card height and adjust padding */
+.node-card {
+    height: auto;
+    font-size: 1rem;
+    /* Adjust font size */
+}
+
+.label-badge {
+    display: inline-block;
+    background-color: #e9ecef;
+    /* Grey background for the label */
+    padding: 5px 10px;
+    border-radius: 20px;
+    /* Rounded corners */
+    margin-right: 5px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Style for the View Button */
+.view-btn {
+    font-size: 1rem;
+    /* Increase size */
+    padding: 10px 0;
+    /* Adjust padding */
+}
+
+.view-btn:hover {
+    background-color: #007bff;
+    /* Change background color on hover */
+    color: white;
+}
+
+/* Badge Styles */
+.badge {
+    padding: 0.5em 0.75em;
+    border-radius: 0.1rem;
+}
+
+.custom-btn {
+    border-radius: 0 !important;
+    color: #FFF;
+}
+
+.custom-bg-btn {
+    background-color: #0d6efd;
 }

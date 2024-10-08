@@ -1,0 +1,11 @@
+.sideBarMenu{
+    cursor: pointer;
+}
+.sideBarMenu:hover{
+    background-color: #0083C4;
+    color:white
+}
+.activeClass{
+    color:#0083C4;
+    border-bottom: 2px solid #0083c4;
+}
