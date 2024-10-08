@@ -17,6 +17,15 @@
     z-index: 1;
   }
 
+  .drag-drawflow{
+    background-color : unset;
+    border-right : unset;
+  }
+
+  .list-group a{
+    text-decoration: none;
+  }
+
   .drawflow .drawflow-node{
     width: unset;
     background : unset;
@@ -75,23 +84,31 @@
   .main-path {
     stroke-width: 2;
   }
-  
-  .collapse{
-    margin-left: 50px;
+
+  .list-unstyled {
+    border-radius: 0px;
+    width: 259px;
+    button{
+      width: 259px;
+      border-radius: 0px !important;
+      
+    }
   }
 
   .drawflow-node.drawflow-node-rect {
     width: 140px;
     height: 140px;
-    background-color: #3498db !important;
-    border: 2px solid #2980b9 !important;
+    background-color: transparent !important;
+    box-shadow: 0px 0px 12px gray;
+    border: 2px solid #000 !important;
   }
 
   .drawflow-node.drawflow-node-circle {
     width: 140px !important;
     height: 140px !important;
-    background-color: #2ecc71 !important;
-    border: 2px solid #27ae60 !important;
+    background-color: transparent !important;
+    border: 2px solid #000 !important;
+    box-shadow: 0px 0px 12px gray;
     border-radius: 50% !important;
   }
 
@@ -100,7 +117,8 @@
     width: 150px;
     height: 100px;
     transform: skew(20deg);
-    background: red;
+    box-shadow: 0px 0px 12px gray;
+    background: transparent !important;;
   }
 
   .diamond {
@@ -119,8 +137,9 @@
     height: 78%;
     width: 78%;
     transform: rotateX(45deg) rotateZ(45deg);
+    border: 2px solid #000 !important;
     box-shadow: 0px 0px 12px gray;
-    background-color: coral;
+    background-color: transparent !important;;
   }
   // .diamond::after {
   //    position: absolute !important;
@@ -136,7 +155,9 @@
   .hexagon {
     width: 140px !important;
     height: 75px !important;
-    background: red !important;
+    background: transparent !important;
+    box-shadow: 0px 0px 12px gray;
+    border: 2px solid #000 !important;
     position: relative;
     border-radius: 0px !important;
   }
@@ -149,7 +170,8 @@
     height: 0;
     border-left: 72px solid transparent;
     border-right: 68px solid transparent;
-    border-bottom: 28.8675px solid red;
+    border-bottom: 28.8675px solid #000;
+    //box-shadow: 0px 0px 12px gray;
   }
   .hexagon::after {
     content: "";
@@ -160,7 +182,29 @@
     height: 0;
     border-left: 70px solid transparent;
     border-right: 69px solid transparent;
-    border-top: 28.8675px solid red;
+    border-top: 28.8675px solid #000;
+    //box-shadow: 0px 0px 12px gray;
+  }
+
+  .hexagon-container {
+    position: relative; /* So the content can be positioned inside */
+    width: 200px; /* Adjust size as needed */
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hexagon-content {
+    position: absolute; /* Position the content absolutely */
+    width: 80%; /* Adjust width as needed */
+    height: 80%; /* Adjust height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Center text */
+    color: black; /* Text color */
+    font-size: 16px; /* Font size */
   }
   
   

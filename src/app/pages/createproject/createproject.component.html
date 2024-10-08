@@ -5,13 +5,13 @@
                 <div class="flex-shrink-0 p-3 bg-white">
                     <ul class="list-unstyled ps-0">
                         <li class="mb-1" *ngFor="let componentType of objectKeys(components)">
-                            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                            <button class="btn btn-primary btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                             [attr.data-bs-target]="'#' + componentType + '-collapse'" aria-expanded="false">
-                                {{componentType}}
+                                {{componentType}}<span class="caret"></span>
                             </button>
-                            <div class="collapse" id="{{componentType}}-collapse" style="margin-left: 50px;">
-                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                    <li *ngFor="let elem of components[componentType]">
+                            <div class="collapse" id="{{componentType}}-collapse" >
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small list-group">
+                                    <li *ngFor="let elem of components[componentType]" class="list-group-item">
                                         <a href="javascript:void(0)" class="link-dark rounded" class="drag-drawflow" draggable="true" (dragstart)="drag($event)" [attr.data-name]="elem.name" [attr.data-id]="elem.id" [attr.data-type]="componentType">{{ elem.name }}</a>
                                     </li>
                                 </ul>
