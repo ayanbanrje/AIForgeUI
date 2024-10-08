@@ -13,6 +13,10 @@
     border-right: 1px solid #ccc;
   }
 
+  .drawflow_content_node{
+    z-index: 1;
+  }
+
   .drawflow .drawflow-node{
     width: unset;
     background : unset;
@@ -77,15 +81,15 @@
   }
 
   .drawflow-node.drawflow-node-rect {
-    width: 150px;
-    height: 100px;
-    background-color: #3498db;
-    border: 2px solid #2980b9;
+    width: 140px;
+    height: 140px;
+    background-color: #3498db !important;
+    border: 2px solid #2980b9 !important;
   }
 
   .drawflow-node.drawflow-node-circle {
-    width: 100px !important;
-    height: 100px !important;
+    width: 140px !important;
+    height: 140px !important;
     background-color: #2ecc71 !important;
     border: 2px solid #27ae60 !important;
     border-radius: 50% !important;
@@ -101,8 +105,8 @@
 
   .diamond {
     //position: absolute !important;
-    height: 200px;
-    width: 200px !important;
+    height: 160px;
+    width: 160px !important;
     line-height: 200px;
     text-align: center;
     //margin: 10px 40px;
@@ -110,12 +114,13 @@
   .diamond::before {
     position: absolute !important;
     content: '';
-    top: 10px;
-    left: 20px;
+    top: 8px;
+    left: 18px;
     height: 78%;
     width: 78%;
     transform: rotateX(45deg) rotateZ(45deg);
     box-shadow: 0px 0px 12px gray;
+    background-color: coral;
   }
   // .diamond::after {
   //    position: absolute !important;
@@ -129,10 +134,11 @@
   // }
 
   .hexagon {
-    width: 100px !important;
-    height: 57.735px !important;
+    width: 140px !important;
+    height: 75px !important;
     background: red !important;
     position: relative;
+    border-radius: 0px !important;
   }
   .hexagon::before {
     content: "";
@@ -141,8 +147,8 @@
     left: 0;
     width: 0;
     height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
+    border-left: 72px solid transparent;
+    border-right: 68px solid transparent;
     border-bottom: 28.8675px solid red;
   }
   .hexagon::after {
@@ -152,8 +158,8 @@
     left: 0;
     width: 0;
     height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
+    border-left: 70px solid transparent;
+    border-right: 69px solid transparent;
     border-top: 28.8675px solid red;
   }
   
