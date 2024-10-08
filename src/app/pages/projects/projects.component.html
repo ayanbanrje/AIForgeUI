@@ -1,32 +1,41 @@
-<div class="container mt-5">
-    <h2>Create New Project</h2>
-    <p class="text-muted">
-        Paragraph text with style text M. Invidunt ut labore et dolore magna aliquy erat, sed diam voluptua. At vero eos
-        et accusam et jus to duo dolores et ea rebum.
-    </p>
+<div class="pg-container px-5 h-100 w-100 d-flex flex-column mt-2">
+    <div class="d-flex align-items-center mb-3 ps-1">
+        <div class="col">
+            <h3 class="page-title">Create New Project</h3>
+            <p>
+                Paragraph text with style text M. Invidunt ut labore et dolore magna aliquy erat, sed diam voluptua.
+                At vero eos et accusam et jus to duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                sanctus est Lorem ipsum dolar sit amet
+            </p>
+        </div>
+    </div>
 
-    <div class="row">
+    <div class="row gx-0 m-0 flex-glow-1 scroll">
         <!-- Create New Blank Project -->
-        <div class="col-md-3">
+        <div class="col-md-2 projectsCard pe-3 pb-3">
             <div class="card text-center p-4 h-100">
-                <div class="card-body">
-                    <div class="border-dashed p-4 mb-3">
-                        <a [routerLink]="['/createproject']"><i class="bi bi-plus-lg" style="font-size: 2rem;"></i></a>
+                <div class="card-body align-items-center justify-content-center align-content-center">
+                    <div class="border-round p-2 m-2 d-inline-flex justify-content-center align-items-center">
+                        <a [routerLink]="['/createproject']"><i class="bi bi-plus-lg" style="font-size: 3rem;"></i></a>
                     </div>
-                    <h5 class="card-title">Create New Blank Project</h5>
+                    <h5 class="w-50">Create New Blank Project</h5>
                 </div>
             </div>
         </div>
 
         <!-- Template Cards -->
-        <div class="col-md-3 projectsCard" *ngFor="let template of templates">
+        <div class="col-md-2 projectsCard pe-3 pb-3" *ngFor="let template of templates">
             <div class="card h-100">
-                <div class="card-body text-center">
-                    <div class="mb-3" style="height: 150px; background-color: #f7f7f7;">
+                <div class="text-center gx-0 mx-0">
+                    <div class="mb-3 content-bg">
                         <!-- Placeholder for image or content -->
                     </div>
-                    <h5 class="card-title">Template Name</h5>
-                    <p class="card-text">{{ template.name }}</p>
+                    <h5
+                        class="card-title d-flex justify-content-start align-content-start align-items-start ps-3 py-0 my-0">
+                        Template Name
+                    </h5>
+                    <p class="card-text d-flex justify-content-start align-content-start align-items-start ps-3 mb-3">{{
+                        template.name }}</p>
                 </div>
             </div>
         </div>

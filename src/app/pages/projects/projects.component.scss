@@ -1,13 +1,20 @@
-.sourse-card{
+.sourse-card {
     width: 284px;
     min-height: 320px;
     position: relative;
 }
-.s-card-footer{
+
+.s-card-footer {
     position: absolute;
     bottom: 0;
     padding: 0 0 10px 0;
 }
-.projectsCard  {
-    padding : calc(var(--bs-gutter-x) * .5)
+
+.projectsCard {
+    padding: calc(var(--bs-gutter-x) * .5)
+}
+
+.content-bg {
+    height: 17rem;
+    background-color: #f7f7f7;
 }

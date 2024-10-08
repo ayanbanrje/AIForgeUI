@@ -134,6 +134,17 @@ dl {
   border: 2px dashed #ddd;
 }
 
+.border-round {
+  border: 2px solid #0d6efd;
+  /* Optional: change border style */
+  border-radius: 50%;
+  /* Make the border circular */
+  width: 60px;
+  /* Define width */
+  height: 60px;
+  /* Define height */
+}
+
 .card-body {
   display: flex;
   flex-direction: column;
@@ -221,7 +232,7 @@ dl {
 
 .scroll {
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .border-1px-solid-black {
@@ -238,4 +249,9 @@ dl {
 
 .opacity-50per {
   opacity: 50%;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 600;
 }
