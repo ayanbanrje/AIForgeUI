@@ -1,3 +1,6 @@
+@import "../../../assets/css/variables";
+
+
 // .page-heading {
 //     width: 15%;
 // }
@@ -76,7 +79,9 @@ i:hover {
     border-radius: 20px;
     /* Rounded corners */
     margin-right: 5px;
-    font-size: 0.9rem;
+    // font-size: 0.9rem;
+    font-family: "bosch-Regular" !important;
+    font-size: 0.9rem !important;
     color: #333;
 }
 
@@ -107,4 +112,53 @@ i:hover {
 
 .custom-bg-btn {
     background-color: #0d6efd;
+}
+
+.settingDropdownCSS {
+    position: absolute;
+    background: #FFF;
+    box-shadow: 0px 0px 50px #00000029;
+    right: -6.7vw;
+    margin-top: 1.5rem;
+    z-index: 1000;
+    width: 14vw;
+    cursor: default;
+
+    &::before {
+        content: "";
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid #FFF;
+        position: absolute;
+        margin-top: -0.4vw;
+        right: 55%;
+    }
+
+    li {
+        display: block;
+        text-align: left !important;
+        cursor: pointer;
+        font: normal normal normal 1vw/1.25em "bosch-Regular" !important;
+        height: 3rem;
+
+        .image-fluid-by-width-right {
+            width: 1.5rem;
+            height: auto;
+        }
+
+        .iconeSize {
+            font-size: 1.4em;
+            height: auto;
+            color: #000000;
+        }
+    }
+}
+
+.settingDropdownCSS li:hover {
+    background-color: $primary-blue !important;
+    color: $white !important;
+
+    .iconeSize {
+        color: white;
+    }
 }

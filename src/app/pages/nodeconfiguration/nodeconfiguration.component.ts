@@ -11,6 +11,21 @@ import { NodeConfigurationService } from "../../../app/services/backend/node-con
 export class NodeconfigurationComponent implements OnInit {
   nodes: Array<any> = [];
 
+  moreOptionDropdownList = [
+    {
+      name: "On Boarding",
+      icon: "boschicon-bosch-ic-welcome iconeSize",
+      hasDropdown: false,
+    },
+    {
+      name: "Language",
+      icon: "boschicon-bosch-ic-chat-language iconeSize",
+      hasDropdown: true,
+    },
+  ];
+
+  setItem = '';
+
   constructor(
     private nodeConfigurationService: NodeConfigurationService
   ) {
@@ -67,8 +82,8 @@ export class NodeconfigurationComponent implements OnInit {
         status: 'Offline'
       },
       {
-        name: 'Node 1',
-        id: '0001',
+        name: 'Node 4',
+        id: '0004',
         vcpus: 24,
         ram: '96GB',
         ssd: '24',
@@ -78,19 +93,19 @@ export class NodeconfigurationComponent implements OnInit {
         status: 'Online'
       },
       {
-        name: 'Node 2',
-        id: '0002',
+        name: 'Node 5',
+        id: '0005',
         vcpus: 24,
         ram: '96GB',
         ssd: '24',
         gpus: '0001',
         pipeline: '0001',
         containers: 1,
-        status: 'Online'
+        status: 'Offline'
       },
       {
-        name: 'Node 3',
-        id: '0003',
+        name: 'Node 6',
+        id: '0006',
         vcpus: 24,
         ram: '96GB',
         ssd: '24',
@@ -107,5 +122,20 @@ export class NodeconfigurationComponent implements OnInit {
 
   create_node() {
     alert("Open Create Node Popup")
+  }
+
+  view_node_details(nodeId) {
+    alert(nodeId + " view details clicked")
+  }
+
+  functionCall(name) {
+    alert(name)
+  }
+  closePopup(nodeId) {
+    this.setItem = '';
+  }
+
+  openPopup(nodeId) {
+    this.setItem = nodeId;
   }
 }

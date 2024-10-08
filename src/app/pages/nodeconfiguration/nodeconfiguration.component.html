@@ -323,7 +323,19 @@
                             <i class="bi bi-pencil ms-3" title="Edit"></i>
                             <i class="bi bi-download ms-3" title="Download"></i>
                             <i class="bi bi-trash ms-3" title="Delete"></i>
-                            <i class="bi bi-three-dots-vertical ms-3" title="More options"></i>
+                            <i class="bi bi-three-dots-vertical ms-3" title="More options" tabindex="1"
+                                (blur)="closePopup(node.id)" (click)="openPopup(node.id)"></i>
+                            <ul *ngIf="setItem==node.id" class="settingDropdownCSS">
+                                <div>
+                                    <div class=" white-bg"></div>
+                                    <li *ngFor="let item of moreOptionDropdownList; index as i"
+                                        (click)="functionCall(item.name)" class="p-2 ps-3 d-flex align-items-center"
+                                        [ngClass]="{ 'mt-2': i === 0 }" [title]="item.name">
+                                        <i *ngIf="item.icon" [class]="item.icon"></i>
+                                        <span class="ps-2"> {{ item.name }} </span>
+                                    </li>
+                                </div>
+                            </ul>
                         </div>
                     </div>
                     <div class="row my-3 p-3 custom-border">
@@ -375,7 +387,8 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-center align-items-center cursor-pointer">View</div>
+                    <div class="d-flex justify-content-center align-items-center cursor-pointer"
+                        (click)="view_node_details(node.id)">View</div>
                 </div>
             </div>
         </div>
