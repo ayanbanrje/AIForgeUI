@@ -274,277 +274,108 @@
 </div> -->
 
 
-<div class="body-wrap">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="back-btn">
-                    <h6 class="fw-bold mb-0">Node Confiduration</h6>
-                </div>
-                <p>
-                    Paragraph text with style text M. Invidunt ut labore et dolore magna aliquy erat, sed diam voluptua. At vero eos et accusam et jus to duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-            </div>
+<div class="pg-container px-5 h-100 w-100 d-flex flex-column">
+    <!-- Page Header -->
+    <div class="d-flex align-items-center mb-3 ps-1">
+        <div class="col">
+            <h3>Node Configuration</h3>
+            <p>
+                Paragraph text with style text M. Invidunt ut labore et dolore magna aliquy erat, sed diam voluptua.
+                At vero eos et accusam et jus to duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                sanctus est Lorem ipsum dolar sit amet
+            </p>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="top-right-search">
-                    <div class="page-heading">
-                        Available Custom Sources
-                        <span>
-                            |
-                        </span>
-                    </div>
-                    <div class="search-bar">
-                        <input type="text" class="search-input">
-                        <button class="btn-search">
-                            <img width="20" src="images/search-icon.svg" alt="">
-                        </button>
-                    </div>
-                    <button class="btn-main" data-bs-toggle="modal" data-bs-target="#createModal">
-                        <img width="20" src="images/plus-icon.svg" alt="">
-                        Create New Pipeline
-                    </button>
-                </div>
-            </div>
+    </div>
+
+    <!-- Search and Create New Node Section -->
+    <div class="d-flex align-items-center mb-4 ms-1">
+        <div class="d-flex col-lg-10 col-md-10 p-3 custom-bg justify-content-between align-items-center">
+            <h5 class="mb-0">Available Custom Sources</h5>
+            <i class="bi bi-search" title="Search"></i>
         </div>
-        <div class="row">
-            <div class="custom-source-box">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="pipe-card">
-                            <div class="pipe-card-hrader">
-                                <div class="pipe-card-title">
-                                    <h6 class="m-0">
-                                        <i class="far fa-file"></i>
-                                        Pipeline 1
-                                    </h6>
-                                    <div class="status-box bg-warning">
-                                        Offline
-                                    </div>
+        <div class="d-flex justify-content-center col-lg-2 col-md-2 text-end px-3 custom-bg-btn">
+            <!-- <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-btn"> -->
+            <div class="custom-btn py-3 px-5" type="button" id="search-btn" (click)="create_node()">+
+                Create New
+                Node</div>
+            <!-- </div> -->
+        </div>
+    </div>
+
+    <!-- Node Cards Section -->
+    <div class="row gx-0 m-0 flex-glow-1 scroll">
+        <!-- Node Card -->
+        <div class="col-lg-4 col-md-6 pe-3 pb-3" *ngFor="let node of nodes">
+            <div class="card node-card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <h5 class="card-title mb-0 me-3" style="font-size: 1.5rem;">{{ node.name }}</h5>
+                            <span class="badge px-3 py-2 d-flex align-items-center"
+                                [ngClass]="{'bg-success': node.status === 'Online', 'bg-secondary': node.status === 'Offline'}">
+                                {{ node.status }}
+                            </span>
+                        </div>
+                        <!-- Icons -->
+                        <div class="d-flex">
+                            <i class="bi bi-pencil ms-3" title="Edit"></i>
+                            <i class="bi bi-download ms-3" title="Download"></i>
+                            <i class="bi bi-trash ms-3" title="Delete"></i>
+                            <i class="bi bi-three-dots-vertical ms-3" title="More options"></i>
+                        </div>
+                    </div>
+                    <div class="row my-3 p-3 custom-border">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col">
+                                    <p><strong>ID:</strong></p>
+                                    <p>{{ node.id }}</p>
                                 </div>
-                                <div class="pipe-card-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img width="16" src="images/edit-icon.svg">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img width="16" src="images/delete-icon.svg">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img width="16" src="images/option-icon.svg">
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div class="col">
+                                    <p><strong>vCPU's:</strong></p>
+                                    <p>{{ node.vcpus }}</p>
+                                </div>
+                                <div class="col">
+                                    <p><strong>RAM:</strong></p>
+                                    <p>{{ node.ram }}</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col">
+                                    <p><strong>GPU's:</strong></p>
+                                    <p>{{ node.gpus }}</p>
+                                </div>
+                                <div class="col">
+                                    <p><strong>SSD:</strong></p>
+                                    <p>{{ node.ssd }}</p>
+                                </div>
+                                <div class="col">
+                                    <p><strong>No. of Containers:</strong></p>
+                                    <p>{{ node.containers }}</p>
                                 </div>
                             </div>
-                            <div class="pipe-card-body">
-                                <table class="table">
-                                    <tr>
-                                        <td>
-                                            ID
-                                            <span>0001</span>
-                                        </td>
-                                        <td>
-                                            vCPU's
-                                            <span>24</span>
-                                        </td>
-                                        <td>
-                                            RAM
-                                            <span>96GB</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            GPU's
-                                            <span>0001</span>
-                                        </td>
-                                        <td>
-                                            SSD
-                                            <span>24</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Status
-                                            <span>52%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar" style="width: 52%"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="pipe-card-footer">
-                                <a href="#" class="btn-view">VIEW</a>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="row">
+                                <div class="col-4 col-md-4 col-lg-4">
+                                    <p><strong>No. of Pipeline:</strong></p>
+                                    <p>{{ node.pipeline }}</p>
+                                </div>
+                                <div class="col-8 col-md-8 col-lg-8">
+                                    <p><strong>Tags:</strong></p>
+                                    <span class="label-badge">Enter Label 0</span>
+                                    <span class="label-badge">Enter Label 1</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="pipe-card">
-                            <div class="pipe-card-hrader">
-                                <div class="pipe-card-title">
-                                    <h6 class="m-0">
-                                        <i class="far fa-file"></i>
-                                        Pipeline 2
-                                    </h6>
-                                    <div class="status-box bg-success">
-                                        Completed
-                                    </div>
-                                </div>
-                                <div class="pipe-card-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img width="16" src="images/edit-icon.svg">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img width="16" src="images/delete-icon.svg">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img width="16" src="images/option-icon.svg">
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="pipe-card-body">
-                                <table class="table">
-                                    <tr>
-                                        <td>
-                                            ID
-                                            <span>0001</span>
-                                        </td>
-                                        <td>
-                                            vCPU's
-                                            <span>24</span>
-                                        </td>
-                                        <td>
-                                            RAM
-                                            <span>96GB</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            GPU's
-                                            <span>0001</span>
-                                        </td>
-                                        <td>
-                                            SSD
-                                            <span>24</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Status
-                                            <span>100%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar" style="width: 100%"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="pipe-card-footer">
-                                <a href="#" class="btn-view">VIEW</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="pipe-card">
-                            <div class="pipe-card-hrader">
-                                <div class="pipe-card-title">
-                                    <h6 class="m-0">
-                                        <i class="far fa-file"></i>
-                                        Pipeline 3
-                                    </h6>
-                                    <div class="status-box bg-secondary">
-                                        Not Started
-                                    </div>
-                                </div>
-                                <div class="pipe-card-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#">
-                                                <img width="16" src="images/edit-icon.svg">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img width="16" src="images/delete-icon.svg">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <img width="16" src="images/option-icon.svg">
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="pipe-card-body">
-                                <table class="table">
-                                    <tr>
-                                        <td>
-                                            ID
-                                            <span>0001</span>
-                                        </td>
-                                        <td>
-                                            vCPU's
-                                            <span>24</span>
-                                        </td>
-                                        <td>
-                                            RAM
-                                            <span>96GB</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            GPU's
-                                            <span>0001</span>
-                                        </td>
-                                        <td>
-                                            SSD
-                                            <span>24</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Status
-                                            <span>0%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar" style="width: 2%"></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="pipe-card-footer">
-                                <a href="#" class="btn-view">VIEW</a>
-                            </div>
-                        </div>
-                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center">View</div>
                 </div>
             </div>
         </div>

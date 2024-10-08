@@ -1,9 +1,12 @@
 body {
-    font-family: 'BoschSans';
-  }
-  
-  
-  .hidden {
-    display: none;
-  }
-  
+  font-family: 'BoschSans';
+}
+
+
+.hidden {
+  display: none;
+}
+
+.pageContainer {
+  height: calc(100vh - 100px - 50px);
+}

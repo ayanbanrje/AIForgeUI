@@ -12,14 +12,17 @@
   <title>Admin</title> -->
 </head>
 
-<body class="d-flex flex-column" >
+<body class="d-flex flex-column">
   <div [ngClass]="{'hidden': showHeaderFooter}" class="header" style="height: 100px;">
     <app-header></app-header>
   </div>
-  <div class="pageContainer flex-grow-1">
-    <router-outlet></router-outlet>
+  <div class="pageContainer ">
+    <div class="h-100 w-100 ">
+      <router-outlet></router-outlet>
+
+    </div>
   </div>
-  <div  [ngClass]="{'hidden': showHeaderFooter}" class="footer" style="height: 35px;">
-    <app-footer ></app-footer>
+  <div [ngClass]="{'hidden': showHeaderFooter}" class="footer" style="height: 35px;">
+    <app-footer></app-footer>
   </div>
 </body>
