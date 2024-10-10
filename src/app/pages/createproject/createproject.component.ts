@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from "../../services/message.service";
 
 import Drawflow from 'drawflow'
 
@@ -16,8 +17,13 @@ export class CreateprojectComponent {
   mobile_item_selec = '';
   mobile_last_move: { touches?: TouchList } = {};
   sourceExist = false;
+  showModal = true;
+  
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private message: MessageService
+  ) {}
 
   backToProjectList(){
     console.log("gggggggggg")
@@ -26,6 +32,29 @@ export class CreateprojectComponent {
   
 
   ngOnInit() {
+
+    let self = this;
+    this.message.createMessage({
+      header: "Are you sure?",
+      message: "You dont have access to this module, do you want to login as another user",
+      isConfirm: true,
+      yes: {
+        label: "Yes",
+        action: () => {
+          // self.defaultErrorMsg();
+          // self.router.navigate(["auth/login"]);
+          // self.message.close();
+        },
+      },
+      no: {
+        label: "No",
+        action: () => {
+          // self.defaultErrorMsg();
+          // self.router.navigate(["auth/login"]);
+          self.message.close();
+        },
+      },
+    });
     
     // Initialize Drawflow
     this.editor = new Drawflow(document.getElementById("drawflow") as HTMLElement);
@@ -85,24 +114,24 @@ export class CreateprojectComponent {
           name : "Sink 4"
         }
       ],
-      "Accumulator" : [
-        {
-          id : '13',
-          name : "Accumulator 1"
-        },
-        {
-          id : '14',
-          name : "Accumulator 2"
-        },
-        {
-          id : '15',
-          name : "Accumulator 3"
-        },
-        {
-          id : '16',
-          name : "Accumulator 4"
-        }
-      ]
+      // "Accumulator" : [
+      //   {
+      //     id : '13',
+      //     name : "Accumulator 1"
+      //   },
+      //   {
+      //     id : '14',
+      //     name : "Accumulator 2"
+      //   },
+      //   {
+      //     id : '15',
+      //     name : "Accumulator 3"
+      //   },
+      //   {
+      //     id : '16',
+      //     name : "Accumulator 4"
+      //   }
+      // ]
     }
     //this.objectKeys = Object.keys(this.components);
   }
@@ -110,7 +139,24 @@ export class CreateprojectComponent {
   ngAfterViewInit() {
       // Start the editor and add nodes after the view has been initialized
       this.editor.start();
-      this.addNodes();
+      let exportvalue = this.editor.export();
+      this.editor.import(exportvalue);
+      this.editor.on('nodeCreated', (id) => {
+        this.showAdditionalProperties(id);
+        const nodeElement = document.querySelector(`#node-${id}`) as HTMLElement;
+        if (nodeElement) {
+          const existingListener = nodeElement.getAttribute('data-dblclick-listener');
+          if (!existingListener) { // checking if dbclick event already attached
+              nodeElement.addEventListener('dblclick', (event) => { //attach double click event
+                event.preventDefault();
+                event.stopPropagation(); 
+                this.handleNodeClick(id); 
+            });
+          }
+        }
+        nodeElement.setAttribute('data-dblclick-listener', 'true'); // Setting attribute to check not to bind multiple dbclick event
+      })
+      //this.addNodes();
   }
 
   addNodes() {
@@ -216,8 +262,47 @@ export class CreateprojectComponent {
       nodeClass = 'drawflow-node-circle';
     }
 
-    const rectNodeHTML = `<div class="">${data.name}</div>`;
-    const endNode = this.editor.addNode('end', 1, 1, pos_x, pos_y, nodeClass, { id : data.id }, rectNodeHTML);
+    const rectNodeHTML = `<div class="custom-node">
+        <p>${data.name}</p>
+      </div>`;
+    const nodeID = this.editor.addNode(data.name, 1, 1, pos_x, pos_y, nodeClass, data, rectNodeHTML);
+    
+    
     return;
+  }
+
+  toggleClass(event){
+    const buttonElement = event.target as HTMLElement;
+  
+    // Find the parent element
+    const parentElement = buttonElement.parentElement;
+
+    if (parentElement) {
+      // Find the element with class "collapse" inside the parent element
+      const collapseElement = parentElement.querySelector('.collapse') as HTMLElement;
+
+      if (collapseElement.classList.contains('show')) {
+        collapseElement.classList.remove('show'); // Remove 'show' to hide
+        //collapseElement.style.display = 'none';   // Also hide via inline style
+      } else {
+        collapseElement.classList.add('show');    // Add 'show' to display
+        // collapseElement.style.display = 'block';  // Also show via inline style
+      }
+    }
+  }
+
+  export(){
+    console.log("Canvus details: ",this.editor.export())
+  }
+
+  handleNodeClick(nodeID){
+    console.log("Node ID: ",nodeID)
+    console.log("Node Details on double click: ",this.editor.drawflow.drawflow.Home.data[nodeID])
+  }
+
+  showAdditionalProperties(nodeID){
+    let nodeDetails = this.editor.drawflow.drawflow.Home.data[nodeID];
+
+    console.log("On create details:", nodeDetails.data)
   }
 }

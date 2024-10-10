@@ -5,11 +5,11 @@
                 <div class="flex-shrink-0 p-3 bg-white">
                     <ul class="list-unstyled ps-0">
                         <li class="mb-1" *ngFor="let componentType of objectKeys(components)">
-                            <button class="btn btn-primary btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                            [attr.data-bs-target]="'#' + componentType + '-collapse'" aria-expanded="false">
+                            <button class="btn btn-primary btn-toggle align-items-center rounded collapsed" (click)="toggleClass($event)" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#' + componentType + '-collapse'" aria-expanded="false" [attr.aria-controls]="'#' + componentType + '-collapse'">
                                 {{componentType}}<span class="caret"></span>
                             </button>
-                            <div class="collapse" id="{{componentType}}-collapse" >
+                            <div class="collapse" id="{{componentType}}---collapse" >
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small list-group">
                                     <li *ngFor="let elem of components[componentType]" class="list-group-item">
                                         <a href="javascript:void(0)" class="link-dark rounded" class="drag-drawflow" draggable="true" (dragstart)="drag($event)" [attr.data-name]="elem.name" [attr.data-id]="elem.id" [attr.data-type]="componentType">{{ elem.name }}</a>
@@ -25,5 +25,10 @@
                 <div id="drawflow" class="drawflow" (drop)="drop($event)" (dragover)="allowDrop($event)"></div>
             </div>
         </div>
+        <div class="row">
+            <button (click)="export()"> Export </button>
+        </div>
     </div>
 </div>
+<app-modal *ngIf="1==1" [(view)]="showModal" [header]="'Map Signatures to Appliance'"
+  [styles]="{ width: '80vw' }">

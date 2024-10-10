@@ -17,10 +17,11 @@ import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
 import { CreateprojectComponent } from './pages/createproject/createproject.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { HomePageCardComponent } from './component/home-page-card/home-page-card.component';
-import { ChildModuleExtensionComponent } from './component/child-module-extension/child-module-extension.component';
+import { HomePageCardComponent } from './card/home-page-card/home-page-card.component';
+import { ChildModuleExtensionComponent } from './card/child-module-extension/child-module-extension.component';
 import { DropdownComponent } from './commonComponent/dropdown/dropdown.component';
-import { MessageBoxComponent } from './component/message-box/message-box.component';
+import { MessageBoxComponent } from './commonComponent/message-box/message-box.component';
+import { ModalComponent } from './commonComponent/modal/modal.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MessageBoxComponent } from './component/message-box/message-box.compone
     ChildModuleExtensionComponent,
     DropdownComponent,
     MessageBoxComponent,
+    ModalComponent,
     //ProjectsComponent
   ],
   imports: [

@@ -8,7 +8,7 @@ import { DatasetsComponent } from "./pages/datasets/datasets.component";
 import { MarketplaceComponent } from "./pages/marketplace/marketplace.component";
 import { CreateprojectComponent } from "./pages/createproject/createproject.component"
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { MessageBoxComponent } from './component/message-box/message-box.component';
+import { MessageBoxComponent } from './commonComponent/message-box/message-box.component';
 
 
 const routes: Routes = [

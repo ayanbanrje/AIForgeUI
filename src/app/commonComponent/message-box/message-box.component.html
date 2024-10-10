@@ -1,0 +1,18 @@
+<div class="modal-em-container" *ngIf="message.show">
+    <div class="modal-em-content">
+        <header>{{message.header}} <i class="boschicon-bosch-ic-close" (click)="close()"></i></header>
+        <div class="view-content" [innerHTML]="message.message"></div>
+        <div *ngIf="message.isConfirm" class="d-flex justify-content-end align-items-center mt-3">
+            <ng-container *ngIf="message && message.yes">
+                <button class="me-3 d-flex align-items-center justify-content-center primary" (click)="confirmYes()">
+                    {{message.yes.label}}
+                </button>
+            </ng-container>
+            <ng-container *ngIf="message && message.no">
+                <button class="secondary d-flex align-items-center justify-content-center" (click)="confirmNo()">
+                    {{message.no.label}}
+                </button>
+            </ng-container>
+        </div>
+    </div>
+</div>

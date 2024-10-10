@@ -1,6 +1,7 @@
 //https://css-tricks.com/the-shapes-of-css/#diamond-square-shape-via-joseph-silber --> For multiple shape of box
 
 @import "../../../../node_modules/drawflow/dist/drawflow.min.css";
+@import '../../../assets/css/variables';
 
 .drawflow-wrapper {
     display: flex;
@@ -205,6 +206,21 @@
     text-align: center; /* Center text */
     color: black; /* Text color */
     font-size: 16px; /* Font size */
+  }
+
+  .custom-node{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .btn-primary{
+    background-color: $h5-Blue;
+  }
+  .btn:hover{
+    background-color: $h5-Blue !important;
   }
   
   
