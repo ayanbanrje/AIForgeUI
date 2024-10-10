@@ -322,10 +322,11 @@
                         <div class="d-flex">
                             <i class="bi bi-pencil ms-3" title="Edit"></i>
                             <i class="bi bi-download ms-3" title="Download"></i>
-                            <i class="bi bi-trash ms-3" title="Delete"></i>
+                            <i class="bi bi-trash ms-3" title="Delete" tabindex="1"
+                                (click)="deleteNode(node.node_id)"></i>
                             <i class="bi bi-three-dots-vertical ms-3" title="More options" tabindex="1"
-                                (blur)="closePopup(node.id)" (click)="openPopup(node.id)"></i>
-                            <ul *ngIf="setItem==node.id" class="settingDropdownCSS">
+                                (blur)="closePopup(node.node_id)" (click)="openPopup(node.node_id)"></i>
+                            <ul *ngIf="setItem==node.node_id" class="settingDropdownCSS">
                                 <div>
                                     <div class=" white-bg"></div>
                                     <li *ngFor="let item of moreOptionDropdownList; index as i"
@@ -343,15 +344,15 @@
                             <div class="row">
                                 <div class="col">
                                     <p><strong>ID:</strong></p>
-                                    <p>{{ node.id }}</p>
+                                    <p>{{ node.node_id }}</p>
                                 </div>
                                 <div class="col">
                                     <p><strong>vCPU's:</strong></p>
-                                    <p>{{ node.vcpus }}</p>
+                                    <p>{{ node.vCPUs }}</p>
                                 </div>
                                 <div class="col">
                                     <p><strong>RAM:</strong></p>
-                                    <p>{{ node.ram }}</p>
+                                    <p>{{ node.RAM_GB }}</p>
                                 </div>
 
                             </div>
@@ -360,15 +361,15 @@
                             <div class="row">
                                 <div class="col">
                                     <p><strong>GPU's:</strong></p>
-                                    <p>{{ node.gpus }}</p>
+                                    <p>{{ node.GPUs }}</p>
                                 </div>
                                 <div class="col">
                                     <p><strong>SSD:</strong></p>
-                                    <p>{{ node.ssd }}</p>
+                                    <p>{{ node.SSD_GB }}</p>
                                 </div>
                                 <div class="col">
                                     <p><strong>No. of Containers:</strong></p>
-                                    <p>{{ node.containers }}</p>
+                                    <p>{{ node.numContainers }}</p>
                                 </div>
                             </div>
                         </div>
@@ -376,12 +377,11 @@
                             <div class="row">
                                 <div class="col-4 col-md-4 col-lg-4">
                                     <p><strong>No. of Pipeline:</strong></p>
-                                    <p>{{ node.pipeline }}</p>
+                                    <p>{{ node.numPipelines }}</p>
                                 </div>
                                 <div class="col-8 col-md-8 col-lg-8">
                                     <p><strong>Tags:</strong></p>
-                                    <span class="label-badge">Enter Label 0</span>
-                                    <span class="label-badge">Enter Label 1</span>
+                                    <span class="label-badge" *ngFor="let tag of node.tags[0].split(',')">{{tag}}</span>
                                 </div>
                             </div>
                         </div>

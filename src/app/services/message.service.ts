@@ -10,19 +10,20 @@ export class MessageService {
   isConfirm = false;
   yes = {
     label: 'Yes',
-    action: function(){ //
+    action: function () { //
     }
   };
   no = {
     label: 'No',
-    action: function(){ //
+    action: function () { //
     }
   };
-  xAction = function(){ //
+  xAction = function () { //
   }
-  
+
 
   createMessage(msg) {
+    console.log("msg", msg)
     this.header = msg.header;
     this.message = msg.message;
     this.yes = msg.yes;
