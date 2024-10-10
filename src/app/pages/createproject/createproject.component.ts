@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from "../../services/message.service";
 
 import Drawflow from 'drawflow'
 
@@ -16,8 +17,13 @@ export class CreateprojectComponent {
   mobile_item_selec = '';
   mobile_last_move: { touches?: TouchList } = {};
   sourceExist = false;
+  showModal = true;
+  
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private message: MessageService
+  ) {}
 
   backToProjectList(){
     console.log("gggggggggg")
@@ -26,6 +32,29 @@ export class CreateprojectComponent {
   
 
   ngOnInit() {
+
+    let self = this;
+    this.message.createMessage({
+      header: "Are you sure?",
+      message: "You dont have access to this module, do you want to login as another user",
+      isConfirm: true,
+      yes: {
+        label: "Yes",
+        action: () => {
+          // self.defaultErrorMsg();
+          // self.router.navigate(["auth/login"]);
+          // self.message.close();
+        },
+      },
+      no: {
+        label: "No",
+        action: () => {
+          // self.defaultErrorMsg();
+          // self.router.navigate(["auth/login"]);
+          self.message.close();
+        },
+      },
+    });
     
     // Initialize Drawflow
     this.editor = new Drawflow(document.getElementById("drawflow") as HTMLElement);
