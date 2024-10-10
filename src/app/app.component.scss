@@ -1,5 +1,7 @@
 body {
   font-family: 'BoschSans';
+  height: 100vh;
+  width: 100vw ;
 }
 
 
@@ -8,5 +10,9 @@ body {
 }
 
 .pageContainer {
-  height: calc(100vh - 100px - 50px);
+  height: calc(100vh - 100px - 35px);
+}
+.mainPageContainer{
+  height: 100vh;
+  width: 100vw;
 }
