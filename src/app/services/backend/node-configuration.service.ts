@@ -26,21 +26,8 @@ export class NodeConfigurationService {
 
 
     const url = `${this.url}/getallnodes`;
-    // Making the GET request with parameters
-    this.http.get(url, { params }).subscribe({
-      next: (response) => {
-        result = response;
-      },
-      error: (error) => {
-        result = error;
-      },
-      complete: () => {
-        console.log('Request complete');
-      }
-    });
 
-    return result;
-
+    return this.http.get(url, { params });
   }
 
   // Function to convert object to HttpParams
