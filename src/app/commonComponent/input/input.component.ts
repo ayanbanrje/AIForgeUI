@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -6,11 +6,23 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './input.component.scss'
 })
 export class InputComponent {
-  @Output() inputValueChange = new EventEmitter<string>();
+  @Input() value;
+  @Input() label="Enter"
+  @Input() placeHolder = "";
+  @Input() type = "text";
+  @Input() disabled = false;
 
-  // When input value changes, emit the value to the parent
-  onInputChange(value: string) {
-    this.inputValueChange.emit(value);
+
+  @Output() valueChange = new EventEmitter();
+  
+
+  ngOnInit(): void {
+    this.value = this.value ? this.value : "";
+  }
+
+  updateInputValue() {
+    console.log("this.value",this.value)
+    this.valueChange.emit(this.value);
   }
 }
 

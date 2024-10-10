@@ -22,6 +22,8 @@ import { ChildModuleExtensionComponent } from './card/child-module-extension/chi
 import { DropdownComponent } from './commonComponent/dropdown/dropdown.component';
 import { MessageBoxComponent } from './commonComponent/message-box/message-box.component';
 import { ModalComponent } from './commonComponent/modal/modal.component';
+import { FormsModule } from '@angular/forms';
+import { CheckboxComponent } from './commonComponent/checkbox/checkbox.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
@@ -45,13 +47,15 @@ import { ModalComponent } from './commonComponent/modal/modal.component';
     DropdownComponent,
     MessageBoxComponent,
     ModalComponent,
+    CheckboxComponent,
     //ProjectsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-  ],
+    FormsModule,
+    HttpClientModule,
+],
   providers: [
     provideClientHydration(),
     NodeConfigurationService
