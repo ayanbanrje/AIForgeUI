@@ -322,10 +322,11 @@
                         <div class="d-flex">
                             <i class="bi bi-pencil ms-3" title="Edit"></i>
                             <i class="bi bi-download ms-3" title="Download"></i>
-                            <i class="bi bi-trash ms-3" title="Delete"></i>
+                            <i class="bi bi-trash ms-3" title="Delete" tabindex="1"
+                                (click)="deleteNode(node.node_id)"></i>
                             <i class="bi bi-three-dots-vertical ms-3" title="More options" tabindex="1"
-                                (blur)="closePopup(node.id)" (click)="openPopup(node.id)"></i>
-                            <ul *ngIf="setItem==node.id" class="settingDropdownCSS">
+                                (blur)="closePopup(node.node_id)" (click)="openPopup(node.node_id)"></i>
+                            <ul *ngIf="setItem==node.node_id" class="settingDropdownCSS">
                                 <div>
                                     <div class=" white-bg"></div>
                                     <li *ngFor="let item of moreOptionDropdownList; index as i"

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NodeConfigurationService } from "../../../app/services/backend/node-configuration.service";
+import { MessageService } from "../../../app/services/message.service";
 
 @Component({
   selector: 'app-nodeconfiguration',
@@ -27,7 +28,8 @@ export class NodeconfigurationComponent implements OnInit {
   setItem = '';
 
   constructor(
-    private nodeConfigurationService: NodeConfigurationService
+    private nodeConfigurationService: NodeConfigurationService,
+    private message: MessageService
   ) {
   }
 
@@ -146,5 +148,30 @@ export class NodeconfigurationComponent implements OnInit {
 
   openPopup(nodeId) {
     this.setItem = nodeId;
+  }
+
+  deleteNode(nodeId) {
+    console.log("Delete button clicked for node:", nodeId);
+    this.message.createMessage({
+      header: "Confirm Delete",
+      message: "Are you sure you want to delete the node?",
+      isConfirm: true,
+      yes: {
+        label: "Yes",
+        action: () => {
+          this.deleteNodeById(nodeId);
+        },
+      },
+      no: {
+        label: "No",
+        action: () => {
+          this.message.close();
+        },
+      },
+    });
+  }
+
+  deleteNodeById(nodeId) {
+    alert("API Call will be implemented!!")
   }
 }

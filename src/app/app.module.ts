@@ -20,6 +20,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { HomePageCardComponent } from './component/home-page-card/home-page-card.component';
 import { ChildModuleExtensionComponent } from './component/child-module-extension/child-module-extension.component';
 import { DropdownComponent } from './commonComponent/dropdown/dropdown.component';
+import { MessageBoxComponent } from './component/message-box/message-box.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
@@ -41,6 +42,7 @@ import { DropdownComponent } from './commonComponent/dropdown/dropdown.component
     HomePageCardComponent,
     ChildModuleExtensionComponent,
     DropdownComponent,
+    MessageBoxComponent,
     //ProjectsComponent
   ],
   imports: [
