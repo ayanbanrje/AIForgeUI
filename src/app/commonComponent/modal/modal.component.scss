@@ -1,0 +1,156 @@
+@import '../../../assets/css/variables';
+
+.modal-phantom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  // z-index: 9999;
+  backdrop-filter: contrast(0.35) !important;
+  overflow: hidden;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // z-index: 9999;
+
+  .modal-content-phantom {
+    background: $white;
+    box-shadow: $list-shadow;
+    overflow: hidden;
+
+    .view {
+      height: 90%;
+      width: 100%;
+    }
+
+    .view2 {
+      height: 90%;
+      width: 100%;
+    }
+
+    header {
+      font-size: 2em;
+      color: $black;
+      font-weight: 600;
+      height: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      i {
+        float: right;
+        font-size: 2.5vw;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &.changePassword {
+    .closeIcon {
+      display: none;
+    }
+
+    .defaultHeader {
+      font-family: 'bosch-Bold';
+      margin-bottom: 1rem;
+    }
+  }
+
+  &.installationDevice {
+    backdrop-filter: none !important;
+
+    .closeIcon {
+      display: none;
+    }
+
+    .modal-content-phantom {
+      padding: 2rem !important;
+      border: 0.9px solid $border-grey-color;
+      height: 40% !important;
+      width: 40% !important;
+
+      .defaultHeader {
+        font: normal normal normal 2vw/1.25rem "bosch-Medium";
+        padding-bottom: 1rem;
+        border-bottom: 0.9px solid black;
+      }
+    }
+  }
+}
+
+.text-style1 {
+  font-size: 1.6vw;
+  font-family: 'bosch-Bold';
+}
+
+.text-style2 {
+  font-size: 1.4vw;
+  font-family: 'bosch-regular';
+}
+
+.text-style3 {
+  font-size: 1vw;
+  font-family: 'bosch-regular';
+}
+
+@-moz-document url-prefix() {
+  .modal {
+    background: rgba(255, 255, 255, 0.8);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media print {
+  .modal-content {
+    height: auto !important;
+    width: 100% !important;
+    position: inherit !important;
+    padding: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    overflow: auto !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-phantom{
+    font-size: 3vw;
+    .modal-content-phantom {
+      width: 85% !important;
+      // height: 45vw !important;
+      // header{
+      //   font-size: 2em !important;
+      // }
+    }
+  }
+  .changePassword {
+    .modal-content-phantom {
+      // font-size: 1.7vw !important;
+      // width: 50vw !important;
+      // height: 45vw !important;
+    }
+  }
+
+  .isMobileView {
+    .modal-content-phantom {
+      // width: 90vw !important;
+      // height: 45vw !important;
+    }
+  }
+
+  .closeIcon {
+    font-size: 4.5vw !important;
+  }
+}

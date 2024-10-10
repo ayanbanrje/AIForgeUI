@@ -1,0 +1,12 @@
+<div class="w-100 h-100 modal-phantom" *ngIf="view"
+    [ngClass]="'test    '"
+    [ngStyle]="{ 'z-index' : zIndex }">
+    <div class="p-3 modal-content-phantom" [ngStyle]="styles">
+        <header class="defaultHeader"><span [ngStyle]="{color: headerColor}">{{header}}</span>
+            <i class="boschicon-bosch-ic-close closeIcon" (click)="close()"></i>
+        </header>
+        <div class="view">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>
