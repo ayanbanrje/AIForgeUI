@@ -23,7 +23,6 @@ export class MessageService {
 
 
   createMessage(msg) {
-    console.log("msg", msg)
     this.header = msg.header;
     this.message = msg.message;
     this.yes = msg.yes;

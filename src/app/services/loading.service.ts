@@ -3,6 +3,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from './auth/auth.service';
 import { timeout, catchError } from 'rxjs/operators';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,12 @@ import { timeout, catchError } from 'rxjs/operators';
 export class LoadingService implements OnDestroy {
   enabled: boolean = false;
   counter: number = 0;
-  error: any = {};
+  error:any= {};  // Store the error message
   timeout: number = 2; // in minutes
   dataHolder: Array<any> = [];
   subscribed: any = {};
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(private http: HttpClient, private auth: AuthService, private message:MessageService) {}
 
   // Show loading overlay
   show() {
@@ -28,13 +29,13 @@ export class LoadingService implements OnDestroy {
     this.counter = 0;
   }
 
-  // Service opened
+  // Service opened (loading spinner should be shown)
   open() {
     this.counter += 1;
     this.show();
   }
 
-  // Service closed
+  // Service closed (loading spinner should be hidden)
   done() {
     this.counter -= 1;
     if (this.counter <= 0) {
@@ -46,41 +47,44 @@ export class LoadingService implements OnDestroy {
   async get(request: Observable<any>, cacheKey?: string) {
     const self = this;
     let response;
-    const cachedData = cacheKey ? self.dataHolder.find(data => data.url === cacheKey) : null;
 
-    // Return cached response if available
+    // Check for cached response if cacheKey is provided
+    const cachedData = cacheKey ? self.dataHolder.find(data => data.url === cacheKey) : null;
     if (cachedData) {
       return cachedData.response;
     }
 
+    // Show loading
     self.open();
+    
     await request.pipe(
       timeout(self.timeout * 60 * 1000),
       catchError((error: HttpErrorResponse) => {
-        // Log the error and return the error object
-        console.error("Error occurred", error);
-        self.done();
-        return throwError(() => error);  // rethrow error so it can be caught in the promise
+        self.done();  // Hide the loading spinner when error occurs
+        // console.error("Error occurred:", error);  // Log the error
+
+        //you can show error here also
+        // Re-throw the error so that it can be handled further
+        return throwError(() => error);
       })
     ).toPromise().then((success) => {
-      console.log("success", success);
+      console.log("API Success:", success);  // Log success
       response = success;
-      self.done();
-
-      // Cache the response if a cacheKey is provided
+      self.done();  // Hide loading spinner after success
+      
+      // Cache the response if cacheKey is provided
       if (cacheKey) {
         const dataObject = { url: cacheKey, response: success };
         self.dataHolder.push(dataObject);
       }
-    }, (error) => {
-      console.log("error", error); // Log the error in the 'then' block
-      self.done();
-      if (error instanceof HttpErrorResponse) {
-        // Handle error by status code, you can customize this
-        self.error = `Error Status: ${error.status}, Message: ${error.message}`;
-      } else {
-        self.error = error.error;
-      }
+    }).catch((error) => {
+      console.error("API Error:", error);  // Log the error
+      self.done();  // Hide loading spinner after failure
+
+      // Set error message for UI
+      self.error.status = error.status ?error.status:'failure';
+      self.error.message = error.error.error_message ?error.error.error_message:'Sorry , there is something wrong !';
+      this.showError(self.error)
     });
 
     return response;
@@ -97,7 +101,22 @@ export class LoadingService implements OnDestroy {
   requestCancel(status?) {
     const self = this;
     self.done();
-    // Customize error code handling here
+    // Error handling logic (if needed)
+  }
+
+  showError(error) {
+    if (error) {
+      this.message.createMessage({
+        header: `Code: ${error.status}`,
+        message: error.message,
+        yes: {
+          label: 'Ok',
+          action: () => {
+            this.message.close();
+          }
+        }
+      });
+    }
   }
 
   ngOnDestroy(): void {

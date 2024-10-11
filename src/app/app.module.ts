@@ -24,6 +24,7 @@ import { MessageBoxComponent } from './commonComponent/message-box/message-box.c
 import { ModalComponent } from './commonComponent/modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { CheckboxComponent } from './commonComponent/checkbox/checkbox.component';
+import { LoadingComponent } from './commonComponent/loading/loading.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
@@ -48,6 +49,7 @@ import { CheckboxComponent } from './commonComponent/checkbox/checkbox.component
     MessageBoxComponent,
     ModalComponent,
     CheckboxComponent,
+    LoadingComponent,
     //ProjectsComponent
   ],
   imports: [
