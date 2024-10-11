@@ -21,7 +21,6 @@ export class InputComponent {
   }
 
   updateInputValue() {
-    console.log("this.value",this.value)
     this.valueChange.emit(this.value);
   }
 }

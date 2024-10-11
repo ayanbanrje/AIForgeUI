@@ -1,6 +1,6 @@
 /**
- * @author [SBA5COB] Sivaprakasharavi Baskaran
- * @email [Sivaprakasharavi.Baskaran@in.bosch.com]
+ * @author [DVD1KOR] Maddipoti Vineeth
+ * @email [vineeth.maddipoti@in.bosch.com]
  * @create date 2019-03-14 23:59:43
  * @modify date 2019-03-14 23:59:43
  * @desc [Service loader, enable/disable loading overlay for service requests.]
@@ -8,32 +8,23 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth/auth.service';
+import { LocaljsonService } from './localjson.service';
+
 import { timeout, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ToastService } from './toast.service';
-import { MessageService } from './message.service';
-import { JsonService } from './json.service';
-import { SessionService } from './auth/session.service';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadingService implements OnDestroy {
-  enabled = false;
-  counter = 0;
+  enabled: boolean = false;
+  counter: number = 0;
   error: any = {};
-  timeout = 2; // in minutes
+  timeout: number = 2; // in minutes
   dataHolder: Array<any> = [];
   subscribed: any = {};
-  errorCodes;
-  constructor(
-    private http: HttpClient,
-    private toast: ToastService,
-    private message: MessageService,
-    private json: JsonService,
-    private session: SessionService,
-    private router: Router) { }
+  constructor(private http: HttpClient, private auth: AuthService, private json: LocaljsonService) { }
   // show loading overlay
   show() {
     this.enabled = true;
@@ -56,41 +47,30 @@ export class LoadingService implements OnDestroy {
     }
   }
   // service handler
-  async get(request: Observable<any>, noValidation?) {
+  async get(request: Observable<any>) {
     const self = this;
-    const timed = timeout(self.timeout * 300 * 1000);
     let response;
-    if (noValidation || this.session.validSession()) {
-      self.open();
-      await request.pipe(timed, catchError((et) => {
-        if (et.status) {
-          self.requestCancel(et);
-        } else {
-          self.done();
-          return of(et);
-        }
+    self.open();
+    await request.pipe(
+      timeout(self.timeout * 60 * 1000),
+      catchError((et) => {
+        self.requestCancel(et.status);
         return of(null);
-      })).toPromise().then((success) => {
-        response = success;
-        self.done();
-      }, (error) => {
-        self.done();
-        if (error.name === 'HttpErrorResponse') {
-          self.subscribed.errorCodes = self.json.errorCodes().subscribe(er => {
-            self.error = er.find(e => e.errorCode === error.status);
-            if (error.message) {
-              self.error.message = error.message;
-            }
-          });
-        } else {
-          self.error = error.error;
-        }
-        this.showError(self.error);
-      });
-      return response;
-    } else {
-      self.router.navigate(['auth/login']);
-    }
+      })
+    ).toPromise().then((success) => {
+      response = success;
+      self.done();
+    }, (error) => {
+      self.done();
+      if (error.name === 'HttpErrorResponse') {
+        self.subscribed.errorCodes = self.json.errorCodes().subscribe(er => {
+          self.error = er.find(e => e.errorCode === error.status);
+        });
+      } else {
+        self.error = error.error;
+      }
+    });
+    return response;
   }
   // service handler
   async httpGet(url: string, params?) {
@@ -101,11 +81,11 @@ export class LoadingService implements OnDestroy {
       response = retrivedData.response;
     } else {
       const request = self.http.get(url, params);
-      // self.open();
+      self.open();
       await request.pipe(
         timeout(self.timeout * 60 * 1000),
         catchError((et) => {
-          self.requestCancel(et);
+          self.requestCancel(et.status);
           return of(null);
         })
       ).toPromise().then((success) => {
@@ -122,50 +102,29 @@ export class LoadingService implements OnDestroy {
           self.subscribed.errorCodes = self.json.errorCodes().subscribe(er => {
             self.error = er.find(e => e.errorCode === error.status);
           });
-          if (error.message) {
-            self.error.message = error.message;
-          }
         } else {
           self.error = error.error;
         }
-        this.showError(self.error);
       });
     }
     return response;
+  }
+
+  allowService() {
+    return this.auth.isAuthenticated();
   }
 
   public resetDataHolder() {
     this.dataHolder = [];
   }
 
-  requestCancel({ status, statusText, error }) {
+  requestCancel(status?) {
     const self = this;
     self.done();
     self.subscribed.errorCodes = self.json.errorCodes().subscribe(er => {
-      self.error = er.find(e => e.errorCode === (status ? status : 550));
-      if (error && error.message) {
-        self.error.message = error.message;
-      }
-      // self.error.message = statusText ? statusText : self.error.message;
-      self.showError(self.error);
+      self.error = er.find(e => e.errorCode === (status ? status : 504));
     });
   }
-
-  showError(error) {
-    if (error) {
-      this.message.createMessage({
-        header: `Code: ${error.errorCode}`,
-        message: error.message,
-        yes: {
-          label: 'Ok',
-          action: () => {
-            this.message.close();
-          }
-        }
-      });
-    }
-  }
-
   ngOnDestroy(): void {
     for (const sub in this.subscribed) {
       if (this.subscribed[sub]) {

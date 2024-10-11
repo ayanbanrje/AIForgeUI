@@ -6,7 +6,14 @@ export const environment = {
   production: true,
   REGION: '',
   URL: 'http://20.219.19.89:8000/',
-  BACKENDSERVICE: 'api/nodes'
+  BACKENDSERVICE: 'api/nodes',
+
+  tests: 'https://e8zdlsc6h9.execute-api.ap-south-1.amazonaws.com/prod/',
+  fleets: 'https://vzt42hc1f1.execute-api.ap-south-1.amazonaws.com/prod/',
+  vehicles: 'https://xujoqlyv1h.execute-api.ap-south-1.amazonaws.com/prod/',
+  tyres: 'https://6wgkyav4td.execute-api.ap-south-1.amazonaws.com/prod/',
+  reports: 'https://tc1ywd6y47.execute-api.ap-south-1.amazonaws.com/dev',
+  googleMapsApiKey: ''
 };
 
 /*

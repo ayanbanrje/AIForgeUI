@@ -1,18 +1,68 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { SessionService } from '../../services/session.service';
+import { TestsService } from '../../services/tests.service';
+import * as CryptoJS from "crypto-js";
+import { Router } from '@angular/router';
+import { LoadingService } from '../../services/loading.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { FakeSessionServiceService } from '../../services/fake-session-service.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
-  username: any="";
-  password:any="";
-  rememberMe=false
+export class LoginComponent implements OnInit {
+  rememberMe = false
+  pin;
+  newusername;
+  newpassword;
+  CodeDeliveryDetails;
+  termsconditionData;
+  emailValidation;
+  username;
+  usernameterms;
+  forgotconformationMessage;
+  termsconditionObject;
+  forgotPopup: boolean = false;
+  getCodePopup: boolean = false;
+  setCodePopup: boolean = false;
+  termscondition: boolean = false;
+  forgotconformation: boolean = false;
+  password;
+  constructor(
+    public session: SessionService,
+    private router: Router,
+    private testsService: TestsService,
+    private loading: LoadingService,
+    private auth: AuthService,
+    private fakesessionService:FakeSessionServiceService
+  ) { }
 
-  login(){
-    console.log("username",this.username)
-    console.log("rememberMe",this.rememberMe)
-    console.log("password",this.password)
+  ngOnInit() {
+    if (this.auth.isAuthenticated()) {
+      this.session.resetSession();
+      this.loading.resetDataHolder();
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
   }
+
+
+  async login() {
+    this.session.authError = null;
+    if (this.username && this.password) {
+      this.fakesessionService.login( this.username, this.password ).subscribe(
+      response=>{
+        console.log("respinse->>>>>>>>>>",response)
+        this.router.navigate(['/'])
+      },
+    error=>{
+        console.log("error",error)
+      }
+      );
+      
+    }
+  }
+
+
 }

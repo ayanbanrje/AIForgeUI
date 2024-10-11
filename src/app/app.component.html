@@ -13,16 +13,25 @@
 </head>
 
 <body class="d-flex flex-column">
-  <div [ngClass]="{'hidden': showHeaderFooter}" class="header" style="height: 100px;">
-    <app-header></app-header>
-  </div>
-  <div  [ngClass]="showHeaderFooter ? 'mainPageContainer' : 'pageContainer'" >
-    <div class="h-100 w-100 ">
-      <app-message-box></app-message-box>
+  <ng-container *ngIf="router.url !== '/login' && router.url !== '/' && router.url !== '/createproject'">
+    <div class="header" style="height: 100px;">
+      <app-header></app-header>
+    </div>
+    <div class="pageContainer">
+      <div class="h-100 w-100 ">
+        <app-message-box></app-message-box>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <div class="footer" style="height: 35px;">
+      <app-footer></app-footer>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="router.url == '/login' || router.url == '/' || router.url == '/createproject'">
+    <div class="h-100 w-100">
       <router-outlet></router-outlet>
     </div>
-  </div>
-  <div [ngClass]="{'hidden': showHeaderFooter}" class="footer" style="height: 35px;">
-    <app-footer></app-footer>
-  </div>
+  </ng-container>
+
 </body>

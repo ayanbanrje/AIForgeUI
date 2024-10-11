@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router, NavigationStart, Event as NavigationEvent, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,22 +9,17 @@ import { Router, NavigationStart, Event as NavigationEvent, NavigationEnd, Navig
 })
 export class AppComponent {
   title = 'AIForge';
-  showHeaderFooter = true; 
 
   constructor(
-    private router: Router,
+    public router: Router,
+    private auth: AuthService,
   ){
     
   }
 
-  ngOnInit() {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        // Define the specific route where header and footer should be hidden
-        
-        this.showHeaderFooter = ['/', '/login', '/createproject'].includes(event.url);
-
-      }
-    });
+  ngOnInit() { 
+    if (!this.auth.isAuthenticated) {
+      this.router.navigate(['/login']);  // Redirect to login if not authenticated
+    }
   }
 }
