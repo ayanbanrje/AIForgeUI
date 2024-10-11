@@ -43,6 +43,7 @@ export class SessionService {
     const request = this.http.post(url, auth);
     const response: any = await this.loadingService.get(request);
     // this.setSession(response);
+    console.log("response",response)
     return response;
   }
 

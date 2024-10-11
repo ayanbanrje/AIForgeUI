@@ -1,18 +1,8 @@
-/**
- * @author [DVD1KOR] Maddipoti Vineeth
- * @email [vineeth.maddipoti@in.bosch.com]
- * @create date 2019-03-14 23:59:43
- * @modify date 2019-03-14 23:59:43
- * @desc [Service loader, enable/disable loading overlay for service requests.]
- */
 import { Injectable, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from './auth/auth.service';
-import { LocaljsonService } from './localjson.service';
-
 import { timeout, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,89 +14,75 @@ export class LoadingService implements OnDestroy {
   timeout: number = 2; // in minutes
   dataHolder: Array<any> = [];
   subscribed: any = {};
-  constructor(private http: HttpClient, private auth: AuthService, private json: LocaljsonService) { }
-  // show loading overlay
+
+  constructor(private http: HttpClient, private auth: AuthService) {}
+
+  // Show loading overlay
   show() {
     this.enabled = true;
   }
-  // hide loading overlay
+
+  // Hide loading overlay
   hide() {
     this.enabled = false;
     this.counter = 0;
   }
-  // service opened
+
+  // Service opened
   open() {
-    this.counter = this.counter + 1;
+    this.counter += 1;
     this.show();
   }
-  // service closed
+
+  // Service closed
   done() {
-    this.counter = this.counter - 1;
+    this.counter -= 1;
     if (this.counter <= 0) {
       this.hide();
     }
   }
-  // service handler
-  async get(request: Observable<any>) {
+
+  // Generic service handler for API requests
+  async get(request: Observable<any>, cacheKey?: string) {
     const self = this;
     let response;
+    const cachedData = cacheKey ? self.dataHolder.find(data => data.url === cacheKey) : null;
+
+    // Return cached response if available
+    if (cachedData) {
+      return cachedData.response;
+    }
+
     self.open();
     await request.pipe(
       timeout(self.timeout * 60 * 1000),
-      catchError((et) => {
-        self.requestCancel(et.status);
-        return of(null);
+      catchError((error: HttpErrorResponse) => {
+        // Log the error and return the error object
+        console.error("Error occurred", error);
+        self.done();
+        return throwError(() => error);  // rethrow error so it can be caught in the promise
       })
     ).toPromise().then((success) => {
+      console.log("success", success);
       response = success;
       self.done();
+
+      // Cache the response if a cacheKey is provided
+      if (cacheKey) {
+        const dataObject = { url: cacheKey, response: success };
+        self.dataHolder.push(dataObject);
+      }
     }, (error) => {
+      console.log("error", error); // Log the error in the 'then' block
       self.done();
-      if (error.name === 'HttpErrorResponse') {
-        self.subscribed.errorCodes = self.json.errorCodes().subscribe(er => {
-          self.error = er.find(e => e.errorCode === error.status);
-        });
+      if (error instanceof HttpErrorResponse) {
+        // Handle error by status code, you can customize this
+        self.error = `Error Status: ${error.status}, Message: ${error.message}`;
       } else {
         self.error = error.error;
       }
     });
-    return response;
-  }
-  // service handler
-  async httpGet(url: string, params?) {
-    const self = this;
-    let response;
-    const retrivedData = self.dataHolder.find(data => data.url === url);
-    if (retrivedData) {
-      response = retrivedData.response;
-    } else {
-      const request = self.http.get(url, params);
-      self.open();
-      await request.pipe(
-        timeout(self.timeout * 60 * 1000),
-        catchError((et) => {
-          self.requestCancel(et.status);
-          return of(null);
-        })
-      ).toPromise().then((success) => {
-        response = success;
-        self.done();
-        const dataObject = {
-          url,
-          response: success
-        };
-        self.dataHolder.push(dataObject);
-      }, (error) => {
-        self.done();
-        if (error.name === 'HttpErrorResponse') {
-          self.subscribed.errorCodes = self.json.errorCodes().subscribe(er => {
-            self.error = er.find(e => e.errorCode === error.status);
-          });
-        } else {
-          self.error = error.error;
-        }
-      });
-    }
+
     return response;
   }
 
@@ -121,10 +97,9 @@ export class LoadingService implements OnDestroy {
   requestCancel(status?) {
     const self = this;
     self.done();
-    self.subscribed.errorCodes = self.json.errorCodes().subscribe(er => {
-      self.error = er.find(e => e.errorCode === (status ? status : 504));
-    });
+    // Customize error code handling here
   }
+
   ngOnDestroy(): void {
     for (const sub in this.subscribed) {
       if (this.subscribed[sub]) {

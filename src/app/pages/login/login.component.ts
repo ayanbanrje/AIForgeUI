@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../../services/session.service';
-import { TestsService } from '../../services/tests.service';
 import * as CryptoJS from "crypto-js";
 import { Router } from '@angular/router';
 import { LoadingService } from '../../services/loading.service';
@@ -32,10 +31,9 @@ export class LoginComponent implements OnInit {
   constructor(
     public session: SessionService,
     private router: Router,
-    private testsService: TestsService,
     private loading: LoadingService,
     private auth: AuthService,
-    private fakesessionService:FakeSessionServiceService
+    private fakesessionService: FakeSessionServiceService
   ) { }
 
   ngOnInit() {
@@ -51,16 +49,21 @@ export class LoginComponent implements OnInit {
   async login() {
     this.session.authError = null;
     if (this.username && this.password) {
-      this.fakesessionService.login( this.username, this.password ).subscribe(
-      response=>{
-        console.log("respinse->>>>>>>>>>",response)
+      // this.fakesessionService.login(this.username, this.password).subscribe(
+      //   response => {
+      //     console.log("respinse->>>>>>>>>>", response)
+      //     this.router.navigate(['/'])
+      //   },
+      //   error => {
+      //     console.log("error", error)
+      //   }
+      // );
+      const session = await this.session.login({ username: this.username, password: this.password });
+      console.log("session",session)
+      if(session){
         this.router.navigate(['/'])
-      },
-    error=>{
-        console.log("error",error)
       }
-      );
-      
+
     }
   }
 

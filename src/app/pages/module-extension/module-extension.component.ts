@@ -1,17 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ModuleExtensionService } from '../../services/backend/module-extension.service';
 
 @Component({
   selector: 'app-module-extension',
   templateUrl: './module-extension.component.html',
   styleUrl: './module-extension.component.scss'
 })
-export class ModuleExtensionComponent {
+export class ModuleExtensionComponent implements OnInit{
     activeTab = 'custom-source'; // Default tab
   
-    setActiveTab(tab: string) {
-      this.activeTab = tab;
-    }
-  
+    
     // Content for different tabs
     get contentData() {
       switch (this.activeTab) {
@@ -139,6 +137,25 @@ export class ModuleExtensionComponent {
         labels: ['Moving Average', 'Time Series', 'Aggregation', '+1']
       }
     ];
-    
+    constructor(
+      private moduleExtensionService:ModuleExtensionService
+    ){
+    };
+    ngOnInit(): void {
+      this.ListAvailableCustomComponents()
+    }
+    setActiveTab(tab: string) {
+      this.activeTab = tab;
+    }
+  
+    ListAvailableCustomComponents(){
+        let params={
+          asset_type:"source",
+          startIndex:0,
+          numberOfItems:5
+        }
+
+        const response=this.moduleExtensionService.ListAvailableCustomComponents(params)
+    }
   }
   
