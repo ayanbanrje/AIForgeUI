@@ -49,20 +49,21 @@ export class LoginComponent implements OnInit {
   async login() {
     this.session.authError = null;
     if (this.username && this.password) {
-      // this.fakesessionService.login(this.username, this.password).subscribe(
-      //   response => {
-      //     console.log("respinse->>>>>>>>>>", response)
-      //     this.router.navigate(['/'])
-      //   },
-      //   error => {
-      //     console.log("error", error)
-      //   }
-      // );
-      const session = await this.session.login({ username: this.username, password: this.password });
-      console.log("session",session)
-      if(session){
-        this.router.navigate(['/'])
-      }
+      this.fakesessionService.login(this.username, this.password).subscribe(
+        response => {
+          console.log("respinse->>>>>>>>>>", response)
+          this.router.navigate(['/'])
+        },
+        error => {
+          console.log("error", error)
+        }
+      );
+      
+      // const session = await this.session.login({ username: this.username, password: this.password });
+      // console.log("session",session)
+      // if(session){
+      //   this.router.navigate(['/'])
+      // }
 
     }
   }
