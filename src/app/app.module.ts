@@ -20,7 +20,7 @@ import { CreateprojectComponent } from './pages/createproject/createproject.comp
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { HomePageCardComponent } from './card/home-page-card/home-page-card.component';
 import { ChildModuleExtensionComponent } from './card/child-module-extension/child-module-extension.component';
-import { DropdownComponent } from './commonComponent/dropdown/dropdown.component';
+//import { DropdownComponent } from './commonComponent/dropdown/dropdown.component';
 import { MessageBoxComponent } from './commonComponent/message-box/message-box.component';
 import { ModalComponent } from './commonComponent/modal/modal.component';
 import { FormsModule } from '@angular/forms';

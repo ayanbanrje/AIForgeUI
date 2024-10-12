@@ -26,15 +26,29 @@
             </div>
         </div>
         <div class="row">
-            <button (click)="export()"> Export </button>
+            <div class="col d-flex justify-content-end mt-3">
+                <div class="me-2">
+                    <app-button (klick)="backToProjectList()"> Cancel </app-button>
+                </div>
+                
+                <div>
+                    <app-button (klick)="export()"> Save </app-button>
+                </div>
+            </div>
+           
         </div>
     </div>
 </div>
 <app-modal *ngIf="1==1" [(view)]="showModal" [header]="'Set Module Properties'"
-  [styles]="{ width: '80vw'}" style="min-height: 600px;">
-    <div class="row" style="min-height: 500px; margin-top: 20px;"> 
+  [styles]="{ 'width': '70%', height : '500px'}" >
+    <div class="row"> 
         <div class="col-md-6">
-            <app-select-dropdown></app-select-dropdown>
+            <app-select-dropdown
+                [dropdownList] = 'dropdownList'
+                [selectedItems] = 'selectedItems'
+                [multiSelect] = "true"
+                (valueChanged) = "itemSelcted($event)"
+            ></app-select-dropdown>
         </div>
         <div class="col-md-6">
             <app-input></app-input>

@@ -9,7 +9,7 @@ export class ModalComponent {
   @Input() header = '';
   @Input() view = false;
   @Input() width;
-  @Input() styles = {'width': '75%' };
+  @Input() styles;
   @Input() headerColor;
   @Output() viewChange = new EventEmitter();
   @Input() changePassword = false;
@@ -19,6 +19,10 @@ export class ModalComponent {
 
   constructor(private cd: ChangeDetectorRef) {
     //console.log(this.s3)
+
+    if(!this.styles){
+      this.styles = { 'width': '70%', height : '500px'} 
+    }
   }
 
   public close() {
