@@ -21,5 +21,7 @@ export class ChildModuleExtensionComponent {
   funcOpenCreateCustomModal(){
     this.openCreateCustomModal=true
   }
-  
+  FuncCreateCustomModalClose(){
+    this.openCreateCustomModal=false
+  }
 }
