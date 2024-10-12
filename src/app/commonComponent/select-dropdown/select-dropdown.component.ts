@@ -11,11 +11,11 @@ export class SelectDropdownComponent {
   selectedItems : { item_id: number; item_text: string }[] = [];
   
   dropdownSettings : IDropdownSettings = {
-    singleSelection: false,
+    singleSelection: true,
     idField: 'item_id',
     textField: 'item_text',
-    selectAllText: 'Select All',
-    unSelectAllText: 'UnSelect All',
+    // selectAllText: 'Select All',
+    // unSelectAllText: 'UnSelect All',
     itemsShowLimit: 3,
     allowSearchFilter: true
   };
@@ -23,14 +23,14 @@ export class SelectDropdownComponent {
   ngOnInit() {
     this.dropdownList = [
       { item_id: 1, item_text: 'Mumbai' },
-      //{ item_id: 2, item_text: 'Bangaluru' },
-      // { item_id: 3, item_text: 'Pune' },
-      // { item_id: 4, item_text: 'Navsari' },
-      // { item_id: 5, item_text: 'New Delhi' }
+      { item_id: 2, item_text: 'Bangaluru' },
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' },
+      { item_id: 5, item_text: 'New Delhi' }
     ];
     this.selectedItems = [
-      // { item_id: 3, item_text: 'Pune' },
-      // { item_id: 4, item_text: 'Navsari' }
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' }
     ];
     
   }
