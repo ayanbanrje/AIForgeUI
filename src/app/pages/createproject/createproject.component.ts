@@ -21,6 +21,7 @@ export class CreateprojectComponent {
   dropdownList = [];
   selectedItems = [];
   additionalProperties = {}
+  selectedItemAdditionalProperties = {};
 
 
   constructor(
@@ -149,14 +150,15 @@ export class CreateprojectComponent {
       { item_id: 5, item_text: 'New Delhi' }
     ];
     this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
+     // { item_id: 3, item_text: 'Pune' },
       //{ item_id: 4, item_text: 'Navsari' }
     ];
 
     this.additionalProperties = {
       Algo: {
         name: { type: "string" },
-        age: { type: "int" }
+        age: { type: "int" },
+        company: { type: "int" }
       },
       Sink: {
         address: { type: "string" },
@@ -164,7 +166,7 @@ export class CreateprojectComponent {
       },
 
       Source: {
-        city: { type: "dropdown", options: ['ban', 'pun', 'mum'] },
+        city: { type: "dropdown", options: ['ban', 'pun', 'mum'] , multiple: true },
         email: { type: "string" }
       }
     }
@@ -248,8 +250,33 @@ export class CreateprojectComponent {
   checkAdditionalProperties(data, clientX, clientY){
     if(this.additionalProperties[data['type']] && Object.keys(this.additionalProperties[data['type']]).length > 0 ){
       this.showModal = true;
+      let typeString = ['int','number','string']
+      
+      let selecteItemProperties = this.additionalProperties[data['type']];
 
-      //viewChange
+      for(let key of Object.keys(selecteItemProperties)){
+        selecteItemProperties[key]['actuelType'] = selecteItemProperties[key]['type'];
+        selecteItemProperties[key]['placeHolder'] =  key.charAt(0).toUpperCase() + key.slice(1)
+
+        if(typeString.indexOf(selecteItemProperties[key]['type']) >= 0){ // convert int,string,number as input box
+          selecteItemProperties[key]['type'] = 'string';
+        }else{
+          selecteItemProperties[key]['type'] =='dropdown';
+          selecteItemProperties[key]['multiple'] = selecteItemProperties[key]['multiple']?selecteItemProperties[key]['multiple']:false;
+          selecteItemProperties[key]['optionList'] = selecteItemProperties[key]['options'].map(i=>{
+            let id = i['item_id'] ? i['item_id'] : i;
+            let value = i['item_text'] ? i['item_text'] : i;
+            return { "item_id": id, "item_text": value.charAt(0).toUpperCase() + value.slice(1) }
+          })
+        }
+
+        /*
+         city: { type: "dropdown", options: ['ban', 'pun', 'mum'], multiselect: 'yes' },
+        email: { type: "string" }
+        */
+      }
+
+      this.selectedItemAdditionalProperties = selecteItemProperties
     }
     //this.addNodeToDrawFlow(data, clientX, clientY);
   }
