@@ -9,3 +9,13 @@
     color:#0083C4;
     border-bottom: 2px solid #0083c4;
 }
+.descriptionText {
+    display: -webkit-box;         /* Enable the flexbox model */
+    -webkit-box-orient: vertical; /* Set the box orientation to vertical */
+    -webkit-line-clamp: 3;       /* Limit to 3 lines */
+    overflow: hidden;             /* Hide overflow content */
+    text-overflow: ellipsis;      /* Add ellipsis (...) for overflow */
+    line-height: 1.2;             /* Set line height for proper spacing */
+    min-height: 3.6em;            /* Set max height (3 lines x line height) */
+    margin: 0;      
+}

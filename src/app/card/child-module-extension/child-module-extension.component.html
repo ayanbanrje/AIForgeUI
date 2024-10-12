@@ -1,4 +1,4 @@
-<div class="right-content">
+<div class="right-content scroll">
     <div class="top-right-search">
       <div class="page-heading">
         {{ content.heading }}
@@ -79,10 +79,8 @@
       </form>
     </div>
     <div class="modal-footer d-flex justify-content-between">
-      <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-      <button type="button" class="btn btn-primary">Open Template in Jupyter Editor</button> -->
-      <app-button [class]="'secondary justify-content-center'"  [width]="'200px'" [fontSize]="'16px'">
-        Cancel</app-button>
+      <app-button [class]="'secondary justify-content-center'" [width]="'200px'" [fontSize]="'16px'" (klick)="FuncCreateCustomModalClose()">
+        Cancel </app-button>
         <app-button [class]="'primary justify-content-center'" [fontSize]="'16px'">
           Open Template in Jupyter Editor</app-button>
     </div>
