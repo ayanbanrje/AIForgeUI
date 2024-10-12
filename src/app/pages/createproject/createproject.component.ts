@@ -262,6 +262,7 @@ export class CreateprojectComponent {
           selecteItemProperties[key]['type'] = 'string';
         }else{
           selecteItemProperties[key]['type'] =='dropdown';
+          selecteItemProperties[key]['multiple'] = selecteItemProperties[key]['multiple']?selecteItemProperties[key]['multiple']:false;
           selecteItemProperties[key]['optionList'] = selecteItemProperties[key]['options'].map(i=>{
             let id = i['item_id'] ? i['item_id'] : i;
             let value = i['item_text'] ? i['item_text'] : i;

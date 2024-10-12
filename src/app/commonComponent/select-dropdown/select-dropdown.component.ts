@@ -9,6 +9,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 export class SelectDropdownComponent {
 
   @Input() multiSelect = true; 
+  @Input() enableCheckAll = false;
   @Input() selectAllText = "Select All"; 
   @Input() unSelectAllText = "Deselect All"; 
   @Input() allowSearchFilter = true;
@@ -31,6 +32,7 @@ export class SelectDropdownComponent {
 
     this.dropdownSettings = {
       singleSelection: !this.multiSelect,
+      enableCheckAll: this.enableCheckAll,
       idField: this.idField,
       textField: this.textField,
       selectAllText: this.selectAllText,

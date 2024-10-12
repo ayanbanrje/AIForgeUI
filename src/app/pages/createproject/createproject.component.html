@@ -73,7 +73,7 @@
                 <app-select-dropdown
                     [dropdownList] = "selectedItemAdditionalProperties[field].optionList"
                     [selectedItems] = 'selectedItems'
-                    [multiSelect] = "false"
+                    [multiSelect] = "selectedItemAdditionalProperties[field].multiple"
                     (valueChanged) = "itemSelcted($event)"
                     [placeHolder] = "selectedItemAdditionalProperties[field].placeHolder"
                 ></app-select-dropdown>
