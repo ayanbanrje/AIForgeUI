@@ -1,0 +1,22 @@
+.dropdown-parent {
+    display: block;
+    height: auto;
+  }
+  
+  .multiselect-container {
+    max-height: 200px;   /* Limit height */
+    overflow-y: auto;    /* Enable scroll when content exceeds height */
+  }
+  
+/* Ensure the button does not take the full height */
+.multiselect {
+    width: 100%;         /* Ensure it fits the container width */
+    max-height: 40px;     /* Adjust the max height as needed */
+    overflow: hidden;     /* Prevent it from taking full height */
+  }
+  
+  /* Make sure to reset or control padding/margin */
+  .multiselect-dropdown {
+    padding: 5px;
+    margin-bottom: 0;
+  }
