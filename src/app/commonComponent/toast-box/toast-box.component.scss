@@ -1,0 +1,45 @@
+@import '../../../assets/css/variables';
+.toast { 
+    min-width: 250px; 
+    text-align: center; 
+    padding: 0.5rem; 
+    position: fixed; 
+    z-index: 9999; 
+    left: 50%; 
+    bottom: 0; 
+    transform: translateX(-50%);
+    background: $active;
+    color: $white;
+    opacity: 0;
+    font-size: 1vw;
+    i {
+      font-size: 2vw;
+      vertical-align: middle;
+    }
+    &.show {      
+      animation: fadeinout 6s linear 1 forwards;
+    }
+    &.error {
+      background: $error;
+      color: $white;
+    }
+    &.success {
+      background: $primary-blue;
+      color: $white;
+    }
+  }
+
+  @keyframes fadeinout {
+    0% { opacity: 0; bottom: 0; }
+    20% { opacity: 1; bottom: 30px; }
+    40% { opacity: 1; bottom: 30px; }
+    60% { opacity: 1; bottom: 30px; }
+    80% { opacity: 1; bottom: 30px; }
+    100% { opacity: 0; bottom: 0; }
+  }
+  
+  @media (max-width: 767px) {
+    .toast{
+     font-size: 3vw !important;
+    }
+  }

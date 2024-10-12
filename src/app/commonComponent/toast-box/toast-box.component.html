@@ -1,0 +1,4 @@
+<div *ngIf="toast && toast.show" class="toast" [ngClass]="{'success': toast.type === 'success', 'warning': toast.type === 'warning', 'error': toast.type === 'error', 'show': toast.show}">
+    <i [ngClass]="{'boschicon-bosch-ic-alert-success': toast.type === 'success', 'boschicon-bosch-ic-alert-warning': toast.type === 'warning', 'boschicon-bosch-ic-alert-error': toast.type === 'error'}"></i>
+    {{toast.message}}
+</div>

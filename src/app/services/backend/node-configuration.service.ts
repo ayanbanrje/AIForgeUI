@@ -8,35 +8,29 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { LoadingService } from '../loading.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NodeConfigurationService {
   url = `${environment.URL + environment.BACKENDSERVICE}`;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private loadingService: LoadingService) {
   }
 
 
-  getNodeList(body: any): Observable<any> {
-    const params = this.convertToHttpParams(body);
-    let result: any;
-
-
-
+  async getNodeList(body) {
     const url = `${this.url}/getallnodes`;
-
-    return this.http.get(url, { params });
+    const request = this.http.get(url, { params: body });
+    const response: any = await this.loadingService.get(request);
+    return response;
   }
 
-  // Function to convert object to HttpParams
-  private convertToHttpParams(obj: any): HttpParams {
-    let params = new HttpParams();
-    Object.keys(obj).forEach((key) => {
-      const value = obj[key];
-      params = params.set(key, value.toString());
-    });
-    return params;
+  async deleteNode(body) {
+    const url = `${this.url}/deletenode`;
+    const request = this.http.post(url, body);
+    const response: any = await this.loadingService.get(request);
+    return response;
   }
+
 }
