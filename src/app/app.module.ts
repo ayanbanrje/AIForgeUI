@@ -20,13 +20,16 @@ import { CreateprojectComponent } from './pages/createproject/createproject.comp
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { HomePageCardComponent } from './card/home-page-card/home-page-card.component';
 import { ChildModuleExtensionComponent } from './card/child-module-extension/child-module-extension.component';
-//import { DropdownComponent } from './commonComponent/dropdown/dropdown.component';
 import { MessageBoxComponent } from './commonComponent/message-box/message-box.component';
 import { ModalComponent } from './commonComponent/modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { CheckboxComponent } from './commonComponent/checkbox/checkbox.component';
 import { LoadingComponent } from './commonComponent/loading/loading.component';
+import { TextareaComponent } from './commonComponent/textarea/textarea.component';
+import { FileUploadComponent } from './commonComponent/file-upload/file-upload.component';
+//import { ProjectsComponent } from './modules/projects/projects.component';
 import { SelectDropdownComponent } from './commonComponent/select-dropdown/select-dropdown.component';
+import { ToastBoxComponent } from './commonComponent/toast-box/toast-box.component'
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { SelectDropdownComponent } from './commonComponent/select-dropdown/selec
     SelectDropdownComponent,
     CheckboxComponent,
     LoadingComponent,
+    TextareaComponent,
+    FileUploadComponent,
     //ProjectsComponent
+    ToastBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +65,7 @@ import { SelectDropdownComponent } from './commonComponent/select-dropdown/selec
     FormsModule,
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot()
-],
+  ],
   providers: [
     provideClientHydration(),
     NodeConfigurationService

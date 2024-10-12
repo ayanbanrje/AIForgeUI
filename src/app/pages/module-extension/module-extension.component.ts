@@ -150,12 +150,13 @@ export class ModuleExtensionComponent implements OnInit{
   
     ListAvailableCustomComponents(){
         let params={
+          user_id:"54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
           asset_type:"source",
           startIndex:0,
           numberOfItems:5
         }
 
-        const response=this.moduleExtensionService.ListAvailableCustomComponents(params)
+        // const response=this.moduleExtensionService.ListAvailableCustomComponents(params)
     }
   }
   

@@ -1,9 +1,8 @@
-// default styles across application
+// Default styles across the application
 
 $background-gray-color: #DFDFE0;
 $background-gray-container-color: #F5F6F6;
 $background-light-blue-color: #f3f8fc;
-$background-white-color: #DFDFE0;
 $background-skyblue-color-transperant: #338fce4a;
 $border-skyblue-color: #338FCE;
 $border-grey-color: #BFC0C2;
@@ -34,9 +33,7 @@ $h5-Blue: #338FCE;
 $list-border: 1px solid $border;
 $list-border-dashed: 1px dashed $border;
 $list-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.25);
-$radio: #DFDFE0;
 
-$header-bg: #DFDFE0;
 $tab-container-bg: rgba(51, 143, 206, 0.06);
 $lt-grey-bg: rgba(191, 192, 194, 0.15);
 $table-alter: #f3f3f3;
@@ -54,10 +51,10 @@ $backdrop-white-desktop: rgba(255, 255, 255, 0.2);
 $background-dark-grey: #CED1D3;
 
 $error: #FF0000;
-$yellow: #F2E30B;
+$yellow: #FFFF0C;
 $lt-green: #78BE20;
 $dark-green: #006249;
-$sky-blue: rgb(0, 142, 207, 0.5);
+$sky-blue: rgba(0, 142, 207, 0.5);
 $tab-border: #E9E9E9;
 $tab-bg: #F9F9F9;
 $txt-blue: #008ECF;
@@ -65,8 +62,106 @@ $background-maroon: #90171c;
 $background-light-maroon: #feefef;
 $background-skyblue-shade-color: #56c0ee;
 $sky-blue-dark: rgb(9, 125, 241);
-$main-blue: #0000FF;
+$main-blue: rgb(51, 73, 138);
 $lipstick: #b80376;
 $dark-lipstick: #9a045e;
 $light-skyblue: #a0d7ef;
 $shadowed-skyblue: #d8ebf2;
+
+// Defaults
+$red: #FF3131;
+$main-orange: #F5822D;
+$orange: #ED752D;
+$orange2: #f5955b;
+$blue: #2B78E4;
+$dark-blue: #33498A;
+$green: #009E0F;
+$transparent-orange: #FFF4EE;
+$section: #33498A;
+$shadow: rgba(0, 0, 0, 0.25);
+$tyre-tile-click: #fbe2d4;
+$light-grey: #F5F5F5;
+$lt-blue: #EFF3FF;
+$deep-lt-grey: #D6D6D6;
+$deep-lt-blue: #57699f;
+$service-alert: #ffb100;
+
+// Font declarations
+$mo-regular: 'Montserrat-Regular';
+$mo-medium: 'Montserrat-Medium';
+$mo-semibold: 'Montserrat-SemiBold';
+$mo-light: 'Montserrat-Light';
+
+// Text
+$lt-grey: #6C6C6C;
+$lt-grey2: #9c9e9b;
+
+// Color declarations
+$icon-grey: #A2A2A2;
+$icon-red: #FF3131;
+$background-grey: #EAEEF1;
+$text-lt-blue: #CBD8FF;
+$btn-lt-blue: #567DF3;
+$bg-lt-blue: #EFF3FF;
+$txt-grey: #6C6C6C;
+$white-smoke: #f5f5f5;
+$progress-bar: #eaeef1;
+$blue2: #4f67af;
+$h4: #415592;
+$turquoise: #02e5e7;
+
+// Hamburger Navigation
+$ham-nav: #1D428E;
+$ham-nav-selected: #1C316E;
+$ham-nav-selected-text: #ED752D;
+$grad-start: #1c316e;
+$grad-end: #0e1937;
+$grad2-start: #A9BCF2;
+$grad2-end: #5D74B8;
+
+// Size declarations
+$header-icon-size: 1.4em;
+$header-back-icon-size: 2.2em;
+$footer-text-size: 10px;
+$ham-nav-font-size: 16px;
+
+// Form elements
+$input-border: #C7C7C7;
+$input-text: #A2A2A2;
+$input-background: #F5F5F5;
+$input-search: #A4A4A4;
+$filter-background: #33498A;
+$advancefilter-background: #1C316E;
+$input-border2: #D6D6D6;
+
+// Search list
+$list-text: #202020;
+$list-odd-background: #EFF2FC;
+$list-check: #33498A;
+$list-remove: #ED752D;
+$list-selected-background-light: rgba(255, 255, 255, 0.2);
+$list-selected-background-dark: #6C6C6C;
+
+// Header
+$section-header: #33498A;
+
+// Groove
+$selected-groove: #009E0F;
+
+// Vehicle
+$vl-list-bg: #7E8D94;
+$tyre-action-bg: #F2F2F2;
+$tyre-selection-border: #202020;
+$tyre-selection-bg: rgba(255, 49, 49, 0.5);
+$tyre-selection-bg-a: rgba(86, 125, 243, 0.5);
+
+// Light gray background
+$light-gray: #F1F1F1;
+$light-gray-bg: #F8F8F8;
+$gray-4d: #B2B2B24D;
+$gray: #B2B2B2;
+
+// Scrollbar
+$sb-track-color: #5D5D5D;
+$sb-thumb-color: #F1F1F1;
+$sb-size: 7px;
