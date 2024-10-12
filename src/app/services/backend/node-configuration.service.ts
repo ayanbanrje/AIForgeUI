@@ -33,4 +33,25 @@ export class NodeConfigurationService {
     return response;
   }
 
+  async createnodes(body) {
+    const url = `${this.url}/createnodes`;
+    const request = this.http.post(url, body);
+    const response: any = await this.loadingService.get(request);
+    return response;
+  }
+
+  async getnodes(body) {
+    const url = `${this.url}/getnodes`;
+    const request = this.http.get(url, { params: body });
+    const response: any = await this.loadingService.get(request);
+    return response;
+  }
+
+  async updatenode(body) {
+    const url = `${this.url}/updatenode`;
+    const request = this.http.post(url, body);
+    const response: any = await this.loadingService.get(request);
+    return response;
+  }
+
 }

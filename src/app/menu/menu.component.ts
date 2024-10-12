@@ -18,20 +18,19 @@ export class MenuComponent {
     //{ label: 'Contact', route: '/contact' }
   ];
 
-  constructor( private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    
     this.router.events
       .pipe(filter(event => event instanceof NavigationStart))
       .subscribe((event: NavigationStart) => {
         this.currentRoute = event.url; // This gives you the path that is being navigated to
         //console.log('Navigation started to:', event.url);
       });
-  
+
   }
 
   isActive(route: string): boolean {
-    return this.currentRoute === route; // Compare current route with the menu item route
+    return ((this.router.url && route.includes(this.router.url)) || this.currentRoute === route); // Compare current route with the menu item route
   }
 }

@@ -11,6 +11,7 @@ import { ToastService } from '../../services/toast.service';
   encapsulation: ViewEncapsulation.None
 })
 export class NodeconfigurationComponent implements OnInit {
+  activeTab = 'custom-source';
   nodes: Array<any> = [];
 
   moreOptionDropdownList = [
@@ -27,11 +28,30 @@ export class NodeconfigurationComponent implements OnInit {
   ];
 
   setItem = '';
+  showAddEditNodePopup = false;
+  addEditNodeData = {
+    'node_id': '',
+    'node_name': '',
+    'ram': '',
+    'tags': '',
+    'vcpus': '',
+    'ssds': '',
+    'gpus': ''
+  }
+
+  formLabel = '';
+  submitBtnLabel = '';
+  subTitle = '';
+
+  updateFlag = false;
+  rootPage = true;
+  selectedNodeId = '';
 
   constructor(
     private nodeConfigurationService: NodeConfigurationService,
     private message: MessageService,
-    private toast: ToastService
+    private toast: ToastService,
+    private router: Router
   ) {
   }
 
@@ -130,12 +150,19 @@ export class NodeconfigurationComponent implements OnInit {
     }*/
   }
 
-  create_node() {
-    alert("Open Create Node Popup")
+  async create_node() {
+    this.formLabel = 'Create New';
+    this.submitBtnLabel = 'Create';
+    this.subTitle = 'Enter details to create new node';
+    await this.close_add_edit_node_popup();
+    this.showAddEditNodePopup = true;
   }
 
   view_node_details(nodeId) {
-    alert(nodeId + " view details clicked")
+    //console.log("159", nodeId)
+    //this.router.navigate(['/nodedetails/' + nodeId])
+    this.selectedNodeId = nodeId;
+    this.rootPage = false;
   }
 
   functionCall(name) {
@@ -181,5 +208,86 @@ export class NodeconfigurationComponent implements OnInit {
       });
     }
     await this.node_list();
+  }
+
+  async close_add_edit_node_popup() {
+    Object.keys(this.addEditNodeData).forEach(key => {
+      this.addEditNodeData[key] = '';  // Set value to blank
+    });
+    this.showAddEditNodePopup = false;
+    this.updateFlag = false;
+  }
+
+  async add_node_data() {
+    let response;
+    if (this.updateFlag === true) {
+      response = await this.nodeConfigurationService.updatenode({
+        "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
+        "node_id": this.addEditNodeData.node_id,
+        "name": this.addEditNodeData.node_name,
+        "vCPUs": parseInt(this.addEditNodeData.vcpus),
+        "RAM_GB": parseInt(this.addEditNodeData.ram),
+        "GPUs": parseInt(this.addEditNodeData.gpus),
+        "SSD_GB": parseInt(this.addEditNodeData.ssds),
+        "tags": [this.addEditNodeData.tags]
+      });
+
+      if (response && response.status == "success") {
+        this.toast.createToast({
+          type: "success",
+          message: "Node updated successfully!!",
+        });
+      }
+    } else {
+      response = await this.nodeConfigurationService.createnodes({
+        "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
+        "name": this.addEditNodeData.node_name,
+        "vCPUs": parseInt(this.addEditNodeData.vcpus),
+        "RAM_GB": parseInt(this.addEditNodeData.ram),
+        "GPUs": parseInt(this.addEditNodeData.gpus),
+        "SSD_GB": parseInt(this.addEditNodeData.ssds),
+        "numContainers": 0,
+        "numPipelines": 1,
+        "tags": [this.addEditNodeData.tags],
+        "status": "Offline"
+      });
+
+      if (response && response.status == "success") {
+        this.toast.createToast({
+          type: "success",
+          message: "Node created successfully!!",
+        });
+      }
+    }
+
+    await this.close_add_edit_node_popup();
+    await this.node_list();
+  }
+  async edit_node(nodeId) {
+    this.updateFlag = true;
+    this.formLabel = 'Update';
+    this.submitBtnLabel = 'Update';
+    this.subTitle = 'Modify details to update node';
+    let response = await this.nodeConfigurationService.getnodes({
+      "node_id": nodeId
+    });
+
+    if (response && response.status == "success") {
+      this.addEditNodeData = {
+        "node_id": response.data[0].node_id,
+        "node_name": response.data[0].name,
+        "vcpus": response.data[0].vCPUs,
+        "ram": response.data[0].RAM_GB,
+        "gpus": response.data[0].GPUs,
+        "ssds": response.data[0].SSD_GB,
+        "tags": response.data[0].tags[0]
+      }
+      this.showAddEditNodePopup = true;
+    }
+
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
   }
 }

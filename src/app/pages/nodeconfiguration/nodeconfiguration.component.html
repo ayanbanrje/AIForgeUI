@@ -274,7 +274,7 @@
 </div> -->
 
 
-<div class="pg-container px-5 h-100 w-100 d-flex flex-column mt-2">
+<div *ngIf="rootPage" class="pg-container px-5 h-100 w-100 d-flex flex-column mt-2">
     <!-- Page Header -->
     <div class="d-flex align-items-center mb-3 ps-1">
         <div class="col">
@@ -320,7 +320,7 @@
                         </div>
                         <!-- Icons -->
                         <div class="d-flex">
-                            <i class="bi bi-pencil ms-3" title="Edit"></i>
+                            <i class="bi bi-pencil ms-3" title="Edit" (click)="edit_node(node.node_id)"></i>
                             <i class="bi bi-download ms-3" title="Download"></i>
                             <i class="bi bi-trash ms-3" title="Delete" tabindex="1"
                                 (click)="deleteNode(node.node_id)"></i>
@@ -388,9 +388,315 @@
                     </div>
 
                     <div class="d-flex justify-content-center align-items-center cursor-pointer"
-                        (click)="view_node_details(node.id)">View</div>
+                        (click)="view_node_details(node.node_id)">View</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div *ngIf="!rootPage" class="body-wrap px-5">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="fw-bold">Module Extension</h6>
+                <p>
+                    Expand your machine learning project by creating custom modules designed to fit your workflow.
+                    Easily set up custom sources, sinks, algorithms, and accumulators to enhance data processing and
+                    analysisThis flexible extension allows you to integrate unique functionalities, ensuring your
+                    project is equipped to handle specific requirements and maximize performance.
+                </p>
+            </div>
+            <div class="col-md-3">
+                <div class="side-menu">
+                    <ul>
+                        <li class="sideBarMenu p-3 " [ngClass]="activeTab == 'custom-source'?'activeClass':''"
+                            [class.active]="activeTab === 'custom-source'" (click)="setActiveTab('custom-source')">
+                            Create your Custom Source
+                        </li>
+                        <li class="sideBarMenu p-3" [ngClass]="activeTab == 'custom-algorithm'?'activeClass':''"
+                            [class.active]="activeTab === 'custom-algorithm'"
+                            (click)="setActiveTab('custom-algorithm')">
+                            Create your Custom Algorithm
+
+                        </li>
+                        <li class="sideBarMenu p-3" [ngClass]="activeTab == 'custom-sink'?'activeClass':''"
+                            [class.active]="activeTab === 'custom-sink'" (click)="setActiveTab('custom-sink')">
+                            Create your Custom Sink
+
+                        </li>
+                        <li class="sideBarMenu p-3" [ngClass]="activeTab == 'custom-accumulator'?'activeClass':''"
+                            [class.active]="activeTab === 'custom-accumulator'"
+                            (click)="setActiveTab('custom-accumulator')">
+                            Create your Custom Accumulator
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-md-9">
+                <!-- <app-child-module-extension [content]="contentData"></app-child-module-extension> -->
+                <div class="right-content">
+                    <div class="top-right-search">
+                        <div class="page-heading">
+                            Available Custom Sources
+                        </div>
+                        <div class="search-bar">
+                            <input type="text" class="search-input">
+                            <button class="btn-search">
+                                <img width="20" src="../../../assets//search-icon.svg" alt="">
+                            </button>
+                        </div>
+                        <button class="btn-main" data-bs-toggle="modal" data-bs-target="#createModal">
+                            <img width="20" src="../../../assets//plus-icon.svg" alt="">
+                            Create Custom Source
+                        </button>
+                    </div>
+                    <div class="custom-source-box">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="sourse-card">
+                                    <div class="s-card-hrader">
+                                        <div class="s-card-title">
+                                            <h6 class="m-0">Data Ingestion Hub</h6>
+                                        </div>
+                                        <div class="s-card-action">
+                                            <ul>
+                                                <li>
+
+                                                    <img width="16" src="../../../assets//edit-icon.svg">
+
+                                                </li>
+                                                <li>
+
+                                                    <img width="16" src="../../../assets//delete-icon.svg">
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="s-card-body">
+                                        <p>
+                                            Easily define and manage various data sources for your machine learning
+                                            projects.
+                                        </p>
+                                        <div class="s-card-labels">
+                                            <ul>
+                                                <li>
+                                                    Database
+                                                </li>
+                                                <li>
+                                                    CSV
+                                                </li>
+                                                <li>
+                                                    Data
+                                                </li>
+                                                <li>
+                                                    +3
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sourse-card">
+                                    <div class="s-card-hrader">
+                                        <div class="s-card-title">
+                                            <h6 class="m-0">Data Ingestion Hub</h6>
+                                        </div>
+                                        <div class="s-card-action">
+                                            <ul>
+                                                <li>
+
+                                                    <img width="16" src="../../../assets//edit-icon.svg">
+
+                                                </li>
+                                                <li>
+
+                                                    <img width="16" src="../../../assets//delete-icon.svg">
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="s-card-body">
+                                        <p>
+                                            Easily define and manage various data sources for your machine learning
+                                            projects.
+                                        </p>
+                                        <div class="s-card-labels">
+                                            <ul>
+                                                <li>
+                                                    Database
+                                                </li>
+                                                <li>
+                                                    CSV
+                                                </li>
+                                                <li>
+                                                    Data
+                                                </li>
+                                                <li>
+                                                    +3
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sourse-card">
+                                    <div class="s-card-hrader">
+                                        <div class="s-card-title">
+                                            <h6 class="m-0">Data Ingestion Hub</h6>
+                                        </div>
+                                        <div class="s-card-action">
+                                            <ul>
+                                                <li>
+
+                                                    <img width="16" src="../../../assets//edit-icon.svg">
+
+                                                </li>
+                                                <li>
+
+                                                    <img width="16" src="../../../assets//delete-icon.svg">
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="s-card-body">
+                                        <p>
+                                            Easily define and manage various data sources for your machine learning
+                                            projects.
+                                        </p>
+                                        <div class="s-card-labels">
+                                            <ul>
+                                                <li>
+                                                    Database
+                                                </li>
+                                                <li>
+                                                    CSV
+                                                </li>
+                                                <li>
+                                                    Data
+                                                </li>
+                                                <li>
+                                                    +3
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="sourse-card">
+                                    <div class="s-card-hrader">
+                                        <div class="s-card-title">
+                                            <h6 class="m-0">Data Ingestion Hub</h6>
+                                        </div>
+                                        <div class="s-card-action">
+                                            <ul>
+                                                <li>
+
+                                                    <img width="16" src="../../../assets//edit-icon.svg">
+
+                                                </li>
+                                                <li>
+
+                                                    <img width="16" src="../../../assets//delete-icon.svg">
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="s-card-body">
+                                        <p>
+                                            Easily define and manage various data sources for your machine learning
+                                            projects.
+                                        </p>
+                                        <div class="s-card-labels">
+                                            <ul>
+                                                <li>
+                                                    Database
+                                                </li>
+                                                <li>
+                                                    CSV
+                                                </li>
+                                                <li>
+                                                    Data
+                                                </li>
+                                                <li>
+                                                    +3
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-modal *ngIf="showAddEditNodePopup" [(view)]="showAddEditNodePopup" [header]="formLabel+' Node'"
+    [styles]="{ width: '60vw' }">
+    <div class="modal-body">
+        <form>
+            <div class="d-flex align-items-center mb-3 ps-1">
+                <div class="col">
+                    <h6 class="font-weight-600">{{subTitle}}</h6>
+                    <p>
+                        Paragraph text with style text M. Invidunt ut labore et dolore magna aliquy erat, sed diam
+                        voluptua.
+                        At vero eos et accusam et jus to duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                        takimata
+                        sanctus est Lorem ipsum dolar sit amet
+                    </p>
+                </div>
+            </div>
+            <div class="row gx-0 m-0">
+                <div class="col-8 mb-3 pe-3">
+                    <app-input [label]="'New Node Name'" [placeHolder]="'Enter New Node Name'"
+                        [(value)]="addEditNodeData.node_name"></app-input>
+
+                </div>
+                <div class="col-4 mb-3">
+                    <app-input [label]="'RAM'" [placeHolder]="'Enter RAM'" [(value)]="addEditNodeData.ram"></app-input>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="col-12 mb-3">
+                    <app-input [label]="'Tags'" [placeHolder]="'Enter Tags'"
+                        [(value)]="addEditNodeData.tags"></app-input>
+                </div>
+            </div>
+            <div class="row gx-0 mb-3">
+                <div class="col-4 mb-3 pe-3">
+                    <app-input [label]="'VCPU\'s'" [placeHolder]="'Enter VCPU\'s'"
+                        [(value)]="addEditNodeData.vcpus"></app-input>
+
+                </div>
+                <div class="col-4 mb-3 pe-3">
+                    <app-input [label]="'SSD\'s'" [placeHolder]="'Enter SSD\'s'"
+                        [(value)]="addEditNodeData.ssds"></app-input>
+                </div>
+                <div class="col-4 mb-3">
+                    <app-input [label]="'GPU\'s'" [placeHolder]="'Enter GPU\'s'"
+                        [(value)]="addEditNodeData.gpus"></app-input>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer d-flex justify-content-between">
+        <app-button [class]="'secondary justify-content-center'" [width]="'200px'" [fontSize]="'16px'"
+            (klick)="close_add_edit_node_popup()">
+            Cancel</app-button>
+        <app-button [class]="'primary justify-content-center'" [width]="'200px'" [fontSize]="'16px'"
+            (klick)="add_node_data()">
+            {{submitBtnLabel}} Node</app-button>
+    </div>
+</app-modal>
