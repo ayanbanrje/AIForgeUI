@@ -1,6 +1,6 @@
 <div class="modal-em-container" *ngIf="message.show">
     <div class="modal-em-content">
-        <header>{{message.header}} <i class="boschicon-bosch-ic-close" (click)="close()"></i></header>
+        <header class="mb-3">{{message.header}} <i class="boschicon-bosch-ic-close" (click)="close()"></i></header>
         <div class="view-content" [innerHTML]="message.message"></div>
         <div *ngIf="message.isConfirm" class="d-flex justify-content-end align-items-center mt-3">
             <ng-container *ngIf="message && message.yes">

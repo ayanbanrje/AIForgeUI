@@ -2,14 +2,14 @@
 
 button {
   padding: 0.6rem;
-  font-size: 1rem;
+  font-size: 16px;
   cursor: pointer;
   // font: normal normal normal 0.5vw/1.5vw "bosch-Regular" !important;
   letter-spacing: 0rem;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  font-size: 1vw !important;
+  // font-size: 1vw !important;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -19,11 +19,11 @@ button {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    font-size: 1vw;
+    // font-size: 1vw;
   }
 
   i {
-    font-size: 1.3vw;
+    // font-size: 1.3vw;
     vertical-align: middle;
 
     &.left-icon {
@@ -42,7 +42,7 @@ button {
 
   &.isFromAppliance {
     .buttonContent {
-      font-size: 0.75vw !important;
+      // font-size: 0.75vw !important;
     }
   }
 }
@@ -73,7 +73,7 @@ button {
   align-items: center;
   justify-content: center;
   padding: 0rem;
-  font-size: 0.95vw;
+  // font-size: 0.95vw;
 }
 
 .secondary-lt {

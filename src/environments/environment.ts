@@ -6,7 +6,10 @@ export const environment = {
   production: true,
   REGION: '',
   URL: 'http://20.219.19.89:8000/',
-  BACKENDSERVICE: 'api/nodes'
+  BACKENDSERVICE: 'api/nodes',
+
+  fleets: 'https://vzt42hc1f1.execute-api.ap-south-1.amazonaws.com/prod/',
+ 
 };
 
 /*

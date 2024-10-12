@@ -1,160 +1,113 @@
-/**
- * @author [SBA5COB] Sivaprakasharavi Baskaran
- * @email [Sivaprakasharavi.Baskaran@in.bosch.com]
- * @create date 2019-03-14 23:59:43
- * @modify date 2019-03-14 23:59:43
- * @desc [Service loader, enable/disable loading overlay for service requests.]
- */
 import { Injectable, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from './auth/auth.service';
 import { timeout, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
-import { ToastService } from './toast.service';
 import { MessageService } from './message.service';
-import { JsonService } from './json.service';
-import { SessionService } from './auth/session.service';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoadingService implements OnDestroy {
-  enabled = false;
-  counter = 0;
-  error: any = {};
-  timeout = 2; // in minutes
+  enabled: boolean = false;
+  counter: number = 0;
+  error:any= {};  // Store the error message
+  timeout: number = 2; // in minutes
   dataHolder: Array<any> = [];
   subscribed: any = {};
-  errorCodes;
-  constructor(
-    private http: HttpClient,
-    private toast: ToastService,
-    private message: MessageService,
-    private json: JsonService,
-    private session: SessionService,
-    private router: Router) { }
-  // show loading overlay
+
+  constructor(private http: HttpClient, private auth: AuthService, private message:MessageService) {}
+
+  // Show loading overlay
   show() {
     this.enabled = true;
   }
-  // hide loading overlay
+
+  // Hide loading overlay
   hide() {
     this.enabled = false;
     this.counter = 0;
   }
-  // service opened
+
+  // Service opened (loading spinner should be shown)
   open() {
-    this.counter = this.counter + 1;
+    this.counter += 1;
     this.show();
   }
-  // service closed
+
+  // Service closed (loading spinner should be hidden)
   done() {
-    this.counter = this.counter - 1;
+    this.counter -= 1;
     if (this.counter <= 0) {
       this.hide();
     }
   }
-  // service handler
-  async get(request: Observable<any>, noValidation?) {
+
+  // Generic service handler for API requests
+  async get(request: Observable<any>, cacheKey?: string) {
     const self = this;
-    const timed = timeout(self.timeout * 300 * 1000);
     let response;
-    if (noValidation || this.session.validSession()) {
-      self.open();
-      await request.pipe(timed, catchError((et) => {
-        if (et.status) {
-          self.requestCancel(et);
-        } else {
-          self.done();
-          return of(et);
-        }
-        return of(null);
-      })).toPromise().then((success) => {
-        response = success;
-        self.done();
-      }, (error) => {
-        self.done();
-        if (error.name === 'HttpErrorResponse') {
-          self.subscribed.errorCodes = self.json.errorCodes().subscribe(er => {
-            self.error = er.find(e => e.errorCode === error.status);
-            if (error.message) {
-              self.error.message = error.message;
-            }
-          });
-        } else {
-          self.error = error.error;
-        }
-        this.showError(self.error);
-      });
-      return response;
-    } else {
-      self.router.navigate(['auth/login']);
+
+    // Check for cached response if cacheKey is provided
+    const cachedData = cacheKey ? self.dataHolder.find(data => data.url === cacheKey) : null;
+    if (cachedData) {
+      return cachedData.response;
     }
-  }
-  // service handler
-  async httpGet(url: string, params?) {
-    const self = this;
-    let response;
-    const retrivedData = self.dataHolder.find(data => data.url === url);
-    if (retrivedData) {
-      response = retrivedData.response;
-    } else {
-      const request = self.http.get(url, params);
-      // self.open();
-      await request.pipe(
-        timeout(self.timeout * 60 * 1000),
-        catchError((et) => {
-          self.requestCancel(et);
-          return of(null);
-        })
-      ).toPromise().then((success) => {
-        response = success;
-        self.done();
-        const dataObject = {
-          url,
-          response: success
-        };
+
+    // Show loading
+    self.open();
+    
+    await request.pipe(
+      timeout(self.timeout * 60 * 1000),
+      catchError((error: HttpErrorResponse) => {
+        self.done();  // Hide the loading spinner when error occurs
+        // console.error("Error occurred:", error);  // Log the error
+
+        //you can show error here also
+        // Re-throw the error so that it can be handled further
+        return throwError(() => error);
+      })
+    ).toPromise().then((success) => {
+      console.log("API Success:", success);  // Log success
+      response = success;
+      self.done();  // Hide loading spinner after success
+      
+      // Cache the response if cacheKey is provided
+      if (cacheKey) {
+        const dataObject = { url: cacheKey, response: success };
         self.dataHolder.push(dataObject);
-      }, (error) => {
-        self.done();
-        if (error.name === 'HttpErrorResponse') {
-          self.subscribed.errorCodes = self.json.errorCodes().subscribe(er => {
-            self.error = er.find(e => e.errorCode === error.status);
-          });
-          if (error.message) {
-            self.error.message = error.message;
-          }
-        } else {
-          self.error = error.error;
-        }
-        this.showError(self.error);
-      });
-    }
+      }
+    }).catch((error) => {
+      console.error("API Error:", error);  // Log the error
+      self.done();  // Hide loading spinner after failure
+
+      // Set error message for UI
+      self.error.status = error.status ?error.status:'failure';
+      self.error.message = error.error.error_message ?error.error.error_message:'Sorry , there is something wrong !';
+      this.showError(self.error)
+    });
+
     return response;
+  }
+
+  allowService() {
+    return this.auth.isAuthenticated();
   }
 
   public resetDataHolder() {
     this.dataHolder = [];
   }
 
-  requestCancel({ status, statusText, error }) {
+  requestCancel(status?) {
     const self = this;
     self.done();
-    self.subscribed.errorCodes = self.json.errorCodes().subscribe(er => {
-      self.error = er.find(e => e.errorCode === (status ? status : 550));
-      if (error && error.message) {
-        self.error.message = error.message;
-      }
-      // self.error.message = statusText ? statusText : self.error.message;
-      self.showError(self.error);
-    });
+    // Error handling logic (if needed)
   }
 
   showError(error) {
     if (error) {
       this.message.createMessage({
-        header: `Code: ${error.errorCode}`,
+        header: `Code: ${error.status}`,
         message: error.message,
         yes: {
           label: 'Ok',

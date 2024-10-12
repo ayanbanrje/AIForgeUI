@@ -1,18 +1,27 @@
-<div class="loginContainer h-100vh w-100vw d-flex justify-content-center align-items-center">
+<div class="loginContainer h-100vh w-100vw d-flex flex-column  align-items-center">
+    <div class="name-box d-flex flex-column justify-content-center align-items-center">
+        <span class="fz-45px">Welcome to</span>
+        <span class="fz-45px c-blue fw-bold">AI Forge</span>
+        <hr class="nameBar">
+    </div>
     <div class="loginBox shadow-lg w-50vw">
         <div class="w-100 h-100 p-5">
             <div class="row gx-0 m-0 text-center mb-5 fz-1-5rem fw-bold">
                 <span>Login</span>
             </div>
             <div class="row gx-0 m-0 mb-3">
-                <input type="text">
+                <!-- <input type="text"> -->
+                <app-input [label]="'User Name'" [(value)]="username" ></app-input>
             </div>
             <div class="row gx-0 m-0 mb-3">
-                <input type="text">
+                <!-- <input type="text"> -->
+                <app-input [label]="'Password'" [(value)]="password" [type]="'Password'"></app-input>
             </div>
             <div class="row gx-0 m-0 mb-5 fz-1rem">
+                <!-- (valueChange)="onSelectionOfEmail($event)" -->
                 <div class="col">
-                    Remeber me
+                    <app-checkbox [(value)]="rememberMe"
+                  ></app-checkbox> Remeber me
                 </div>
                 <div class="col text-end">
                     Forget Password ?
@@ -20,10 +29,13 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-secondary w-200px">Sign Up</button>
+                    <app-button (klick)=login() [class]="'primary justify-content-center mt-2'" [width]="'200px'">
+                        Sign up </app-button>
                 </div>
-                <div class="col text-end">
-                    <button class="btn btn-primary  w-200px">Login</button>
+                <div class="col d-flex flex-row-reverse">
+                    <!-- <button class="btn btn-primary  w-200px">Login</button> -->
+                    <app-button (klick)=login() [class]="'primary justify-content-center mt-2'" [width]="'200px'">
+                        Login </app-button>
                 </div>
             </div>
         </div>

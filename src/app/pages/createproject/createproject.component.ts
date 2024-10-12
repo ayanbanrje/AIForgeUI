@@ -268,7 +268,7 @@ export class CreateprojectComponent {
     const nodeID = this.editor.addNode(data.name, 1, 1, pos_x, pos_y, nodeClass, data, rectNodeHTML);
     
     
-    return;
+    return 0;
   }
 
   toggleClass(event){

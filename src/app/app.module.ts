@@ -18,12 +18,15 @@ import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
 import { CreateprojectComponent } from './pages/createproject/createproject.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { HomePageCardComponent } from './component/home-page-card/home-page-card.component';
-import { ChildModuleExtensionComponent } from './component/child-module-extension/child-module-extension.component';
+import { HomePageCardComponent } from './card/home-page-card/home-page-card.component';
+import { ChildModuleExtensionComponent } from './card/child-module-extension/child-module-extension.component';
+import { DropdownComponent } from './commonComponent/dropdown/dropdown.component';
 import { MessageBoxComponent } from './commonComponent/message-box/message-box.component';
 import { ModalComponent } from './commonComponent/modal/modal.component';
+import { FormsModule } from '@angular/forms';
+import { CheckboxComponent } from './commonComponent/checkbox/checkbox.component';
+import { LoadingComponent } from './commonComponent/loading/loading.component';
 import { SelectDropdownComponent } from './commonComponent/select-dropdown/select-dropdown.component';
-//import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -46,14 +49,17 @@ import { SelectDropdownComponent } from './commonComponent/select-dropdown/selec
     MessageBoxComponent,
     ModalComponent,
     SelectDropdownComponent,
+    CheckboxComponent,
+    LoadingComponent,
     //ProjectsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     NgMultiSelectDropDownModule.forRoot()
-  ],
+],
   providers: [
     provideClientHydration(),
     NodeConfigurationService

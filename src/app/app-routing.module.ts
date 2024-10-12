@@ -8,22 +8,68 @@ import { DatasetsComponent } from "./pages/datasets/datasets.component";
 import { MarketplaceComponent } from "./pages/marketplace/marketplace.component";
 import { CreateprojectComponent } from "./pages/createproject/createproject.component"
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { MessageBoxComponent } from './component/message-box/message-box.component';
-
+import { AuthGuardService as AuthGuard } from './services/auth/auth-guard.service';
+import { RoleGuardService as RoleGuard } from './services/auth/role-guard.service';
 
 const routes: Routes = [
-  { path: '', component: HomepageComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'moduleextention', component: ModuleExtensionComponent },
-  { path: 'nodeconfiguration', component: NodeconfigurationComponent },
-  { path: 'datasets', component: DatasetsComponent },
-  { path: 'marketplace', component: MarketplaceComponent },
-  { path: 'createproject', component: CreateprojectComponent },
   {
-    path: "message-box",
-    component: MessageBoxComponent
-  }
+    path: '', component: HomepageComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRole: ['SUPERUSER']
+    }
+  },
+
+  {
+    path: 'projects', component: ProjectsComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRole: ['SUPERUSER']
+    }
+  },
+  {
+    path: 'moduleextention', component: ModuleExtensionComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRole: ['SUPERUSER']
+    }
+  },
+  {
+    path: 'nodeconfiguration', component: NodeconfigurationComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRole: ['SUPERUSER']
+    }
+  },
+  {
+    path: 'datasets', component: DatasetsComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRole: ['SUPERUSER']
+    }
+  },
+  {
+    path: 'marketplace', component: MarketplaceComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRole: ['SUPERUSER']
+    }
+  },
+  {
+    path: 'createproject', component: CreateprojectComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: {
+      expectedRole: ['SUPERUSER']
+    }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' }
+
   //{ path: '', redirectTo: '/project', pathMatch: 'full' },  // Optional default route
 ];
 

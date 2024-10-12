@@ -1,166 +1,166 @@
-/**
- * @author [SBA5COB] Sivaprakasharavi Baskaran
- * @email [Sivaprakasharavi.Baskaran@in.bosch.com]
- * @create date 2019-02-12 09:32:43
- * @modify date 2019-02-14 19:37:57
- * @desc [description]
- */
-@import "variables";
-html,
-body,
-ul,
-ol,
-li,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  padding: 0;
-}
-html,
-body {
-  height: 100vh;
-  user-select: none;
-  background: #f3f3f3;
-  font-size: 1rem;
-}
-@media (min-height: 1000px) {
-  html {
-    font-size: 1.1rem;
-  }
-}
+// /**
+//  * @author [SBA5COB] Sivaprakasharavi Baskaran
+//  * @email [Sivaprakasharavi.Baskaran@in.bosch.com]
+//  * @create date 2019-02-12 09:32:43
+//  * @modify date 2019-02-14 19:37:57
+//  * @desc [description]
+//  */
+// @import "variables";
+// html,
+// body,
+// ul,
+// ol,
+// li,
+// p,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//   margin: 0;
+//   padding: 0;
+// }
+// html,
+// body {
+//   // height: 100vh;
+//   // user-select: none;
+//   // background: #f3f3f3;
+//   // font-size: 1rem;
+// }
+// @media (min-height: 1000px) {
+//   html {
+//     font-size: 1.1rem;
+//   }
+// }
 
-@media (min-width: 400px) and (max-width: 1000px) {
-  html {
-    font-size: 1rem;
-  }
-}
+// @media (min-width: 400px) and (max-width: 1000px) {
+//   html {
+//     font-size: 1rem;
+//   }
+// }
 
-@media (min-height: 400px) and (max-height: 800px) {
-  html {
-    font-size: 0.9rem;
-  }
-}
+// @media (min-height: 400px) and (max-height: 800px) {
+//   html {
+//     font-size: 0.9rem;
+//   }
+// }
 
-* {
-  margin: 0;
-  padding: 0;
-  outline: none;
-}
+// * {
+//   margin: 0;
+//   padding: 0;
+//   outline: none;
+// }
 
-::-ms-clear {
-  display: none;
-}
+// ::-ms-clear {
+//   display: none;
+// }
 
-:read-only {
-  outline: none;
-}
+// :read-only {
+//   outline: none;
+// }
 
-.clear {
-  clear: both;
-}
+// .clear {
+//   clear: both;
+// }
 
-i {
-  &.enabled {
-    color: $active;
-    cursor: pointer;
-    font-weight: 600;
-  }
-}
+// i {
+//   &.enabled {
+//     color: $active;
+//     cursor: pointer;
+//     font-weight: 600;
+//   }
+// }
 
-// .form-error {
-//   float: left;
-//   color: $error;
-//   font-size: 0.75rem;
-//   padding: 6px 0px;
-//   position: absolute;
-//   top: 52px; //Added
-//   padding: 2px 0px 6px 0px;
-//   span {
+// // .form-error {
+// //   float: left;
+// //   color: $error;
+// //   font-size: 0.75rem;
+// //   padding: 6px 0px;
+// //   position: absolute;
+// //   top: 52px; //Added
+// //   padding: 2px 0px 6px 0px;
+// //   span {
+// //     display: block;
+// //   }
+// // }
+
+// .white-bg {
+//   background: $white !important;
+//   padding: 0 !important;
+// }
+
+// .preview {
+//   background: rgba(0, 142, 207, 0.1);
+//   padding: 5px;
+//   color: rgb(0, 142, 207);
+//   i {
+//     float: right;
+//     color: $active;
+//     font-size: 1.5rem;
+//     cursor: pointer;
+//     margin-right: 5px;
+//   }
+// }
+
+// .no-data {
+//   display: flex !important;
+//   align-items: center !important;
+//   justify-content: center !important;
+//   padding: 1.5rem !important;
+//   width: 100% !important;
+//   height: auto !important;
+//   flex-direction: column !important;
+//   i {
+//     display: block;
+//     font-size: 3.125rem;
+//   }
+//   label {
+//     margin: 0 !important;
+//     margin-top: 0.5rem;
 //     display: block;
 //   }
 // }
 
-.white-bg {
-  background: $white !important;
-  padding: 0 !important;
-}
+// .no-print {
+//   display: block;
+// }
+// .print {
+//   display: none;
+// }
 
-.preview {
-  background: rgba(0, 142, 207, 0.1);
-  padding: 5px;
-  color: rgb(0, 142, 207);
-  i {
-    float: right;
-    color: $active;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-right: 5px;
-  }
-}
+// .address-box {
+//   color: #000;
+//   padding-right: 28px;
+//   i {
+//     position: absolute;
+//     right: 10px;
+//     bottom: 10px;
+//     padding: 6px;
+//     background: $border;
+//     border-radius: 50%;
+//     font-size: 0.875rem;
+//     color: $active;
+//     cursor: pointer;
+//   }
+// }
 
-.no-data {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 1.5rem !important;
-  width: 100% !important;
-  height: auto !important;
-  flex-direction: column !important;
-  i {
-    display: block;
-    font-size: 3.125rem;
-  }
-  label {
-    margin: 0 !important;
-    margin-top: 0.5rem;
-    display: block;
-  }
-}
+// @media print {
+//   .no-print {
+//     display: none;
+//   }
+//   .print {
+//     display: block;
+//   }
+//   button,
+//   i[class^="boschicon"] {
+//     display: none !important;
+//   }
+// }
 
-.no-print {
-  display: block;
-}
-.print {
-  display: none;
-}
-
-.address-box {
-  color: #000;
-  padding-right: 28px;
-  i {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    padding: 6px;
-    background: $border;
-    border-radius: 50%;
-    font-size: 0.875rem;
-    color: $active;
-    cursor: pointer;
-  }
-}
-
-@media print {
-  .no-print {
-    display: none;
-  }
-  .print {
-    display: block;
-  }
-  button,
-  i[class^="boschicon"] {
-    display: none !important;
-  }
-}
-
-@media (max-width: 1024px) {
-  html,
-  body {
-    min-width: 100%;
-  }
-}
+// @media (max-width: 1024px) {
+//   html,
+//   body {
+//     min-width: 100%;
+//   }
+// }

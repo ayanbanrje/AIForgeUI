@@ -85,6 +85,12 @@
 //   background: #fff;
 // }
 
+body {
+  font-family: 'BoschSans' !important;
+  height: 100vh;
+  width: 100vw ;
+}
+
 ol,
 ul,
 dl {
@@ -201,7 +207,9 @@ dl {
 .c-white {
   color: white;
 }
-
+.c-blue {
+  color:$primary-blue;
+}
 /* width  */
 
 .w-200px {
