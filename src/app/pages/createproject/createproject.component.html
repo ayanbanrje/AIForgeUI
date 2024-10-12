@@ -41,12 +41,12 @@
 </div>
 <app-modal *ngIf="1==1" [(view)]="showModal" [header]="'Set Module Properties'"
   [styles]="{ 'width': '70%', height : '500px'}" >
-    <div class="row"> 
+    <!-- <div class="row"> 
         <div class="col-md-6">
             <app-select-dropdown
                 [dropdownList] = 'dropdownList'
                 [selectedItems] = 'selectedItems'
-                [multiSelect] = "true"
+                [multiSelect] = "false"
                 (valueChanged) = "itemSelcted($event)"
             ></app-select-dropdown>
         </div>
@@ -56,6 +56,30 @@
         <div class="col-md-6">
             test
         </div>
-        
+    </div> -->
+
+    <div class="row">
+        <div *ngFor="let field of objectKeys(selectedItemAdditionalProperties)" class="col-md-6 mt-3">
+          <ng-container [ngSwitch]="selectedItemAdditionalProperties[field].type">
+    
+            <!-- Input Box for String/Int -->
+            <div *ngSwitchCase="'string'" >
+                <app-input
+                    [label]="selectedItemAdditionalProperties[field].placeHolder"></app-input>
+            </div>
+    
+            <!-- Dropdown Box -->
+            <div *ngSwitchCase="'dropdown'">
+                <app-select-dropdown
+                    [dropdownList] = "selectedItemAdditionalProperties[field].optionList"
+                    [selectedItems] = 'selectedItems'
+                    [multiSelect] = "false"
+                    (valueChanged) = "itemSelcted($event)"
+                    [placeHolder] = "selectedItemAdditionalProperties[field].placeHolder"
+                ></app-select-dropdown>
+            </div>
+    
+          </ng-container>
+        </div>
     </div>
 </app-modal>
