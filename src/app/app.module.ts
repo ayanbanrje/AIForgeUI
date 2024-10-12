@@ -25,6 +25,8 @@ import { ModalComponent } from './commonComponent/modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { CheckboxComponent } from './commonComponent/checkbox/checkbox.component';
 import { LoadingComponent } from './commonComponent/loading/loading.component';
+import { TextareaComponent } from './commonComponent/textarea/textarea.component';
+import { FileUploadComponent } from './commonComponent/file-upload/file-upload.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
@@ -50,6 +52,8 @@ import { LoadingComponent } from './commonComponent/loading/loading.component';
     ModalComponent,
     CheckboxComponent,
     LoadingComponent,
+    TextareaComponent,
+    FileUploadComponent,
     //ProjectsComponent
   ],
   imports: [

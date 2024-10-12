@@ -9,9 +9,17 @@ export class ChildModuleExtensionComponent {
   @Input() content: { heading: string, title:string,data: any[] } = { heading: '', title:'', data: [] };
   parentValue: string = ''; // Value that will be updated
 
-  // Update the value when the child component emits the change
-  updateValue(newValue: string) {
-    this.parentValue = newValue;
-    console.log("this.parentvalue",this.parentValue)
+  openCreateCustomModal:boolean=false;
+  createCustom={
+    name:'',
+    inherited_from:'',
+    description:'',
+    file_name:''
   }
+  constructor(){
+  }
+  funcOpenCreateCustomModal(){
+    this.openCreateCustomModal=true
+  }
+  
 }

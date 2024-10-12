@@ -1,0 +1,25 @@
+.textarea-container {
+    display: flex;
+    flex-direction: column;
+    background: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  
+  textarea {
+    width: 100%;
+    border: none;
+    background-color: #f0f0f0; /* Light gray background */
+    font-size: 14px;
+  }
+  
+  textarea::placeholder {
+    color: #888; /* Placeholder color */
+  }
+  
+  textarea:focus {
+    outline: none;
+    border-bottom: 1px solid #000; /* Change the border on focus */
+  }
+  
