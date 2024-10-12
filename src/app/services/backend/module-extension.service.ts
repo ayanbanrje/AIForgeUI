@@ -20,7 +20,7 @@ export class ModuleExtensionService {
     const url = this.url + 'api/components/getcomponents';
     const request = this.http.get(url, { params: params });
     const response: any = await this.loadingService.get(request);
-    console.log("response",response)
-    return response;
+    console.log("hello",response.data)
+    return response.data;
   }
 }
