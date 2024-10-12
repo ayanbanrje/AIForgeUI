@@ -2,6 +2,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { HttpClientModule } from '@angular/common/http';
 import { InputComponent } from './commonComponent/input/input.component';
 import { ButtonComponent } from './commonComponent/button/button.component';
@@ -19,9 +20,9 @@ import { CreateprojectComponent } from './pages/createproject/createproject.comp
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { HomePageCardComponent } from './component/home-page-card/home-page-card.component';
 import { ChildModuleExtensionComponent } from './component/child-module-extension/child-module-extension.component';
-import { DropdownComponent } from './commonComponent/dropdown/dropdown.component';
 import { MessageBoxComponent } from './commonComponent/message-box/message-box.component';
 import { ModalComponent } from './commonComponent/modal/modal.component';
+import { SelectDropdownComponent } from './commonComponent/select-dropdown/select-dropdown.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 
 @NgModule({
@@ -42,15 +43,16 @@ import { ModalComponent } from './commonComponent/modal/modal.component';
     HomepageComponent,
     HomePageCardComponent,
     ChildModuleExtensionComponent,
-    DropdownComponent,
     MessageBoxComponent,
     ModalComponent,
+    SelectDropdownComponent,
     //ProjectsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     provideClientHydration(),

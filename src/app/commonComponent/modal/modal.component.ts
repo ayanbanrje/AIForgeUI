@@ -9,7 +9,7 @@ export class ModalComponent {
   @Input() header = '';
   @Input() view = false;
   @Input() width;
-  @Input() styles = {'width': '75%'};
+  @Input() styles = {'width': '75%' };
   @Input() headerColor;
   @Output() viewChange = new EventEmitter();
   @Input() changePassword = false;
