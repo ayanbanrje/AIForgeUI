@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { NodeConfigurationService } from "../../../app/services/backend/node-configuration.service";
-import { MessageService } from "../../../app/services/message.service";
+import { NodeConfigurationService } from "../../services/backend/node-configuration.service";
+import { MessageService } from "../../services/message.service";
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-nodeconfiguration',
@@ -29,7 +30,8 @@ export class NodeconfigurationComponent implements OnInit {
 
   constructor(
     private nodeConfigurationService: NodeConfigurationService,
-    private message: MessageService
+    private message: MessageService,
+    private toast: ToastService
   ) {
   }
 
@@ -37,20 +39,17 @@ export class NodeconfigurationComponent implements OnInit {
     this.node_list();
   }
 
-  node_list() {
+  async node_list() {
 
-    let node_list = this.nodeConfigurationService.getNodeList({
+    let node_list = await this.nodeConfigurationService.getNodeList({
       "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
       "startIndex": 0,
       "numberOfItems": 5
-    }).subscribe({
-      next: (node_list) => {
-        this.nodes = node_list.data;  // Assign the result to the nodes array       
-      },
-      error: (error) => {
-        console.error("Error fetching node list", error);
-      }
     });
+
+    if (node_list.status == "success") {
+      this.nodes = node_list.data;
+    }
 
     /*let node_list = [
       {
@@ -151,15 +150,14 @@ export class NodeconfigurationComponent implements OnInit {
   }
 
   deleteNode(nodeId) {
-    console.log("Delete button clicked for node:", nodeId);
     this.message.createMessage({
       header: "Confirm Delete",
       message: "Are you sure you want to delete the node?",
       isConfirm: true,
       yes: {
         label: "Yes",
-        action: () => {
-          this.deleteNodeById(nodeId);
+        action: async () => {
+          await this.deleteNodeById(nodeId);
         },
       },
       no: {
@@ -171,7 +169,17 @@ export class NodeconfigurationComponent implements OnInit {
     });
   }
 
-  deleteNodeById(nodeId) {
-    alert("API Call will be implemented!!")
+  async deleteNodeById(nodeId) {
+    let response = await this.nodeConfigurationService.deleteNode({
+      "node_id": nodeId
+    });
+
+    if (response && response.message != "") {
+      this.toast.createToast({
+        type: "success",
+        message: response.message,
+      });
+    }
+    await this.node_list();
   }
 }
