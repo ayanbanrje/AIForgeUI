@@ -38,6 +38,13 @@
     height: 42px ;
   }
 
+  ::ng-deep .dropdown-btn span{
+    // opacity: 52%;
+    // font-size: 12px;
+    // position: absolute;
+    // top: 0;
+  }
+
 
   ::ng-deep .selected-item-container a {
     /* Hide the default X text */
