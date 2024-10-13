@@ -48,7 +48,7 @@
                         <div class="col d-flex justify-content-end align-items-center">
                             <i class="boschicon-bosch-ic-search pe-3 fz-24px"></i>
                             <app-button [class]="'primary justify-content-center'" [icon]="'bosch-ic-add'"
-                                (klick)="funcOpenCreateCustomModal()"> Create Custom Source
+                                (klick)="funcOpenCreateCustomModal()"> Create {{activeTab}}
                             </app-button>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
     </div>
 </div>
 
-<app-modal *ngIf="openCreateCustomModal" [(view)]="openCreateCustomModal" [header]="'Create Custom Source'"
+<app-modal [zIndex]="'9998'" *ngIf="openCreateCustomModal" [(view)]="openCreateCustomModal" [header]="'Create ' + activeTab"
     [styles]="{ width: '60vw' }">
     <div class="modal-body">
         <form>
@@ -123,7 +123,10 @@
         <app-button [class]="'secondary justify-content-center'" [width]="'200px'" [fontSize]="'16px'"
             (klick)="FuncCreateCustomModalClose()">
             Cancel </app-button>
-        <app-button [class]="'primary justify-content-center'" [fontSize]="'16px'">
-            Open Template in Jupyter Editor</app-button>
+        <!-- <app-button [class]="'primary justify-content-center'" [fontSize]="'16px'">
+            Open Template in Jupyter Editor</app-button> -->
+            <app-button [class]="'primary justify-content-center'" [width]="'200px'" [fontSize]="'16px'"
+            (klick)="SaveModal()">
+            Save </app-button>
     </div>
 </app-modal>

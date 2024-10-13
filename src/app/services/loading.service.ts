@@ -11,12 +11,12 @@ import { MessageService } from './message.service';
 export class LoadingService implements OnDestroy {
   enabled: boolean = false;
   counter: number = 0;
-  error:any= {};  // Store the error message
+  error: any = {};  // Store the error message
   timeout: number = 2; // in minutes
   dataHolder: Array<any> = [];
   subscribed: any = {};
 
-  constructor(private http: HttpClient, private auth: AuthService, private message:MessageService) {}
+  constructor(private http: HttpClient, private auth: AuthService, private message: MessageService) { }
 
   // Show loading overlay
   show() {
@@ -56,7 +56,7 @@ export class LoadingService implements OnDestroy {
 
     // Show loading
     self.open();
-    
+
     await request.pipe(
       timeout(self.timeout * 60 * 1000),
       catchError((error: HttpErrorResponse) => {
@@ -69,9 +69,21 @@ export class LoadingService implements OnDestroy {
       })
     ).toPromise().then((success) => {
       console.log("API Success:", success);  // Log success
-      response = success;
-      self.done();  // Hide loading spinner after success
-      
+      if (success.status == 'failure') {
+        // Set error message for UI
+        self.error.status = success.status ? success.status : 'failure';
+        self.error.message = success.error_message ? success.error_message : 'Sorry , there is something wrong !';
+        this.showError(self.error)
+        response = success;
+        self.done();
+
+
+      } else {
+        response = success;
+        self.done();  // Hide loading spinner after success
+      }
+
+
       // Cache the response if cacheKey is provided
       if (cacheKey) {
         const dataObject = { url: cacheKey, response: success };
@@ -82,8 +94,8 @@ export class LoadingService implements OnDestroy {
       self.done();  // Hide loading spinner after failure
 
       // Set error message for UI
-      self.error.status = error.status ?error.status:'failure';
-      self.error.message = error.error.error_message ?error.error.error_message:'Sorry , there is something wrong !';
+      self.error.status = error.status ? error.status : 'failure';
+      self.error.message = error.error.error_message ? error.error.error_message : 'Sorry , there is something wrong !';
       this.showError(self.error)
     });
 

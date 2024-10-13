@@ -8,7 +8,6 @@ import { ModuleExtensionService } from '../../services/backend/module-extension.
 })
 export class ModuleExtensionComponent implements OnInit {
   activeTab = 'Custom Source'; // Default tab
-  content: { heading: string, title: string, data: any[] } = { heading: '', title: '', data: [] };
   openCreateCustomModal: boolean = false;
   createCustom = {
     name: '',
@@ -45,7 +44,19 @@ export class ModuleExtensionComponent implements OnInit {
     this.contentData = await this.moduleExtensionService.ListAvailableCustomComponents(params)
     console.log("this.contentData->>>>>>>>>", this.contentData)
   }
-  
+  async SaveModal(){
+    console.log("items",this.createCustom)
+    let body={
+      "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
+      "asset_name": "Hello 2",
+      "asset_type": "source",
+      "description": "Test asset hello description",
+      "parent_asset_name": "A",
+      "parent_userid": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87"
+  }
+    const result=await this.moduleExtensionService.createCustomComponent(body)
+    console.log("result->>>>>>>>>>>>>>>>>>>>",result)
+  }
 
 }
 
