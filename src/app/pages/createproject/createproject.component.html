@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
-                <div class="flex-shrink-0 p-3 bg-white">
+                <div class="flex-shrink-0 bg-white">
                     <ul class="list-unstyled ps-0">
                         <li class="mb-1" *ngFor="let componentType of objectKeys(components)">
                             <button class="btn btn-primary btn-toggle align-items-center rounded collapsed" (click)="toggleClass($event)" data-bs-toggle="collapse"
@@ -21,42 +21,26 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-10 col-drawflow">
                 <div id="drawflow" class="drawflow" (drop)="drop($event)" (dragover)="allowDrop($event)"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col d-flex justify-content-end mt-3">
-                <div class="me-2">
-                    <app-button (klick)="backToProjectList()"> Cancel </app-button>
+                <div class="row button-container">
+                    <div class="col d-flex justify-content-end mt-3">
+                        <div class="me-2">
+                            <app-button (klick)="backToProjectList()"> Cancel </app-button>
+                        </div>
+                        
+                        <div>
+                            <app-button (klick)="export()"> Save </app-button>
+                        </div>
+                    </div>
+                   
                 </div>
-                
-                <div>
-                    <app-button (klick)="export()"> Save </app-button>
-                </div>
             </div>
-           
         </div>
     </div>
 </div>
 <app-modal *ngIf="1==1" [(view)]="showModal" [header]="'Set Module Properties'"
   [styles]="{ 'width': '70%', height : '500px'}" >
-    <!-- <div class="row"> 
-        <div class="col-md-6">
-            <app-select-dropdown
-                [dropdownList] = 'dropdownList'
-                [selectedItems] = 'selectedItems'
-                [multiSelect] = "false"
-                (valueChanged) = "itemSelcted($event)"
-            ></app-select-dropdown>
-        </div>
-        <div class="col-md-6">
-            <app-input></app-input>
-        </div>
-        <div class="col-md-6">
-            test
-        </div>
-    </div> -->
 
     <div class="row">
         <div *ngFor="let field of objectKeys(selectedItemAdditionalProperties)" class="col-md-6 mt-3">
