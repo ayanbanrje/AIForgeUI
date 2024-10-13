@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter,ChangeDetectorRef  } from '@angu
 })
 export class ModalComponent {
   @Input() header = '';
+  @Input() allowClose = true;
   @Input() view = false;
   @Input() width;
   @Input() styles;
