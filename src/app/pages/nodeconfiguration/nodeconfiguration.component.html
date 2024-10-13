@@ -274,22 +274,22 @@
 </div> -->
 
 
-<div class="pg-container px-5 h-100 w-100 d-flex flex-column mt-2">
+<div *ngIf="rootPage" class="pg-container px-5 h-100 w-100 d-flex flex-column mt-2">
     <!-- Page Header -->
     <div class="d-flex align-items-center mb-3 ps-1">
         <div class="col">
             <h3 class="page-title">Node Configuration</h3>
-            <p>
+            <div>
                 Paragraph text with style text M. Invidunt ut labore et dolore magna aliquy erat, sed diam voluptua.
                 At vero eos et accusam et jus to duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
                 sanctus est Lorem ipsum dolar sit amet
-            </p>
+            </div>
         </div>
     </div>
 
     <!-- Search and Create New Node Section -->
     <div class="d-flex align-items-center mb-4 ms-1">
-        <div class="d-flex col-lg-10 col-md-10 p-3 custom-bg justify-content-between align-items-center">
+        <div class="d-flex col-lg-10 col-md-10 px-3 py-2 custom-bg justify-content-between align-items-center">
             <h5 class="mb-0">Available Custom Sources</h5>
             <i class="bi bi-search" title="Search"></i>
         </div>
@@ -297,9 +297,12 @@
             <!-- <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search" aria-label="Search"
                     aria-describedby="search-btn"> -->
-            <div class="custom-btn py-3 px-5" type="button" id="search-btn" (click)="create_node()">+
+            <!-- <div class="custom-btn py-3 px-5" type="button" id="search-btn" (click)="create_node()">+
                 Create New
-                Node</div>
+                Node</div> -->
+            <app-button [class]="'primary justify-content-center'" [icon]="'bosch-ic-add'" (klick)="create_node()">
+                Create New Node
+            </app-button>
             <!-- </div> -->
         </div>
     </div>
@@ -320,11 +323,11 @@
                         </div>
                         <!-- Icons -->
                         <div class="d-flex">
-                            <i class="bi bi-pencil ms-3" title="Edit"></i>
-                            <i class="bi bi-download ms-3" title="Download"></i>
-                            <i class="bi bi-trash ms-3" title="Delete" tabindex="1"
+                            <i class="boschicon-bosch-ic-edit ms-3" title="Edit" (click)="edit_node(node.node_id)"></i>
+                            <i class="boschicon-bosch-ic-download ms-3" title="Download"></i>
+                            <i class="boschicon-bosch-ic-delete ms-3" title="Delete" tabindex="1"
                                 (click)="deleteNode(node.node_id)"></i>
-                            <i class="bi bi-three-dots-vertical ms-3" title="More options" tabindex="1"
+                            <i class="boschicon-bosch-ic-options ms-3" title="More options" tabindex="1"
                                 (blur)="closePopup(node.node_id)" (click)="openPopup(node.node_id)"></i>
                             <ul *ngIf="setItem==node.node_id" class="settingDropdownCSS">
                                 <div>
@@ -343,16 +346,16 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col">
-                                    <p><strong>ID:</strong></p>
-                                    <p>{{ node.node_id }}</p>
+                                    <div><strong>ID:</strong></div>
+                                    <div>{{ node.node_id }}</div>
                                 </div>
                                 <div class="col">
-                                    <p><strong>vCPU's:</strong></p>
-                                    <p>{{ node.vCPUs }}</p>
+                                    <div><strong>vCPU's:</strong></div>
+                                    <div>{{ node.vCPUs }}</div>
                                 </div>
                                 <div class="col">
-                                    <p><strong>RAM:</strong></p>
-                                    <p>{{ node.RAM_GB }}</p>
+                                    <div><strong>RAM:</strong></div>
+                                    <div>{{ node.RAM_GB }}GB</div>
                                 </div>
 
                             </div>
@@ -360,27 +363,34 @@
                         <div class="col-12 mt-2">
                             <div class="row">
                                 <div class="col">
-                                    <p><strong>GPU's:</strong></p>
-                                    <p>{{ node.GPUs }}</p>
+                                    <div><strong>GPU's:</strong></div>
+                                    <div>{{ node.GPUs }}</div>
                                 </div>
                                 <div class="col">
-                                    <p><strong>SSD:</strong></p>
-                                    <p>{{ node.SSD_GB }}</p>
+                                    <div><strong>SSD:</strong></div>
+                                    <div>{{ node.SSD_GB }}GB</div>
                                 </div>
                                 <div class="col">
-                                    <p><strong>No. of Containers:</strong></p>
-                                    <p>{{ node.numContainers }}</p>
+                                    <div><strong>No. of Containers:</strong></div>
+                                    <div>{{ node.numContainers }}</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 mt-2">
                             <div class="row">
                                 <div class="col-4 col-md-4 col-lg-4">
-                                    <p><strong>No. of Pipeline:</strong></p>
-                                    <p>{{ node.numPipelines }}</p>
+                                    <div><strong>No. of Pipeline:</strong></div>
+                                    <div>{{ node.numPipelines }}</div>
                                 </div>
-                                <div class="col-8 col-md-8 col-lg-8">
-                                    <p><strong>Tags:</strong></p>
+                                <div *ngIf="node.tags[0].split(',').length>3" class="col-8 col-md-8 col-lg-8">
+                                    <div class="mb-1"><strong>Tags:</strong></div>
+                                    <span class="label-badge"
+                                        *ngFor="let tag of node.tags[0].split(',').slice(0,3)">{{tag}}</span>
+                                    <span class="label-badge psedo_anchor_tag"
+                                        (click)="showall_tags(node.tags[0].split(','),node.name)">+{{node.tags[0].split(',').length-3}}</span>
+                                </div>
+                                <div *ngIf="node.tags[0].split(',').length<=3" class="col-8 col-md-8 col-lg-8">
+                                    <div class="mb-1"><strong>Tags:</strong></div>
                                     <span class="label-badge" *ngFor="let tag of node.tags[0].split(',')">{{tag}}</span>
                                 </div>
                             </div>
@@ -388,9 +398,271 @@
                     </div>
 
                     <div class="d-flex justify-content-center align-items-center cursor-pointer"
-                        (click)="view_node_details(node.id)">View</div>
+                        (click)="view_node_details(node.node_id)">View</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div *ngIf="!rootPage" class="pg-container px-5 h-100 w-100 d-flex flex-column mt-2">
+    <div class="col-md-12 d-flex justify-content-center align-items-top align-content-center my-3">
+        <div class="col-md-6 d-flex flex-column me-3">
+            <h6 class="fw-bold d-flex align-items-center" (click)="back_to_listing()"><i
+                    class="boschicon-bosch-ic-arrow-left pe-2"></i>
+                {{selectedNodeDetails.name}}</h6>
+            <div>
+                Paragraph text with style text M. Invidunt ut labore et dolore magna aliquy erat, sed diam voluptua. At
+                vero
+                eos et
+                accusam et jus to duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+                ipsum dolor sit
+                amet.
+            </div>
+        </div>
+        <div class="col-md-6 d-flex flex-column ms-3">
+            <h6 class="fw-bold d-flex align-items-center">Attributes</h6>
+            <div class="row gx-0 m-0 d-flex align-content-center align-items-center justify-content-between">
+                <div class="col-md-2 d-flex justify-content-between">
+                    <span>RAM</span><span>:</span><span class="font-weight-600">{{selectedNodeDetails.RAM_GB}}GB</span>
+                </div>
+                <div class="col-md-1 d-flex justify-content-center">|</div>
+                <div class="col-md-2 d-flex justify-content-between">
+                    <span>VCPU's</span><span>:</span><span
+                        class="font-weight-600">{{selectedNodeDetails.vCPUs}}GB</span>
+                </div>
+                <div class="col-md-1 d-flex justify-content-center">|</div>
+                <div class="col-md-3 d-flex justify-content-between"><span>Tags</span><span>:</span>
+                    <span *ngIf="selectedNodeDetails.tags[0].split(',').length>3"
+                        class="font-weight-600">{{selectedNodeDetails.tags[0].split(',').slice(0,
+                        3)}} ...<span class="psedo_anchor_tag text-decoration-underline"
+                            (click)="showall_tags(selectedNodeDetails.tags[0].split(','),selectedNodeDetails.name)">More</span></span>
+                    <span *ngIf="selectedNodeDetails.tags[0].split(',').length<=3"
+                        class="font-weight-600">{{selectedNodeDetails.tags[0]}}</span>
+                </div>
+                <div class="col-md-3 d-flex justify-content-between"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row gx-0 m-0 flex-grow-1 overflow-hidden">
+        <div class="row gx-0 m-0 h-100 w-100">
+            <div class="col-md-3 pe-3">
+                <div class="side-menu">
+                    <ul>
+                        <li class="sideBarMenu p-3 " [ngClass]="activeTab == 'Pipeline'?'activeClass':''"
+                            [class.active]="activeTab === 'Pipeline'" (click)="setActiveTab('Pipeline')">
+                            Pipeline Running on Node
+                        </li>
+                        <li class="sideBarMenu p-3" [ngClass]="activeTab == 'Container'?'activeClass':''"
+                            [class.active]="activeTab === 'Container'" (click)="setActiveTab('Container')">
+                            Pipiline Running Using Container
+
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-md-9 h-100 mt-3">
+                <!-- <app-child-module-extension [content]="contentData"></app-child-module-extension> -->
+                <div class="right-content h-100 overflow-hidden d-flex flex-column">
+                    <div class="col-12 gx-0 m-0 align-items-center bg-light-gray d-flex justify-content-between">
+                        <!-- Left Side: Text and Link -->
+                        <div class="d-flex align-items-center">
+                            <span class="me-2 ps-3">{{nodeDetailsSelectedSearchBarText}}</span>
+                            <span class="mx-2">|</span>
+                            <span class="ms-2 psedo_anchor_tag text-decoration-underline"
+                                (click)="view_all_list()">{{nodeDetailsSelectedSearchBarViewAllLinkText}}</span>
+                        </div>
+
+                        <!-- Right Side: Search Icon and Button -->
+                        <div class="d-flex align-items-center">
+                            <i class="boschicon-bosch-ic-search pe-3 fz-24px"></i>
+                            <app-button [class]="'primary justify-content-center'" [icon]="'bosch-ic-add'"
+                                (klick)="funcOpenCreateNewModal()"> {{nodeDetailsActiveTabCreateNewBtnText}}
+                            </app-button>
+                        </div>
+                    </div>
+                    <div class="row gx-0 m-0 flex-glow-1 scroll">
+                        <div class="col-lg-4 col-md-6 col-sm-12 pe-3 pb-3 mt-3" *ngFor="let item of contentData">
+                            <div class="card node-card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <h5 class="card-title mb-0 me-3" style="font-size: 1.5rem;">{{ item.name
+                                                }}</h5>
+                                            <span class="badge px-3 py-2 d-flex align-items-center"
+                                                [ngClass]="{'bg-success': item.status === 'Running', 'bg-secondary': item.status === 'Idle', 'bg-warning': item.status === 'Paused'}">
+                                                {{ item.status }}
+                                            </span>
+                                        </div>
+                                        <!-- Icons -->
+                                        <div class="d-flex">
+                                            <i class="boschicon-bosch-ic-edit ms-1" title="Edit"
+                                                (click)="edit_node(item.id)"></i>
+                                            <i class="boschicon-bosch-ic-download ms-1" title="Download"></i>
+                                            <i class="boschicon-bosch-ic-delete ms-1" title="Delete" tabindex="1"
+                                                (click)="deleteNode(item.id)"></i>
+                                            <i class="boschicon-bosch-ic-options ms-1" title="More options" tabindex="1"
+                                                (blur)="closePopup(item.id)" (click)="openPopup(item.id)"></i>
+                                            <ul *ngIf="setItem==item.id" class="settingDropdownCSS">
+                                                <div>
+                                                    <div class=" white-bg"></div>
+                                                    <li *ngFor="let singleItem of moreOptionDropdownList; index as i"
+                                                        (click)="functionCall(singleItem.name)"
+                                                        class="p-2 ps-3 d-flex align-items-center"
+                                                        [ngClass]="{ 'mt-2': i === 0 }" [title]="singleItem.name">
+                                                        <i *ngIf="singleItem.icon" [class]="singleItem.icon"></i>
+                                                        <span class="ps-2"> {{ singleItem.name }} </span>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row my-3 p-3 custom-border">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div><strong>ID:</strong></div>
+                                                    <div>{{ item.id }}</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div><strong>vCPU's:</strong></div>
+                                                    <div>{{ item.vcpus }}</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div><strong>RAM:</strong></div>
+                                                    <div>{{ item.ram }}GB</div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div><strong>GPU's:</strong></div>
+                                                    <div>{{ item.gpus }}</div>
+                                                </div>
+                                                <div class="col">
+                                                    <div><strong>SSD:</strong></div>
+                                                    <div>{{ item.ssd }}GB</div>
+                                                </div>
+                                                <div *ngIf="activeTab=='Container'" class="col-4 col-md-4 col-lg-4">
+                                                    <div><strong>No. of Pipeline:</strong></div>
+                                                    <div>{{ item.pipelines }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="activeTab=='Container'" class="col-12 mt-2">
+                                            <div class="row">
+                                                <div *ngIf="item.tags.length>3" class="col-12 col-md-12 col-lg-12">
+                                                    <div class="mb-1"><strong>Tags:</strong></div>
+                                                    <span class="label-badge"
+                                                        *ngFor="let tag of item.tags.slice(0,3)">{{tag}}</span>
+                                                    <span class="label-badge psedo_anchor_tag"
+                                                        (click)="showall_tags(item.tags,item.name)">+{{item.tags.length-3}}</span>
+                                                </div>
+                                                <div *ngIf="item.tags.length<=3" class="col-12 col-md-12 col-lg-12">
+                                                    <div class="mb-1"><strong>Tags:</strong></div>
+                                                    <span class="label-badge"
+                                                        *ngFor="let tag of item.tags">{{tag}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-2">
+                                            <div class="row gx-0 m-0">
+                                                <strong>Status</strong>{{ item.statusPercentage }}%
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-primary" role="progressbar"
+                                                        [style.width.%]="item.statusPercentage"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-center cursor-pointer"
+                                        (click)="view_node_details(item.id)">View</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-modal *ngIf="showAddEditNodePopup" [(view)]="showAddEditNodePopup" [header]="formLabel+' Node'"
+    [styles]="{ width: '60vw' }">
+    <div class="modal-body">
+        <form>
+            <div class="d-flex align-items-center mb-3 ps-1">
+                <div class="col">
+                    <h6 class="font-weight-600">{{subTitle}}</h6>
+                    <div>
+                        Paragraph text with style text M. Invidunt ut labore et dolore magna aliquy erat, sed diam
+                        voluptua.
+                        At vero eos et accusam et jus to duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                        takimata
+                        sanctus est Lorem ipsum dolar sit amet
+                    </div>
+                </div>
+            </div>
+            <div class="row gx-0 m-0">
+                <div class="col-8 mb-3 pe-3">
+                    <app-input [label]="'New Node Name'" [placeHolder]="'Enter New Node Name'"
+                        [(value)]="addEditNodeData.node_name"></app-input>
+
+                </div>
+                <div class="col-4 mb-3">
+                    <app-input [label]="'RAM'" [placeHolder]="'Enter RAM'" [(value)]="addEditNodeData.ram"></app-input>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="col-12 mb-3">
+                    <app-input [label]="'Tags'" [placeHolder]="'Enter Tags'"
+                        [(value)]="addEditNodeData.tags"></app-input>
+                </div>
+            </div>
+            <div class="row gx-0 mb-3">
+                <div class="col-4 mb-3 pe-3">
+                    <app-input [label]="'VCPU\'s'" [placeHolder]="'Enter VCPU\'s'"
+                        [(value)]="addEditNodeData.vcpus"></app-input>
+
+                </div>
+                <div class="col-4 mb-3 pe-3">
+                    <app-input [label]="'SSD\'s'" [placeHolder]="'Enter SSD\'s'"
+                        [(value)]="addEditNodeData.ssds"></app-input>
+                </div>
+                <div class="col-4 mb-3">
+                    <app-input [label]="'GPU\'s'" [placeHolder]="'Enter GPU\'s'"
+                        [(value)]="addEditNodeData.gpus"></app-input>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer d-flex justify-content-between">
+        <app-button [class]="'secondary justify-content-center'" [width]="'200px'" [fontSize]="'16px'"
+            (klick)="close_add_edit_node_popup()">
+            Cancel</app-button>
+        <app-button [class]="'primary justify-content-center'" [width]="'200px'" [fontSize]="'16px'"
+            (klick)="add_node_data()">
+            {{submitBtnLabel}} Node</app-button>
+    </div>
+</app-modal>
+
+<app-modal *ngIf="showAllTagsFlag" [(view)]="showAllTagsFlag" [header]="whoseTag" [styles]="{ width: '20vw' }">
+    <div class="modal-body overflow-auto fh">
+        <div class="row gx-0 m-0 flex-glow-1 scroll border-top-1 mb-3 ps-1">
+            <div class="col">
+                <h6 class="font-weight-600 my-3">All Tags</h6>
+                <span class="label-badge my-1" *ngFor="let tag of allTags">{{tag}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-end mt-3">
+        <app-button [class]="'secondary justify-content-center'" [width]="'100px'" [fontSize]="'16px'"
+            (klick)="close_showall_tags()">
+            Cancel</app-button>
+    </div>
+</app-modal>
