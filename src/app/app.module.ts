@@ -29,7 +29,7 @@ import { TextareaComponent } from './commonComponent/textarea/textarea.component
 import { FileUploadComponent } from './commonComponent/file-upload/file-upload.component';
 //import { ProjectsComponent } from './modules/projects/projects.component';
 import { SelectDropdownComponent } from './commonComponent/select-dropdown/select-dropdown.component';
-import { ToastBoxComponent } from './commonComponent/toast-box/toast-box.component'
+import { ToastBoxComponent } from './commonComponent/toast-box/toast-box.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,7 @@ import { ToastBoxComponent } from './commonComponent/toast-box/toast-box.compone
     TextareaComponent,
     FileUploadComponent,
     //ProjectsComponent
-    ToastBoxComponent
+    ToastBoxComponent,
   ],
   imports: [
     BrowserModule,

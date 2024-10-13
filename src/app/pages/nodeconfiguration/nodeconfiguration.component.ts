@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NodeConfigurationService } from "../../services/backend/node-configuration.service";
 import { MessageService } from "../../services/message.service";
 import { ToastService } from '../../services/toast.service';
+import { ModuleExtensionService } from '../../services/backend/module-extension.service';
 
 @Component({
   selector: 'app-nodeconfiguration',
@@ -11,6 +12,10 @@ import { ToastService } from '../../services/toast.service';
   encapsulation: ViewEncapsulation.None
 })
 export class NodeconfigurationComponent implements OnInit {
+  activeTab = 'Pipeline';
+  nodeDetailsSelectedSearchBarText = "Pipeline Running on Node";
+  nodeDetailsSelectedSearchBarViewAllLinkText = "View all Pipelines";
+  nodeDetailsActiveTabCreateNewBtnText = "Create New Pipeline";
   nodes: Array<any> = [];
 
   moreOptionDropdownList = [
@@ -27,11 +32,36 @@ export class NodeconfigurationComponent implements OnInit {
   ];
 
   setItem = '';
+  showAddEditNodePopup = false;
+  addEditNodeData = {
+    'node_id': '',
+    'node_name': '',
+    'ram': '',
+    'tags': '',
+    'vcpus': '',
+    'ssds': '',
+    'gpus': ''
+  }
 
+  formLabel = '';
+  submitBtnLabel = '';
+  subTitle = '';
+
+  updateFlag = false;
+  rootPage = true;
+  selectedNodeId = '';
+  selectedNodeDetails: any = {};
+  contentData = []
+  openCreateNewModal: boolean = false;
+  showAllTagsFlag: boolean = false;
+  allTags = [];
+  whoseTag = '';
   constructor(
     private nodeConfigurationService: NodeConfigurationService,
     private message: MessageService,
-    private toast: ToastService
+    private toast: ToastService,
+    private router: Router,
+    private moduleExtensionService: ModuleExtensionService
   ) {
   }
 
@@ -130,12 +160,30 @@ export class NodeconfigurationComponent implements OnInit {
     }*/
   }
 
-  create_node() {
-    alert("Open Create Node Popup")
+  async create_node() {
+    this.formLabel = 'Create New';
+    this.submitBtnLabel = 'Create';
+    this.subTitle = 'Enter details to create new node';
+    await this.close_add_edit_node_popup();
+    this.showAddEditNodePopup = true;
   }
 
   view_node_details(nodeId) {
-    alert(nodeId + " view details clicked")
+    //console.log("159", nodeId)
+    //this.router.navigate(['/nodedetails/' + nodeId])
+    this.selectedNodeId = nodeId;
+    this.rootPage = false;
+
+    this.selectedNodeDetails = this.nodes.find(n => n.node_id == nodeId);
+    this.setActiveTab(this.activeTab);
+
+    console.log("node details", this.selectedNodeDetails)
+  }
+
+  back_to_listing() {
+    this.selectedNodeId = '';
+    this.rootPage = true;
+    this.selectedNodeDetails = {};
   }
 
   functionCall(name) {
@@ -181,5 +229,186 @@ export class NodeconfigurationComponent implements OnInit {
       });
     }
     await this.node_list();
+  }
+
+  async close_add_edit_node_popup() {
+    Object.keys(this.addEditNodeData).forEach(key => {
+      this.addEditNodeData[key] = '';  // Set value to blank
+    });
+    this.showAddEditNodePopup = false;
+    this.updateFlag = false;
+  }
+
+  async add_node_data() {
+    let response;
+    if (this.updateFlag === true) {
+      response = await this.nodeConfigurationService.updatenode({
+        "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
+        "node_id": this.addEditNodeData.node_id,
+        "name": this.addEditNodeData.node_name,
+        "vCPUs": parseInt(this.addEditNodeData.vcpus),
+        "RAM_GB": parseInt(this.addEditNodeData.ram),
+        "GPUs": parseInt(this.addEditNodeData.gpus),
+        "SSD_GB": parseInt(this.addEditNodeData.ssds),
+        "tags": [this.addEditNodeData.tags]
+      });
+
+      if (response && response.status == "success") {
+        this.toast.createToast({
+          type: "success",
+          message: "Node updated successfully!!",
+        });
+      }
+    } else {
+      response = await this.nodeConfigurationService.createnodes({
+        "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
+        "name": this.addEditNodeData.node_name,
+        "vCPUs": parseInt(this.addEditNodeData.vcpus),
+        "RAM_GB": parseInt(this.addEditNodeData.ram),
+        "GPUs": parseInt(this.addEditNodeData.gpus),
+        "SSD_GB": parseInt(this.addEditNodeData.ssds),
+        "numContainers": 0,
+        "numPipelines": 1,
+        "tags": [this.addEditNodeData.tags],
+        "status": "Offline"
+      });
+
+      if (response && response.status == "success") {
+        this.toast.createToast({
+          type: "success",
+          message: "Node created successfully!!",
+        });
+      }
+    }
+
+    await this.close_add_edit_node_popup();
+    await this.node_list();
+  }
+  async edit_node(nodeId) {
+    this.updateFlag = true;
+    this.formLabel = 'Update';
+    this.submitBtnLabel = 'Update';
+    this.subTitle = 'Modify details to update node';
+    let response = await this.nodeConfigurationService.getnodes({
+      "node_id": nodeId
+    });
+
+    if (response && response.status == "success") {
+      this.addEditNodeData = {
+        "node_id": response.data[0].node_id,
+        "node_name": response.data[0].name,
+        "vcpus": response.data[0].vCPUs,
+        "ram": response.data[0].RAM_GB,
+        "gpus": response.data[0].GPUs,
+        "ssds": response.data[0].SSD_GB,
+        "tags": response.data[0].tags[0]
+      }
+      this.showAddEditNodePopup = true;
+    }
+
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+    this.ListAvailableCustomComponents(tab)
+  }
+
+  async ListAvailableCustomComponents(asset_type) {
+    if (asset_type == "Pipeline") {
+      this.nodeDetailsSelectedSearchBarText = "Pipeline Running on Node";
+      this.nodeDetailsSelectedSearchBarViewAllLinkText = "View all Pipelines";
+      this.nodeDetailsActiveTabCreateNewBtnText = "Create New Pipeline";
+
+      this.contentData = [
+        {
+          id: '0001',
+          name: 'Pipeline 1',
+          vcpus: 24,
+          ram: '96',
+          gpus: '0001',
+          ssd: '512',
+          pipelines: 0,
+          tags: ['Tag 1', 'Tag 2', 'Tag 3'],
+          status: 'Paused',
+          statusPercentage: 52,
+          statusClass: 'warning',
+        },
+        {
+          id: '0002',
+          name: 'Pipeline 2',
+          vcpus: 32,
+          ram: '128',
+          gpus: '0001',
+          ssd: '1024',
+          pipelines: 0,
+          tags: ['Tag 1', 'Tag 2', 'Tag 3'],
+          status: 'Running',
+          statusPercentage: 0,
+          statusClass: 'success',
+        }
+      ]
+    } else {
+      this.nodeDetailsSelectedSearchBarText = "Pipeline Running Using Container";
+      this.nodeDetailsSelectedSearchBarViewAllLinkText = "View all Containers";
+      this.nodeDetailsActiveTabCreateNewBtnText = "Create New Container";
+
+      this.contentData = [
+        {
+          id: '0001',
+          name: 'Container 3',
+          vcpus: 24,
+          ram: '48',
+          gpus: '0001',
+          ssd: '256',
+          pipelines: 0,
+          tags: [
+            'Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9', 'Tag 10',
+            'Tag 11', 'Tag 12', 'Tag 13', 'Tag 14', 'Tag 15', 'Tag 16', 'Tag 17', 'Tag 18', 'Tag 19', 'Tag 20',
+            'Tag 21', 'Tag 22', 'Tag 23', 'Tag 24', 'Tag 25', 'Tag 26', 'Tag 27', 'Tag 28', 'Tag 29', 'Tag 30',
+            'Tag 31', 'Tag 32', 'Tag 33', 'Tag 34', 'Tag 35', 'Tag 36', 'Tag 37', 'Tag 38', 'Tag 39', 'Tag 40',
+            'Tag 41', 'Tag 42', 'Tag 43', 'Tag 44', 'Tag 45', 'Tag 46', 'Tag 47', 'Tag 48', 'Tag 49', 'Tag 50',
+            'Tag 51', 'Tag 52', 'Tag 53', 'Tag 54', 'Tag 55', 'Tag 56', 'Tag 57', 'Tag 58', 'Tag 59', 'Tag 60',
+            'Tag 61', 'Tag 62', 'Tag 63', 'Tag 64', 'Tag 65', 'Tag 66', 'Tag 67', 'Tag 68', 'Tag 69', 'Tag 70',
+            'Tag 71', 'Tag 72', 'Tag 73', 'Tag 74', 'Tag 75', 'Tag 76', 'Tag 77', 'Tag 78', 'Tag 79', 'Tag 80',
+            'Tag 81', 'Tag 82', 'Tag 83', 'Tag 84', 'Tag 85', 'Tag 86', 'Tag 87', 'Tag 88', 'Tag 89', 'Tag 90',
+            'Tag 91', 'Tag 92', 'Tag 93', 'Tag 94', 'Tag 95', 'Tag 96', 'Tag 97', 'Tag 98', 'Tag 99', 'Tag 100'
+          ],
+          status: 'Paused',
+          statusPercentage: 64,
+          statusClass: 'warning',
+        },
+        {
+          id: '0004',
+          name: 'Container 4',
+          vcpus: 48,
+          ram: '256',
+          gpus: '0002',
+          ssd: '2048',
+          pipelines: 0,
+          tags: ['Tag 1', 'Tag 2', 'Tag 3'],
+          status: 'Running',
+          statusPercentage: 10,
+          statusClass: 'success',
+        }
+      ]
+    }
+  }
+
+  funcOpenCreateNewModal() {
+    this.openCreateNewModal = true
+  }
+
+  showall_tags(tags, name) {
+    this.showAllTagsFlag = true;
+    this.allTags = tags;
+    this.whoseTag = name;
+  }
+  close_showall_tags() {
+    this.showAllTagsFlag = false;
+    this.allTags = [];
+    this.whoseTag = '';
+  }
+  view_all_list() {
+
   }
 }

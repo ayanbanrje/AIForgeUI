@@ -111,7 +111,7 @@ i:hover {
 }
 
 .custom-bg-btn {
-    background-color: #0d6efd;
+    background-color: $primary-blue;
 }
 
 .settingDropdownCSS {
@@ -161,4 +161,49 @@ i:hover {
     .iconeSize {
         color: white;
     }
+}
+
+.sideBarMenu {
+    cursor: pointer;
+}
+
+.sideBarMenu:hover {
+    background-color: #0083C4;
+    color: white
+}
+
+.activeClass {
+    color: #0083C4;
+    border: 2px solid $primary-blue;
+    background-color: #007BC01A;
+}
+
+.descriptionText {
+    display: -webkit-box;
+    /* Enable the flexbox model */
+    -webkit-box-orient: vertical;
+    /* Set the box orientation to vertical */
+    -webkit-line-clamp: 3;
+    /* Limit to 3 lines */
+    overflow: hidden;
+    /* Hide overflow content */
+    text-overflow: ellipsis;
+    /* Add ellipsis (...) for overflow */
+    line-height: 1.2;
+    /* Set line height for proper spacing */
+    min-height: 3.6em;
+    /* Set max height (3 lines x line height) */
+    margin: 0;
+}
+
+.progress {
+    height: auto !important;
+}
+
+.progress-bar {
+    height: 6px;
+}
+
+.fh {
+    max-height: 290px;
 }
