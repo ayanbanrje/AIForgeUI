@@ -3,10 +3,10 @@
   <app-message-box></app-message-box>
   <app-toast-box></app-toast-box>
   <ng-container *ngIf="router.url !== '/login' && router.url !== '/'">
-    <div class="header" style="height: 100px;">
+    <div class="header" >
       <app-header></app-header>
     </div>
-    <div class="pageContainer">
+    <div class="pageContainer mt-3">
       <div class="h-100 w-100 ">
         <router-outlet></router-outlet>
       </div>
