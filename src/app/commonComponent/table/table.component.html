@@ -1,0 +1,19 @@
+<table class="table">
+    <thead class="table-light">
+        <tr>
+            <th scope="col" class="py-3 text-nowrap" *ngFor="let header of headers">{{ header }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of rows">
+            <td *ngFor="let header of headers">
+                <ng-container *ngIf="header === 'Tags'">
+                    <span *ngFor="let tag of row[header]" class="tag-class">{{ tag }}</span>
+                </ng-container>
+                <ng-container *ngIf="header !== 'Tags'">
+                    {{ row[header] }}
+                </ng-container>
+            </td>
+        </tr>
+    </tbody>
+</table>
