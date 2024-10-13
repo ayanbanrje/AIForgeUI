@@ -278,7 +278,7 @@ export class CreateprojectComponent {
 
       this.selectedItemAdditionalProperties = selecteItemProperties
     }
-    //this.addNodeToDrawFlow(data, clientX, clientY);
+    this.addNodeToDrawFlow(data, clientX, clientY);
   }
 
   addNodeToDrawFlow(data: any, pos_x: any, pos_y: any) {
