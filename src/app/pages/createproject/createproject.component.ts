@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from "../../services/message.service";
+import { ModuleExtensionService } from "../../services/backend/module-extension.service";
 
 import Drawflow from 'drawflow'
 
@@ -24,12 +25,14 @@ export class CreateprojectComponent {
   selectedItemAdditionalProperties = {};
   additionalPropertiesValueByUser: {};
   activeNodeDataDetails = {};
+  rightPanelClass = '';
 
 
 
   constructor(
     private router: Router,
-    private message: MessageService
+    private message: MessageService,
+    private moduleExtensionService : ModuleExtensionService
   ) { }
 
   backToProjectList() {
@@ -90,63 +93,14 @@ export class CreateprojectComponent {
     nodeElement.setAttribute('data-dblclick-listener', 'true'); // Setting attribute to check not to bind multiple dbclick event
   }
 
-  setDefaultValues(){
+  async setDefaultValues(){
     this.components = {
-      "Source": [
-        {
-          id: '1',
-          name: "Source 1"
-        },
-        {
-          id: '2',
-          name: "Source 2"
-        },
-        {
-          id: '3',
-          name: "Source 3"
-        },
-        {
-          id: '4',
-          name: "Source 4"
-        }
-      ],
-      "Algo": [
-        {
-          id: '5',
-          name: "Algo 1"
-        },
-        {
-          id: '6',
-          name: "Algo 2"
-        },
-        {
-          id: '7',
-          name: "Algo 3"
-        },
-        {
-          id: '7',
-          name: "Algo 4"
-        }
-      ],
-      "Sink": [
-        {
-          id: '9',
-          name: "Sink 1"
-        },
-        {
-          id: '10',
-          name: "Sink 2"
-        },
-        {
-          id: '11',
-          name: "Sink 3"
-        },
-        {
-          id: '12',
-          name: "Sink 4"
-        }
-      ]
+      "source": await this.getComponents('source'),
+      "algo": await this.getComponents('algo'),
+      "sink": await this.getComponents('sink')
     }
+
+    console.log(this.components)
 
     this.dropdownList = [
       { item_id: 1, item_text: 'Mumbai' },
@@ -161,7 +115,7 @@ export class CreateprojectComponent {
     ];
 
     this.DBadditionalProperties = {
-      Algo: {
+      algo: {
         name: { type: "string" },
         age: { type: "int" },
         company: { type: "int" }
@@ -171,7 +125,7 @@ export class CreateprojectComponent {
       //   email: { type: "string" }
       // },
 
-      Source: {
+      source: {
         city: { type: "dropdown", options: ['ban', 'pun', 'mum'] , multiple: false },
         country: { type: "dropdown", options: ['india', 'Germany', 'United Kingdom'] , multiple: false },
         email: { type: "string" }
@@ -190,12 +144,16 @@ export class CreateprojectComponent {
               "data": {
                 "name": "Source 1",
                 "id": "1",
-                "type": "Source",
+                "type": "source",
                 "additionalProperties": {
-                  "email": "fffffffffffffffff",
+                  "email": "abcd@democompany.com",
                   "city": {
                     "item_id": "ban",
                     "item_text": "Ban"
+                  },
+                  "country": {
+                    "item_id": "india",
+                    "item_text": "india"
                   }
                 }
               },
@@ -226,11 +184,11 @@ export class CreateprojectComponent {
               "data": {
                 "name": "Algo 2",
                 "id": "6",
-                "type": "Algo",
+                "type": "algo",
                 "additionalProperties": {
-                  "company": "TCS",
-                  "name": "Shreyasee",
-                  "age": "35"
+                  "company": "Demo Company",
+                  "name": "Mr. XYZ",
+                  "age": "22"
                 }
               },
               "class": "drawflow-node-rect",
@@ -260,40 +218,32 @@ export class CreateprojectComponent {
     });
 
     Object.keys(this.editor.drawflow.drawflow[this.editor.module].data).forEach((nodeId) => {
+      if(this.editor.drawflow.drawflow[this.editor.module].data[nodeId]['data']['type']=='source'){
+        this.sourceExist = true;
+      }
       this.attachDoubleClickEvent(nodeId)
     });
   }
 
-  addNodes() {
-    // // Add a "Start" node
-    // const startNode = this.editor.addNode('start', 0, 1, 50, 50, 'start', {}, 'Start');
+  getComponents(type:string) {
+    return new Promise(async resolve=>{
+      let data = await this.moduleExtensionService.ListAvailableCustomComponents({
+        user_id:"54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
+        asset_type:type,
+        // startIndex:0,
+        // numberOfItems:5
+      });
 
-    // // Add a "Process" node
-    // const processNode = this.editor.addNode('process', 1, 1, 250, 50, 'process', {}, 'Process');
+      let resData = [];
 
-    // // Add an "End" node
-    // const endNode = this.editor.addNode('end', 1, 0, 450, 50, 'end', {}, 'End');
+      console.log("data:",data)
+      if(data['status']=='success'){
+        resData = data['data']
+      }
 
-
-    // const rectNodeHTML = `<div class="drawflow-node-rect">Rectangular Node</div>`;
-    // this.editor.addNode('rectangular', 1, 1, 100, 100, 'drawflow-node-rect', {}, rectNodeHTML);
-
-    // // Example: Adding a circular node
-    // const circleNodeHTML = `<div class="drawflow-node-circle">Circle Node</div>`;
-    // this.editor.addNode('circle', 1, 1, 300, 100, 'drawflow-node-circle', {}, circleNodeHTML);
-
-    // // // Example: Adding a rhombus node
-    // const rhombusNodeHTML = `<div class="">R</div>`;
-    // this.editor.addNode('rhombus', 1, 1, 600, 100, 'diamond', {}, rhombusNodeHTML);
-
-    // // // Example: Adding a pentagon node
-    // const pentagonNodeHTML = `<div class="">Hexagon Node</div>`;
-    // this.editor.addNode('pentagon', 1, 1, 900, 100, 'hexagon', {}, pentagonNodeHTML);
-
-
-    // Connect the nodes
-    // this.editor.addConnection(startNode, processNode, 'output_1', 'input_1');
-    // this.editor.addConnection(processNode, endNode, 'output_1', 'input_1');
+      resolve(resData)
+    })
+    
   }
 
   allowDrop(event) {
@@ -340,8 +290,10 @@ export class CreateprojectComponent {
   }
 
   checkAdditionalProperties(data, clientX=null, clientY=null, edit=false){
+    
     if(this.DBadditionalProperties[data['type']] && Object.keys(this.DBadditionalProperties[data['type']]).length > 0 ){
-      this.showModal = true;
+      //this.showModal = true;
+      this.rightPanelClass = 'show';
       let typeString = ['int','number','string']
       
       let selecteItemProperties = this.DBadditionalProperties[data['type']];
@@ -388,7 +340,9 @@ export class CreateprojectComponent {
 
   addNodeToDrawFlow(data: any, pos_x: any, pos_y: any) {
     const editor = this.editor;
-    if (editor.editor_mode === 'fixed' || (this.sourceExist && data.type == 'Source')) {
+    this.activeNodeDataDetails = {};
+    if (editor.editor_mode === 'fixed' || (this.sourceExist && data.type == 'source')) {
+      this.rightPanelClass = "";
       return false;
     }
 
@@ -397,20 +351,20 @@ export class CreateprojectComponent {
     pos_y = pos_y * (editor.precanvas.clientHeight / (editor.precanvas.clientHeight * editor.zoom)) - (editor.precanvas.getBoundingClientRect().y * (editor.precanvas.clientHeight / (editor.precanvas.clientHeight * editor.zoom)));
 
     let nodeClass = 'drawflow-node-rect';
-    if (data.type == 'Algo') {
+    if (data.type == 'algo') {
       nodeClass = nodeClass;
     }
 
-    if (data.type == 'Sink') {
+    if (data.type == 'sink') {
       nodeClass = 'hexagon';
     }
 
-    if (data.type == 'Source') {
+    if (data.type == 'source') {
       nodeClass = 'diamond';
       this.sourceExist = true;
     }
 
-    if (data.type == 'Accumulator') {
+    if (data.type == 'accumulator') {
       nodeClass = 'drawflow-node-circle';
     }
 
@@ -418,7 +372,6 @@ export class CreateprojectComponent {
         <p>${data.name}</p>
       </div>`;
     
-    this.activeNodeDataDetails = {};
     this.activeNodeDataDetails['id'] = this.editor.addNode(data.name, 1, 1, pos_x, pos_y, nodeClass, data, rectNodeHTML);
 
 
@@ -468,6 +421,7 @@ export class CreateprojectComponent {
     console.log(this.editor.export())
 
     this.showModal = false;
+    this.rightPanelClass = '';
   }
 
   updateProperties(nodeID) {
@@ -483,6 +437,15 @@ export class CreateprojectComponent {
 
     this.checkAdditionalProperties(nodeData['data'],null,null,true)
     //this.showModal = true;
+    //this.openPanel();
     
   }
+
+  // openPanel() {
+  //   document.getElementById('rightPanel').classList.add('show');
+  // }
+  
+  // closePanel() {
+  //   document.getElementById('rightPanel').classList.remove('show');
+  // }
 }
