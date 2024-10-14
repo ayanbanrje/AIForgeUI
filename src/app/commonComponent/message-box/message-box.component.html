@@ -1,4 +1,4 @@
-<div class="modal-em-container" *ngIf="message.show">
+<div class="modal-em-container" *ngIf="message.show" style="z-index: 9999;">
     <div class="modal-em-content">
         <header class="mb-3">{{message.header}} <i class="boschicon-bosch-ic-close" (click)="close()"></i></header>
         <div class="view-content" [innerHTML]="message.message"></div>

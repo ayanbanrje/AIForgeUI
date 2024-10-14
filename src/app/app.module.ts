@@ -30,6 +30,9 @@ import { FileUploadComponent } from './commonComponent/file-upload/file-upload.c
 //import { ProjectsComponent } from './modules/projects/projects.component';
 import { SelectDropdownComponent } from './commonComponent/select-dropdown/select-dropdown.component';
 import { ToastBoxComponent } from './commonComponent/toast-box/toast-box.component';
+import { SearchComponent } from './commonComponent/search/search.component';
+import { TableComponent } from './commonComponent/table/table.component';
+import { PaginationComponent } from './commonComponent/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,9 @@ import { ToastBoxComponent } from './commonComponent/toast-box/toast-box.compone
     FileUploadComponent,
     //ProjectsComponent
     ToastBoxComponent,
+    SearchComponent,
+    TableComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

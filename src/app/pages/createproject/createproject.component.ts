@@ -20,8 +20,11 @@ export class CreateprojectComponent {
   showModal = false;
   dropdownList = [];
   selectedItems = [];
-  additionalProperties = {}
+  DBadditionalProperties = {}
   selectedItemAdditionalProperties = {};
+  additionalPropertiesValueByUser: {};
+  activeNodeDataDetails = {};
+
 
 
   constructor(
@@ -64,24 +67,27 @@ export class CreateprojectComponent {
   ngAfterViewInit() {
     // Start the editor and add nodes after the view has been initialized
     this.editor.start();
-    let exportvalue = this.editor.export();
-    this.editor.import(exportvalue);
+    this.importDrawFlow();
     this.editor.on('nodeCreated', (id) => {
+      console.log("Created!!")
       this.showAdditionalProperties(id);
-      const nodeElement = document.querySelector(`#node-${id}`) as HTMLElement;
+      this.attachDoubleClickEvent(id)
+    })
+  }
+
+  attachDoubleClickEvent(id){
+    const nodeElement = document.querySelector(`#node-${id}`) as HTMLElement;
       if (nodeElement) {
         const existingListener = nodeElement.getAttribute('data-dblclick-listener');
         if (!existingListener) { // checking if dbclick event already attached
           nodeElement.addEventListener('dblclick', (event) => { //attach double click event
             event.preventDefault();
             event.stopPropagation();
-            this.handleNodeClick(id);
+            this.updateProperties(id);
           });
         }
       }
-      nodeElement.setAttribute('data-dblclick-listener', 'true'); // Setting attribute to check not to bind multiple dbclick event
-    })
-    //this.addNodes();
+    nodeElement.setAttribute('data-dblclick-listener', 'true'); // Setting attribute to check not to bind multiple dbclick event
   }
 
   setDefaultValues(){
@@ -154,22 +160,108 @@ export class CreateprojectComponent {
       //{ item_id: 4, item_text: 'Navsari' }
     ];
 
-    this.additionalProperties = {
+    this.DBadditionalProperties = {
       Algo: {
         name: { type: "string" },
         age: { type: "int" },
         company: { type: "int" }
       },
-      Sink: {
-        address: { type: "string" },
-        email: { type: "string" }
-      },
+      // Sink: {
+      //   address: { type: "string" },
+      //   email: { type: "string" }
+      // },
 
       Source: {
-        city: { type: "dropdown", options: ['ban', 'pun', 'mum'] , multiple: true },
+        city: { type: "dropdown", options: ['ban', 'pun', 'mum'] , multiple: false },
+        country: { type: "dropdown", options: ['india', 'Germany', 'United Kingdom'] , multiple: false },
         email: { type: "string" }
       }
     }
+  }
+
+  importDrawFlow(){
+    this.editor.import({
+      "drawflow": {
+        "Home": {
+          "data": {
+            "1": {
+              "id": 1,
+              "name": "Source 1",
+              "data": {
+                "name": "Source 1",
+                "id": "1",
+                "type": "Source",
+                "additionalProperties": {
+                  "email": "fffffffffffffffff",
+                  "city": {
+                    "item_id": "ban",
+                    "item_text": "Ban"
+                  }
+                }
+              },
+              "class": "diamond",
+              "html": "<div class=\"custom-node\">\n        <p>Source 1</p>\n      </div>",
+              "typenode": false,
+              "inputs": {
+                "input_1": {
+                  "connections": []
+                }
+              },
+              "outputs": {
+                "output_1": {
+                  "connections": [
+                    {
+                      "node": "2",
+                      "output": "input_1"
+                    }
+                  ]
+                }
+              },
+              "pos_x": 120,
+              "pos_y": 7
+            },
+            "2": {
+              "id": 2,
+              "name": "Algo 2",
+              "data": {
+                "name": "Algo 2",
+                "id": "6",
+                "type": "Algo",
+                "additionalProperties": {
+                  "company": "TCS",
+                  "name": "Shreyasee",
+                  "age": "35"
+                }
+              },
+              "class": "drawflow-node-rect",
+              "html": "<div class=\"custom-node\">\n        <p>Algo 2</p>\n      </div>",
+              "typenode": false,
+              "inputs": {
+                "input_1": {
+                  "connections": [
+                    {
+                      "node": "1",
+                      "input": "output_1"
+                    }
+                  ]
+                }
+              },
+              "outputs": {
+                "output_1": {
+                  "connections": []
+                }
+              },
+              "pos_x": 705,
+              "pos_y": 169.35000610351562
+            }
+          }
+        }
+      }
+    });
+
+    Object.keys(this.editor.drawflow.drawflow[this.editor.module].data).forEach((nodeId) => {
+      this.attachDoubleClickEvent(nodeId)
+    });
   }
 
   addNodes() {
@@ -247,16 +339,20 @@ export class CreateprojectComponent {
     }
   }
 
-  checkAdditionalProperties(data, clientX, clientY){
-    if(this.additionalProperties[data['type']] && Object.keys(this.additionalProperties[data['type']]).length > 0 ){
+  checkAdditionalProperties(data, clientX=null, clientY=null, edit=false){
+    if(this.DBadditionalProperties[data['type']] && Object.keys(this.DBadditionalProperties[data['type']]).length > 0 ){
       this.showModal = true;
       let typeString = ['int','number','string']
       
-      let selecteItemProperties = this.additionalProperties[data['type']];
+      let selecteItemProperties = this.DBadditionalProperties[data['type']];
 
       for(let key of Object.keys(selecteItemProperties)){
+
+        let keyToUseToStoreValue = key.replace(/[^a-zA-Z0-9]/g, '_');
+
         selecteItemProperties[key]['actuelType'] = selecteItemProperties[key]['type'];
         selecteItemProperties[key]['placeHolder'] =  key.charAt(0).toUpperCase() + key.slice(1)
+        selecteItemProperties[key]['keyToUseToStoreValue'] =  keyToUseToStoreValue
 
         if(typeString.indexOf(selecteItemProperties[key]['type']) >= 0){ // convert int,string,number as input box
           selecteItemProperties[key]['type'] = 'string';
@@ -270,19 +366,27 @@ export class CreateprojectComponent {
           })
         }
 
+        if(!edit){
+          this.additionalPropertiesValueByUser = {
+            [keyToUseToStoreValue] : ''
+          }
+        }
+
         /*
          city: { type: "dropdown", options: ['ban', 'pun', 'mum'], multiselect: 'yes' },
         email: { type: "string" }
         */
       }
 
-      this.selectedItemAdditionalProperties = selecteItemProperties
+      this.selectedItemAdditionalProperties = Object.assign({},selecteItemProperties)
     }
-    //this.addNodeToDrawFlow(data, clientX, clientY);
+
+    if(clientX && clientY){
+      this.addNodeToDrawFlow(data, clientX, clientY);
+    }
   }
 
   addNodeToDrawFlow(data: any, pos_x: any, pos_y: any) {
-    console.log("name:", data)
     const editor = this.editor;
     if (editor.editor_mode === 'fixed' || (this.sourceExist && data.type == 'Source')) {
       return false;
@@ -313,7 +417,9 @@ export class CreateprojectComponent {
     const rectNodeHTML = `<div class="custom-node">
         <p>${data.name}</p>
       </div>`;
-    const nodeID = this.editor.addNode(data.name, 1, 1, pos_x, pos_y, nodeClass, data, rectNodeHTML);
+    
+    this.activeNodeDataDetails = {};
+    this.activeNodeDataDetails['id'] = this.editor.addNode(data.name, 1, 1, pos_x, pos_y, nodeClass, data, rectNodeHTML);
 
 
     return 0;
@@ -343,18 +449,40 @@ export class CreateprojectComponent {
     console.log("Canvus details: ", this.editor.export())
   }
 
-  handleNodeClick(nodeID) {
-    console.log("Node ID: ", nodeID)
-    console.log("Node Details on double click: ", this.editor.drawflow.drawflow.Home.data[nodeID])
-  }
-
   showAdditionalProperties(nodeID) {
     let nodeDetails = this.editor.drawflow.drawflow.Home.data[nodeID];
-
-    console.log("On create details:", nodeDetails.data)
   }
 
-  itemSelcted(item:any){
-    console.log("Items::",item)
+  runPipeline(){}
+
+  storeAdditionalProperty(value:any,key){
+    this.additionalPropertiesValueByUser[key] = value;
+  }
+
+  setPropertyValueToNode(){
+    let nodeData = this.editor.getNodeFromId(this.activeNodeDataDetails['id']);
+
+    nodeData['data']['additionalProperties'] = this.additionalPropertiesValueByUser
+    this.editor.updateNodeDataFromId(this.activeNodeDataDetails['id'], nodeData['data']);
+
+    console.log(this.editor.export())
+
+    this.showModal = false;
+  }
+
+  updateProperties(nodeID) {
+
+    this.activeNodeDataDetails['id'] = nodeID;
+    let nodeData = this.editor.getNodeFromId(this.activeNodeDataDetails['id']);
+
+    this.additionalPropertiesValueByUser = Object.assign({});
+    for(let key in nodeData['data']['additionalProperties']){
+      this.activeNodeDataDetails[key] = nodeData['data']['additionalProperties'][key];
+      this.storeAdditionalProperty(nodeData['data']['additionalProperties'][key],key)
+    }
+
+    this.checkAdditionalProperties(nodeData['data'],null,null,true)
+    //this.showModal = true;
+    
   }
 }

@@ -1,0 +1,30 @@
+// @import ("");
+.input-group {
+    min-width: 400px;
+    background-color: #DFDFE0;
+    border-bottom:1px solid #e2e2e2
+    // margin: auto;
+  }
+  input{
+    background-color: #DFDFE0
+  }
+ /* Remove the blue border on focus */
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+  background-color: #DEDFE0;
+}
+
+  button{
+    border: none !important;
+  }
+  
+  .form-control {
+    border-right: none;
+  }
+  
+  .btn-outline-secondary {
+    border-left: none;
+  }
+  
