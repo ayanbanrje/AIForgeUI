@@ -7,15 +7,17 @@ import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core
   styleUrls: ['./file-upload.component.scss']
 })
 export class FileUploadComponent {
-  @Input() fileName: string = '';
-  @Output() fileNameChange = new EventEmitter<string>();
+  @Input() fileName={};
+  @Output() fileNameChange = new EventEmitter<object>();
+
 
   @ViewChild('fileInput') fileInput: any;
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
+    console.log("file",file)
     if (file) {
-      this.fileName = file.name; // Update fileName locally
+      this.fileName = file; // Update fileName locally
       this.fileNameChange.emit(this.fileName); // Emit the new file name to the parent
     }
   }

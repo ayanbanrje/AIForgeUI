@@ -33,6 +33,7 @@ import { ToastBoxComponent } from './commonComponent/toast-box/toast-box.compone
 import { SearchComponent } from './commonComponent/search/search.component';
 import { TableComponent } from './commonComponent/table/table.component';
 import { PaginationComponent } from './commonComponent/pagination/pagination.component';
+import { TagComponent } from './commonComponent/tag/tag.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { PaginationComponent } from './commonComponent/pagination/pagination.com
     SearchComponent,
     TableComponent,
     PaginationComponent,
+    TagComponent,
   ],
   imports: [
     BrowserModule,

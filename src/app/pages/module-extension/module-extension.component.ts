@@ -112,14 +112,14 @@ export class ModuleExtensionComponent implements OnInit {
       numberOfItems: 5
     }
 
-    // this.contentData = await this.moduleExtensionService.ListAvailableCustomComponents(params)
+    this.contentData = await this.moduleExtensionService.ListAvailableCustomComponents(params)
     console.log("this.contentData->>>>>>>>>", this.contentData)
   }
   async SaveModal() {
     console.log("items", this.createCustom)
     let body = {
       "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
-      "asset_name": "Hello 2",
+      "asset_name": "Hello 3",
       "asset_type": "source",
       "description": "Test asset hello description",
       "parent_asset_name": "A",

@@ -11,6 +11,7 @@ export class TextareaComponent {
   @Input() placeHolder = "";
   @Input() type = "text";
   @Input() disabled = false;
+  @Input() required = false;
 
 
   @Output() valueChange = new EventEmitter();
