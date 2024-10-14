@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ToastService } from '../../services/toast.service';
+import { DatasetsService } from '../../services/backend/datasets.service';
 @Component({
   selector: 'app-datasets',
   templateUrl: './datasets.component.html',
   styleUrl: './datasets.component.scss'
 })
-export class DatasetsComponent implements OnInit{
+export class DatasetsComponent implements OnInit {
   datasets = [
     {
       'DataSet Name': 'Data Input',
@@ -55,7 +56,18 @@ export class DatasetsComponent implements OnInit{
   itemsPerPage: number = 3; // Adjust based on how many items you want per page
   currentPage: number = 1;
   paginatedDatasets: any[] = [];
+  openAddNewDatasetsModal: boolean = false
 
+  addNewDatasets = {
+    name: '',
+    description: '',
+    file_name: {},
+    tags:[]
+  }
+
+  constructor(public toast : ToastService,public datasetsService:DatasetsService){
+
+  }
   ngOnInit(): void {
     this.updatePaginatedData();
   }
@@ -76,4 +88,40 @@ export class DatasetsComponent implements OnInit{
 
   }
 
+  funcOpenAddNewDatasetsModal() {
+    this.openAddNewDatasetsModal = true
+  }
+  FuncCloseAddNewDatasetsModal() {
+    this.openAddNewDatasetsModal = false
+  }
+  SaveModal() {
+    if (!this.validateFields()) return;
+  
+    console.log("Form data is valid:", this.addNewDatasets);
+    // const result=this.datasetsService.createNewDataSets(this.addNewDatasets)
+
+  
+  }
+  
+  validateFields(): boolean {
+    const { name, description, file_name, tags } = this.addNewDatasets;
+  
+    if (!name) return this.showToastError("Please enter the name");
+    if (!description) return this.showToastError("Please enter the description");
+    if (!tags || tags.length === 0) return this.showToastError("Please add at least one tag");
+    if (!file_name || !file_name['name']) return this.showToastError("Please upload the file");
+    if (file_name['name'] && file_name['type'] !== 'application/x-zip-compressed') {
+      return this.showToastError("Please upload the zip file");
+    }
+  
+    return true; 
+  }
+  
+  showToastError(message: string): boolean {
+    this.toast.createToast({ type: "error", message });
+    return false;
+  }
+  
+  
+  
 }

@@ -1,5 +1,7 @@
 <div class="textarea-container">
-    <span  class="fz-12px opacity-50per">{{label}}</span>
+    <span  class="fz-12px opacity-50per">{{label}}
+        <span *ngIf="required" class="required-asterisk">*</span>
+    </span>
     <textarea  [placeholder]="placeHolder" rows="4" [disabled]="disabled" [(ngModel)]="value"
     (ngModelChange)="updateInputValue()" ></textarea>
 </div>

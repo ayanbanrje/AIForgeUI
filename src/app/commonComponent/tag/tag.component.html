@@ -1,0 +1,21 @@
+<div class="input-container">
+    <span class="fz-12px opacity-50per">{{label}}
+      <span *ngIf="required" class="required-asterisk">*</span>
+    </span>
+    <div class="tag-container">
+      <div *ngFor="let tag of value; let i = index" class="tag-item">
+        {{ tag }}
+        <span class="remove-tag" (click)="removeTag(i)">
+            <i class="boschicon-bosch-options-vertical"></i>
+        </span>
+      </div>
+      <input
+        [placeholder]="placeHolder"
+        [disabled]="disabled"
+        [(ngModel)]="inputValue"
+        (keydown.enter)="addTag()"
+        (ngModelChange)="updateInputValue()"
+      />
+    </div>
+  </div>
+  
