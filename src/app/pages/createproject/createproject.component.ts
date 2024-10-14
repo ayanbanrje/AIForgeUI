@@ -26,6 +26,7 @@ export class CreateprojectComponent {
   additionalPropertiesValueByUser: {};
   activeNodeDataDetails = {};
   rightPanelClass = '';
+  tempSelectedNodeData:any;
 
 
 
@@ -69,13 +70,27 @@ export class CreateprojectComponent {
 
   ngAfterViewInit() {
     // Start the editor and add nodes after the view has been initialized
-    this.editor.start();
-    this.importDrawFlow();
+    let self = this;
     this.editor.on('nodeCreated', (id) => {
-      console.log("Created!!")
       this.showAdditionalProperties(id);
       this.attachDoubleClickEvent(id)
     })
+    this.editor.on('nodeSelected', (nodeId) => {
+      const nodeData = this.editor.getNodeFromId(nodeId);
+      this.tempSelectedNodeData = { ...nodeData }; 
+    });
+    this.editor.on('nodeRemoved', (nodeId) => {
+      if (this.tempSelectedNodeData && this.tempSelectedNodeData.id == nodeId) {
+        if(this.tempSelectedNodeData['data']['type']=='source'){
+          this.sourceExist = false;
+        }
+        this.tempSelectedNodeData = null;
+      }
+      
+    });
+
+    this.editor.start();
+    this.importDrawFlow();
   }
 
   attachDoubleClickEvent(id){
@@ -138,27 +153,27 @@ export class CreateprojectComponent {
       "drawflow": {
         "Home": {
           "data": {
-            "1": {
-              "id": 1,
-              "name": "Source 1",
+            "3": {
+              "id": 3,
+              "name": "Hello 3",
               "data": {
-                "name": "Source 1",
-                "id": "1",
+                "name": "Hello 3",
+                "id": "c35d5e21-ab40-5786-9008-214e953ceeaa",
                 "type": "source",
                 "additionalProperties": {
-                  "email": "abcd@democompany.com",
+                  "email": "Test@demo.com",
                   "city": {
                     "item_id": "ban",
                     "item_text": "Ban"
                   },
                   "country": {
-                    "item_id": "india",
-                    "item_text": "india"
+                    "item_id": "Germany",
+                    "item_text": "Germany"
                   }
                 }
               },
               "class": "diamond",
-              "html": "<div class=\"custom-node\">\n        <p>Source 1</p>\n      </div>",
+              "html": "<div class=\"custom-node\">\n        <p>Hello 3</p>\n      </div>",
               "typenode": false,
               "inputs": {
                 "input_1": {
@@ -169,36 +184,109 @@ export class CreateprojectComponent {
                 "output_1": {
                   "connections": [
                     {
-                      "node": "2",
+                      "node": "4",
                       "output": "input_1"
                     }
                   ]
                 }
               },
-              "pos_x": 120,
-              "pos_y": 7
+              "pos_x": 57,
+              "pos_y": 5
             },
-            "2": {
-              "id": 2,
-              "name": "Algo 2",
+            "4": {
+              "id": 4,
+              "name": "algo_10",
               "data": {
-                "name": "Algo 2",
-                "id": "6",
+                "name": "algo_10",
+                "id": "8165049e-e77a-5a52-843b-1aeea52a0c9a",
                 "type": "algo",
                 "additionalProperties": {
-                  "company": "Demo Company",
-                  "name": "Mr. XYZ",
-                  "age": "22"
+                  "company": "Demo 1",
+                  "name": "Algo 11",
+                  "age": "12"
                 }
               },
               "class": "drawflow-node-rect",
-              "html": "<div class=\"custom-node\">\n        <p>Algo 2</p>\n      </div>",
+              "html": "<div class=\"custom-node\">\n        <p>algo_10</p>\n      </div>",
               "typenode": false,
               "inputs": {
                 "input_1": {
                   "connections": [
                     {
-                      "node": "1",
+                      "node": "3",
+                      "input": "output_1"
+                    }
+                  ]
+                }
+              },
+              "outputs": {
+                "output_1": {
+                  "connections": [
+                    {
+                      "node": "5",
+                      "output": "input_1"
+                    }
+                  ]
+                }
+              },
+              "pos_x": 243,
+              "pos_y": 189
+            },
+            "5": {
+              "id": 5,
+              "name": "Hello",
+              "data": {
+                "name": "Hello",
+                "id": "876a39b8-c05c-5901-987a-d33b5898671d",
+                "type": "algo",
+                "additionalProperties": {
+                  "company": "Demo 2",
+                  "name": "algo 22",
+                  "age": "14"
+                }
+              },
+              "class": "drawflow-node-rect",
+              "html": "<div class=\"custom-node\">\n        <p>Hello</p>\n      </div>",
+              "typenode": false,
+              "inputs": {
+                "input_1": {
+                  "connections": [
+                    {
+                      "node": "4",
+                      "input": "output_1"
+                    }
+                  ]
+                }
+              },
+              "outputs": {
+                "output_1": {
+                  "connections": [
+                    {
+                      "node": "6",
+                      "output": "input_1"
+                    }
+                  ]
+                }
+              },
+              "pos_x": 454,
+              "pos_y": 395
+            },
+            "6": {
+              "id": 6,
+              "name": "file_sink",
+              "data": {
+                "name": "file_sink",
+                "id": "6439ef79-a07c-56fc-94f0-cfd7b26948ae",
+                "type": "sink"
+              },
+              "class": "hexagon",
+              "html": "<div class=\"custom-node\">\n        <p>file_sink</p>\n      </div>",
+              "typenode": false,
+              "inputs": {
+                "input_1": {
+                  "connections": [
+                    {
+                      "node": "5",
                       "input": "output_1"
                     }
                   ]
@@ -209,8 +297,8 @@ export class CreateprojectComponent {
                   "connections": []
                 }
               },
-              "pos_x": 705,
-              "pos_y": 169.35000610351562
+              "pos_x": 702,
+              "pos_y": 510
             }
           }
         }
@@ -230,8 +318,8 @@ export class CreateprojectComponent {
       let data = await this.moduleExtensionService.ListAvailableCustomComponents({
         user_id:"54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
         asset_type:type,
-        // startIndex:0,
-        // numberOfItems:5
+        startIndex:0,
+        numberOfItems:5
       });
 
       let resData = [];
@@ -400,6 +488,10 @@ export class CreateprojectComponent {
 
   export() {
     console.log("Canvus details: ", this.editor.export())
+
+    for(let key of Object.keys(this.editor.drawflow.drawflow.Home.data)){
+
+    }
   }
 
   showAdditionalProperties(nodeID) {
