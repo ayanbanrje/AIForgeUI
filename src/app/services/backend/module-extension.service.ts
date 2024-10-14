@@ -27,7 +27,7 @@ export class ModuleExtensionService {
     const url = this.url + '/create-asset';
     const request = this.http.post(url, body);
     const response: any = await this.loadingService.get(request);
-    console.log("hello->>>>>>",response.data)
+    console.log("hello->>>>>>",response)
     return response;
   }
 }
