@@ -61,11 +61,11 @@ export class DatasetsComponent implements OnInit {
   addNewDatasets = {
     name: '',
     description: '',
-    file_name: {},
-    tags:[]
+    file_name: null,
+    tags: []
   }
 
-  constructor(public toast : ToastService,public datasetsService:DatasetsService){
+  constructor(public toast: ToastService, public datasetsService: DatasetsService) {
 
   }
   ngOnInit(): void {
@@ -94,34 +94,49 @@ export class DatasetsComponent implements OnInit {
   FuncCloseAddNewDatasetsModal() {
     this.openAddNewDatasetsModal = false
   }
-  SaveModal() {
+  async SaveModal() {
     if (!this.validateFields()) return;
-  
-    console.log("Form data is valid:", this.addNewDatasets);
-    // const result=this.datasetsService.createNewDataSets(this.addNewDatasets)
+    const formData = new FormData();
+    formData.append('user_id', '54a226b9-8ea6-4370-b0b0-c256b2ab8f87'); // Example user ID
+    formData.append('asset_type', 'dataset'); // Example asset type
+    formData.append('dataset', this.addNewDatasets.file_name); // Append the file to FormData
+    formData.append('asset_name', this.addNewDatasets.name);
+    formData.append('description', this.addNewDatasets.description);
 
-  
+    if (this.addNewDatasets.tags && this.addNewDatasets.tags.length > 0) {
+      this.addNewDatasets.tags.forEach(tag => formData.append('tags[]', tag)); // 'tags[]' for multiple tags
+    }
+
+    const result=await this.datasetsService.createNewDataSets(formData)
+    if(result){
+      this.FuncCloseAddNewDatasetsModal()
+      this.toast.createToast({
+         type: "success", message :'Created New DataSet Successfully'
+      })
+    }
   }
-  
+
+
   validateFields(): boolean {
     const { name, description, file_name, tags } = this.addNewDatasets;
-  
+
     if (!name) return this.showToastError("Please enter the name");
     if (!description) return this.showToastError("Please enter the description");
     if (!tags || tags.length === 0) return this.showToastError("Please add at least one tag");
     if (!file_name || !file_name['name']) return this.showToastError("Please upload the file");
-    if (file_name['name'] && file_name['type'] !== 'application/x-zip-compressed') {
+    if (file_name['name'] && !['application/zip', 'application/x-zip-compressed'].includes(file_name['type'])) {
       return this.showToastError("Please upload the zip file");
     }
-  
-    return true; 
+
+    return true;
   }
-  
+
   showToastError(message: string): boolean {
     this.toast.createToast({ type: "error", message });
     return false;
   }
-  
-  
-  
+
+
+
+
 }

@@ -70,19 +70,19 @@ export class LoadingService implements OnDestroy {
     ).toPromise().then((success) => {
       console.log("API Success:", success);  // Log success
       if (success.status == 'failure') {
-        // Set error message for UI
+        console.log("inside fail")
         self.error.status = success.status ? success.status : 'failure';
         self.error.message = success.error_message ? success.error_message : 'Sorry , there is something wrong !';
         this.showError(self.error)
         response = success;
         self.done();
-
-
       } else {
+        console.log("inside success",success)
         response = success;
-        self.done();  // Hide loading spinner after success
+        self.done(); 
       }
 
+    console.log("response 85",response)
 
       // Cache the response if cacheKey is provided
       if (cacheKey) {
@@ -98,7 +98,7 @@ export class LoadingService implements OnDestroy {
       self.error.message = error.error.error_message ? error.error.error_message : 'Sorry , there is something wrong !';
       this.showError(self.error)
     });
-
+    console.log("response 100",response)
     return response;
   }
 
