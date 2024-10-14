@@ -502,9 +502,8 @@
                                             <i class="boschicon-bosch-ic-download ms-1" title="Download"></i>
                                             <i class="boschicon-bosch-ic-delete ms-1" title="Delete" tabindex="1"
                                                 (click)="deleteNode(item.id)"></i>
-                                            <i class="boschicon-bosch-ic-options-vertical ms-1" title="More options"
-                                                tabindex="1" (blur)="closePopup(item.id)"
-                                                (click)="openPopup(item.id)"></i>
+                                            <i class="boschicon-bosch-ic-options ms-1" title="More options" tabindex="1"
+                                                (blur)="closePopup(item.id)" (click)="openPopup(item.id)"></i>
                                             <ul *ngIf="setItem==item.id" class="settingDropdownCSS">
                                                 <div>
                                                     <div class=" white-bg"></div>
