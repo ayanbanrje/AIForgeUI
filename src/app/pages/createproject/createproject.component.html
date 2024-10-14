@@ -65,7 +65,7 @@
             <div *ngSwitchCase="'dropdown'">
                 <app-select-dropdown
                     [dropdownList] = "selectedItemAdditionalProperties[field].optionList"
-                    [selectedItems] = 'selectedItems'
+                    [selectedItems] = "activeNodeDataDetails[selectedItemAdditionalProperties[field].keyToUseToStoreValue]"
                     [multiSelect] = "selectedItemAdditionalProperties[field].multiple"
                     (valueChanged) = "storeAdditionalProperty($event,selectedItemAdditionalProperties[field].keyToUseToStoreValue)"
                     [placeHolder] = "selectedItemAdditionalProperties[field].placeHolder"

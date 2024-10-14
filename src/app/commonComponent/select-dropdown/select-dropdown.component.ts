@@ -26,9 +26,17 @@ export class SelectDropdownComponent {
   itemChecked; 
   idField='item_id';
   textField='item_text';
-  
+  onInitTriggered = false;
 
   ngOnInit() {
+    
+  }
+
+  ngOnChanges(changes){
+    !this.selectedItems ? this.selectedItems = [] : this.selectedItems = this.selectedItems;
+    if(this.selectedItems && typeof this.selectedItems == 'object' && Object.keys(this.selectedItems).length > 0){
+      this.selectedItems = [this.selectedItems];
+    }
 
     this.dropdownSettings = {
       singleSelection: !this.multiSelect,
@@ -49,11 +57,11 @@ export class SelectDropdownComponent {
       }
     }else{
       this.itemChecked = {}
+
       if(this.selectedItems.length > 0){
         this.itemChecked = this.selectedItems[0]
       }
     }
-    
   }
   onItemSelect(item: any) {
     if(this.multiSelect){

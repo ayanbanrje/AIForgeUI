@@ -22,7 +22,7 @@ export class CreateprojectComponent {
   selectedItems = [];
   DBadditionalProperties = {}
   selectedItemAdditionalProperties = {};
-  additionalPropertiesValueByUser: any;
+  additionalPropertiesValueByUser: {};
   activeNodeDataDetails = {};
 
 
@@ -71,7 +71,12 @@ export class CreateprojectComponent {
     this.editor.on('nodeCreated', (id) => {
       console.log("Created!!")
       this.showAdditionalProperties(id);
-      const nodeElement = document.querySelector(`#node-${id}`) as HTMLElement;
+      this.attachDoubleClickEvent(id)
+    })
+  }
+
+  attachDoubleClickEvent(id){
+    const nodeElement = document.querySelector(`#node-${id}`) as HTMLElement;
       if (nodeElement) {
         const existingListener = nodeElement.getAttribute('data-dblclick-listener');
         if (!existingListener) { // checking if dbclick event already attached
@@ -82,8 +87,7 @@ export class CreateprojectComponent {
           });
         }
       }
-      nodeElement.setAttribute('data-dblclick-listener', 'true'); // Setting attribute to check not to bind multiple dbclick event
-    })
+    nodeElement.setAttribute('data-dblclick-listener', 'true'); // Setting attribute to check not to bind multiple dbclick event
   }
 
   setDefaultValues(){
@@ -169,6 +173,7 @@ export class CreateprojectComponent {
 
       Source: {
         city: { type: "dropdown", options: ['ban', 'pun', 'mum'] , multiple: false },
+        country: { type: "dropdown", options: ['india', 'Germany', 'United Kingdom'] , multiple: false },
         email: { type: "string" }
       }
     }
@@ -255,21 +260,7 @@ export class CreateprojectComponent {
     });
 
     Object.keys(this.editor.drawflow.drawflow[this.editor.module].data).forEach((nodeId) => {
-      const nodeElement = document.querySelector(`#node-${nodeId}`) as HTMLElement;
-    
-      if (nodeElement) {
-        const existingListener = nodeElement.getAttribute('data-dblclick-listener');
-        
-        if (!existingListener) { // Check if dblclick event is already attached
-          nodeElement.addEventListener('dblclick', (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            this.updateProperties(nodeId); // Your custom function for double-click action
-          });
-          // Set the attribute to mark that dblclick listener is attached
-          nodeElement.setAttribute('data-dblclick-listener', 'true');
-        }
-      }
+      this.attachDoubleClickEvent(nodeId)
     });
   }
 
@@ -348,7 +339,7 @@ export class CreateprojectComponent {
     }
   }
 
-  checkAdditionalProperties(data, clientX=null, clientY=null){
+  checkAdditionalProperties(data, clientX=null, clientY=null, edit=false){
     if(this.DBadditionalProperties[data['type']] && Object.keys(this.DBadditionalProperties[data['type']]).length > 0 ){
       this.showModal = true;
       let typeString = ['int','number','string']
@@ -375,8 +366,10 @@ export class CreateprojectComponent {
           })
         }
 
-        this.additionalPropertiesValueByUser = {
-          [keyToUseToStoreValue] : ''
+        if(!edit){
+          this.additionalPropertiesValueByUser = {
+            [keyToUseToStoreValue] : ''
+          }
         }
 
         /*
@@ -385,7 +378,7 @@ export class CreateprojectComponent {
         */
       }
 
-      this.selectedItemAdditionalProperties = selecteItemProperties
+      this.selectedItemAdditionalProperties = Object.assign({},selecteItemProperties)
     }
 
     if(clientX && clientY){
@@ -424,6 +417,8 @@ export class CreateprojectComponent {
     const rectNodeHTML = `<div class="custom-node">
         <p>${data.name}</p>
       </div>`;
+    
+    this.activeNodeDataDetails = {};
     this.activeNodeDataDetails['id'] = this.editor.addNode(data.name, 1, 1, pos_x, pos_y, nodeClass, data, rectNodeHTML);
 
 
@@ -456,8 +451,6 @@ export class CreateprojectComponent {
 
   showAdditionalProperties(nodeID) {
     let nodeDetails = this.editor.drawflow.drawflow.Home.data[nodeID];
-
-    console.log("On create details:", nodeDetails.data)
   }
 
   runPipeline(){}
@@ -467,11 +460,12 @@ export class CreateprojectComponent {
   }
 
   setPropertyValueToNode(){
-    
     let nodeData = this.editor.getNodeFromId(this.activeNodeDataDetails['id']);
 
     nodeData['data']['additionalProperties'] = this.additionalPropertiesValueByUser
     this.editor.updateNodeDataFromId(this.activeNodeDataDetails['id'], nodeData['data']);
+
+    console.log(this.editor.export())
 
     this.showModal = false;
   }
@@ -481,11 +475,14 @@ export class CreateprojectComponent {
     this.activeNodeDataDetails['id'] = nodeID;
     let nodeData = this.editor.getNodeFromId(this.activeNodeDataDetails['id']);
 
+    this.additionalPropertiesValueByUser = Object.assign({});
     for(let key in nodeData['data']['additionalProperties']){
-      this.activeNodeDataDetails[key] = nodeData['data']['additionalProperties'][key]
+      this.activeNodeDataDetails[key] = nodeData['data']['additionalProperties'][key];
+      this.storeAdditionalProperty(nodeData['data']['additionalProperties'][key],key)
     }
 
-    this.checkAdditionalProperties(nodeData['data'])
+    this.checkAdditionalProperties(nodeData['data'],null,null,true)
     //this.showModal = true;
+    
   }
 }
