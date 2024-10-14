@@ -46,8 +46,8 @@
     </div>
 </div>
 <app-modal *ngIf="1==1" [(view)]="showModal" [header]="'Set Module Properties'"
-  [styles]="{ 'width': '70%', height : '500px', position: 'relative'}" [allowClose]="false">
-
+  [styles]="{ 'width': '50%', height : '500px', position: 'relative'}" [allowClose]="false">
+    <hr/>
     <div class="row nodeProperties">
         <div *ngFor="let field of objectKeys(selectedItemAdditionalProperties)" class="col-md-6 mt-3">
           <ng-container [ngSwitch]="selectedItemAdditionalProperties[field].type">
@@ -74,8 +74,46 @@
     
           </ng-container>
         </div>
+        <hr />
         <div class="d-flex justify-content-end align-items-center mt-3 position-absolute">
             <app-button (klick)="setPropertyValueToNode()" [class]="'primary'"> Save Properties </app-button>
         </div>
     </div>
 </app-modal>
+
+<div class="right-panel" [ngClass]="rightPanelClass" id="rightPanel">
+    <div class="right-panel-content">
+        <div class="row nodeProperties">
+            <div class="col-md-12"> <h4>Properties</h4> </div>
+            <div *ngFor="let field of objectKeys(selectedItemAdditionalProperties)" class="col-md-12 mt-3">
+              <ng-container [ngSwitch]="selectedItemAdditionalProperties[field].type">
+        
+                <!-- Input Box for String/Int -->
+                <div *ngSwitchCase="'string'" >
+                    <app-input
+                        [label]="selectedItemAdditionalProperties[field].placeHolder"
+                        [value]="activeNodeDataDetails[selectedItemAdditionalProperties[field].keyToUseToStoreValue]"
+                        (valueChange)="storeAdditionalProperty($event,selectedItemAdditionalProperties[field].keyToUseToStoreValue)"
+                        ></app-input>
+                </div>
+        
+                <!-- Dropdown Box -->
+                <div *ngSwitchCase="'dropdown'">
+                    <app-select-dropdown
+                        [dropdownList] = "selectedItemAdditionalProperties[field].optionList"
+                        [selectedItems] = "activeNodeDataDetails[selectedItemAdditionalProperties[field].keyToUseToStoreValue]"
+                        [multiSelect] = "selectedItemAdditionalProperties[field].multiple"
+                        (valueChanged) = "storeAdditionalProperty($event,selectedItemAdditionalProperties[field].keyToUseToStoreValue)"
+                        [placeHolder] = "selectedItemAdditionalProperties[field].placeHolder"
+                    ></app-select-dropdown>
+                </div>
+        
+              </ng-container>
+            </div>
+            <div class="d-flex justify-content-end align-items-center mt-3 position-absolute">
+                <app-button (klick)="setPropertyValueToNode()" [class]="'primary'"> Save Properties </app-button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="overlay" class="overlay" [ngClass]="rightPanelClass"></div>

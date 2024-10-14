@@ -14,8 +14,12 @@ import { LoadingService } from '../loading.service';
   providedIn: 'root'
 })
 export class NodeConfigurationService {
-  url = `${environment.URL + environment.BACKENDSERVICE}`;
+
+  url = environment.URL;
+
   constructor(private http: HttpClient, private loadingService: LoadingService) {
+    let module = 'nodes';
+    this.url = this.url+module
   }
 
 

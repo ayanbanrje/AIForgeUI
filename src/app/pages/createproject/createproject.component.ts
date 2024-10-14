@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from "../../services/message.service";
+import { ModuleExtensionService } from "../../services/backend/module-extension.service";
 
 import Drawflow from 'drawflow'
 
@@ -24,12 +25,14 @@ export class CreateprojectComponent {
   selectedItemAdditionalProperties = {};
   additionalPropertiesValueByUser: {};
   activeNodeDataDetails = {};
+  rightPanelClass = '';
 
 
 
   constructor(
     private router: Router,
-    private message: MessageService
+    private message: MessageService,
+    private moduleExtensionService : ModuleExtensionService
   ) { }
 
   backToProjectList() {
@@ -58,6 +61,12 @@ export class CreateprojectComponent {
 
 
   ngOnInit() {
+    this.moduleExtensionService.ListAvailableCustomComponents({
+      user_id:"54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
+      asset_type:"algo",
+      startIndex:0,
+      numberOfItems:5
+    });
     // Initialize Drawflow
     this.editor = new Drawflow(document.getElementById("drawflow") as HTMLElement);
     
@@ -192,10 +201,14 @@ export class CreateprojectComponent {
                 "id": "1",
                 "type": "Source",
                 "additionalProperties": {
-                  "email": "fffffffffffffffff",
+                  "email": "abcd@democompany.com",
                   "city": {
                     "item_id": "ban",
                     "item_text": "Ban"
+                  },
+                  "country": {
+                    "item_id": "india",
+                    "item_text": "india"
                   }
                 }
               },
@@ -228,9 +241,9 @@ export class CreateprojectComponent {
                 "id": "6",
                 "type": "Algo",
                 "additionalProperties": {
-                  "company": "TCS",
-                  "name": "Shreyasee",
-                  "age": "35"
+                  "company": "Demo Company",
+                  "name": "Mr. XYZ",
+                  "age": "22"
                 }
               },
               "class": "drawflow-node-rect",
@@ -260,6 +273,9 @@ export class CreateprojectComponent {
     });
 
     Object.keys(this.editor.drawflow.drawflow[this.editor.module].data).forEach((nodeId) => {
+      if(this.editor.drawflow.drawflow[this.editor.module].data[nodeId]['data']['type']=='Source'){
+        this.sourceExist = true;
+      }
       this.attachDoubleClickEvent(nodeId)
     });
   }
@@ -340,8 +356,10 @@ export class CreateprojectComponent {
   }
 
   checkAdditionalProperties(data, clientX=null, clientY=null, edit=false){
+    
     if(this.DBadditionalProperties[data['type']] && Object.keys(this.DBadditionalProperties[data['type']]).length > 0 ){
-      this.showModal = true;
+      //this.showModal = true;
+      this.rightPanelClass = 'show';
       let typeString = ['int','number','string']
       
       let selecteItemProperties = this.DBadditionalProperties[data['type']];
@@ -388,7 +406,9 @@ export class CreateprojectComponent {
 
   addNodeToDrawFlow(data: any, pos_x: any, pos_y: any) {
     const editor = this.editor;
+    this.activeNodeDataDetails = {};
     if (editor.editor_mode === 'fixed' || (this.sourceExist && data.type == 'Source')) {
+      this.rightPanelClass = "";
       return false;
     }
 
@@ -418,7 +438,6 @@ export class CreateprojectComponent {
         <p>${data.name}</p>
       </div>`;
     
-    this.activeNodeDataDetails = {};
     this.activeNodeDataDetails['id'] = this.editor.addNode(data.name, 1, 1, pos_x, pos_y, nodeClass, data, rectNodeHTML);
 
 
@@ -468,6 +487,7 @@ export class CreateprojectComponent {
     console.log(this.editor.export())
 
     this.showModal = false;
+    this.rightPanelClass = '';
   }
 
   updateProperties(nodeID) {
@@ -483,6 +503,15 @@ export class CreateprojectComponent {
 
     this.checkAdditionalProperties(nodeData['data'],null,null,true)
     //this.showModal = true;
+    //this.openPanel();
     
   }
+
+  // openPanel() {
+  //   document.getElementById('rightPanel').classList.add('show');
+  // }
+  
+  // closePanel() {
+  //   document.getElementById('rightPanel').classList.remove('show');
+  // }
 }

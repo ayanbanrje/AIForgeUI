@@ -9,6 +9,7 @@ export class AuthInterceptor implements HttpInterceptor {
     // constructor(private http: HttpClient, private router: Router) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        console.log('Interceptor is called', req.url); 
         let token = localStorage.getItem('idToken');
         if (req.url.includes('/auth/session')) {
             token = localStorage.getItem('idToken');

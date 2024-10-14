@@ -13,17 +13,18 @@ export class ModuleExtensionService {
     private http: HttpClient,
     private loadingService:LoadingService
   ) { 
-    this.url=environment.URL
+    let module = 'components'
+    this.url=environment.URL+module;
   }
 
   async ListAvailableCustomComponents(params){
-    const url = this.url + 'api/components/getcomponents';
+    const url = this.url + '/getcomponents';
     const request = this.http.get(url, { params: params });
     const response: any = await this.loadingService.get(request);
     return response.data;
   }
   async createCustomComponent(body){
-    const url = this.url + 'api/components/create-asset';
+    const url = this.url + '/create-asset';
     const request = this.http.post(url, body);
     const response: any = await this.loadingService.get(request);
     console.log("hello->>>>>>",response.data)
