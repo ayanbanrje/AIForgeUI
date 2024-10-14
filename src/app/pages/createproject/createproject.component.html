@@ -7,12 +7,13 @@
                         <li class="mb-1" *ngFor="let componentType of objectKeys(components)">
                             <button class="btn btn-primary btn-toggle align-items-center rounded collapsed" (click)="toggleClass($event)" data-bs-toggle="collapse"
                             [attr.data-bs-target]="'#' + componentType + '-collapse'" aria-expanded="false" [attr.aria-controls]="'#' + componentType + '-collapse'">
-                                {{componentType}}<span class="caret"></span>
+                                {{componentType.toLocaleUpperCase() }}<span class="caret"></span>
                             </button>
                             <div class="collapse" id="{{componentType}}---collapse" >
+                                {{ components[componentType] }}
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small list-group">
                                     <li *ngFor="let elem of components[componentType]" class="list-group-item">
-                                        <a href="javascript:void(0)" class="link-dark rounded" class="drag-drawflow" draggable="true" (dragstart)="drag($event)" [attr.data-name]="elem.name" [attr.data-id]="elem.id" [attr.data-type]="componentType">{{ elem.name }}</a>
+                                        <a href="javascript:void(0)" class="link-dark rounded" class="drag-drawflow" draggable="true" (dragstart)="drag($event)" [attr.data-name]="elem.asset_name" [attr.data-id]="elem.asset_id" [attr.data-type]="componentType">{{ elem.asset_name }}</a>
                                     </li>
                                 </ul>
                             </div>

@@ -21,13 +21,13 @@ export class ModuleExtensionService {
     const url = this.url + '/getcomponents';
     const request = this.http.get(url, { params: params });
     const response: any = await this.loadingService.get(request);
-    return response.data;
+    return response;
   }
   async createCustomComponent(body){
     const url = this.url + '/create-asset';
     const request = this.http.post(url, body);
     const response: any = await this.loadingService.get(request);
     console.log("hello->>>>>>",response.data)
-    return response.data;
+    return response;
   }
 }
