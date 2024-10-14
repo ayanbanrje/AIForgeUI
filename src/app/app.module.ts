@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { InputComponent } from './commonComponent/input/input.component';
 import { ButtonComponent } from './commonComponent/button/button.component';
 import { ModuleExtensionComponent } from './pages/module-extension/module-extension.component';
@@ -13,7 +13,6 @@ import { FooterComponent } from './footer/footer.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { MenuComponent } from './menu/menu.component';
 import { NodeconfigurationComponent } from './pages/nodeconfiguration/nodeconfiguration.component';
-import { NodeConfigurationService } from './services/backend/node-configuration.service';  // Import service
 import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
 import { CreateprojectComponent } from './pages/createproject/createproject.component';
@@ -34,6 +33,7 @@ import { SearchComponent } from './commonComponent/search/search.component';
 import { TableComponent } from './commonComponent/table/table.component';
 import { PaginationComponent } from './commonComponent/pagination/pagination.component';
 import { TagComponent } from './commonComponent/tag/tag.component';
+import { AuthInterceptor } from './services/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -76,7 +76,7 @@ import { TagComponent } from './commonComponent/tag/tag.component';
   ],
   providers: [
     provideClientHydration(),
-    NodeConfigurationService
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
