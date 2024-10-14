@@ -19,7 +19,6 @@ export class DatasetsService {
     const url = this.url + 'api/dataset/uploaddataset';
     const request = this.http.post(url, body);
     const response: any = await this.loadingService.get(request);
-    console.log("hello->>>>>>", response.data ? response.data: response)
-    return response.data ? response.data: response;
+    return response;
   }
 }

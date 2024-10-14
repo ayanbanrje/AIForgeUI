@@ -13,7 +13,7 @@ export class ModuleExtensionComponent implements OnInit {
     name: '',
     inherited_from: '',
     description: '',
-    file_name: ''
+    file_name: null
   }
   contentData = [
     {
@@ -112,8 +112,8 @@ export class ModuleExtensionComponent implements OnInit {
       numberOfItems: 5
     }
 
-    this.contentData = await this.moduleExtensionService.ListAvailableCustomComponents(params)
-    console.log("this.contentData->>>>>>>>>", this.contentData)
+    let result = await this.moduleExtensionService.ListAvailableCustomComponents(params)
+    this.contentData=result.data
   }
   async SaveModal() {
     console.log("items", this.createCustom)
@@ -126,7 +126,7 @@ export class ModuleExtensionComponent implements OnInit {
       "parent_userid": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87"
     }
     const result = await this.moduleExtensionService.createCustomComponent(body)
-    console.log("result->>>>>>>>>>>>>>>>>>>>", result)
+    console.log("result->>>>>>>>>>>>>>>>>>>>", result.data)
   }
 
 }
