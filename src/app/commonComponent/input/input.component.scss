@@ -22,3 +22,10 @@
     outline: none;
     border-bottom: 1px solid #000; /* Change the border on focus */
   }
+.disabled-class{
+  cursor: not-allowed !important;
+  opacity: 70%; 
+  input{
+    cursor: not-allowed !important;
+  }
+}

@@ -14,7 +14,8 @@
                 <div class="side-menu">
                     <ul>
                         <li class="sideBarMenu p-3 " [ngClass]="activeTab == 'Custom Source'?'activeClass':''"
-                            [class.active]="activeTab === 'Custom Source'" (click)="setActiveTab('Custom Source','source')">
+                            [class.active]="activeTab === 'Custom Source'"
+                            (click)="setActiveTab('Custom Source','source')">
                             Create your Custom Source
                         </li>
                         <li class="sideBarMenu p-3" [ngClass]="activeTab == 'Custom Algorithm'?'activeClass':''"
@@ -43,7 +44,7 @@
                         <div class=" col ps-3 ">
                             Available custom source
                         </div>
-                        
+
                         <div class="col d-flex justify-content-end align-items-center">
                             <i class="boschicon-bosch-ic-search pe-3 fz-24px"></i>
                             <app-button [class]="'primary justify-content-center'" [icon]="'bosch-ic-add'"
@@ -66,7 +67,7 @@
                                                     <!-- <img width="16" src="../../../assets/edit-icon.svg"> -->
                                                 </li>
                                                 <li>
-                                                    <i class="boschicon-bosch-ic-delete"></i>
+                                                    <i class="boschicon-bosch-ic-delete" (click)="deleteAsset(item.asset_id)"></i>
 
                                                     <!-- <img width="16" src="../../../assets/delete-icon.svg"> -->
                                                 </li>
@@ -92,36 +93,36 @@
     </div>
 </div>
 
-<app-modal [zIndex]="'9998'" *ngIf="openCreateCustomModal" [(view)]="openCreateCustomModal" [header]="'Create ' + activeTab"
-    [styles]="{ width: '60vw' }">
+<app-modal [zIndex]="'9998'" *ngIf="openCreateCustomModal" [(view)]="openCreateCustomModal"
+    [header]="'Create ' + activeTab" [styles]="{ width: '60vw' }">
     <div class="modal-body">
         <form>
             <div class="row gx-0 m-0 mt-3 ">
                 <div class="col mb-3 me-3 ">
-                    <app-input [label]="'Enter Name'" [(value)]="createCustom.name"></app-input>
+                    <app-input [disabled]="createCustom.asset_id.length?true:false" [placeHolder]="'Enter Name'" [required]="true" [label]="'Enter Name'" [(value)]="createCustom.name"></app-input>
 
                 </div>
                 <div class=" col mb-3">
                     <!-- <app-input [label]="'Inherited From'" [(value)]="createCustom.inherited_from"></app-input> -->
-                    <app-select-dropdown
-                        [dropdownList] = "inherited_from.dropdownList"
-                        [selectedItems] = "inherited_from.selectedItems"
-                        [multiSelect] = "false"
-                        (valueChanged) = "dropDownValueChanged($event)"
-                        [placeHolder] = "'inherited from'"
-                    ></app-select-dropdown>
+                    <app-select-dropdown [dropdownList]="inherited_from.dropdownList"
+                        [selectedItems]="inherited_from.selectedItems" [multiSelect]="false"
+                        (valueChanged)="dropDownValueChanged($event)"
+                        [placeHolder]="'inherited from'"></app-select-dropdown>
                 </div>
             </div>
 
             <div class="mb-3">
-                <app-textarea [label]="'Description'" [placeHolder]="'Enter Description'"
+                <app-textarea [disabled]="createCustom.asset_id.length?true:false" [required]="true" [label]="'Description'" [placeHolder]="'Enter Description'"
                     [(value)]="createCustom.description"></app-textarea>
             </div>
             <hr>
             <div class="mb-3">
-                <label for="uploadFile" class="form-label">Upload Edited Custom Source in Python File</label>
-                <a href="#" class="float-end">Download .py Template File</a>
-                <app-file-upload [(fileName)]="createCustom.file_name"></app-file-upload>
+                <label for="uploadFile" class="form-label">Upload Edited {{activeTab}} in Python File
+                    <span class="required-asterisk">*</span>
+                </label>
+                <a class="float-end cursor-pointer" (click)="SaveModal()" >Download .py Template File</a>
+                <app-file-upload [(fileName)]="createCustom.file_name" (fileNameChange)="onFileSelected($event)"></app-file-upload>
+
             </div>
         </form>
     </div>
@@ -129,10 +130,10 @@
         <app-button [class]="'secondary justify-content-center'" [width]="'200px'" [fontSize]="'16px'"
             (klick)="FuncCreateCustomModalClose()">
             Cancel </app-button>
-        <!-- <app-button [class]="'primary justify-content-center'" [fontSize]="'16px'">
-            Open Template in Jupyter Editor</app-button> -->
-            <app-button [class]="'primary justify-content-center'" [width]="'200px'" [fontSize]="'16px'"
+        <app-button [class]="'primary justify-content-center'" [fontSize]="'16px'" [disabled]="true">
+            Open Template in Jupyter Editor</app-button>
+        <!-- <app-button [class]="'primary justify-content-center'" [width]="'200px'" [fontSize]="'16px'"
             (klick)="SaveModal()">
-            Save </app-button>
+            Save </app-button> -->
     </div>
 </app-modal>

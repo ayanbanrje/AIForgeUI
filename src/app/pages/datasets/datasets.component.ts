@@ -107,11 +107,11 @@ export class DatasetsComponent implements OnInit {
       this.addNewDatasets.tags.forEach(tag => formData.append('tags[]', tag)); // 'tags[]' for multiple tags
     }
 
-    const result=await this.datasetsService.createNewDataSets(formData)
-    if(result){
+    const result = await this.datasetsService.createNewDataSets(formData)
+    if (result) {
       this.FuncCloseAddNewDatasetsModal()
       this.toast.createToast({
-         type: "success", message :'Created New DataSet Successfully'
+        type: "success", message: 'Created New DataSet Successfully'
       })
     }
   }
@@ -135,8 +135,5 @@ export class DatasetsComponent implements OnInit {
     this.toast.createToast({ type: "error", message });
     return false;
   }
-
-
-
 
 }
