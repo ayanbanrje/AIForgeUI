@@ -18,7 +18,6 @@ import { MarketplaceComponent } from './pages/marketplace/marketplace.component'
 import { CreateprojectComponent } from './pages/createproject/createproject.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { HomePageCardComponent } from './card/home-page-card/home-page-card.component';
-import { ChildModuleExtensionComponent } from './card/child-module-extension/child-module-extension.component';
 import { MessageBoxComponent } from './commonComponent/message-box/message-box.component';
 import { ModalComponent } from './commonComponent/modal/modal.component';
 import { FormsModule } from '@angular/forms';
@@ -52,7 +51,6 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     CreateprojectComponent,
     HomepageComponent,
     HomePageCardComponent,
-    ChildModuleExtensionComponent,
     MessageBoxComponent,
     ModalComponent,
     SelectDropdownComponent,
