@@ -9,12 +9,19 @@ import { LoadingService } from '../loading.service';
 export class ProjectsService {
 
   module="templates"
-  url = environment.URL+module;
+  url='';
 
   constructor(private http: HttpClient, private loadingService: LoadingService) {
+    this.url = environment.URL+this.module;
   }
 
-  async getTemplates() {
+  // async getTemplates() {
     
+  // }
+  async ListTemplates(){
+    const url = this.url + '/list';
+    const request = this.http.get(url);
+    const response: any = await this.loadingService.get(request);
+    return response;
   }
 }

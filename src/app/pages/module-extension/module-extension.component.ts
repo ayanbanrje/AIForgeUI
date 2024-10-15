@@ -87,6 +87,10 @@ export class ModuleExtensionComponent implements OnInit {
       "labels":['a','b']
     }
   ]
+  inherited_from={
+    dropdownList:["a","b","c","d"],
+    selectedItems:[],
+  }
   constructor(
     private moduleExtensionService: ModuleExtensionService
   ) {
@@ -105,6 +109,7 @@ export class ModuleExtensionComponent implements OnInit {
     this.openCreateCustomModal = false
   }
   async ListAvailableCustomComponents(asset_type) {
+    this.contentData=[]
     let params = {
       user_id: "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
       asset_type: asset_type,
@@ -127,6 +132,10 @@ export class ModuleExtensionComponent implements OnInit {
     }
     const result = await this.moduleExtensionService.createCustomComponent(body)
     console.log("result->>>>>>>>>>>>>>>>>>>>", result.data)
+  }
+  dropDownValueChanged(event){
+    console.log("event",event)
+    console.log("inherti",this.inherited_from)
   }
 
 }

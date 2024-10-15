@@ -103,7 +103,7 @@
                     <app-select-dropdown
                         [dropdownList] = "selectedItemAdditionalProperties[field].optionList"
                         [selectedItems] = "activeNodeDataDetails[selectedItemAdditionalProperties[field].keyToUseToStoreValue]"
-                        [multiSelect] = "selectedItemAdditionalProperties[field].multiple"
+                        [multiSelect] = "true"
                         (valueChanged) = "storeAdditionalProperty($event,selectedItemAdditionalProperties[field].keyToUseToStoreValue)"
                         [placeHolder] = "selectedItemAdditionalProperties[field].placeHolder"
                     ></app-select-dropdown>

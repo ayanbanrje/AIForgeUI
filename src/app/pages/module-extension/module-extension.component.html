@@ -102,7 +102,14 @@
 
                 </div>
                 <div class=" col mb-3">
-                    <app-input [label]="'Inherited From'" [(value)]="createCustom.inherited_from"></app-input>
+                    <!-- <app-input [label]="'Inherited From'" [(value)]="createCustom.inherited_from"></app-input> -->
+                    <app-select-dropdown
+                        [dropdownList] = "inherited_from.dropdownList"
+                        [selectedItems] = "inherited_from.selectedItems"
+                        [multiSelect] = "false"
+                        (valueChanged) = "dropDownValueChanged($event)"
+                        [placeHolder] = "'inherited from'"
+                    ></app-select-dropdown>
                 </div>
             </div>
 
