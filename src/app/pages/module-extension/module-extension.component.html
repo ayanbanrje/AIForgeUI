@@ -46,7 +46,10 @@
                         </div>
 
                         <div class="col d-flex justify-content-end align-items-center">
-                            <i class="boschicon-bosch-ic-search pe-3 fz-24px"></i>
+                             <app-search [(value)]="searchQuery" (valueChange)="onSearch($event)" ></app-search>
+                             <div class="pe-3">
+
+                             </div>
                             <app-button [class]="'primary justify-content-center'" [icon]="'bosch-ic-add'"
                                 (klick)="funcOpenCreateCustomModal()"> Create {{activeTab}}
                             </app-button>
@@ -107,7 +110,7 @@
                     <app-select-dropdown [dropdownList]="inherited_from.dropdownList"
                         [selectedItems]="inherited_from.selectedItems" [multiSelect]="false"
                         (valueChanged)="dropDownValueChanged($event)"
-                        [placeHolder]="'inherited from'"></app-select-dropdown>
+                        [placeHolder]="'inherited from'" [disabled]="createCustom.asset_id.length?true:false" ></app-select-dropdown>
                 </div>
             </div>
 
@@ -120,8 +123,9 @@
                 <label for="uploadFile" class="form-label">Upload Edited {{activeTab}} in Python File
                     <span class="required-asterisk">*</span>
                 </label>
-                <a class="float-end cursor-pointer" (click)="SaveModal()" >Download .py Template File</a>
-                <app-file-upload [(fileName)]="createCustom.file_name" (fileNameChange)="onFileSelected($event)"></app-file-upload>
+                
+                <a class="float-end cursor-pointer" (click)="SaveModal()" >Save & Download .py Template File</a> 
+                <app-file-upload [(fileName)]="createCustom.file_name" (fileNameChange)="onFileSelected($event)" acceptedFileTypes=".zip" ></app-file-upload>
 
             </div>
         </form>

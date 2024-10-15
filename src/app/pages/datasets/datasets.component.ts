@@ -89,6 +89,7 @@ export class DatasetsComponent implements OnInit {
   }
 
   funcOpenAddNewDatasetsModal() {
+    this.clearAddNewDatasetsForm()
     this.openAddNewDatasetsModal = true
   }
   FuncCloseAddNewDatasetsModal() {
@@ -135,5 +136,12 @@ export class DatasetsComponent implements OnInit {
     this.toast.createToast({ type: "error", message });
     return false;
   }
-
+  clearAddNewDatasetsForm(){
+    this.addNewDatasets = {
+      name: '',
+      description: '',
+      file_name: null,
+      tags: []
+    }
+  }
 }

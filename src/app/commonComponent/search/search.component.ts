@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -6,11 +6,17 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
-  searchQuery: string = '';
+  @Input() value: string = '';
+  @Output() valueChange = new EventEmitter<string>();
 
-  @Output() search = new EventEmitter<string>();
-
-  onSearch() {
-    this.search.emit(this.searchQuery);
+  
+  ngOnInit(): void {
+    this.value = this.value ? this.value : "";
+  }
+  onSearchButtonClicked() {
+    this.valueChange.emit(this.value);
+  }
+  emitSearchValue() {
+    this.valueChange.emit(this.value);
   }
 }

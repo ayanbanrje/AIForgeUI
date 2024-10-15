@@ -42,10 +42,4 @@ export class ModuleExtensionService {
     const response: any = await this.loadingService.get(request);
     return response;
   }
-  downloadZip(postData: any): Observable<Blob> {
-    const url = this.url + '/create-asset';
-    return this.http.post(url, postData, {
-      responseType: 'blob', // Expect a binary response (blob)
-    });
-  }
 }

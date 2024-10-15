@@ -1,4 +1,4 @@
-<div class="textarea-container">
+<div class="textarea-container" [ngClass]="disabled?'disabled-class':''">
     <span  class="fz-12px ">{{label}}
         <span *ngIf="required" class="required-asterisk">*</span>
     </span>
