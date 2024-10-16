@@ -9,9 +9,9 @@ Router
 export class HomepageComponent {
   cardItems = [
     {
-      id: 'projects',
-      title: 'Create New Project',
-      description: 'Start a new project by uploading your dataset and streamline your data cleaning process.',
+      id: 'pipeline',
+      title: 'Create New Pipeline',
+      description: 'Start a new pipeline by uploading your dataset and streamline your data cleaning process.',
       imageUrl: '../../../assets/images/document-add.png',
       icon:'boschicon-bosch-ic-document-add',
       showArrow:false

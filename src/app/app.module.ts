@@ -10,12 +10,12 @@ import { ModuleExtensionComponent } from './pages/module-extension/module-extens
 import { LoginComponent } from './pages/login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { ProjectsComponent } from './pages/projects/projects.component';
+import { PipelineComponent } from './pages/pipeline/pipeline.component';
 import { MenuComponent } from './menu/menu.component';
 import { NodeconfigurationComponent } from './pages/nodeconfiguration/nodeconfiguration.component';
 import { DatasetsComponent } from './pages/datasets/datasets.component';
 import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
-import { CreateprojectComponent } from './pages/createproject/createproject.component';
+import { CreatepipelineComponent } from './pages/createpipeline/createpipeline.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { HomePageCardComponent } from './card/home-page-card/home-page-card.component';
 import { MessageBoxComponent } from './commonComponent/message-box/message-box.component';
@@ -43,12 +43,12 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     LoginComponent,
     HeaderComponent,
     FooterComponent,
-    ProjectsComponent,
+    PipelineComponent,
     MenuComponent,
     NodeconfigurationComponent,
     DatasetsComponent,
     MarketplaceComponent,
-    CreateprojectComponent,
+    CreatepipelineComponent,
     HomepageComponent,
     HomePageCardComponent,
     MessageBoxComponent,

@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
 export class MenuComponent {
   currentRoute: string;
   menuItems = [
-    { label: 'Create Projects', route: '/projects' },
+    { label: 'Create Pipeline', route: '/pipeline' },
     { label: 'Module Extention', route: '/moduleextention' },
     { label: 'Node Configuration', route: '/nodeconfiguration' },
     { label: 'Data Sets', route: '/datasets' },
