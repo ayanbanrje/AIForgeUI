@@ -17,6 +17,7 @@ export class NodeconfigurationComponent implements OnInit {
   nodeDetailsSelectedSearchBarViewAllLinkText = "View all Pipelines";
   nodeDetailsActiveTabCreateNewBtnText = "Create New Pipeline";
   nodes: Array<any> = [];
+  original_contentData: Array<any> = [];
 
   moreOptionDropdownList = [
     {
@@ -37,7 +38,7 @@ export class NodeconfigurationComponent implements OnInit {
     'node_id': '',
     'node_name': '',
     'ram': '',
-    'tags': '',
+    'tags': [],
     'vcpus': '',
     'ssds': '',
     'gpus': ''
@@ -65,6 +66,12 @@ export class NodeconfigurationComponent implements OnInit {
   currentPage: number = 1;
   paginatedDatasets: any = [];
   datasets: any = [];
+  nodeSearchQuery = '';
+  pipelineContainerSearchQuery = '';
+  listSearchQuery = '';
+  totalNodeItems: number;
+  nodeItemsPerPage: number = 6;
+  currentNodePage: number = 1;
 
   constructor(
     private nodeConfigurationService: NodeConfigurationService,
@@ -80,17 +87,37 @@ export class NodeconfigurationComponent implements OnInit {
     this.node_list();
   }
 
-  async node_list() {
+  onNodeSearch(query) {
+    console.log(query)
+    this.nodes = this.original_contentData.filter(item => {
+      const searchTerm = query.toLowerCase();
+      const nameMatch = item.name?.toLowerCase().includes(searchTerm) || false;
+      //const tagsMatch = item.tags.map(tag => tag.toLowerCase().includes(searchTerm) || false);
+      return nameMatch;
+    });
 
+  }
+
+  onNodePageChange(page: number): void {
+    console.log("page", page)
+    this.currentNodePage = page;
+    this.node_list();
+  }
+
+  async node_list() {
+    const start = (this.currentNodePage - 1) * this.nodeItemsPerPage;
     let node_list = await this.nodeConfigurationService.getNodeList({
       "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
-      "startIndex": 0,
-      "numberOfItems": 5
+      "startIndex": start,
+      "numberOfItems": this.nodeItemsPerPage
     });
 
     if (node_list.status == "success") {
       this.nodes = node_list.data;
+      this.totalNodeItems = node_list.total_count;
+      this.original_contentData = this.nodes
     }
+
 
     /*let node_list = [
       {
@@ -245,7 +272,12 @@ export class NodeconfigurationComponent implements OnInit {
 
   async close_add_edit_node_popup() {
     Object.keys(this.addEditNodeData).forEach(key => {
-      this.addEditNodeData[key] = '';  // Set value to blank
+      if (key == 'tags') {
+        this.addEditNodeData[key] = [];  // Set value to blank
+      } else {
+        this.addEditNodeData[key] = '';  // Set value to blank
+      }
+
     });
     this.showAddEditNodePopup = false;
     this.updateFlag = false;
@@ -253,6 +285,7 @@ export class NodeconfigurationComponent implements OnInit {
 
   async add_node_data() {
     let response;
+    let executionId = '';
     if (this.updateFlag === true) {
       response = await this.nodeConfigurationService.updatenode({
         "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
@@ -262,8 +295,9 @@ export class NodeconfigurationComponent implements OnInit {
         "RAM_GB": parseInt(this.addEditNodeData.ram),
         "GPUs": parseInt(this.addEditNodeData.gpus),
         "SSD_GB": parseInt(this.addEditNodeData.ssds),
-        "tags": [this.addEditNodeData.tags]
+        "tags": this.addEditNodeData.tags
       });
+      executionId = response.data.node_id;
     } else {
       response = await this.nodeConfigurationService.createnodes({
         "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
@@ -274,13 +308,14 @@ export class NodeconfigurationComponent implements OnInit {
         "SSD_GB": parseInt(this.addEditNodeData.ssds),
         "numContainers": 0,
         "numPipelines": 1,
-        "tags": [this.addEditNodeData.tags],
+        "tags": this.addEditNodeData.tags,
         "status": "Offline"
       });
+      executionId = response.data;
     }
 
     if (response && response.status == "success") {
-      let fileLink = await this.download_node_file(response.data);
+      let fileLink = await this.download_node_file(executionId);
       let msg = '';
       if (fileLink) {
         msg = " File downloaded successfully!!";
@@ -372,7 +407,7 @@ export class NodeconfigurationComponent implements OnInit {
         "ram": response.data[0].RAM_GB,
         "gpus": response.data[0].GPUs,
         "ssds": response.data[0].SSD_GB,
-        "tags": response.data[0].tags[0]
+        "tags": response.data[0].tags
       }
       this.showAddEditNodePopup = true;
     }
@@ -603,7 +638,7 @@ export class NodeconfigurationComponent implements OnInit {
 
   }
 
-  handleRowSelected(selectedRow){
-    console.log("selectedRow",selectedRow)
+  handleRowSelected(selectedRow) {
+    console.log("selectedRow", selectedRow)
   }
 }

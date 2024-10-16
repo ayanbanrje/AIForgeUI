@@ -290,8 +290,8 @@
     <!-- Search and Create New Node Section -->
     <div class="d-flex align-items-center mb-4 ms-1">
         <div class="d-flex col-lg-10 col-md-10 px-3 py-2 custom-bg justify-content-between align-items-center">
-            <h5 class="mb-0">Available Custom Sources</h5>
-            <i class="bi bi-search" title="Search"></i>
+            <h5 class="mb-0">Available Nodes</h5>
+            <app-search [(value)]="nodeSearchQuery" (valueChange)="onNodeSearch($event)"></app-search>
         </div>
         <div class="d-flex justify-content-center col-lg-2 col-md-2 text-end px-3 custom-bg-btn">
             <!-- <div class="input-group">
@@ -328,7 +328,7 @@
                                 (click)="download_node(node.node_id)"></i>
                             <i class="boschicon-bosch-ic-delete ms-3" title="Delete" tabindex="1"
                                 (click)="deleteNode(node.node_id)"></i>
-                            <i class="boschicon-bosch-ic-options-vertical ms-3" title="More options" tabindex="1"
+                            <!-- <i class="boschicon-bosch-ic-options-vertical ms-3" title="More options" tabindex="1"
                                 (blur)="closePopup(node.node_id)" (click)="openPopup(node.node_id)"></i>
                             <ul *ngIf="setItem==node.node_id" class="settingDropdownCSS">
                                 <div>
@@ -340,7 +340,7 @@
                                         <span class="ps-2"> {{ item.name }} </span>
                                     </li>
                                 </div>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                     <div class="row my-3 p-3 custom-border">
@@ -383,16 +383,15 @@
                                     <div><strong>No. of Pipeline:</strong></div>
                                     <div>{{ node.numPipelines }}</div>
                                 </div>
-                                <div *ngIf="node.tags[0].split(',').length>3" class="col-8 col-md-8 col-lg-8">
+                                <div *ngIf="node.tags.length>3" class="col-8 col-md-8 col-lg-8">
                                     <div class="mb-1"><strong>Tags:</strong></div>
-                                    <span class="label-badge"
-                                        *ngFor="let tag of node.tags[0].split(',').slice(0,3)">{{tag}}</span>
+                                    <span class="label-badge" *ngFor="let tag of node.tags.slice(0,3)">{{tag}}</span>
                                     <span class="label-badge psedo_anchor_tag"
-                                        (click)="showall_tags(node.tags[0].split(','),node.name)">+{{node.tags[0].split(',').length-3}}</span>
+                                        (click)="showall_tags(node.tags,node.name)">+{{node.tags.length-3}}</span>
                                 </div>
-                                <div *ngIf="node.tags[0].split(',').length<=3" class="col-8 col-md-8 col-lg-8">
+                                <div *ngIf="node.tags.length<=3" class="col-8 col-md-8 col-lg-8">
                                     <div class="mb-1"><strong>Tags:</strong></div>
-                                    <span class="label-badge" *ngFor="let tag of node.tags[0].split(',')">{{tag}}</span>
+                                    <span class="label-badge" *ngFor="let tag of node.tags">{{tag}}</span>
                                 </div>
                             </div>
                         </div>
@@ -404,17 +403,22 @@
             </div>
         </div>
     </div>
+    <app-pagination *ngIf="totalNodeItems" [totalItems]="totalNodeItems" [itemsPerPage]="nodeItemsPerPage"
+        (pageChange)="onNodePageChange($event)">
+    </app-pagination>
 </div>
 
 <div *ngIf="!rootPage && showAllList" class="pg-container px-5 h-100 w-100 d-flex flex-column mt-2">
     <div class="row gx-0 m-0 justify-content-between mb-3 ">
         <div class="col fw-bold fz-42px">All Available {{activeTab}}s</div>
         <div class="col-auto ms-auto ">
-            <app-search (search)="onSearch($event)"></app-search>
+            <!-- <app-search (search)="onSearch($event)"></app-search> -->
+            <app-search [(value)]="listSearchQuery" (valueChange)="onSearch($event)"></app-search>
         </div>
     </div>
     <div class="row mb-3">
-        <app-table [headers]="tableHeaders" [rows]="paginatedDatasets" [showCheckbox]="true" (rowSelected)="handleRowSelected($event)"></app-table>
+        <app-table [headers]="tableHeaders" [rows]="paginatedDatasets" [showCheckbox]="true"
+            (rowSelected)="handleRowSelected($event)"></app-table>
         <div class="mb-3"></div>
 
         <app-pagination [totalItems]="datasets.length" [itemsPerPage]="itemsPerPage"
@@ -473,12 +477,12 @@
                 </div>
                 <div class="col-md-1 d-flex justify-content-center">|</div>
                 <div class="col-md-3 d-flex justify-content-between"><span>Tags</span><span>:</span>
-                    <span *ngIf="selectedNodeDetails.tags[0].split(',').length>3"
-                        class="font-weight-600">{{selectedNodeDetails.tags[0].split(',').slice(0,
+                    <span *ngIf="selectedNodeDetails.tags.length>3"
+                        class="font-weight-600">{{selectedNodeDetails.tags.slice(0,
                         3)}} ...<span class="psedo_anchor_tag text-decoration-underline"
-                            (click)="showall_tags(selectedNodeDetails.tags[0].split(','),selectedNodeDetails.name)">More</span></span>
-                    <span *ngIf="selectedNodeDetails.tags[0].split(',').length<=3"
-                        class="font-weight-600">{{selectedNodeDetails.tags[0]}}</span>
+                            (click)="showall_tags(selectedNodeDetails.tags,selectedNodeDetails.name)">More</span></span>
+                    <span *ngIf="selectedNodeDetails.tags.length<=3"
+                        class="font-weight-600">{{selectedNodeDetails.tags}}</span>
                 </div>
                 <div class="col-md-3 d-flex justify-content-between"></div>
             </div>
@@ -516,7 +520,9 @@
 
                         <!-- Right Side: Search Icon and Button -->
                         <div class="d-flex align-items-center">
-                            <i class="boschicon-bosch-ic-search pe-3 fz-24px"></i>
+                            <!-- <i class="boschicon-bosch-ic-search pe-3 fz-24px"></i> -->
+                            <app-search [(value)]="pipelineContainerSearchQuery"
+                                (valueChange)="onSearch($event)"></app-search>
                             <app-button [class]="'primary justify-content-center'" [icon]="'bosch-ic-add'"
                                 (klick)="funcOpenCreateNewModal()"> {{nodeDetailsActiveTabCreateNewBtnText}}
                             </app-button>
@@ -660,8 +666,8 @@
 
             <div class="mb-3">
                 <div class="col-12 mb-3">
-                    <app-input [label]="'Tags'" [placeHolder]="'Enter Tags'"
-                        [(value)]="addEditNodeData.tags"></app-input>
+                    <app-tag [label]="'Tags'" [placeHolder]="'Enter tags'" [(value)]="addEditNodeData.tags"
+                        [required]="true"></app-tag>
                 </div>
             </div>
             <div class="row gx-0 mb-3">
