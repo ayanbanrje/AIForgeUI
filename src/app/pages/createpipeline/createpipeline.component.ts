@@ -7,12 +7,12 @@ import { ResourcesService } from "../../services/backend/resources.service";
 import Drawflow from 'drawflow'
 
 @Component({
-  selector: 'app-createproject',
-  templateUrl: './createproject.component.html',
-  styleUrl: './createproject.component.scss',
+  selector: 'app-createpipeline',
+  templateUrl: './createpipeline.component.html',
+  styleUrl: './createpipeline.component.scss',
   encapsulation: ViewEncapsulation.None
 })
-export class CreateprojectComponent {
+export class CreatepipelineComponent {
 
   editor: any;
   components = {}; objectKeys = Object.keys;

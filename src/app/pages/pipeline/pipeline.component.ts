@@ -3,10 +3,10 @@ import { ProjectsService } from '../../services/backend/projects.service';
 
 @Component({
   selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrl: './projects.component.scss'
+  templateUrl: './pipeline.component.html',
+  styleUrl: './pipeline.component.scss'
 })
-export class ProjectsComponent implements OnInit {
+export class PipelineComponent implements OnInit {
   templates = [
     // { name: 'Template 1', description: 'Template 1 description' },
     // { name: 'Template 2', description: 'Template 2 description' },
