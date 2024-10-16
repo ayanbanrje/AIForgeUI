@@ -10,10 +10,17 @@
                                 {{componentType.toLocaleUpperCase() }}<span class="caret"></span>
                             </button>
                             <div class="collapse" id="{{componentType}}---collapse" >
-                                {{ components[componentType] }}
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small list-group">
                                     <li *ngFor="let elem of components[componentType]" class="list-group-item">
-                                        <a href="javascript:void(0)" class="link-dark rounded" class="drag-drawflow" draggable="true" (dragstart)="drag($event)" [attr.data-name]="elem.asset_name" [attr.data-id]="elem.asset_id" [attr.data-type]="componentType">{{ elem.asset_name }}</a>
+                                        <a href="javascript:void(0)" class="link-dark rounded" class="drag-drawflow" draggable="true" (dragstart)="drag($event)" 
+                                        [attr.data-name]="elem.asset_name" 
+                                        [attr.data-id]="elem.asset_id" 
+                                        [attr.data-type]="componentType" 
+                                        [attr.data-refId]="elem.config_path"
+                                        [attr.data-className]="elem.asset_name"
+                                        [attr.data-classpath]="elem.classpath"
+                                        [attr.data-dependencies]="stringifyDependencies(elem.dependencies)"
+                                        >{{ elem.asset_name }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -46,41 +53,36 @@
         </div>
     </div>
 </div>
-<app-modal *ngIf="1==1" [(view)]="showModal" [header]="'Set Module Properties'"
-  [styles]="{ 'width': '50%', height : '500px', position: 'relative'}" [allowClose]="false">
+<!-- *ngIf="1==1" [(view)]="showModal" -->
+<app-modal [header]="'Pipeline Meta Information'" [view] = "showModal"
+  [styles]="{ 'width': '50%', height : '400px', position: 'relative'}" [allowClose]="false">
     <hr/>
-    <div class="row nodeProperties">
-        <div *ngFor="let field of objectKeys(selectedItemAdditionalProperties)" class="col-md-6 mt-3">
-          <ng-container [ngSwitch]="selectedItemAdditionalProperties[field].type">
-    
-            <!-- Input Box for String/Int -->
-            <div *ngSwitchCase="'string'" >
-                <app-input
-                    [label]="selectedItemAdditionalProperties[field].placeHolder"
-                    [value]="activeNodeDataDetails[selectedItemAdditionalProperties[field].keyToUseToStoreValue]"
-                    (valueChange)="storeAdditionalProperty($event,selectedItemAdditionalProperties[field].keyToUseToStoreValue)"
-                    ></app-input>
-            </div>
-    
-            <!-- Dropdown Box -->
-            <div *ngSwitchCase="'dropdown'">
-                <app-select-dropdown
-                    [dropdownList] = "selectedItemAdditionalProperties[field].optionList"
-                    [selectedItems] = "activeNodeDataDetails[selectedItemAdditionalProperties[field].keyToUseToStoreValue]"
-                    [multiSelect] = "selectedItemAdditionalProperties[field].multiple"
-                    (valueChanged) = "storeAdditionalProperty($event,selectedItemAdditionalProperties[field].keyToUseToStoreValue)"
-                    [placeHolder] = "selectedItemAdditionalProperties[field].placeHolder"
-                ></app-select-dropdown>
-            </div>
-    
-          </ng-container>
+    <div class="row">
+        <div class="col-md-6 mt-3">
+            <app-input
+                [label]="'Name'"
+                [(value)]="pipelineMetaInfo.name"
+            ></app-input>
         </div>
-        <hr />
-        <div class="d-flex justify-content-end align-items-center mt-3 position-absolute">
-            <app-button (klick)="setPropertyValueToNode()" [class]="'primary'"> Save Properties </app-button>
+        <div class="col-md-6 mt-3">
+            <app-input
+                [label]="'Tags'"
+                [(value)]="pipelineMetaInfo.tagString"
+            ></app-input>
+        </div>
+        <div class="col-md-12 mt-3">
+            <app-textarea
+                [label]="'description'"
+                [(value)]="pipelineMetaInfo.description"
+            ></app-textarea>
         </div>
     </div>
+    
+    <div class="button-container d-flex justify-content-end align-items-center position-absolute bottom-0 w-100">
+        <app-button (klick)="saveMetaInfo()" [class]="'primary'"> Save Pipeline Meta Information</app-button>
+    </div>
 </app-modal>
+
 
 <div class="right-panel" [ngClass]="rightPanelClass" id="rightPanel">
     <div class="right-panel-content">

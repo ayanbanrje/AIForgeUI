@@ -297,3 +297,17 @@
   display: block;
   opacity: 1; /* Fade in the overlay */
 }
+
+.custom-node p {
+  display: inline-block; /* or block */
+  //width: 5ch;            /* Limit to 5 characters (ch = character width) */
+  white-space: nowrap;    /* Prevent wrapping */
+  overflow: hidden;       /* Hide the overflow */
+  text-overflow: ellipsis; /* Add the ellipsis (...) */
+  vertical-align: middle; /* Ensure proper alignment */
+}
+
+.button-container{
+  right: 14px;
+  bottom: 13px !important;
+}
