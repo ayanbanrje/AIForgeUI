@@ -6,16 +6,18 @@
       <div *ngFor="let tag of value; let i = index" class="tag-item">
         {{ tag }}
         <span class="remove-tag" (click)="removeTag(i)">
-            <i class="boschicon-bosch-options-vertical"></i>
+            <i class="boschicon-bosch-ic-delete"></i>
         </span>
       </div>
       <input
         [placeholder]="placeHolder"
         [disabled]="disabled"
         [(ngModel)]="inputValue"
-        (keydown.enter)="addTag()"
+        
+        (keydown)="onKeydown($event)"
         (ngModelChange)="updateInputValue()"
       />
+      <!-- (keydown.enter)="addTag()" -->
     </div>
   </div>
   

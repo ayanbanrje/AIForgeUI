@@ -39,4 +39,13 @@ export class TagComponent {
   updateInputValue() {
     this.valueChange.emit(this.value);
   }
+  onKeydown(event: KeyboardEvent): void {
+    const inputValue = (event.target as HTMLInputElement).value;
+  
+    // Check for 'Enter' or 'Comma'
+    if (event.key === ',') {
+      event.preventDefault(); // Prevent comma from being entered
+      this.addTag();
+    }
+  }
 }

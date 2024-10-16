@@ -2,7 +2,7 @@
     [ngClass]="{'changePassword':changePassword , 'installationDevice': installationDevice , 'isMobileView': isMobileView}"
     [ngStyle]="{ 'z-index' : zIndex }">
     <div class="p-3 modal-content-phantom" [ngStyle]="styles">
-        <header class="defaultHeader"><span [ngStyle]="{color: headerColor}">{{header}}</span>
+        <header class="defaultHeader text-nowrap"><span [ngStyle]="{color: headerColor}">{{header}}</span>
             <i class="boschicon-bosch-ic-close closeIcon" (click)="close()"></i>
         </header>
         <div class="view">
