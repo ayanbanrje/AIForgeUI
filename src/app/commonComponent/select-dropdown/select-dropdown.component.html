@@ -1,4 +1,4 @@
-<div class="dropdown-parent">
+<div class="dropdown-parent" [ngClass]="disabled ? 'disabled-class-dropdown' : ''">
     <ng-multiselect-dropdown
         [placeholder]="placeHolder"
         [settings]="dropdownSettings"
@@ -8,6 +8,7 @@
         (onSelectAll)="onSelectAll($event)"
         (onDeSelect)="onDeSelect($event)"
         (onDeSelectAll)="onDeSelectAll($event)"
+        [disabled]="disabled"
     >
     </ng-multiselect-dropdown>
 </div>

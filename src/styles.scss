@@ -483,3 +483,11 @@ dl {
   color: red;
   margin-left: 2px;
 }
+.disabled-class{
+  cursor: not-allowed !important;
+  opacity: 70%; 
+  input,textarea{
+    cursor: not-allowed !important;
+  };
+  
+}

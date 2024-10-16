@@ -1,19 +1,25 @@
 // @import ("");
 .input-group {
-    min-width: 400px;
-    background-color: #DFDFE0;
-    border-bottom:1px solid #e2e2e2
+    min-width: 200px;
+    // background-color: #DFDFE0;
+    background-color: #F1F1F1;
+    // border-bottom:1px solid #e2e2e2
     // margin: auto;
+    border: none;
   }
   input{
-    background-color: #DFDFE0
+    // background-color: #DFDFE0;
+    background-color: #F1F1F1;
+    border: none;
   }
  /* Remove the blue border on focus */
 .form-control:focus {
   outline: none;
   box-shadow: none;
   border: none;
-  background-color: #DEDFE0;
+  // background-color: #DEDFE0;
+  background-color: #F1F1F1;
+
 }
 
   button{

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { LoadingService } from '../loading.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,18 @@ export class ModuleExtensionService {
   }
   async createCustomComponent(body){
     const url = this.url + '/create-asset';
+    const request = this.http.post(url, body);
+    const response: any = await this.loadingService.get(request);
+    return response;
+  }
+  async uploadasset(body){
+    const url = this.url + '/uploadasset';
+    const request = this.http.post(url, body);
+    const response: any = await this.loadingService.get(request);
+    return response;
+  }
+  async deleteCustomComponent(body){
+    const url = this.url + '/deletecomponent';
     const request = this.http.post(url, body);
     const response: any = await this.loadingService.get(request);
     return response;

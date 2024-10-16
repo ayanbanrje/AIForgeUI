@@ -2,7 +2,7 @@
     <div class="row gx-0 m-0 justify-content-between mb-3 ">
         <div class="col fw-bold fz-42px">All Available Datasets</div>
         <div class="col-auto ms-auto ">
-            <app-search (search)="onSearch($event)"></app-search>
+            <app-search (valueChange)="onSearch($event)"></app-search>
         </div>
     </div>
     <div class="row mb-3">
@@ -34,7 +34,7 @@
         <form>
             <div class="row gx-0 mt-3">
                 <div class="col mb-3">
-                    <app-input [label]="'Enter Name'" [required]="true" [(value)]="addNewDatasets.name"></app-input>
+                    <app-input [label]="'Enter Name'" [placeHolder]="'Enter Name'" [required]="true" [(value)]="addNewDatasets.name"></app-input>
                 </div>
             </div>
             <div class="mb-3">

@@ -36,13 +36,17 @@
     border: unset !important;
     border-bottom: 1px solid #ccc !important;
     height: 42px ;
+    padding: 0% !important;
   }
-
+  ::ng-deep .dropdown-btn{
+    padding: 0%;
+  }
   ::ng-deep .dropdown-btn span{
     // opacity: 52%;
-    // font-size: 12px;
-    // position: absolute;
-    // top: 0;
+    padding-left: 8px;
+  }
+  ::ng-deep .dropdown-btn .selected-item-container{
+    padding: 8px;
   }
 
 
@@ -62,3 +66,11 @@
     top: 0;
     left: 0;
   }
+  .dropdown-parent.disabled-class-dropdown {
+    ::ng-deep .dropdown-btn {
+      cursor: not-allowed !important;
+      opacity: 70%;
+    }
+  }
+  
+  

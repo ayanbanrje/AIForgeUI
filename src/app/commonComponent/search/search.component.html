@@ -1,6 +1,6 @@
 <div class="input-group">
-    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchQuery" />
-    <button class="btn btn-outline-secondary" type="button" (click)="onSearch()">
+    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="value" (ngModelChange)="emitSearchValue()"/>
+    <button class="btn btn-outline-secondary" type="button" (click)="onSearchButtonClicked()">
         <i class="boschicon-bosch-ic-search"></i>
     </button>
   </div>

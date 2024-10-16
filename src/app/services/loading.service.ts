@@ -68,7 +68,7 @@ export class LoadingService implements OnDestroy {
         return throwError(() => error);
       })
     ).toPromise().then((success) => {
-      // console.log("API Success:", success);  // Log success
+      //console.log("API Success:", success);  // Log success
       if (success.status == 'failure') {
         // console.log("inside fail")
         self.error.status = success.status ? success.status : 'failure';

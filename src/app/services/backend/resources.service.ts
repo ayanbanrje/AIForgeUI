@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { LoadingService } from '../loading.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectsService {
+export class ResourcesService {
 
-  module="templates"
-  url='';
+  url = environment.URL;
 
   constructor(private http: HttpClient, private loadingService: LoadingService) {
-    this.url = environment.URL+this.module;
+    let module = 'resources';
+    this.url = this.url+module
   }
 
-  // async getTemplates() {
-    
-  // }
-  async ListTemplates(){
-    const url = this.url + '/list';
-    const request = this.http.get(url);
+  async get_argsdef(body){
+    const url = `${this.url}/get_argsdef`;
+    const request = this.http.get(url, { params: body });
     const response: any = await this.loadingService.get(request);
     return response;
   }
