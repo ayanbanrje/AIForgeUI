@@ -1,3 +1,5 @@
+
+<!-- Before changing anything in common component , please consult with either team lead or appropriate person -->
 <table class="table">
     <thead class="table-light">
         <tr>
@@ -8,8 +10,9 @@
         <tr *ngFor="let row of rows">
             <td *ngFor="let header of headers">
                 <ng-container *ngIf="header === 'Tags'">
-                    <span *ngFor="let tag of row[header]" class="tag-class">{{ tag }}</span>
+                    <app-tag-display [Tags]="row[header]" [modalHeader]="row['DataSet Name']"></app-tag-display>
                 </ng-container>
+                <!-- this is for normal row -->
                 <ng-container *ngIf="header !== 'Tags'">
                     {{ row[header] }}
                 </ng-container>

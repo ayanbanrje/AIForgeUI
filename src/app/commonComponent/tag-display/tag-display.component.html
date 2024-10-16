@@ -1,0 +1,28 @@
+<!-- <span *ngFor="let tag of Tags" class="tag-class">{{ tag }}</span> -->
+<div>
+    <!-- Display first 3 tags -->
+    <span *ngFor="let tag of Tags.slice(0, 3)" class="tag-class">{{ tag }}</span>
+
+    <!-- Show +remaining if there are more than 3 tags -->
+    <span *ngIf="Tags.length > 3" class="tag-class cursor-pointer" (click)="openModal()">
+        +{{ Tags.length - 3 }}
+    </span>
+</div>
+
+<!-- Modal for displaying all tags -->
+<app-modal [zIndex]="'9998'" *ngIf="openAllTagsModal" [(view)]="openAllTagsModal" [header]="modalHeader"
+    [styles]="{ width: '20vw' }">
+    <div class="modal-body overflow-auto fh">
+        <div class="row gx-0 m-0 flex-glow-1 scroll border-top-1 ps-1">
+            <div class="col mt-3">
+                <h6 class="font-weight-600 my-3">All Tags</h6>
+                <span class="label-badge tag-class my-1" *ngFor="let tag of Tags">{{tag}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-end mt-3">
+        <app-button [class]="'secondary justify-content-center'" [width]="'100px'" [fontSize]="'16px'"
+            (klick)="cancelModal()">
+            Cancel</app-button>
+    </div>
+</app-modal>

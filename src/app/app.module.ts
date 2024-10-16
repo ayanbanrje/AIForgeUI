@@ -33,6 +33,7 @@ import { TableComponent } from './commonComponent/table/table.component';
 import { PaginationComponent } from './commonComponent/pagination/pagination.component';
 import { TagComponent } from './commonComponent/tag/tag.component';
 import { AuthInterceptor } from './services/auth/auth.interceptor';
+import { TagDisplayComponent } from './commonComponent/tag-display/tag-display.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { AuthInterceptor } from './services/auth/auth.interceptor';
     TableComponent,
     PaginationComponent,
     TagComponent,
+    TagDisplayComponent,
   ],
   imports: [
     BrowserModule,

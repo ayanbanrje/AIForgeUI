@@ -14,7 +14,7 @@ export class DatasetsComponent implements OnInit {
       'Format': 'csv',
       'Date Modified': '2024-05-10',
       'Size': '20MB',
-      'Tags': ['Source', 'Source', 'Source', '+2']
+      'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
     },
     {
       'DataSet Name': 'Preprocess',
@@ -22,7 +22,7 @@ export class DatasetsComponent implements OnInit {
       'Format': 'png',
       'Date Modified': '2024-05-12',
       'Size': '25MB',
-      'Tags': ['Source', 'Source', 'Source', '+3']
+      'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
     },
     {
       'DataSet Name': 'Train Model',
@@ -30,7 +30,7 @@ export class DatasetsComponent implements OnInit {
       'Format': 'jpg',
       'Date Modified': '2024-05-13',
       'Size': '30MB',
-      'Tags': ['Source', 'Source', 'Source', '+2']
+      'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
     },
     {
       'DataSet Name': 'Evaluate Model',
@@ -38,7 +38,7 @@ export class DatasetsComponent implements OnInit {
       'Format': 'txt',
       'Date Modified': '2024-05-14',
       'Size': '15MB',
-      'Tags': ['Source', 'Source', 'Source', '+2']
+      'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
     },
     {
       'DataSet Name': 'Evaluate Model',
@@ -46,7 +46,7 @@ export class DatasetsComponent implements OnInit {
       'Format': 'txt',
       'Date Modified': '2024-05-14',
       'Size': '15MB',
-      'Tags': ['Source', 'Source', 'Source', '+2']
+      'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
     }
   ];
 
@@ -136,7 +136,7 @@ export class DatasetsComponent implements OnInit {
     this.toast.createToast({ type: "error", message });
     return false;
   }
-  clearAddNewDatasetsForm(){
+  clearAddNewDatasetsForm() {
     this.addNewDatasets = {
       name: '',
       description: '',
