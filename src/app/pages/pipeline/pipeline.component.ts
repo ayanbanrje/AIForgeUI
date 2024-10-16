@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProjectsService } from '../../services/backend/projects.service';
+import { PipelineService } from '../../services/backend/pipeline.service';
 
 @Component({
   selector: 'app-projects',
@@ -18,7 +18,7 @@ export class PipelineComponent implements OnInit {
     // { name: 'Template 8', description: 'Template 8 description' }
   ];
   constructor(
-    public projectService:ProjectsService
+    public pipelineService:PipelineService
   ){
 
   }
@@ -26,7 +26,7 @@ export class PipelineComponent implements OnInit {
     this.ListTemplates()
   }
   async ListTemplates(){
-    let response=await this.projectService.ListTemplates()
+    let response=await this.pipelineService.ListTemplates()
     this.templates=response['data']
   }
 

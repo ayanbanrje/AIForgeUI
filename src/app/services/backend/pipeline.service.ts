@@ -6,19 +6,18 @@ import { LoadingService } from '../loading.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectsService {
-
-  module="templates"
-  url='';
+export class PipelineService {
+  module = "templates"
+  url = '';
 
   constructor(private http: HttpClient, private loadingService: LoadingService) {
-    this.url = environment.URL+this.module;
+    this.url = environment.URL + this.module;
   }
 
   // async getTemplates() {
-    
+
   // }
-  async ListTemplates(){
+  async ListTemplates() {
     const url = this.url + '/list';
     const request = this.http.get(url);
     const response: any = await this.loadingService.get(request);
