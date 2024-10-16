@@ -8,7 +8,9 @@ import { DatasetsService } from '../../services/backend/datasets.service';
 })
 export class DatasetsComponent implements OnInit {
   datasets = [
-    {
+    { 
+      'checkbox':false,
+      '_id':1,
       'DataSet Name': 'Data Input',
       'Description': 'Configure data sources for your pipeline. Easily connect to various data inputs for seamless integration.',
       'Format': 'csv',
@@ -17,6 +19,8 @@ export class DatasetsComponent implements OnInit {
       'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
     },
     {
+      'checkbox':false,
+      '_id':2,
       'DataSet Name': 'Preprocess',
       'Description': 'Customize data preprocessing steps to clean and transform your dataset, ensuring it’s model-ready.',
       'Format': 'png',
@@ -25,6 +29,8 @@ export class DatasetsComponent implements OnInit {
       'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
     },
     {
+      'checkbox':false,
+      '_id':3,
       'DataSet Name': 'Train Model',
       'Description': 'Set parameters and manage resources to efficiently train your machine learning models.',
       'Format': 'jpg',
@@ -33,6 +39,8 @@ export class DatasetsComponent implements OnInit {
       'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
     },
     {
+      'checkbox':false,
+      '_id':4,
       'DataSet Name': 'Evaluate Model',
       'Description': 'Assess model performance with customizable evaluation metrics and validation techniques.',
       'Format': 'txt',
@@ -41,6 +49,8 @@ export class DatasetsComponent implements OnInit {
       'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
     },
     {
+      'checkbox':false,
+      '_id':5,
       'DataSet Name': 'Evaluate Model',
       'Description': 'Assess model performance with customizable evaluation metrics and validation techniques.',
       'Format': 'txt',
@@ -78,9 +88,11 @@ export class DatasetsComponent implements OnInit {
   }
 
   updatePaginatedData(): void {
+    console.log("hello inside")
     const start = (this.currentPage - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
     this.paginatedDatasets = this.datasets.slice(start, end);
+
   }
   onSearch(query: string) {
     console.log('Search query:', query);
@@ -144,4 +156,5 @@ export class DatasetsComponent implements OnInit {
       tags: []
     }
   }
+  
 }

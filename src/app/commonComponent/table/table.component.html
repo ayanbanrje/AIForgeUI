@@ -1,20 +1,46 @@
-
 <!-- Before changing anything in common component , please consult with either team lead or appropriate person -->
+
+<!-- Here is guidelines for using checkbox inside table
+    ### Important Note: you need to pass checkbox variable as false from parent in all tableDatasets like this : 
+    [{
+      'checkbox':false,
+      '_id':1,
+      'DataSet Name': 'Evaluate Model',
+      'Description': 'Assess model performance with customizable evaluation metrics and validation techniques.',
+      'Format': 'txt',
+      'Date Modified': '2024-05-14',
+      'Size': '15MB',
+      'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
+    }]
+
+    ### parent component example :
+    <app-table [headers]="tableHeaders" [rows]="tableDataSets" [showCheckbox]="true" [multipleCheckBoxAllowed]="true" (rowSelected)="handleRowSelected($event)"></app-table> 
+    
+    ### showCheckbox is boolean to show checkbox or not
+    ### multipleCheckBoxAllowed is used to check multiple boxes
+    ### rowSelected is event handler whenever anything happens inside checkbox
+-->
+
 <table class="table">
     <thead class="table-light">
         <tr>
+            <th *ngIf="showCheckbox" scope="col" class="py-3 text-nowrap"></th>
             <th scope="col" class="py-3 text-nowrap" *ngFor="let header of headers">{{ header }}</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let row of rows">
+            <td *ngIf="showCheckbox">
+                <app-checkbox [(value)]="row['checkbox']" (valueChange)="onCheckboxChange(row, $event)"></app-checkbox>
+            </td>
             <td *ngFor="let header of headers">
-                <ng-container *ngIf="header === 'Tags'">
-                    <app-tag-display [Tags]="row[header]" [modalHeader]="row['DataSet Name']"></app-tag-display>
-                </ng-container>
                 <!-- this is for normal row -->
                 <ng-container *ngIf="header !== 'Tags'">
                     {{ row[header] }}
+                </ng-container>
+                <!-- this for row with tag -->
+                <ng-container *ngIf="header === 'Tags'">
+                    <app-tag-display [Tags]="row[header]" [modalHeader]="row['DataSet Name']"></app-tag-display>
                 </ng-container>
             </td>
         </tr>
