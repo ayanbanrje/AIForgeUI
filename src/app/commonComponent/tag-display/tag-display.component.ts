@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class TagDisplayComponent {
   @Input() Tags=[]
   openAllTagsModal:boolean=false
-
+  @Input() modalHeader=''
   openModal(){
     this.openAllTagsModal=true
   }

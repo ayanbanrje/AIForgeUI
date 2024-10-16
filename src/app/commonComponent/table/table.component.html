@@ -10,7 +10,7 @@
         <tr *ngFor="let row of rows">
             <td *ngFor="let header of headers">
                 <ng-container *ngIf="header === 'Tags'">
-                    <app-tag-display [Tags]="row[header]"></app-tag-display>
+                    <app-tag-display [Tags]="row[header]" [modalHeader]="row['DataSet Name']"></app-tag-display>
                 </ng-container>
                 <!-- this is for normal row -->
                 <ng-container *ngIf="header !== 'Tags'">
