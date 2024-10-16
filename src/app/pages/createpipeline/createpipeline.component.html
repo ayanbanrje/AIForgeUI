@@ -55,7 +55,7 @@
 </div>
 <!-- *ngIf="1==1" [(view)]="showModal" -->
 <app-modal [header]="'Pipeline Meta Information'" [view] = "showModal"
-  [styles]="{ 'width': '50%', height : '400px', position: 'relative'}" [allowClose]="false">
+  [styles]="{ 'width': '50%'}" [allowClose]="false">
     <hr/>
     <div class="row">
         <div class="col-md-6 mt-3">
@@ -78,7 +78,8 @@
         </div>
     </div>
     
-    <div class="button-container d-flex justify-content-end align-items-center position-absolute bottom-0 w-100">
+    <div class="button-container d-flex justify-content-between align-items-center w-100 mt-3">
+        <app-button (klick)="backToProjectList()" [width]="'200px'" [class]="'secondary justify-content-center bg-white'"> Cancel </app-button>
         <app-button (klick)="saveMetaInfo()" [class]="'primary'"> Save Pipeline Meta Information</app-button>
     </div>
 </app-modal>

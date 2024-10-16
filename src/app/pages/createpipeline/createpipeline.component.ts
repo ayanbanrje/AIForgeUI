@@ -47,7 +47,8 @@ export class CreatepipelineComponent {
   ) { }
 
   backToProjectList() {
-
+    let ifModalWasOpened = this.showModal;
+    this.showModal = false;
     this.message.createMessage({
       header: "Confirmation Required",
       message: "Are you sure you want to cancel? All changes will be discarded.",
@@ -56,7 +57,7 @@ export class CreatepipelineComponent {
         label: "Yes",
         action: () => {
           // self.defaultErrorMsg();
-          this.router.navigate(['/projects']);
+          this.router.navigate(['/pipeline']);
           this.message.close();
         },
       },
@@ -65,6 +66,9 @@ export class CreatepipelineComponent {
         action: () => {
           // self.defaultErrorMsg();
           this.message.close();
+          if(ifModalWasOpened){
+            this.showModal = true;
+          }
         },
       },
     });
