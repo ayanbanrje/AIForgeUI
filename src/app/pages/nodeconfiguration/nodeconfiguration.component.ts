@@ -602,4 +602,8 @@ export class NodeconfigurationComponent implements OnInit {
   view_pipeline_container_details(itemId) {
 
   }
+
+  handleRowSelected(selectedRow){
+    console.log("selectedRow",selectedRow)
+  }
 }

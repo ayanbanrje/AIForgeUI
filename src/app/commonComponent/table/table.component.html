@@ -1,18 +1,6 @@
 <!-- Before changing anything in common component , please consult with either team lead or appropriate person -->
 
 <!-- Here is guidelines for using checkbox inside table
-    ### Important Note: you need to pass checkbox variable as false from parent in all tableDatasets like this : 
-    [{
-      'checkbox':false,
-      '_id':1,
-      'DataSet Name': 'Evaluate Model',
-      'Description': 'Assess model performance with customizable evaluation metrics and validation techniques.',
-      'Format': 'txt',
-      'Date Modified': '2024-05-14',
-      'Size': '15MB',
-      'Tags': ['Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source', 'Source']
-    }]
-
     ### parent component example :
     <app-table [headers]="tableHeaders" [rows]="tableDataSets" [showCheckbox]="true" [multipleCheckBoxAllowed]="true" (rowSelected)="handleRowSelected($event)"></app-table> 
     

@@ -414,7 +414,7 @@
         </div>
     </div>
     <div class="row mb-3">
-        <app-table [headers]="tableHeaders" [rows]="paginatedDatasets"></app-table>
+        <app-table [headers]="tableHeaders" [rows]="paginatedDatasets" [showCheckbox]="true" (rowSelected)="handleRowSelected($event)"></app-table>
         <div class="mb-3"></div>
 
         <app-pagination [totalItems]="datasets.length" [itemsPerPage]="itemsPerPage"
