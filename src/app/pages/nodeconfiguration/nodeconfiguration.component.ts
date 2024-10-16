@@ -574,7 +574,7 @@ export class NodeconfigurationComponent implements OnInit {
     this.updatePaginatedData();
   }
 
-  onSearch(query: string) {
+  onSearch(query): void {
     console.log('Search query:', query);
     // Handle search logic here
 
