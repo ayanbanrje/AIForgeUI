@@ -1,8 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from "../../services/message.service";
 import { ModuleExtensionService } from "../../services/backend/module-extension.service";
 import { ResourcesService } from "../../services/backend/resources.service";
+import { ToastService } from '../../services/toast.service';
 
 import Drawflow from 'drawflow'
 
@@ -41,12 +42,27 @@ export class CreatepipelineComponent {
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private message: MessageService,
     private moduleExtensionService : ModuleExtensionService,
-    private resourcesService : ResourcesService
-  ) { }
+    private resourcesService : ResourcesService,
+    public toast: ToastService
+  ) { 
+    this.route.queryParams.subscribe(params => {
+      let id1 = params['id1'] || null;
+      let id2 = params['id2'] || null;
+      if (id1 || id2) {
+        // Logic to handle the IDs (if they exist)
+
+        console.log("Ids:", id1, id2 )
+      }
+    });
+    
+  }
 
   backToProjectList() {
+    
+
     let ifModalWasOpened = this.showModal;
     this.showModal = false;
     this.message.createMessage({
@@ -72,6 +88,9 @@ export class CreatepipelineComponent {
         },
       },
     });
+
+    // this.router.navigate(['/createpipeline'], { queryParamsHandling: 'preserve', queryParams: { id1: 12, id2: 34 }, skipLocationChange: false });
+    
   }
 
   stringifyDependencies(dependencies: any[]): string {
@@ -455,7 +474,7 @@ export class CreatepipelineComponent {
     }
   }
 
-  export() {
+  async savePipeline() {
     let flow = [];
     let accOut, accumulatorArray = []
 
@@ -528,6 +547,20 @@ export class CreatepipelineComponent {
       "acc" : accumulatorArray,
       "style" : this.editor.export(),
       "meta" : this.pipelineMetaInfo
+    }
+
+    let response = await this.resourcesService.savePipeline(pipelineObj);
+
+    if(response && response['status']=='success'){
+      this.toast.createToast({
+        type: "success", message: 'Pipeline created successfully !!'
+      })
+
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { pipelineId: response['data']['resource_id'] },
+        //queryParamsHandling: 'merge', // merge with current query params
+      });
     }
 
     console.log(pipelineObj)

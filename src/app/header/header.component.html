@@ -45,5 +45,5 @@
             </div>
         </div>
     </div>
-    <app-menu *ngIf="router.url != '/createpipeline'"></app-menu>
+    <app-menu *ngIf="router.url.split('?')[0] !== '/createpipeline'"></app-menu>
 </header>

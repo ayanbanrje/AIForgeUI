@@ -21,4 +21,11 @@ export class ResourcesService {
     const response: any = await this.loadingService.get(request);
     return response;
   }
+
+  async savePipeline(body){
+    const url = `${this.url}/savepipelineresource`;
+    const request = this.http.post(url, body );
+    const response: any = await this.loadingService.get(request);
+    return response;
+  }
 }
