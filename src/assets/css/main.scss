@@ -30,7 +30,7 @@ li{
 .genesis{
     font-size: 18px;
     font-weight: bold;
-    color: #008ece;
+    color: $primary-blue;
 }
 .bosch-name{
     h5{
@@ -149,7 +149,7 @@ li{
                     min-width: 30px;
                 }
                 &:hover{
-                    background: #008ece;
+                    background: $primary-blue;
                     color: #fff;
                 }
             }
@@ -173,14 +173,14 @@ li{
                 padding: 6px 8px;
                 display: block;
                 &:hover{
-                    border-bottom: 2px solid #008ece;
-                    color: #008ece;
+                    border-bottom: 2px solid $primary-blue;
+                    color: $primary-blue;
                 }
             }
             &.active{
                 a{
-                    border-bottom: 2px solid #008ece;
-                    color: #008ece; 
+                    border-bottom: 2px solid $primary-blue;
+                    color: $primary-blue; 
                 }
             }
         }

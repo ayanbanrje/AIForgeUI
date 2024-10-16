@@ -1,13 +1,16 @@
+@import "../../../assets/css/variables";
+
 .sideBarMenu{
     cursor: pointer;
 }
 .sideBarMenu:hover{
-    background-color: #0083C4;
+    background-color: $primary-blue;
     color:white
 }
 .activeClass{
-    color:#0083C4;
-    border-bottom: 2px solid #0083c4;
+    border: 2px solid  $primary-blue;
+    background-color: $primary-blue-shade;
+
 }
 .descriptionText {
     display: -webkit-box;         /* Enable the flexbox model */
