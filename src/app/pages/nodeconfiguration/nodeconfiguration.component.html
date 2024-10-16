@@ -324,7 +324,8 @@
                         <!-- Icons -->
                         <div class="d-flex">
                             <i class="boschicon-bosch-ic-edit ms-3" title="Edit" (click)="edit_node(node.node_id)"></i>
-                            <i class="boschicon-bosch-ic-download ms-3" title="Download"></i>
+                            <i class="boschicon-bosch-ic-download ms-3" title="Download" tabindex="1"
+                                (click)="download_node(node.node_id)"></i>
                             <i class="boschicon-bosch-ic-delete ms-3" title="Delete" tabindex="1"
                                 (click)="deleteNode(node.node_id)"></i>
                             <i class="boschicon-bosch-ic-options-vertical ms-3" title="More options" tabindex="1"
@@ -404,7 +405,47 @@
         </div>
     </div>
 </div>
-<div *ngIf="!rootPage" class="pg-container px-5 h-100 w-100 d-flex flex-column mt-2">
+
+<div *ngIf="!rootPage && showAllList" class="pg-container px-5 h-100 w-100 d-flex flex-column mt-2">
+    <div class="row gx-0 m-0 justify-content-between mb-3 ">
+        <div class="col fw-bold fz-42px">All Available {{activeTab}}s</div>
+        <div class="col-auto ms-auto ">
+            <app-search (search)="onSearch($event)"></app-search>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <app-table [headers]="tableHeaders" [rows]="paginatedDatasets"></app-table>
+        <div class="mb-3"></div>
+
+        <app-pagination [totalItems]="datasets.length" [itemsPerPage]="itemsPerPage"
+            (pageChange)="onPageChange($event)">
+        </app-pagination>
+
+    </div>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-start">
+            <div class="ps-3">
+                <app-button [class]="'secondary justify-content-center mt-2'" [width]="'200px'"
+                    (klick)="view_node_details(selectedNodeId)">
+                    Cancel </app-button>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            <div *ngIf="activeTab=='Container'" class="div me-3">
+                <app-button [class]="'primary justify-content-center mt-2'" [width]="'200px'"
+                    (klick)="upload_container_image()">
+                    Upload Container Image </app-button>
+            </div>
+            <div class="div">
+                <app-button [class]="'primary justify-content-center mt-2'" [width]="'200px'" (klick)="map_to_node()">
+                    Map to Node </app-button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!rootPage && !showAllList" class="pg-container px-5 h-100 w-100 d-flex flex-column">
     <div class="col-md-12 d-flex justify-content-center align-items-top align-content-center my-3">
         <div class="col-md-6 d-flex flex-column me-3">
             <h6 class="fw-bold d-flex align-items-center" (click)="back_to_listing()"><i
@@ -579,7 +620,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center align-items-center cursor-pointer"
-                                        (click)="view_node_details(item.id)">View</div>
+                                        (click)="view_pipeline_container_details(item.id)">View</div>
                                 </div>
                             </div>
                         </div>

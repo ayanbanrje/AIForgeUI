@@ -19,7 +19,7 @@ export class NodeConfigurationService {
 
   constructor(private http: HttpClient, private loadingService: LoadingService) {
     let module = 'nodes';
-    this.url = this.url+module
+    this.url = this.url + module
   }
 
 
@@ -54,6 +54,13 @@ export class NodeConfigurationService {
   async updatenode(body) {
     const url = `${this.url}/updatenode`;
     const request = this.http.post(url, body);
+    const response: any = await this.loadingService.get(request);
+    return response;
+  }
+
+  async downloadcred(body) {
+    const url = `${this.url}/downloadcred`;
+    const request = this.http.get(url, { params: body });
     const response: any = await this.loadingService.get(request);
     return response;
   }
