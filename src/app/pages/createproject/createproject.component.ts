@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from "../../services/message.service";
 import { ModuleExtensionService } from "../../services/backend/module-extension.service";
+import { ResourcesService } from "../../services/backend/resources.service";
 
 import Drawflow from 'drawflow'
 
@@ -27,13 +28,22 @@ export class CreateprojectComponent {
   activeNodeDataDetails = {};
   rightPanelClass = '';
   tempSelectedNodeData:any;
+  pipelineMetaInfo = {
+    "name":"", 
+		"id":"",
+		"tagString" : "",
+		"path":"",
+    "description": ""	,
+    "tags" : []
+  };
 
 
 
   constructor(
     private router: Router,
     private message: MessageService,
-    private moduleExtensionService : ModuleExtensionService
+    private moduleExtensionService : ModuleExtensionService,
+    private resourcesService : ResourcesService
   ) { }
 
   backToProjectList() {
@@ -60,12 +70,17 @@ export class CreateprojectComponent {
     });
   }
 
+  stringifyDependencies(dependencies: any[]): string {
+    return JSON.stringify(dependencies);
+  }
 
   ngOnInit() {
     // Initialize Drawflow
     this.editor = new Drawflow(document.getElementById("drawflow") as HTMLElement);
     
     this.setDefaultValues()
+
+    this.pipelineMetaInfo.name==""?this.showModal=true:"";
   }
 
   ngAfterViewInit() {
@@ -90,7 +105,7 @@ export class CreateprojectComponent {
     });
 
     this.editor.start();
-    this.importDrawFlow();
+    //this.importDrawFlow();
   }
 
   attachDoubleClickEvent(id){
@@ -114,37 +129,11 @@ export class CreateprojectComponent {
       "algo": await this.getComponents('algo'),
       "sink": await this.getComponents('sink')
     }
-
-    console.log(this.components)
-
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-    this.selectedItems = [
-     // { item_id: 3, item_text: 'Pune' },
-      //{ item_id: 4, item_text: 'Navsari' }
-    ];
-
+   
     this.DBadditionalProperties = {
-      algo: {
-        name: { type: "string" },
-        age: { type: "int" },
-        company: { type: "int" }
-      },
-      // Sink: {
-      //   address: { type: "string" },
-      //   email: { type: "string" }
-      // },
-
-      source: {
-        city: { type: "dropdown", options: ['ban', 'pun', 'mum'] , multiple: false },
-        country: { type: "dropdown", options: ['india', 'Germany', 'United Kingdom'] , multiple: false },
-        email: { type: "string" }
-      }
+      algo: await this.getAdditionalProperties('algo'),
+      sink : await this.getAdditionalProperties('sink'),
+      source: await this.getAdditionalProperties('source')
     }
   }
 
@@ -153,22 +142,25 @@ export class CreateprojectComponent {
       "drawflow": {
         "Home": {
           "data": {
-            "3": {
-              "id": 3,
+            "1": {
+              "id": 1,
               "name": "Hello 3",
               "data": {
                 "name": "Hello 3",
                 "id": "c35d5e21-ab40-5786-9008-214e953ceeaa",
                 "type": "source",
+                "refId": "null",
+                "className": "Hello 3",
+                "classpath": "null",
                 "additionalProperties": {
-                  "email": "Test@demo.com",
+                  "email": "csacsac",
                   "city": {
                     "item_id": "ban",
                     "item_text": "Ban"
                   },
                   "country": {
-                    "item_id": "Germany",
-                    "item_text": "Germany"
+                    "item_id": "india",
+                    "item_text": "India"
                   }
                 }
               },
@@ -184,100 +176,67 @@ export class CreateprojectComponent {
                 "output_1": {
                   "connections": [
                     {
-                      "node": "4",
+                      "node": "2",
                       "output": "input_1"
                     }
                   ]
                 }
               },
-              "pos_x": 57,
-              "pos_y": 5
+              "pos_x": 119,
+              "pos_y": 56.350006103515625
             },
-            "4": {
-              "id": 4,
-              "name": "algo_10",
+            "2": {
+              "id": 2,
+              "name": "F",
               "data": {
-                "name": "algo_10",
-                "id": "8165049e-e77a-5a52-843b-1aeea52a0c9a",
+                "name": "F",
+                "id": "057173b4-4dd7-5905-8a13-40442a1c8162",
                 "type": "algo",
+                "refId": "null",
+                "className": "F",
+                "classpath": "null",
                 "additionalProperties": {
-                  "company": "Demo 1",
-                  "name": "Algo 11",
-                  "age": "12"
+                  "company": "CSAsa",
+                  "name": "xasc",
+                  "age": "cA"
                 }
               },
               "class": "drawflow-node-rect",
-              "html": "<div class=\"custom-node\">\n        <p>algo_10</p>\n      </div>",
+              "html": "<div class=\"custom-node\">\n        <p>F</p>\n      </div>",
               "typenode": false,
               "inputs": {
                 "input_1": {
+                  "connections": [
+                    {
+                      "node": "1",
+                      "input": "output_1"
+                    }
+                  ]
+                }
+              },
+              "outputs": {
+                "output_1": {
                   "connections": [
                     {
                       "node": "3",
-                      "input": "output_1"
-                    }
-                  ]
-                }
-              },
-              "outputs": {
-                "output_1": {
-                  "connections": [
-                    {
-                      "node": "5",
                       "output": "input_1"
                     }
                   ]
                 }
               },
-              "pos_x": 243,
-              "pos_y": 189
+              "pos_x": 505,
+              "pos_y": 86
             },
-            "5": {
-              "id": 5,
-              "name": "Hello",
-              "data": {
-                "name": "Hello",
-                "id": "876a39b8-c05c-5901-987a-d33b5898671d",
-                "type": "algo",
-                "additionalProperties": {
-                  "company": "Demo 2",
-                  "name": "algo 22",
-                  "age": "14"
-                }
-              },
-              "class": "drawflow-node-rect",
-              "html": "<div class=\"custom-node\">\n        <p>Hello</p>\n      </div>",
-              "typenode": false,
-              "inputs": {
-                "input_1": {
-                  "connections": [
-                    {
-                      "node": "4",
-                      "input": "output_1"
-                    }
-                  ]
-                }
-              },
-              "outputs": {
-                "output_1": {
-                  "connections": [
-                    {
-                      "node": "6",
-                      "output": "input_1"
-                    }
-                  ]
-                }
-              },
-              "pos_x": 454,
-              "pos_y": 395
-            },
-            "6": {
-              "id": 6,
+            "3": {
+              "id": 3,
               "name": "file_sink",
               "data": {
                 "name": "file_sink",
                 "id": "6439ef79-a07c-56fc-94f0-cfd7b26948ae",
-                "type": "sink"
+                "type": "sink",
+                "refId": "null",
+                "className": "file_sink",
+                "classpath": "19b4a38c-3cff-56e7-b634-08e7ac112681.sink.file_sink"
               },
               "class": "hexagon",
               "html": "<div class=\"custom-node\">\n        <p>file_sink</p>\n      </div>",
@@ -286,7 +245,7 @@ export class CreateprojectComponent {
                 "input_1": {
                   "connections": [
                     {
-                      "node": "5",
+                      "node": "2",
                       "input": "output_1"
                     }
                   ]
@@ -297,8 +256,8 @@ export class CreateprojectComponent {
                   "connections": []
                 }
               },
-              "pos_x": 702,
-              "pos_y": 510
+              "pos_x": 876,
+              "pos_y": 104
             }
           }
         }
@@ -324,7 +283,6 @@ export class CreateprojectComponent {
 
       let resData = [];
 
-      console.log("data:",data)
       if(data['status']=='success'){
         resData = data['data']
       }
@@ -347,6 +305,10 @@ export class CreateprojectComponent {
       ev.dataTransfer.setData("name", ev.target.getAttribute('data-name'));
       ev.dataTransfer.setData("id", ev.target.getAttribute('data-id'));
       ev.dataTransfer.setData("type", ev.target.getAttribute('data-type'));
+      ev.dataTransfer.setData("refId", ev.target.getAttribute('data-refId'));
+      ev.dataTransfer.setData("className", ev.target.getAttribute('data-className'));
+      ev.dataTransfer.setData("classpath", ev.target.getAttribute('data-classpath'));
+      ev.dataTransfer.setData("dependencies", ev.target.getAttribute('data-dependencies'));
     }
 
   }
@@ -371,7 +333,10 @@ export class CreateprojectComponent {
       data['name'] = ev.dataTransfer.getData("name");
       data['id'] = ev.dataTransfer.getData("id");
       data['type'] = ev.dataTransfer.getData("type");
-      //console.log("data:",data)
+      data['refId'] = ev.dataTransfer.getData("refId");
+      data['className'] = ev.dataTransfer.getData("className");
+      data['classpath'] = ev.dataTransfer.getData("classpath");
+      data['dependencies'] = JSON.parse(ev.dataTransfer.getData("dependencies"));
       this.checkAdditionalProperties(data, ev.clientX, ev.clientY);
       
     }
@@ -487,11 +452,81 @@ export class CreateprojectComponent {
   }
 
   export() {
-    console.log("Canvus details: ", this.editor.export())
+    let flow = [];
+    let accOut, accumulatorArray = []
 
     for(let key of Object.keys(this.editor.drawflow.drawflow.Home.data)){
+      let nodeData = this.editor.drawflow.drawflow.Home.data[key];
+      let accIn = "";
+      let instances = nodeData['data']['additionalProperties'] ? nodeData['data']['additionalProperties'] : [] ;
+      
+      if(accOut && nodeData['data']['type']!='source'){
+        accIn = accOut;
+      }
 
+      accOut = `acc${nodeData.id}`;
+      if(accOut && nodeData['data']['type']=='sink'){
+        accOut = "";
+      }else{
+        accumulatorArray.push({
+          "id": `${accOut}`,
+          "name": `output_accumulator${nodeData.id}`,
+          "refId": "acc_config",
+          "kwargs": {},
+          "className": "FileAcc",
+          "classPath": "accumulator.file_acc"
+        })
+      }
+
+      let childNodes=[]; let parentNodes=[];
+      if(nodeData['inputs']){
+        nodeData['inputs']['input_1']['connections'].map(c=>{
+          parentNodes.push(this.editor.drawflow.drawflow.Home.data[c.node]['data']['id']);
+        })
+      }
+
+      if(nodeData['outputs']){
+        nodeData['outputs']['output_1']['connections'].map(c=>{
+          childNodes.push(this.editor.drawflow.drawflow.Home.data[c.node]['data']['id']);
+        })
+      }
+
+      let flowObj = {
+        "id": `${nodeData['data']['id']}`,
+        "type": nodeData['data']['type'],
+        "refId": nodeData['data']['refId'],
+        "accOut" : accOut,
+        "kwargs": {
+          "instances": [instances]
+        },
+        "className": nodeData['data']['className'],
+        "classPath": nodeData['data']['classPath'],
+        "dependencies":nodeData['data']['dependencies'],
+        "parent": parentNodes.toString(), 
+        "children" : childNodes
+      }
+
+      if(accIn!=""){
+        flowObj['accIn'] = accIn;
+      }
+      flow.push(flowObj);
     }
+
+    let pipelieneMetaInfoConvertedTag = this.pipelineMetaInfo;
+    pipelieneMetaInfoConvertedTag['tags'] = this.pipelineMetaInfo.tagString.split(",");
+    delete this.pipelineMetaInfo.tagString;
+
+    let pipelineObj = {
+      "user_id": "54a226b9-8ea6-4370-b0b0-c256b2ab8f87",
+      "type": "mlpipeline",
+      "apiVersion" : "v1",
+      "flow" : flow,
+      "acc" : accumulatorArray,
+      "style" : this.editor.export(),
+      "meta" : this.pipelineMetaInfo
+    }
+
+    console.log(pipelineObj)
   }
 
   showAdditionalProperties(nodeID) {
@@ -509,8 +544,6 @@ export class CreateprojectComponent {
 
     nodeData['data']['additionalProperties'] = this.additionalPropertiesValueByUser
     this.editor.updateNodeDataFromId(this.activeNodeDataDetails['id'], nodeData['data']);
-
-    console.log(this.editor.export())
 
     this.showModal = false;
     this.rightPanelClass = '';
@@ -533,11 +566,25 @@ export class CreateprojectComponent {
     
   }
 
-  // openPanel() {
-  //   document.getElementById('rightPanel').classList.add('show');
-  // }
-  
-  // closePanel() {
-  //   document.getElementById('rightPanel').classList.remove('show');
-  // }
+  getAdditionalProperties(type:string){
+    return new Promise(async (resolve)=>{
+      let data = await this.resourcesService.get_argsdef({
+        "node_type" : type
+      })
+
+      if(data['error_message']==""){
+        let returnObj = {};
+        for(let item of data.data){
+          returnObj[item['name']] = { type : item['type'] }
+        }
+        resolve(returnObj)
+      }else{
+        resolve({})
+      }
+    })
+  }
+
+  saveMetaInfo(){
+    this.showModal = false;
+  }
 }
