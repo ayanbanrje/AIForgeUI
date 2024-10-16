@@ -49,6 +49,7 @@ export class NodeconfigurationComponent implements OnInit {
 
   updateFlag = false;
   rootPage = true;
+  showAllList = false;
   selectedNodeId = '';
   selectedNodeDetails: any = {};
   contentData = []
@@ -56,6 +57,15 @@ export class NodeconfigurationComponent implements OnInit {
   showAllTagsFlag: boolean = false;
   allTags = [];
   whoseTag = '';
+
+  tableHeaders = [
+    'Description', 'Tags'
+  ];
+  itemsPerPage: number = 10; // Adjust based on how many items you want per page
+  currentPage: number = 1;
+  paginatedDatasets: any = [];
+  datasets: any = [];
+
   constructor(
     private nodeConfigurationService: NodeConfigurationService,
     private message: MessageService,
@@ -63,6 +73,7 @@ export class NodeconfigurationComponent implements OnInit {
     private router: Router,
     private moduleExtensionService: ModuleExtensionService
   ) {
+    this.tableHeaders.unshift(`${this.activeTab} Name`);
   }
 
   ngOnInit() {
@@ -173,7 +184,7 @@ export class NodeconfigurationComponent implements OnInit {
     //this.router.navigate(['/nodedetails/' + nodeId])
     this.selectedNodeId = nodeId;
     this.rootPage = false;
-
+    this.showAllList = false;
     this.selectedNodeDetails = this.nodes.find(n => n.node_id == nodeId);
     this.setActiveTab(this.activeTab);
 
@@ -184,6 +195,7 @@ export class NodeconfigurationComponent implements OnInit {
     this.selectedNodeId = '';
     this.rootPage = true;
     this.selectedNodeDetails = {};
+    this.activeTab = 'Pipeline';
   }
 
   functionCall(name) {
@@ -269,15 +281,19 @@ export class NodeconfigurationComponent implements OnInit {
 
     if (response && response.status == "success") {
       let fileLink = await this.download_node_file(response.data);
+      let msg = '';
+      if (fileLink) {
+        msg = " File downloaded successfully!!";
+      }
       if (this.updateFlag === true) {
         this.toast.createToast({
           type: "success",
-          message: "Node updated successfully!!",
+          message: "Node updated successfully." + msg,
         });
       } else {
         this.toast.createToast({
           type: "success",
-          message: "Node created successfully!!",
+          message: "Node created successfully." + msg,
         });
       }
 
@@ -288,12 +304,12 @@ export class NodeconfigurationComponent implements OnInit {
   }
 
   async download_node_file(nodeId) {
-    let a: any;
-    // let response = await this.nodeConfigurationService.downloadcred({
-    //   "execution_id": nodeId
-    // });
+    let ret: boolean = false;
+    let response = await this.nodeConfigurationService.downloadcred({
+      "execution_id": nodeId
+    });
 
-    let response = {
+    /*let response = {
       "status": "success",
       "error_message": "",
       "data": [
@@ -305,7 +321,7 @@ export class NodeconfigurationComponent implements OnInit {
           }
         }
       ]
-    }
+    }*/
 
     if (response && response.status == "success") {
       let content = response.data[0];
@@ -318,23 +334,24 @@ export class NodeconfigurationComponent implements OnInit {
       const url = window.URL.createObjectURL(blob);
 
       // Step 5: Create an anchor element and trigger download
-      a = document.createElement('a');
+      const a = document.createElement('a');
       a.href = url;
       a.download = 'data.json'; // File name
       a.click();
 
       // Step 6: Clean up the Blob URL
       window.URL.revokeObjectURL(url);
+      ret = true;
     }
 
-    return a;
+    return ret;
   }
 
   async download_node(nodeId) {
     let fileLink = await this.download_node_file(nodeId);
     this.toast.createToast({
       type: "success",
-      message: "Node downloaded successfully!! " + fileLink,
+      message: "Node downloaded successfully!!",
     });
   }
 
@@ -364,10 +381,12 @@ export class NodeconfigurationComponent implements OnInit {
 
   setActiveTab(tab: string) {
     this.activeTab = tab;
-    this.ListAvailableCustomComponents(tab)
+    this.tableHeaders.shift();
+    this.tableHeaders.unshift(`${this.activeTab} Name`);
+    this.ListAvailableComponents(tab)
   }
 
-  async ListAvailableCustomComponents(asset_type) {
+  async ListAvailableComponents(asset_type) {
     if (asset_type == "Pipeline") {
       this.nodeDetailsSelectedSearchBarText = "Pipeline Running on Node";
       this.nodeDetailsSelectedSearchBarViewAllLinkText = "View all Pipelines";
@@ -463,6 +482,124 @@ export class NodeconfigurationComponent implements OnInit {
     this.whoseTag = '';
   }
   view_all_list() {
+    this.currentPage = 1;
+    this.showAllList = true;
+    if (this.activeTab == 'Pipeline') {
+      this.datasets = [
+        {
+          'Pipeline Name': 'Pipeline 1',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Pipeline Name': 'Pipeline 2',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Pipeline Name': 'Pipeline 3',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Pipeline Name': 'Pipeline 4',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Pipeline Name': 'Pipeline 5',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Pipeline Name': 'Pipeline 6',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Pipeline Name': 'Pipeline 7',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Pipeline Name': 'Pipeline 8',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        }
+      ];
+    } else {
+      this.datasets = [
+        {
+          'Container Name': 'Container 1',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Container Name': 'Container 2',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Container Name': 'Container 3',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Container Name': 'Container 4',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Container Name': 'Container 5',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Container Name': 'Container 6',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Container Name': 'Container 7',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        },
+        {
+          'Container Name': 'Container 8',
+          'Description': 'Nvidunt ut labore et dolore magna aliquy erat, sed diam voluptua labore et dolore magna.',
+          'Tags': ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6', 'Tag 7', 'Tag 8', 'Tag 9']
+        }
+      ];
+    }
+    this.updatePaginatedData();
+  }
+
+  onSearch(query: string) {
+    console.log('Search query:', query);
+    // Handle search logic here
+
+  }
+
+  onPageChange(page: number): void {
+    this.currentPage = page;
+    this.updatePaginatedData();
+  }
+
+  updatePaginatedData(): void {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    this.paginatedDatasets = this.datasets.slice(start, end);
+  }
+
+  map_to_node() {
+
+  }
+
+  upload_container_image() {
+
+  }
+
+  view_pipeline_container_details(itemId) {
 
   }
 }
